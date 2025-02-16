@@ -193,14 +193,14 @@ session_start();
             <p>Khám phá</p>
           </a>
         </li>
-        <li>
+        <!-- <li>
           <a href="./pages/bando.php">
             <img src="assets/img/5.jpg" alt="Bản đồ" />
             <p>Bản đồ</p>
           </a>
-        </li>
+        </li> -->
         <li>
-          <a href="./pages/tintuc.php">
+          <a href="./pages/tintuc.php" target="_blank">
             <img src="assets/img/6.jpg" alt="Tin tức và Blog" />
             <p>Tin tức và Blog</p>
           </a>
