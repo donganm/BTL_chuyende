@@ -224,13 +224,13 @@ session_start();
     <div class="footer">
       <ul>
         <li>
-          <a href="./pages/about.php">About Us</a>
+          <a href="./pages/about.php" target="_blank">About Us</a>
         </li>
         <li>
-          <a href="./pages/contact.php">Contact Us</a>
+          <a href="./pages/contact.php" target="_blank">Contact Us</a>
         </li>
         <li>
-          <a href="./pages/feedback.php">Feedback</a>
+          <a href="./pages/feedback.php" target="_blank">Feedback</a>
         </li>
       </ul>
     </div>
