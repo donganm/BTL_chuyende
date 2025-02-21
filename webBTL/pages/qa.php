@@ -64,6 +64,7 @@
                     <p>UNESCO là tổ chức chính chịu trách nhiệm bảo vệ và bảo tồn di sản văn hóa và thiên nhiên toàn cầu thông qua các chương trình như Danh sách Di sản Thế giới. Ngoài ra, có nhiều tổ chức phi chính phủ và địa phương cũng tham gia vào việc bảo vệ di sản toàn cầu.</p>
                 </div>
             </div>
+            tôi là 
         </div>
         <div class="benphai">
         Tìm kiếm <input type="text"> <button>Tìm</button>
@@ -73,7 +74,7 @@
                     <li><a href="#">Di sản thiên nhiên</a></li>
                     <li><a href="#">Di sản phi vật thể</a></li>
                     <li><a href="#">Các tổ chức bảo vệ di sản</a></li>
-                    <li><a href="#">Danh sách Di sản Thế giới</a></li>
+                    <li><a href="#">Danh sách Di sản Thế giới</a></li> 
                 </ul>
         </div>
     </div>
