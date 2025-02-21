@@ -20,6 +20,14 @@
             font-family: Arial, sans-serif;
             background-color: #f8f9fa;
         }
+
+        .back-button {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+
         .header {
             background-color: #4CAF50;
             color: white;
@@ -54,6 +62,11 @@
     </style>
 </head>
 <body>
+    <a href="../index.php">
+        <button onclick="window.history.back()" class="btn btn-secondary back-button">Quay lại trang chủ</button>
+    </a>
+    
+
 
     <!-- Header -->
     <div class="header">
