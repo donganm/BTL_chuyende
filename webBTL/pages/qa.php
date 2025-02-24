@@ -276,7 +276,7 @@
 
                 <div class="post">
                     <div class="user-info">
-                        <img src="..//assets/img/avata1.jpg" alt="User Avatar" class="avatar">
+                        <img src="..//assets/img/avata1.jpg" alt="User Avatar" class="avatar">   1 chấm ngang hàng, 2 chấm out ra
                         <div>
                             <strong>Huy Nguyễn</strong> <span class="user-tag">Di tích Cố Đô Huế Việt Nam • 2y</span>
                         </div>
