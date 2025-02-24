@@ -183,7 +183,7 @@
                         </div>
                     </div>
                     <p class="post-content">
-                        <b><a href="qanda.html">Tại sao Quần thể di tích Cố đô Huế lại được UNESCO công nhận là Di sản Thế giới?
+                        <b><a href="qa.php">Tại sao Quần thể di tích Cố đô Huế lại được UNESCO công nhận là Di sản Thế giới?
                         </a></b>
                     </p>
                     <p>Quần thể Di tích Cố đô Huế được UNESCO công nhận là Di sản Thế giới vào năm 1993 nhờ vào những giá trị nổi bật về lịch sử, văn hóa, kiến trúc và cảnh quan.</p>

@@ -207,7 +207,7 @@
             <div class="logo">Q&A</div>
             <div class="menu">
                 <ul class="menungang">
-                    <li><a href="">Trang chủ</a></li>
+                    <li><a href="baidangketnoiq&a.php">Trang chủ</a></li>
                     <li><a href="">Theo dõi</a></li>
                     <li><a href="">Trả lời</a></li>
                     <li><a href="">Thông báo</a></li>
@@ -228,9 +228,9 @@
             <div class="container">
                 <div class="post">
                     <div class="user-info">
-                        <img src="troly.png" alt="Assistant Avatar" class="avatar">
+                        <img src="..//assets/img/AI.jpg" alt="Assistant Avatar" class="avatar">
                         <div>
-                            <strong>Trợ lý</strong> <span class="bot-tag">AI • 6mo</span>
+                            <strong>Trợ lý</strong> <span class="bot-tag">AI • 3y</span>
                         </div>
                     </div>
                     <p class="post-content">
@@ -261,7 +261,7 @@
                 </div>
                     <div class="post">
                     <div class="user-info">
-                        <img src="quanpham.png" alt="User Avatar" class="avatar">
+                        <img src="..//assets/img/avata3.jpeg" alt="User Avatar" class="avatar">
                         <div>
                             <strong>Quân Phạm</strong> <span class="user-tag">Di tích Cố Đô Huế Việt Nam • 1y</span>
                         </div>
@@ -276,7 +276,7 @@
 
                 <div class="post">
                     <div class="user-info">
-                        <img src="huynguyen.png" alt="User Avatar" class="avatar">
+                        <img src="..//assets/img/avata1.jpg" alt="User Avatar" class="avatar">
                         <div>
                             <strong>Huy Nguyễn</strong> <span class="user-tag">Di tích Cố Đô Huế Việt Nam • 2y</span>
                         </div>
