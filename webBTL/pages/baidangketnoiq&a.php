@@ -177,7 +177,7 @@
             <div class="posts-container">
                 <div class="post">
                     <div class="user-info">
-                        <img src="123.png" alt="" class="avatar">
+                        <img src="..//assets/img/avata1.jpg" alt="" class="avatar">
                         <div>
                             <strong>Huy Nguyễn</strong> <span class="bot-tag"> • online</span>
                         </div>
