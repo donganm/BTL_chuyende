@@ -1,44 +1,37 @@
+<?php
+include './db_connect.php';
+
+
+// Lấy dữ liệu bài viết từ database
+$sql = "SELECT * FROM tintuc WHERE id = 1"; // ID = 1 là bài viết về Chùa Một Cột
+$result = $conn->query($sql);
+$row = $result->fetch_assoc();
+
+?>
+
 <!DOCTYPE html>
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chùa Một Cột - Biểu tượng văn hóa ngàn năm</title>
-    <link rel="stylesheet" href="style.css">
+    <title><?php echo $row['tieude']; ?></title>
+    <link rel="stylesheet" href="./style.css">
 </head>
 <body>
     <header>
-        <h1>Chùa Một Cột</h1>
-        <p>Biểu tượng văn hóa và kiến trúc ngàn năm của Việt Nam</p>
+        <h1><?php echo $row['tieude']; ?></h1>
     </header>
     <nav>
-        <a href="../index.php">Trang chủ</a>
-        <a href="./tintuc.php">Tin tức</a>
-        <a href="./blog.php">Blog</a>
+        <a href="./index.php">Trang chủ</a>
+        <a href="../tintuc.php">Tin tức</a>
+        <a href="../blog/blog.php">Blog</a>
     </nav>
     <div class="container">
         <div class="image-container">
-            <img src="chua-mot-cot.jfif" alt="Chùa Một Cột">
+            <img src="../../images/<?php echo $row['hinhanh']; ?>" alt="<?php echo $row['tieude']; ?>">
         </div>
         <div class="content">
-            <h2>Giới thiệu về Chùa Một Cột</h2>
-            <p>
-                Chùa Một Cột, còn gọi là **Diên Hựu Tự**, được xây dựng vào năm 1049 dưới thời vua Lý Thái Tông.  
-                Ngôi chùa có thiết kế độc đáo, với kết cấu một cột trụ duy nhất nâng đỡ cả công trình, tượng trưng cho một bông sen mọc lên từ mặt nước.
-            </p>
-
-            <h2>Kiến trúc độc đáo</h2>
-            <ul>
-                <li><strong>Cột trụ chính:</strong> Chùa đứng trên một cột đá đường kính 1.25m, cao 4m.</li>
-                <li><strong>Hình dáng:</strong> Kiến trúc mô phỏng bông sen vươn lên trên mặt hồ, tượng trưng cho sự thanh tịnh và giác ngộ.</li>
-                <li><strong>Kết cấu mái:</strong> Mái chùa có hình tam giác, uốn cong theo phong cách truyền thống Việt Nam.</li>
-            </ul>
-
-            <h2>Giá trị tâm linh</h2>
-            <p>
-                Chùa Một Cột không chỉ là công trình kiến trúc nổi tiếng mà còn là điểm hành hương quan trọng của Phật giáo Việt Nam.  
-                Hằng năm, nơi đây thu hút hàng ngàn du khách và Phật tử đến thăm viếng, cầu bình an và sức khỏe.
-            </p>
+            <p><?php echo nl2br($row['noidung']); ?></p>
         </div>
         <div class="back-link">
             <a href="../tintuc.php">← Quay lại Tin tức</a>
@@ -46,3 +39,51 @@
     </div>
 </body>
 </html>
+
+<?php
+$conn->close();
+?>
+
+
+<!-- 
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chùa Một Cột - Biểu tượng ngàn năm</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <header>
+        <h1>Chùa Một Cột - Biểu tượng ngàn năm</h1>
+        <p>Ngôi chùa với kiến trúc độc đáo bậc nhất Việt Nam</p>
+    </header>
+    <nav>
+        <a href="../index.php">Trang chủ</a>
+        <a href="../tintuc.php">Tin tức</a>
+        <a href="../blog/blog.php">Blog</a>
+    </nav>
+    <div class="container">
+        <div class="image-container">
+            <img src="../../images/chua-mot-cot.jpg" alt="Chùa Một Cột">
+        </div>
+        <div class="content">
+            <h2>Giới thiệu về Chùa Một Cột</h2>
+            <p>
+                Chùa Một Cột là một trong những biểu tượng văn hóa lâu đời của Hà Nội, được xây dựng dưới triều vua Lý Thái Tông (1049). 
+                Chùa có kiến trúc độc đáo, được xây dựng trên một trụ đá giữa hồ, tượng trưng cho đóa sen thanh khiết vươn lên từ mặt nước.
+            </p>
+
+            <h2>Kiến trúc độc đáo</h2>
+            <p>Chùa Một Cột có thiết kế hình vuông, mái ngói cong, đặt trên một trụ đá đường kính 1.25m, cao 4m.</p>
+
+            <h2>Lịch sử và ý nghĩa</h2>
+            <p>Chùa được xây dựng để cầu nguyện quốc thái dân an, thể hiện lòng biết ơn của vua Lý Thái Tông.</p>
+        </div>
+        <div class="back-link">
+            <a href="../tintuc.php">← Quay lại Tin tức</a>
+        </div>
+    </div>
+</body>
+</html> -->
