@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 17, 2025 at 07:54 AM
+-- Generation Time: Feb 24, 2025 at 07:24 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -45,7 +45,9 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`UserId`, `Username`, `Password`, `Email`, `Role`, `Avatar`, `Address`, `FullName`, `DateOfBirth`, `Gender`) VALUES
-(1, 'dta', '123', 'dta@gmail.com', 'User', NULL, 'Hà Nội', 'Đồng Thị Anh', '0000-00-00', 'Nữ');
+(1, 'dta', '123', 'dta@gmail.com', 'User', NULL, 'Hà Nội', 'Đồng Thị Anh', '0000-00-00', 'Nữ'),
+(0, 'Nguyen Van A', '123', 'nguyenvana@gmail.com', 'User', NULL, 'Thái Bình', 'Nguyễn Văn A', '0000-00-00', 'Nam'),
+(0, 'Nguyen Thi B', '123', 'nguyenvanb@gmail.com', 'User', NULL, 'Thái Nguyên', 'Nguyễn Văn B', '0000-00-00', 'Nữ');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
