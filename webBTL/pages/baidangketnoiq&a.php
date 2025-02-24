@@ -168,7 +168,7 @@
         </div>
         <div class="hop">
             <div class="thanhcongcu">
-                <img src="user-avatar.png" alt="Avatar" class="avatar">
+                <img src="..//assets/img/avata1.jpg" alt="Avatar" class="avatar">
                 <input type="text" placeholder="Bạn muốn hỏi hoặc chia sẻ điều gì?">
                 <button>📝 Ask</button>
                 <button>✏️ Answer</button>
