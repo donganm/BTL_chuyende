@@ -187,7 +187,7 @@
                         </a></b>
                     </p>
                     <p>Quần thể Di tích Cố đô Huế được UNESCO công nhận là Di sản Thế giới vào năm 1993 nhờ vào những giá trị nổi bật về lịch sử, văn hóa, kiến trúc và cảnh quan.</p>
-                <img class="anhto" src="codohue.jpg" alt="">
+                <img class="anhto" src="..//assets/img/codohue.jpg" alt="">
                 <p>1. Giá trị lịch sử và văn hóa
                     Kinh đô triều Nguyễn (1802-1945): Huế từng là trung tâm chính trị, văn hóa và tôn giáo của Việt Nam dưới triều Nguyễn – triều đại phong kiến cuối cùng của đất nước. Đây là nơi diễn ra nhiều sự kiện quan trọng trong lịch sử dân tộc.
                     Bảo tồn văn hóa cung đình: Cố đô Huế lưu giữ nhiều giá trị văn hóa, từ hệ thống tổ chức triều chính đến phong tục, nghi lễ, y phục và nghệ thuật cung đình.
@@ -201,7 +201,7 @@
                     4. Giá trị cảnh quan và môi trường
                     Vị trí đắc địa bên dòng sông Hương: Quần thể di tích nằm dọc theo dòng sông Hương thơ mộng, kết hợp hài hòa với thiên nhiên, tạo nên một không gian lịch sử đầy chất thơ.
                     Bảo tồn hệ sinh thái và môi trường: Cảnh quan thiên nhiên quanh khu di tích vẫn được giữ gìn gần như nguyên vẹn, tạo điều kiện để phát triển du lịch bền vững.</p>
-                    <img class="anhto" src="giatrivanhoalichsu.jpg" alt="">
+                    <img class="anhto" src="..//assets/img/giatrivanhoalichsu.jpg" alt="">
                 
             </div>
         </div>
