@@ -95,6 +95,16 @@ CREATE TABLE IF NOT EXISTS `tintuc` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+CREATE TABLE comments (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    article_id INT NOT NULL,
+    username VARCHAR(255) NOT NULL,
+    content TEXT NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (article_id) REFERENCES blog_articles(id) ON DELETE CASCADE
+);
+
+
 --
 -- Dumping data for tables
 --
@@ -106,6 +116,19 @@ INSERT INTO `blog_articles` (`id`, `title`, `description`, `link`) VALUES;
 INSERT INTO `hue_heritage` (`id`, `title`, `description`, `image`, `link`) VALUES;
 
 INSERT INTO `tintuc` (`id`, `tieude`, `noidung`, `hinhanh`) VALUES;
+
+INSERT INTO blog_articles (id, title, description, link) VALUES
+(13, 'Văn Miếu - Quốc Tử Giám', 
+ 'Văn Miếu - Quốc Tử Giám là một trong những di tích lịch sử quan trọng nhất của Hà Nội. Được xây dựng từ thời nhà Lý, nơi đây từng là trường đại học đầu tiên của Việt Nam, đào tạo nhiều nhân tài cho đất nước.', 
+ 'view-blog.php?id=1'),
+
+(14, 'Vịnh Hạ Long - Kỳ quan thiên nhiên thế giới', 
+ 'Vịnh Hạ Long là một di sản thiên nhiên thế giới được UNESCO công nhận, nổi tiếng với hàng nghìn hòn đảo đá vôi hùng vĩ. Cảnh quan kỳ thú, hệ sinh thái đa dạng cùng các truyền thuyết ly kỳ đã biến nơi đây thành một điểm du lịch hấp dẫn.', 
+ 'view-blog.php?id=2'),
+
+(15, 'Hoàng thành Thăng Long', 
+ 'Hoàng thành Thăng Long là quần thể di tích gắn liền với lịch sử nghìn năm văn hiến của thủ đô Hà Nội. Đây là trung tâm chính trị của các triều đại phong kiến Việt Nam, được UNESCO công nhận là di sản thế giới.', 
+ 'view-blog.php?id=3');
 
 COMMIT;
 
