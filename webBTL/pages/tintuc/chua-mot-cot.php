@@ -1,5 +1,6 @@
 <?php
-include './db_connect.php';
+// include './db_connect.php';
+    include '../../includes/db.php';
 
 
 // Lấy dữ liệu bài viết từ database

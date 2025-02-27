@@ -1,5 +1,6 @@
 <?php
-include '../tintuc/db_connect.php';
+    // include '../tintuc/db_connect.php';
+    include '../../includes/db.php';
 
 // Kiểm tra xem 'id' có trong URL không và đảm bảo nó là số nguyên
 $id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
