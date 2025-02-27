@@ -375,8 +375,6 @@ $role = $_SESSION['role'];
                 <p>Thống Kê</p>
                 <p>Thống kê số lượng người dùng, bài đăng...</p>
             </div>
-
-
         </div>
     <?php } ?>
     </div>
