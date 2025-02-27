@@ -1,14 +1,13 @@
 <?php
-    session_start();
-    include '../../includes/db.php'; // Đảm bảo kết nối database
+session_start();
+include '../../includes/db.php';
 
-    if (!$conn) {
-        die("Lỗi kết nối database: " . mysqli_connect_error());
-    }
+if (!$conn) {
+    die("Lỗi kết nối database: " . mysqli_connect_error());
+}
 
-    // Truy vấn lấy dữ liệu từ bảng `blog_articles`
-    $sql = "SELECT id, title, description FROM blog_articles";
-    $result = $conn->query($sql);
+$sql = "SELECT id, title, description FROM blog_articles";
+$result = $conn->query($sql);
 ?>
 <!DOCTYPE html>
 <html lang="vi">
@@ -36,20 +35,18 @@
         if ($result->num_rows > 0) {
             while ($blog = $result->fetch_assoc()) {
                 echo '<div class="article">';
-                // Thay đổi tiêu đề thành link đến `view-blog.php`
                 echo '<h2><a href="view-blog.php?id=' . $blog["id"] . '">' . $blog["title"] . '</a></h2>';
                 echo '<p>' . $blog["description"] . '</p>';
                 
-                // Nút xóa bài viết
+                echo '<a href="edit-blog.php?id=' . $blog['id'] . '" style="color: blue; margin-right: 10px;">Sửa</a>';
                 echo '<a href="delete-blog.php?id=' . $blog['id'] . '" onclick="return confirm(\'Bạn có chắc chắn muốn xóa bài viết này?\')" style="color: red;">Xóa</a>';
                 echo '</div>';
             }
         } else {
-                // Hiển thị bài viết mặc định nếu không có bài viết nào
-                echo '<div class="article">';
-                echo '<h2>Chào mừng bạn đến với Blog Văn hóa!</h2>';
-                echo '<p>Chưa có bài viết nào. Hãy là người đầu tiên đăng bài!</p>';
-                echo '</div>';
+            echo '<div class="article">';
+            echo '<h2>Chào mừng bạn đến với Blog Văn hóa!</h2>';
+            echo '<p>Chưa có bài viết nào. Hãy là người đầu tiên đăng bài!</p>';
+            echo '</div>';
         }
 
         $conn->close();

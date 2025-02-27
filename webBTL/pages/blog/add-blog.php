@@ -26,8 +26,8 @@
             <label>Mô tả:</label>
             <textarea name="description" required></textarea>
 
-            <label>Nội dung:</label>
-            <textarea name="content" rows="5" required></textarea>
+            <!-- <label>Nội dung:</label>
+            <textarea name="content" rows="5" required></textarea> -->
 
             <!-- <label>Hình ảnh:</label>
             <input type="file" name="image"> -->
