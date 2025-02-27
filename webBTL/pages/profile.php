@@ -235,37 +235,28 @@ $role = $_SESSION['role'];
     <div class="body">
         <!-- Menu Bên Trái -->
         <div class="trai">
-            <?php
-            $ten = $_SESSION['user'];
-            $sql = "Select * from users where `Username` = '$ten' ";
-            $result = mysqli_query($conn, $sql);
-            while ($row = mysqli_fetch_array($result)) {
-                $idd = $row['UserId'];
-
-            ?>
-                <div class="profile-section">
-                    <img class="avatar" src="<?php echo $row['Avatar'] ?>" alt="Avatar" />
-                    <div class="details">
-                        <div class="name"><?php echo $row['FullName']; ?></div>
-
-                    </div>
+            <div class="profile-section">
+                <img class="avatar" alt="Avatar" src="../assets/img/4.jpg" />
+                <div class="details">
+                    <div class="name">Dong Anh</div>
                 </div>
-                <div>
-                    <h3 style="font-size: 18px; color: yellow; margin: 10px 0">
-                        Tài Khoản Của Tôi
-                    </h3>
-                    <ul class="menu">
-                        <li id="profile">Hồ Sơ</li>
-                        <li id="change-password">Đổi Mật Khẩu</li>
-                        <li id="heritage-list">Danh Sách Di Sản</li>
-                        <li id="post-management">Quản Lý Bài Đăng</li>
-                        <li id="user-management">Quản Lý Người Dùng</li>
-                        <li id="favorites">Danh sách yêu thích</li>
-                        <li id="statistics">Thống Kê</li>
-                        <li><a href="../index.php" style="text-decoration: none;color: yellow;">Trở lại</a></li>
-                    </ul>
+            </div>
+            <div>
+                <h3 style="font-size: 18px; color: yellow; margin: 10px 0">
+                    Tài Khoản Của Tôi
+                </h3>
+                <ul class="menu">
+                    <li id="profile">Hồ Sơ</li>
+                    <li id="change-password">Đổi Mật Khẩu</li>
+                    <li id="heritage-list">Danh Sách Di Sản</li>
+                    <li id="post-management">Quản Lý Bài Đăng</li>
+                    <li id="user-management">Quản Lý Người Dùng</li>
+                    <li id="favorites">Danh sách yêu thích</li>
+                    <li id="statistics">Thống Kê</li>
+                    <li><a href="../index.php" style="text-decoration: none;color: yellow;">Trở lại</a></li>
+                </ul>
 
-                </div>
+            </div>
         </div>
 
         <!-- Nội Dung Bên Phải -->
@@ -375,10 +366,7 @@ $role = $_SESSION['role'];
                 <p>Thống Kê</p>
                 <p>Thống kê số lượng người dùng, bài đăng...</p>
             </div>
-
-
         </div>
-    <?php } ?>
     </div>
     <script>
         document.addEventListener("DOMContentLoaded", function() {
