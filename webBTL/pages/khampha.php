@@ -233,9 +233,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mini-game Lịch Sử</title>
     <style>
-        body { font-family: Arial, sans-serif; text-align: center; }
+        body { font-family: Arial, sans-serif; text-align: center; background-color: #f4f4f4; }
         .hidden { display: none; }
-        .container { max-width: 600px; margin: auto; padding: 20px; }
+        .container { max-width: 600px; margin: auto; padding: 20px; background: white; border-radius: 10px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); }
+        button, input { margin: 10px; padding: 10px 15px; border: none; border-radius: 5px; }
+        button { background: #007BFF; color: white; cursor: pointer; }
+        button:hover { background: #0056b3; }
+        input { width: 80%; }
     </style>
 </head>
 <body>
@@ -277,14 +281,11 @@
             { q: "Đèo Hải Vân được mệnh danh là gì?", a: "Thiên hạ đệ nhất hùng quan" },
             { q: "Biển nào được gọi là 'Maldives của Việt Nam'?", a: "Phú Quốc" }
         ];
-        
-        let selectedQuestions = [];
-        let currentQuestionIndex = 0;
-        let score = 0;
-        
+
+        let selectedQuestions = [], currentQuestionIndex = 0, score = 0;
+
         function startGame() {
-            const username = document.getElementById("username").value.trim();
-            if (!username) {
+            if (!document.getElementById("username").value.trim()) {
                 alert("Vui lòng nhập tên để bắt đầu!");
                 return;
             }
@@ -293,7 +294,7 @@
             selectedQuestions = questions.sort(() => 0.5 - Math.random()).slice(0, 5);
             loadQuestion();
         }
-        
+
         function loadQuestion() {
             if (currentQuestionIndex < selectedQuestions.length) {
                 document.getElementById("question").innerText = selectedQuestions[currentQuestionIndex].q;
@@ -302,23 +303,72 @@
                 document.getElementById("quiz-container").innerHTML = `<h2>Bạn đã hoàn thành!</h2><p>Điểm số: ${score}/5</p><button onclick='location.reload()'>Chơi lại</button>`;
             }
         }
-        
+
         function checkAnswer() {
-            const userAnswer = document.getElementById("answer").value.trim();
-            const correctAnswer = selectedQuestions[currentQuestionIndex].a;
-            if (userAnswer.toLowerCase() === correctAnswer.toLowerCase()) {
-                score++;
-                document.getElementById("result").innerText = "✅ Đúng!";
-            } else {
-                document.getElementById("result").innerText = `❌ Sai! Đáp án: ${correctAnswer}`;
-            }
+            const userAnswer = document.getElementById("answer").value.trim().toLowerCase();
+            const correctAnswer = selectedQuestions[currentQuestionIndex].a.toLowerCase();
+            document.getElementById("result").innerText = userAnswer === correctAnswer 
+                ? "✅ Đúng!" 
+                : `❌ Sai! Đáp án: ${selectedQuestions[currentQuestionIndex].a}`;
+            if (userAnswer === correctAnswer) score++;
             currentQuestionIndex++;
             setTimeout(() => { document.getElementById("result").innerText = ""; loadQuestion(); }, 1000);
         }
-        
+
         function quitGame() {
-            if (confirm("Bạn có chắc chắn muốn thoát không?")) {
-                location.reload();
+            if (confirm("Bạn có chắc chắn muốn thoát không?")) location.reload();
+        }
+    </script>
+</body>
+</html>
+</html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Giới thiệu Trang Web</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; background-color: #f4f4f4; }
+        .container { max-width: 800px; margin: auto; padding: 20px; background: white; border-radius: 10px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); }
+        h1 { color: #007BFF; }
+        .section { margin: 20px 0; }
+        .comment-section { text-align: left; }
+        textarea { width: 100%; padding: 10px; margin-top: 10px; }
+        button { margin-top: 10px; padding: 10px 15px; border: none; background: #007BFF; color: white; cursor: pointer; border-radius: 5px; }
+        button:hover { background: #0056b3; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Chào mừng đến với trang khám phá lịch sử!</h1>
+        <p>Tìm hiểu về các danh lam thắng cảnh và di tích lịch sử nổi tiếng.</p>
+        
+        <div class="section">
+            <h2>Khám phá các di tích</h2>
+            <p>Trang web cung cấp thông tin chi tiết về các địa danh lịch sử nổi tiếng.</p>
+        </div>
+
+        <div class="section">
+            <h2>Đánh giá và bình luận</h2>
+            <p>Bạn có thể chia sẻ suy nghĩ của mình về từng địa danh.</p>
+            <div class="comment-section">
+                <h3>Viết bình luận của bạn:</h3>
+                <textarea id="comment" rows="4" placeholder="Nhập bình luận..."></textarea>
+                <button onclick="submitComment()">Gửi</button>
+                <div id="comments"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function submitComment() {
+            const commentText = document.getElementById("comment").value.trim();
+            if (commentText) {
+                const commentDiv = document.createElement("div");
+                commentDiv.innerHTML = `<p><strong>Người dùng:</strong> ${commentText}</p>`;
+                document.getElementById("comments").appendChild(commentDiv);
+                document.getElementById("comment").value = "";
+            } else {
+                alert("Vui lòng nhập nội dung bình luận!");
             }
         }
     </script>

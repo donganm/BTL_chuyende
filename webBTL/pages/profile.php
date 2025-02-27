@@ -184,6 +184,50 @@ $role = $_SESSION['role'];
         .save-btn:hover {
             background: #16a085;
         }
+
+        /* Quản lý người dùng */
+        .content-section {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            max-width: 800px;
+            margin: 20px auto;
+        }
+
+        .content-section h2 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .product-table {
+            width: 100%;
+            border-collapse: collapse;
+            /* gộp đường biên table  */
+            margin: 0 auto;
+        }
+
+        .product-table th,
+        .product-table td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: center;
+        }
+
+        .product-table th {
+            background-color: #f4f4f4;
+            color: #555;
+        }
+
+        .product-table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        .product-table tr:hover {
+            background-color: #f1f1f1;
+        }
     </style>
 </head>
 
@@ -191,28 +235,37 @@ $role = $_SESSION['role'];
     <div class="body">
         <!-- Menu Bên Trái -->
         <div class="trai">
-            <div class="profile-section">
-                <img class="avatar" alt="Avatar" src="../assets/img/4.jpg" />
-                <div class="details">
-                    <div class="name">Dong Anh</div>
-                </div>
-            </div>
-            <div>
-                <h3 style="font-size: 18px; color: yellow; margin: 10px 0">
-                    Tài Khoản Của Tôi
-                </h3>
-                <ul class="menu">
-                    <li id="profile">Hồ Sơ</li>
-                    <li id="change-password">Đổi Mật Khẩu</li>
-                    <li id="heritage-list">Danh Sách Di Sản</li>
-                    <li id="post-management">Quản Lý Bài Đăng</li>
-                    <li id="user-management">Quản Lý Người Dùng</li>
-                    <li id="favorites">Danh sách yêu thích</li>
-                    <li id="statistics">Thống Kê</li>
-                    <li><a href="../index.php" style="text-decoration: none;color: yellow;">Trở lại</a></li>
-                </ul>
+            <?php
+            $ten = $_SESSION['user'];
+            $sql = "Select * from users where `Username` = '$ten' ";
+            $result = mysqli_query($conn, $sql);
+            while ($row = mysqli_fetch_array($result)) {
+                $idd = $row['UserId'];
 
-            </div>
+            ?>
+                <div class="profile-section">
+                    <img class="avatar" src="<?php echo $row['Avatar'] ?>" alt="Avatar" />
+                    <div class="details">
+                        <div class="name"><?php echo $row['FullName']; ?></div>
+
+                    </div>
+                </div>
+                <div>
+                    <h3 style="font-size: 18px; color: yellow; margin: 10px 0">
+                        Tài Khoản Của Tôi
+                    </h3>
+                    <ul class="menu">
+                        <li id="profile">Hồ Sơ</li>
+                        <li id="change-password">Đổi Mật Khẩu</li>
+                        <li id="heritage-list">Danh Sách Di Sản</li>
+                        <li id="post-management">Quản Lý Bài Đăng</li>
+                        <li id="user-management">Quản Lý Người Dùng</li>
+                        <li id="favorites">Danh sách yêu thích</li>
+                        <li id="statistics">Thống Kê</li>
+                        <li><a href="../index.php" style="text-decoration: none;color: yellow;">Trở lại</a></li>
+                    </ul>
+
+                </div>
         </div>
 
         <!-- Nội Dung Bên Phải -->
@@ -281,6 +334,34 @@ $role = $_SESSION['role'];
             <div id="user-management-content" class="content-section" style="display: none;">
                 <p>Quản Lý Người Dùng</p>
                 <p>Danh sách người dùng trong hệ thống</p>
+                <table class="product-table">
+                    <thead>
+                        <tr>
+                            <th>Tên Đăng Nhập</th>
+                            <th>Tên Người Dùng</th>
+                            <th>Vai Trò</th>
+                            <th>Chức Năng</th>
+                        </tr>
+                    </thead>
+                    <?php
+                    $sql = "Select * from users";
+                    $result = mysqli_query($conn, $sql);
+                    while ($row = mysqli_fetch_array($result)) {
+                        $id = $row['UserId'];
+
+                    ?>
+                        <tbody>
+                            <tr>
+                                <td><?php echo $row['Username']; ?></td>
+                                <td><?php echo $row['FullName']; ?></td>
+                                <td><?php echo $row['Role']; ?></td>
+                                <td>
+                                    <a class="update" href="../logic/delete_user.php?id=<?php echo $id; ?>">Xóa</a>
+                                </td>
+                            </tr>
+                        <?php } ?>
+                        </tbody>
+                </table>
             </div>
 
             <!-- Danh sách yêu thích -->
@@ -294,9 +375,8 @@ $role = $_SESSION['role'];
                 <p>Thống Kê</p>
                 <p>Thống kê số lượng người dùng, bài đăng...</p>
             </div>
-
-
         </div>
+    <?php } ?>
     </div>
     <script>
         document.addEventListener("DOMContentLoaded", function() {
