@@ -1,31 +1,32 @@
 <?php
-    session_start();
-    include '../../includes/db.php';
+session_start();
+include '../../includes/db.php';
 
-    if (!$conn) {
-        die("Lỗi kết nối database: " . mysqli_connect_error());
-    }
+if (!$conn) {
+    die("Lỗi kết nối database: " . mysqli_connect_error());
+}
 
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        $article_id = isset($_POST['article_id']) ? (int)$_POST['article_id'] : 0;
-        $content = isset($_POST['content']) ? trim($_POST['content']) : '';
-        $username = isset($_SESSION['username']) ? $_SESSION['username'] : 'Ẩn danh';
+// Xử lý khi form được gửi
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $article_id = isset($_POST['article_id']) ? (int)$_POST['article_id'] : 0;
+    $content = isset($_POST['comment']) ? trim($_POST['comment']) : '';
+    $username = isset($_SESSION['username']) ? $_SESSION['username'] : 'Ẩn danh';
 
-        if ($article_id > 0 && !empty($content)) {
-            $sql = "INSERT INTO comments (article_id, username, content) VALUES (?, ?, ?)";
-            $stmt = $conn->prepare($sql);
-            $stmt->bind_param("iss", $article_id, $username, $content);
+    if ($article_id > 0 && !empty($content)) {
+        $sql = "INSERT INTO comments (article_id, username, content) VALUES (?, ?, ?)";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("iss", $article_id, $username, $content);
 
-            if ($stmt->execute()) {
-                header("Location: view-blog.php?id=" . $article_id);
-                exit();
-            } else {
-                echo "Lỗi khi thêm bình luận!";
-            }
+        if ($stmt->execute()) {
+            header("Location: view-blog.php?id=" . $article_id);
+            exit();
         } else {
-            echo "Dữ liệu không hợp lệ!";
+            echo "Lỗi khi thêm bình luận!";
         }
+    } else {
+        echo "Dữ liệu không hợp lệ!";
     }
+}
 ?>
 
 
