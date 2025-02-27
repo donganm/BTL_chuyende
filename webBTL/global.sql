@@ -46,6 +46,65 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`UserId`, `Username`, `Password`, `Email`, `Role`, `Avatar`, `Address`, `FullName`, `DateOfBirth`, `Gender`) VALUES
 (1, 'dta', '123', 'dta@gmail.com', 'User', NULL, 'Hà Nội', 'Đồng Thị Anh', '0000-00-00', 'Nữ');
+
+CREATE TABLE IF NOT EXISTS `articles` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `title` varchar(255) NOT NULL,
+  `description` text NOT NULL,
+  `link` varchar(255) NOT NULL,
+  `image` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Table structure for table `blog_articles`
+--
+
+CREATE TABLE IF NOT EXISTS `blog_articles` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `title` varchar(255) NOT NULL,
+  `description` text NOT NULL,
+  `link` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Table structure for table `hue_heritage`
+--
+
+CREATE TABLE IF NOT EXISTS `hue_heritage` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `title` varchar(255) NOT NULL,
+  `description` text NOT NULL,
+  `image` varchar(255) NOT NULL,
+  `link` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Table structure for table `tintuc`
+--
+
+CREATE TABLE IF NOT EXISTS `tintuc` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `tieude` varchar(255) NOT NULL,
+  `noidung` text NOT NULL,
+  `hinhanh` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for tables
+--
+
+INSERT INTO `articles` (`id`, `title`, `description`, `link`, `image`) VALUES;
+
+INSERT INTO `blog_articles` (`id`, `title`, `description`, `link`) VALUES;
+
+INSERT INTO `hue_heritage` (`id`, `title`, `description`, `image`, `link`) VALUES;
+
+INSERT INTO `tintuc` (`id`, `tieude`, `noidung`, `hinhanh`) VALUES;
+
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

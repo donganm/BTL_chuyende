@@ -1,5 +1,6 @@
 <?php
-include '../tintuc/db_connect.php';
+// include '../tintuc/db_connect.php';
+    include '../../includes/db.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $title = mysqli_real_escape_string($conn, $_POST["title"]);

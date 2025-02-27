@@ -1,5 +1,6 @@
 <?php
-include '../tintuc/db_connect.php';
+    // include '../tintuc/db_connect.php';
+    include '../../includes/db.php';
 ?>
 
 <!DOCTYPE html>

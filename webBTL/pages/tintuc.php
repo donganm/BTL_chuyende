@@ -1,6 +1,7 @@
 <?php
 // Đúng đường dẫn file kết nối DB
-include './tintuc/db_connect.php';
+// include './tintuc/db_connect.php';
+    include '../includes/db.php';
 // Kiểm tra kết nối
 if (!$conn) {
     die("Lỗi kết nối database: " . mysqli_connect_error());
@@ -50,7 +51,7 @@ $result = $conn->query($sql);
 
         nav a.active {
             font-weight: bold;
-            color: #3498db; 
+            color:rgb(166, 255, 0); 
         }
 
         .container {
