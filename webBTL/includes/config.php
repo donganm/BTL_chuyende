@@ -2,7 +2,8 @@
 $servername = "localhost";
 $username = "root"; // Tài khoản MySQL của bạn
 $password = ""; // Mật khẩu (để trống nếu dùng XAMPP)
-$dbname = "heritage_db";
+
+$dbname = "global";
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) {
