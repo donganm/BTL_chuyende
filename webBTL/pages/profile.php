@@ -185,6 +185,40 @@ $role = $_SESSION['role'];
             background: #16a085;
         }
 
+        /* Đổi mật khẩu */
+        .change-password-form {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .change-password-form h2 {
+            font-size: 20px;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .change {
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-size: 14px;
+            font-weight: bold;
+            color: #333;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            font-size: 14px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
         /* Quản lý người dùng */
         .content-section {
             font-family: Arial, sans-serif;
@@ -275,47 +309,84 @@ $role = $_SESSION['role'];
                 <p>Hồ Sơ Của Tôi</p>
                 <p>Quản lý thông tin hồ sơ để bảo mật tài khoản</p>
                 <hr />
-                <form>
+                <form action="../logic/process_user_update.php" method="POST">
+                    <input type="hidden" name="UserId" value="<?php echo $row['UserId']; ?>" />
                     <div class="form-group">
                         <label for="username">Tên đăng nhập</label>
-                        <input type="text" id="username" name="username" />
+                        <input type="text" id="username" name="username" value="<?php echo $row['Username']; ?>" />
                     </div>
                     <div class="form-group">
                         <label for="name">Tên</label>
-                        <input type="text" id="name" name="fullname" />
+                        <input type="text" id="name" name="fullname" value="<?php echo $row['FullName']; ?>" />
                     </div>
                     <div class="form-group">
                         <label>Email</label>
-                        <input type="email" name="email" />
+                        <input type="email" name="email" value="<?php echo $row['Email']; ?>" />
                     </div>
                     <div class="form-group">
                         <label>Địa chỉ</label>
-                        <input type="text" name="address" />
+                        <input type="text" name="address" value="<?php echo $row['Address']; ?>" />
                     </div>
                     <div class="form-group">
                         <label>Giới tính</label>
                         <div class="gender">
-                            <input type="radio" name="gender" id="male" value="Nam" />
+                            <input type="radio" name="gender" id="male" value="Nam" <?php echo ($row['Gender'] == 'Nam') ? 'checked' : ''; ?> />
                             <label for="male">Nam</label>
-                            <input type="radio" name="gender" id="female" value="Nữ" />
+                            <input type="radio" name="gender" id="female" value="Nữ" <?php echo ($row['Gender'] == 'Nữ') ? 'checked' : ''; ?> />
                             <label for="female">Nữ</label>
-                            <input type="radio" name="gender" id="other" value="Khác" />
+                            <input type="radio" name="gender" id="other" value="Khác" <?php echo ($row['Gender'] == 'Khác') ? 'checked' : ''; ?> />
                             <label for="other">Khác</label>
                         </div>
                     </div>
                     <div class="form-group">
                         <label>Ngày sinh</label>
-                        <input type="date" name="date_of_birth" />
+                        <input type="date" name="date_of_birth" value="<?php echo $row['DateOfBirth']; ?>" />
                     </div>
                     <button type="submit" class="save-btn">Lưu</button>
                 </form>
+
             </div>
 
             <!-- Đổi mật khẩu -->
             <div id="change-password-content" class="content-section" style="display: none;">
                 <p>Đổi Mật Khẩu</p>
                 <p>Để bảo mật tài khoản, vui lòng không chia sẻ mật khẩu cho người khác</p>
+                <form class="change-password-form" action="../logic/resetPass.php" method="POST">
 
+                    <input type="hidden" name="UserId" value="<?php echo $row['UserId']; ?>" />
+
+                    <div class="change">
+                        <label for="current-password">Mật khẩu hiện tại</label>
+                        <input
+                            type="password"
+                            id="current-password"
+                            name="current-password"
+                            placeholder="Nhập mật khẩu hiện tại"
+                            required />
+                    </div>
+
+                    <div class="change">
+                        <label for="new-password">Mật khẩu mới</label>
+                        <input
+                            type="password"
+                            id="new-password"
+                            name="new-password"
+                            placeholder="Nhập mật khẩu mới"
+                            required />
+                    </div>
+
+                    <div class="change">
+                        <label for="confirm-password">Xác nhận mật khẩu mới</label>
+                        <input
+                            type="password"
+                            id="confirm-password"
+                            name="confirm-password"
+                            placeholder="Xác nhận mật khẩu mới"
+                            required />
+                    </div>
+
+                    <button type="submit" class="save-btn">Lưu thay đổi</button>
+                </form>
             </div>
 
             <!-- Danh sách di sản -->
