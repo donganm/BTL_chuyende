@@ -219,19 +219,19 @@ session_start();
         </li> -->
         <li>
           <a href="./pages/tintuc.php" target="_blank">
-            <img src="assets/img/6.jpg" alt="Tin tức và Blog" />
+            <img src="./assets/img/6.jpg" alt="Tin tức và Blog" />
             <p>Tin tức và Blog</p>
           </a>
         </li>
         <li>
           <a href="./pages/congdong.php">
-            <img src="assets/img/7.jpg" alt="Cộng đồng" />
+            <img src="./assets/img/7.jpg" alt="Cộng đồng" />
             <p>Cộng đồng</p>
           </a>
         </li>
         <li>
-          <a href="./pages/qa.php">
-            <img src="assets/img/8.jpg" alt="Q&A" />
+          <a href="./pages/baidangketnoiq&a.php">
+            <img src="./assets/img/8.jpg" alt="Q&A" />
             <p>Q&A</p>
           </a>
         </li>
