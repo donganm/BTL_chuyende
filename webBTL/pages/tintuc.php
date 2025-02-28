@@ -1,4 +1,20 @@
+<?php
+// Đúng đường dẫn file kết nối DB
+// include './tintuc/db_connect.php';
+    include '../includes/db.php';
+// Kiểm tra kết nối
+if (!$conn) {
+    die("Lỗi kết nối database: " . mysqli_connect_error());
+}
 
+// Truy vấn lấy dữ liệu từ bảng `articles`
+$sql = "SELECT title, description, link, image FROM articles";
+$result = $conn->query($sql);
+?>
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tin Tức</title>
@@ -33,20 +49,9 @@
             font-weight: bold;
         }
 
-        /* Mặc định bôi màu vàng cho mục active */
         nav a.active {
             font-weight: bold;
-            color: #f39c12; /* Màu vàng cho mục active */
-        }
-
-        /* Bôi màu xanh dương cho mục "Tin tức" */
-        nav a.active[href='./tintuc.php'] {
-            color: #3498db;  /* Màu xanh dương cho mục "Tin tức" */
-        }
-
-        /* Bôi màu khác cho mục "Blog" */
-        nav a.active[href='./blog.php'] {
-            color: #9b59b6;  /* Màu tím cho mục "Blog" */
+            color:rgb(166, 255, 0); 
         }
 
         .container {
@@ -69,6 +74,12 @@
         .article p {
             color: #555;
         }
+
+        .article img {
+            width: 100%;
+            max-height: 300px;
+            object-fit: cover;
+        }
     </style>
 </head>
 
@@ -80,28 +91,36 @@
 
     <nav>
         <a href="../index.php" class="<?php echo basename($_SERVER['PHP_SELF']) == 'index.php' ? 'active' : ''; ?>">Trang chủ</a>
-        <a href="./tintuc.php" class="<?php echo basename($_SERVER['PHP_SELF']) == 'tintuc.php' ? 'active' : ''; ?>">Tin tức</a>
-        <a href="./blog.php" class="<?php echo basename($_SERVER['PHP_SELF']) == 'blog.php' ? 'active' : ''; ?>">Blog</a>
+        <a href="./tintuc.php" class="active">Tin tức</a>
+        <a href="./blog/blog.php" class="<?php echo basename($_SERVER['PHP_SELF']) == 'blog.php' ? 'active' : ''; ?>">Blog</a>
     </nav>
 
     <div class="container">
         <?php
-        // Mảng chứa thông tin về các bài viết
-        $articles = [
-            ["title" => "Khám phá di sản văn hóa Huế", "desc" => "Huế là cố đô với nhiều di tích lịch sử quan trọng của Việt Nam.", "link" => "./tintuc/hue.php"],
-            ["title" => "Chùa Một Cột - Biểu tượng ngàn năm", "desc" => "Ngôi chùa độc đáo với kiến trúc có một không hai.", "link" => "./tintuc/chua-mot-cot.php"],
-            ["title" => "Hội An - Phố cổ lung linh", "desc" => "Hội An là điểm đến không thể bỏ qua với vẻ đẹp hoài cổ.", "link" => "./tintuc/hoi-an.php"],
-        ];
+        if ($result->num_rows > 0) {
+            while ($article = $result->fetch_assoc()) {
+                // Xử lý đường dẫn bài viết
+                $link = $article["link"];
+                if (strpos($link, 'tintuc/') === false) {
+                    $link = 'tintuc/' . $link;
+                }
 
-        // Hiển thị từng bài viết
-        foreach ($articles as $article) {
-            echo '<div class="article">';
-            echo '<h2><a href="' . $article["link"] . '">' . $article["title"] . '</a></h2>';
-            echo '<p>' . $article["desc"] . '</p>';
-            echo '</div>';
+                // Xử lý đường dẫn ảnh
+                $imagePath = '../images/' . $article["image"];
+
+                echo '<div class="article">';
+                echo '<img src="' . $imagePath . '" alt="' . $article["title"] . '">';
+                echo '<h2><a href="' . $link . '">' . $article["title"] . '</a></h2>';
+                echo '<p>' . $article["description"] . '</p>';
+                echo '</div>';
+            }
+        } else {
+            echo "<p>Không có bài viết nào.</p>";
         }
+
+        // Đóng kết nối database
+        $conn->close();
         ?>
     </div>
 </body>
-
 </html>
