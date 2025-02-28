@@ -9,12 +9,7 @@ if (isset($_GET['id'])) {
     mysqli_begin_transaction($conn);
 
 
-    // 1. Xóa các sản phẩm có liên quan đến người dùng
-    $sql_delete_products = "DELETE FROM `products` WHERE `SellerId` = ?";
-    $stmt_delete_products = $conn->prepare($sql_delete_products);
-    $stmt_delete_products->bind_param("i", $id);
-    $stmt_delete_products->execute();
-    $stmt_delete_products->close();
+    // 1. Xóa các bài viết, thông tin có liên quan đến người dùng (chua co CSDL)
 
     // 2. Xóa người dùng
     $sql_delete_user = "DELETE FROM `users` WHERE `UserId` = ?";
