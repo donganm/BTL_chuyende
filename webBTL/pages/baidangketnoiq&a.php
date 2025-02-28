@@ -2,16 +2,85 @@
     <head>
         <title>Câu hỏi và câu trả lời di sản toàn cầu</title>
         <style>
-            body {
+            body{
                 font-family: Arial, sans-serif;
                 background-color: #f5f5f5;
-                padding: 20px;
+                padding: 0;
+                margin: 0;
             }
-            .hop {
+            .bentrai{       
+                flex-basis: 70%;
+            }
+            .benphai{
+                flex-basis: 30%;
+            }
+            .chiabocuc{
+                display: flex;
+                
+            }
+            .hop{
+                margin: 20px auto;
                 max-width: 960px;
-                margin: 0 auto;
+            }
+            .header {
+                display: flex;
+                align-items: center;
+                justify-content: space-around;
+                background-color: white;
+                padding: 0px 200px;
+                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            }
+            .logo {
+                font-size: 30px;
+                font-weight: bold;
+                color: #b92b27;
+            }
+            .header-icons {
+                display: flex;
+                align-items: center;
+                gap: 15px;
+            }
+            .search-bar {
+                padding: 5px;
+                border: 1px solid #ddd;
+                border-radius: 5px;
+                width: 300px;
+            }
+            .taobaidang {
+                background-color: #b92b27;
+                color: white;
+                border: none;
+                padding: 8px 16px;
+                border-radius: 5px;
+                cursor: pointer;
+            }
+            .taobaidang:hover {
+                background-color: #a1201e;
             }
             .menu {
+                background-color: white;
+            }
+            .menungang {
+                list-style: none;
+                display: flex;
+                justify-content: center;
+                flex-wrap: nowrap;
+                white-space: nowrap;
+            }
+            .menungang li {
+                display: inline;
+            }
+            a {
+                padding: 10px;
+                text-decoration: none;
+                color: black;
+            }
+        
+            .hop {
+                max-width: 960px;
+                margin: 20 auto;
+            }
+            .thanhcongcu {
                 display: flex;
                 align-items: center;
                 background-color: white;
@@ -19,15 +88,16 @@
                 border-radius: 8px;
                 box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
                 margin-bottom: 20px;
+                
             }
-            .menu input {
+            .thanhcongcu input {
                 flex-grow: 1;
                 padding: 8px;
                 border: 1px solid #ccc;
                 border-radius: 20px;
                 margin: 0 10px;
             }
-            .menu button {
+            .thanhcongcu button {
                 background: none;
                 border: none;
                 cursor: pointer;
@@ -35,7 +105,7 @@
                 color: gray;
                 padding: 5px 10px;
             }
-            .menu button:hover {
+            .thanhcongcu button:hover {
                 color: black;
             }
             .posts-container {
@@ -80,9 +150,25 @@
     </style>
     </head>
     <body>
-        <div class="hop">
+        <div class="header">
+            <div class="logo">Q&A</div>
             <div class="menu">
-                <img src="user-avatar.png" alt="Avatar" class="avatar">
+                <ul class="menungang">
+                    <li><a href="">Trang chủ</a></li>
+                    <li><a href="">Theo dõi</a></li>
+                    <li><a href="traloi.php">Trả lời</a></li>
+                    <li><a href="">Thông báo</a></li>
+                    <li><a href="">Về Q&A</a></li>
+                </ul>
+            </div>
+            <div class="header-icons">
+                <input type="text" class="search-bar" placeholder="Tìm kiếm...">
+                <button class="taobaidang">Tạo bài đăng</button>
+            </div>
+        </div>
+        <div class="hop">
+            <div class="thanhcongcu">
+                <img src="..//assets/img/avata1.jpg" alt="Avatar" class="avatar">
                 <input type="text" placeholder="Bạn muốn hỏi hoặc chia sẻ điều gì?">
                 <button>📝 Ask</button>
                 <button>✏️ Answer</button>
@@ -91,17 +177,17 @@
             <div class="posts-container">
                 <div class="post">
                     <div class="user-info">
-                        <img src="123.png" alt="" class="avatar">
+                        <img src="..//assets/img/avata1.jpg" alt="" class="avatar">
                         <div>
                             <strong>Huy Nguyễn</strong> <span class="bot-tag"> • online</span>
                         </div>
                     </div>
                     <p class="post-content">
-                        <b><a href="">Tại sao Quần thể di tích Cố đô Huế lại được UNESCO công nhận là Di sản Thế giới?
+                        <b><a href="qa.php">Tại sao Quần thể di tích Cố đô Huế lại được UNESCO công nhận là Di sản Thế giới?
                         </a></b>
                     </p>
                     <p>Quần thể Di tích Cố đô Huế được UNESCO công nhận là Di sản Thế giới vào năm 1993 nhờ vào những giá trị nổi bật về lịch sử, văn hóa, kiến trúc và cảnh quan.</p>
-                <img class="anhto" src="codohue.jpg" alt="">
+                <img class="anhto" src="..//assets/img/codohue.jpg" alt="">
                 <p>1. Giá trị lịch sử và văn hóa
                     Kinh đô triều Nguyễn (1802-1945): Huế từng là trung tâm chính trị, văn hóa và tôn giáo của Việt Nam dưới triều Nguyễn – triều đại phong kiến cuối cùng của đất nước. Đây là nơi diễn ra nhiều sự kiện quan trọng trong lịch sử dân tộc.
                     Bảo tồn văn hóa cung đình: Cố đô Huế lưu giữ nhiều giá trị văn hóa, từ hệ thống tổ chức triều chính đến phong tục, nghi lễ, y phục và nghệ thuật cung đình.
@@ -115,10 +201,9 @@
                     4. Giá trị cảnh quan và môi trường
                     Vị trí đắc địa bên dòng sông Hương: Quần thể di tích nằm dọc theo dòng sông Hương thơ mộng, kết hợp hài hòa với thiên nhiên, tạo nên một không gian lịch sử đầy chất thơ.
                     Bảo tồn hệ sinh thái và môi trường: Cảnh quan thiên nhiên quanh khu di tích vẫn được giữ gìn gần như nguyên vẹn, tạo điều kiện để phát triển du lịch bền vững.</p>
-                    <img class="anhto" src="giatrivanhoalichsu.jpg" alt="">
+                    <img class="anhto" src="..//assets/img/giatrivanhoalichsu.jpg" alt="">
                 
             </div>
-            
         </div>
     </body>
 </html>

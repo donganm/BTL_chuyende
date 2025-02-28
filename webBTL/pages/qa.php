@@ -1,42 +1,83 @@
 <html>
     <head>
-        <title>Câu hỏi và câu trả lời di sản toàn c</title>
+        <title>Câu hỏi và câu trả lời di sản toàn cầu</title>
         <style>
-            .menungang{
-                list-style: none;
-                display: flex;
-                padding-left: 50px;
-                justify-content: center;    
+         
+            
+            body{
+                font-family: Arial, sans-serif;
+                background-color: #f5f5f5;
+                padding: 0;
+                margin: 0;
             }
-            .menu{
-                background-color: aqua;
-                padding: 20px 0px;
-            }
-            a{               
-                padding: 10px;
-            }
-            .bentrai{
-               
-                background-color: aqua;
+            .bentrai{       
                 flex-basis: 70%;
             }
             .benphai{
                 flex-basis: 30%;
-                background-color: aqua;
             }
             .chiabocuc{
                 display: flex;
                 
             }
             .hop{
-                margin: 0px auto;
+                margin: 20px auto;
                 max-width: 960px;
             }
-            body {
-                font-family: Arial, sans-serif;
-                background-color: #f5f5f5;
-                padding: 20px;
+            .header {
+                display: flex;
+                align-items: center;
+                justify-content: space-around;
+                background-color: white;
+                padding: 0px 200px;
+                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
             }
+            .logo {
+                font-size: 30px;
+                font-weight: bold;
+                color: #b92b27;
+            }
+            .header-icons {
+                display: flex;
+                align-items: center;
+                gap: 15px;
+            }
+            .search-bar {
+                padding: 5px;
+                border: 1px solid #ddd;
+                border-radius: 5px;
+                width: 300px;
+            }
+            .taobaidang {
+                background-color: #b92b27;
+                color: white;
+                border: none;
+                padding: 8px 16px;
+                border-radius: 5px;
+                cursor: pointer;
+            }
+            .taobaidang:hover {
+                background-color: #a1201e;
+            }
+            .menu {
+                background-color: white;
+            }
+            .menungang {
+                list-style: none;
+                display: flex;
+                justify-content: center;
+                flex-wrap: nowrap;
+                white-space: nowrap;
+            }
+            .menungang li {
+                display: inline;
+            }
+            a {
+                padding: 10px;
+                text-decoration: none;
+                color: black;
+            }
+        
 
             .post {
                 background-color: white;
@@ -85,19 +126,100 @@
             .upvote-btn:hover {
                 color: black;
             }
+            .related-header {
+                display: flex;
+                align-items: center;
+                gap: 15px;
+                padding: 27px 10px  0px 0px;
+            }
+
+            .answer-btn {
+                border: 2px solid #1a73e8;
+                background: none;
+                color: #1a73e8;
+                font-size: 14px;
+                font-weight: bold;
+                padding: 8px 16px;
+                border-radius: 20px;
+                cursor: pointer;
+                display: flex;
+                align-items: center;
+                gap: 5px;
+                transition: 0.2s;
+            }
+
+            .answer-btn:hover {
+                background: #1a73e8;
+                color: white;
+            }
+
+            .follow-btn {
+                border: none;
+                background: none;
+                color: gray;
+                font-size: 14px;
+                cursor: pointer;
+                transition: color 0.2s;
+            }
+
+            .follow-btn:hover {
+                color: black;
+            }
+            .related-questions {
+                background-color: white;
+                padding: 15px;
+                border-radius: 8px;
+                box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+                margin-top: 10px;
+            }       
+
+            .related-questions h3 {
+                font-size: 16px;
+                font-weight: bold;
+                margin-bottom: 10px;
+                padding-bottom: 8px;
+                border-bottom: 2px solid #ddd;  
+            }
+
+            .related-questions ul {
+                list-style: none;
+                padding: 0;
+                margin: 0;
+            }
+
+            .related-questions ul li {
+                margin-bottom: 8px;
+            }
+
+            .related-questions ul li a {
+                text-decoration: none;
+                color: #0073e6;
+                font-size: 14px;
+            }
+
+            .related-questions ul li a:hover {
+                text-decoration: underline;
+            }
     </style>
     </head>
     <body>
-    <div class="hop">
-        <div class="menu">
-            <ul class="menungang">
-                <li><a href="">Tạo câu hỏi</a></li>
-                <li><a href="">Cần trợ giúp</a></li>
-                <li><a href="">Top hỏi đáp</a></li>
-                <li><a href="">Chuyên mục</a></li>
-                <li><a href="">Về Q&A</a></li>
-            </ul>
+        <div class="header">
+            <div class="logo">Q&A</div>
+            <div class="menu">
+                <ul class="menungang">
+                    <li><a href="baidangketnoiq&a.php">Trang chủ</a></li>
+                    <li><a href="">Theo dõi</a></li>
+                    <li><a href="">Trả lời</a></li>
+                    <li><a href="">Thông báo</a></li>
+                    <li><a href="">Về Q&A</a></li>
+                </ul>
+            </div>
+            <div class="header-icons">
+                <input type="text" class="search-bar" placeholder="Tìm kiếm...">
+                <button class="taobaidang">Tạo bài đăng</button>
+            </div>
         </div>
+    <div class="hop">
     <div class="chiabocuc">
         <div class="bentrai">
             <span style="background: none;">Tại sao Quần thể di tích Cố đô Huế lại được UNESCO công nhận là Di sản Thế giới?
@@ -106,9 +228,9 @@
             <div class="container">
                 <div class="post">
                     <div class="user-info">
-                        <img src="troly.png" alt="Assistant Avatar" class="avatar">
+                        <img src="..//assets/img/AI.jpg" alt="Assistant Avatar" class="avatar">
                         <div>
-                            <strong>Trợ lý</strong> <span class="bot-tag">AI • 6mo</span>
+                            <strong>Trợ lý</strong> <span class="bot-tag">AI • 3y</span>
                         </div>
                     </div>
                     <p class="post-content">
@@ -134,13 +256,12 @@
                     </ul>
                     <div class="post-footer">
                         <button class="upvote-btn">⬆ Upvote</button>
-                        <span class="dots">•••</span>
+                       <button class="upvote-btn"><span></span>•••</span></button> 
                     </div>
                 </div>
-                
-                <div class="post">
+                    <div class="post">
                     <div class="user-info">
-                        <img src="quanpham.png" alt="User Avatar" class="avatar">
+                        <img src="..//assets/img/avata3.jpeg" alt="User Avatar" class="avatar">
                         <div>
                             <strong>Quân Phạm</strong> <span class="user-tag">Di tích Cố Đô Huế Việt Nam • 1y</span>
                         </div>
@@ -155,7 +276,7 @@
 
                 <div class="post">
                     <div class="user-info">
-                        <img src="huynguyen.png" alt="User Avatar" class="avatar">
+                        <img src="..//assets/img/avata1.jpg" alt="User Avatar" class="avatar">   1 chấm ngang hàng, 2 chấm out ra
                         <div>
                             <strong>Huy Nguyễn</strong> <span class="user-tag">Di tích Cố Đô Huế Việt Nam • 2y</span>
                         </div>
@@ -170,22 +291,31 @@
            </div>
         </div>
         <div class="benphai">
+            <div class="related-header">
+                <button class="answer-btn">
+                    ✏️ Trả lời  <span class="answer-count"> 2 </span>
+                </button>
+                <button class="follow-btn">
+                    📡 Theo dõi
+                </button>
+            </div>
             <div class="related-questions">
                 <h3>Câu hỏi liên quan</h3>
                 <ul>
-                    <li><a href="#">Những câu hỏi phổ biến nhất trên các trang web hỏi đáp là gì?</a></li>
-                    <li><a href="#">Một số trang web hỏi đáp chuyên ngành là gì?</a></li>
-                    <li><a href="#">Trang web nào là tốt nhất để trả lời câu hỏi?</a></li>
+                    <li><a href="#">Di sản thế giới là gì? Tiêu chí nào để một địa điểm được UNESCO công nhận?</a></li>
+                    <li><a href="#">Hiện nay trên thế giới có bao nhiêu di sản được UNESCO công nhận?</a></li>
+                    <li><a href="#">Vịnh Hạ Long có những giá trị gì để trở thành di sản thế giới?</a></li>
                     <li><a href="#">Tôi có thể đặt câu hỏi và nhận câu trả lời trực tuyến ở đâu?</a></li>
-                    <li><a href="#">Trang web hỏi đáp nào là tốt nhất?</a></li>
-                    <li><a href="#">Những trang web hỏi đáp nào được sử dụng nhiều nhất?</a></li>
+                    <li><a href="#">Vì sao Vạn Lý Trường Thành được UNESCO công nhận là di sản thế giới?</a></li>
+                    <li><a href="#">Kim tự tháp Ai Cập có phải là di sản thế giới không?</a></li>
                 </ul>
             </div>
         </div>
     </div>
     <div class="cuoi trang">
-        cuoi trang.
+        cuoi trang
     </div>
     </div>
+
 </body>
 </html>
