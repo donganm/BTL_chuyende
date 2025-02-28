@@ -1,8 +1,43 @@
 <?php
+// Kết nối database
+if (
+    !empty($_POST['fullname']) &&
+    !empty($_POST['username']) &&
+    !empty($_POST['password']) &&
+    !empty($_POST['confirm_password']) &&
+    !empty($_POST['email']) &&
+    !empty($_POST['dob']) &&
+    !empty($_POST['hometown']) &&
+    !empty($_POST['gender'])
+) {
 
-session_start();
+    $hoTen = $_POST['fullname'];
+    $tenDangNhap = $_POST['username'];
+    $matKhau = $_POST['password'];
+    $nhapLai = $_POST['confirm_password'];
+    $email = $_POST['email'];
+    $dob = $_POST['dob'];
+    $queQuan = $_POST['hometown'];
+    $gioiTinh = $_POST['gender'];
 
+    if ($matKhau == $nhapLai) {
+        include('../includes/db.php');
+        $sql = "INSERT INTO `users` (`FullName`, `Username`, `Password`, `Address`, `DateOfBirth`, `Email`, `Gender`) 
+                VALUES ('$hoTen', '$tenDangNhap', '$matKhau', '$queQuan', '$dob', '$email', '$gioiTinh');";
+        if (mysqli_query($conn, $sql)) {
+            header('Location: ../index.php');
+        } else {
+            $error = "Lỗi khi đăng ký: " . mysqli_error($conn);
+        }
+    } else {
+        $error = "Mật khẩu nhập lại không đúng.";
+    }
+} else {
+    $error = "Vui lòng điền đầy đủ thông tin.";
+}
 ?>
+
+<!-- Giao diện đăng ký -->
 <!DOCTYPE html>
 <html lang="vi">
 
