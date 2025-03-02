@@ -209,9 +209,9 @@
                 <ul class="menungang">
                     <li><a href="baidangketnoiq&a.php">Trang chủ</a></li>
                     <li><a href="">Theo dõi</a></li>
-                    <li><a href="">Trả lời</a></li>
+                    <li><a href="traloi.php">Trả lời</a></li>
                     <li><a href="">Thông báo</a></li>
-                    <li><a href="">Về Q&A</a></li>
+                    <li><a href="baidangketnoiq&a.php">Về Q&A</a></li>
                 </ul>
             </div>
             <div class="header-icons">
