@@ -1,12 +1,9 @@
 <?php
-$servername = "localhost";
-$username = "root"; // Mặc định là root
-$password = ""; // Mặc định XAMPP để trống
-$dbname = "QandA";
+    include '../includes/db.php';
 
 // Kết nối database
-$conn = new mysqli($servername, $username, $password, $dbname);
-if ($conn->connect_error) {
+    $conn = new mysqli($servername, $username, $password, $database);
+    if ($conn->connect_error) {
     die("Kết nối thất bại: " . $conn->connect_error);
 }
 ?>
