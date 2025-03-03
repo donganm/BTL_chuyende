@@ -34,9 +34,9 @@ nav a.active {
   color: #f39c12;
 }
 
-/* Bôi màu tím cho mục "Blog" */
+/* Bôi màu xanh dương cho mục "Blog" */
 nav a[href='./blog.php'].active {
-  color:rgb(166, 255, 0); 
+  color: #3498db;
 }
 
 .container {
@@ -51,9 +51,14 @@ nav a[href='./blog.php'].active {
   border-bottom: 1px solid #ddd;
   padding: 15px 0;
 }
-
 .article h2 {
   color: #2c3e50;
+  transition: color 0.3s ease-in-out;
+}
+
+.article h2:hover {
+  color: #f39c12;
+  text-decoration: underline;
 }
 
 .article p {
