@@ -150,6 +150,15 @@
     </style>
     </head>
     <body>
+    <div id="modalPost" class="modal" style="display:none;">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <h2>Đăng bài mới</h2>
+        <input type="text" id="postTitle" placeholder="Tiêu đề bài đăng">
+        <textarea id="postContent" placeholder="Nội dung bài đăng"></textarea>
+        <button onclick="submitPost()">Đăng bài</button>
+    </div>
+    </div>
         <div class="header">
             <div class="logo">Q&A</div>
             <div class="menu">
