@@ -18,12 +18,12 @@ $result = $conn->query($sql);
 </head>
 <body>
     <header>
-        <h1>Blog về Văn hóa Việt Nam</h1>
+        <h1>Blog Về Văn Hoá Việt Nam</h1>
         <p>Chia sẻ trải nghiệm và góc nhìn</p>
     </header>
 
     <nav>
-        <a href="../index.php">Trang chủ</a>
+        <a href="../../index.php">Trang chủ</a>
         <a href="../tintuc.php">Tin tức</a>
         <a href="./blog.php" class="active">Blog</a>
     </nav>

@@ -18,6 +18,25 @@ if (!$blog) {
     die("Không tìm thấy bài viết!");
 }
 
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $title = trim($_POST['title']);
+    $content = trim($_POST['content']);
+
+    if (empty($title) || empty($content)) {
+        echo "<script>alert('Tiêu đề và nội dung không được để trống.'); history.back();</script>";
+        exit;
+    }
+
+    $update_stmt = $conn->prepare("UPDATE blogs SET title = ?, content = ? WHERE id = ?");
+    $update_stmt->bind_param("ssi", $title, $content, $id);
+    if ($update_stmt->execute()) {
+        header("Location: blog.php");
+        exit;
+    } else {
+        echo "<script>alert('Lỗi khi cập nhật bài viết.'); history.back();</script>";
+    }
+}
+
 ?>
 
 <!DOCTYPE html>
