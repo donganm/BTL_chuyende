@@ -2,7 +2,7 @@
 // Kết nối MySQL
 
 
-///hhh
+///hhhfdsfsd
 $conn = new mysqli("localhost", "root", "", "global");
 if ($conn->connect_error) {
     die("Kết nối thất bại: " . $conn->connect_error);
