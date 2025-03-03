@@ -134,7 +134,7 @@
             <div class="logo">Q&A</div>
             <div class="menu">
                 <ul class="menungang">
-                    <li><a href="">Trang chủ</a></li>
+                    <li><a href="../index.php">Trang chủ</a></li>
                     <li><a href="">Theo dõi</a></li>
                     <li><a href="">Trả lời</a></li>
                     <li><a href="">Thông báo</a></li>
