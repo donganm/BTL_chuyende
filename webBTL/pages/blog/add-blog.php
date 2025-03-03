@@ -1,6 +1,27 @@
 <?php
     // include '../tintuc/db_connect.php';
     include '../../includes/db.php';
+
+    // Xử lý thêm bài viết
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $title = trim($_POST['title']);
+    $content = trim($_POST['content']);
+    
+    if (empty($title) || empty($content)) {
+        echo "<script>alert('Tiêu đề và nội dung không được để trống.'); history.back();</script>";
+        exit;
+    }
+    
+    $sql = "INSERT INTO blogs (title, content, created_at) VALUES (?, ?, NOW())";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("ss", $title, $content);
+    if ($stmt->execute()) {
+        header("Location: blog.php");
+        exit;
+    } else {
+        echo "<script>alert('Lỗi khi thêm bài viết.'); history.back();</script>";
+    }
+}
 ?>
 
 <!DOCTYPE html>
