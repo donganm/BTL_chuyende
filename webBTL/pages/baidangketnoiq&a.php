@@ -1,3 +1,15 @@
+<?php
+$servername = "localhost";
+$username = "root"; // Mặc định là root
+$password = ""; // Mặc định XAMPP để trống
+$dbname = "QandA";
+
+// Kết nối database
+$conn = new mysqli($servername, $username, $password, $dbname);
+if ($conn->connect_error) {
+    die("Kết nối thất bại: " . $conn->connect_error);
+}
+?>
 <html>
     <head>
         <title>Câu hỏi và câu trả lời di sản toàn cầu</title>
@@ -150,15 +162,6 @@
     </style>
     </head>
     <body>
-    <div id="modalPost" class="modal" style="display:none;">
-    <div class="modal-content">
-        <span class="close" onclick="closeModal()">&times;</span>
-        <h2>Đăng bài mới</h2>
-        <input type="text" id="postTitle" placeholder="Tiêu đề bài đăng">
-        <textarea id="postContent" placeholder="Nội dung bài đăng"></textarea>
-        <button onclick="submitPost()">Đăng bài</button>
-    </div>
-    </div>
         <div class="header">
             <div class="logo">Q&A</div>
             <div class="menu">
