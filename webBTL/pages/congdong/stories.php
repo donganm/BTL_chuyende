@@ -1,9 +1,17 @@
 <?php
+$servername = "localhost";  // Hoặc 127.0.0.1
+$username = "root";
+$password = "";  // Nếu có mật khẩu, điền vào đây
+$database = "global";
+
 // Kết nối MySQL
-$conn = new mysqli("localhost", "root", "", "heritage_db");
+$conn = new mysqli($servername, $username, $password, $database);
+
+// Kiểm tra kết nối
 if ($conn->connect_error) {
     die("Kết nối thất bại: " . $conn->connect_error);
 }
+
 
 // Lấy dữ liệu từ bảng stories (câu chuyện)
 $sql = "SELECT * FROM stories";
@@ -183,7 +191,7 @@ $result_success = $conn->query($sql_success);
     <div class="carousel">
         <?php while ($row = $result->fetch_assoc()): ?>
             <div class="card">
-            <img src="/BTL_chuyende/webBTL/pages/congdong/image_url/<?php echo $row['image_url']; ?>" alt="<?php echo $row['title']; ?>">
+            <img src=" <?php echo $row['image_url']; ?>" alt="<?php echo $row['title']; ?>">
                 <div class="card-content">
                     <h3><?php echo $row['title']; ?></h3>
                     <p><?php echo $row['description']; ?></p>
@@ -212,7 +220,7 @@ if ($result_projects->num_rows > 0) {
                 <p><?php echo $row["details"]; ?></p>
             </div>
             <div class="image">
-                <img src="<?php echo $row["image_url"]; ?>" alt="<?php echo $row["project_name"]; ?>">
+                <img src=" <?php echo $row["image_rest"]; ?>" alt="<?php echo $row["project_name"]; ?>">
             </div>
         </div>
         <!-- Thêm gạch ngang giữa các câu chuyện -->
@@ -236,7 +244,7 @@ if ($result_projects->num_rows > 0) {
     while ($row = $result_success->fetch_assoc()):
     ?>
         <div class="story">
-            <img src="<?php echo $row['image_url']; ?>" alt="<?php echo $row['title']; ?>">
+            <img src=" <?php echo $row['image_path']; ?>" alt="<?php echo $row['title']; ?>">
             <h3><?php echo $row['title']; ?></h3>
             <p><?php echo $row['description']; ?></p>
         </div>
