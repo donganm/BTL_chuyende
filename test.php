@@ -29,50 +29,55 @@ $role = $_SESSION['role'];
         }
 
         body {
-            background-color: #f4f6f9;
-            /* display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh; */
+            background-color: #f0f0f0;
         }
 
         .body {
             display: flex;
-            /* width: 90%;
-            max-width: 1200px; */
             min-height: 100vh;
-            /* background: #ffffff;
-            overflow: hidden;
-            box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.1); */
         }
 
-        /* Sidebar bên trái */
         .trai {
-            background: #2c3e50;
-            width: 20%;
-            padding: 25px;
-            color: #fff;
+            background-color: #f5f5f5;
+            width: 25%;
+            padding: 20px;
             box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
         }
 
         .profile-section {
             display: flex;
             align-items: center;
-            margin-bottom: 25px;
+            margin-bottom: 20px;
         }
 
         .avatar {
-            width: 80px;
-            height: 80px;
+            width: 70px;
+            height: 70px;
             border-radius: 50%;
-            border: 3px solid #fff;
             margin-right: 15px;
+            border: 2px solid #ddd;
         }
 
-        .details .name {
-            font-size: 20px;
+        .details {
+            display: flex;
+            flex-direction: column;
+            /* các phần tử sx theo chiều dọc */
+        }
+
+        .name {
+            font-size: 18px;
             font-weight: bold;
-            color: #f1f1f1;
+            color: #333;
+        }
+
+        .edit {
+            font-size: 14px;
+            color: #007bff;
+            cursor: pointer;
+        }
+
+        .edit:hover {
+            text-decoration: underline;
         }
 
         .menu {
@@ -81,48 +86,62 @@ $role = $_SESSION['role'];
 
         .menu li {
             list-style: none;
-            padding: 12px 0;
+            padding: 10px 0;
             font-size: 16px;
+            color: #444;
             cursor: pointer;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-            transition: 0.3s ease;
+            border-bottom: 1px solid #eee;
         }
 
         .menu li:hover {
-            color: #1abc9c;
+            color: #007bff;
         }
 
-        /* Phần nội dung bên phải */
         .phai {
-            width: 80%;
-            padding: 40px;
-            background-color: #fff;
+            width: 75%;
+            padding: 30px;
+            background-color: #ffffff;
             box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
         }
 
-        .content-section {
-            background: #ffffff;
-            padding: 25px;
-            border-radius: 10px;
-            box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.1);
-        }
-
-        .content-section p:first-child {
-            font-size: 24px;
+        .phai p:first-child {
+            font-size: 22px;
             font-weight: bold;
             color: #333;
-            margin-bottom: 8px;
+            margin-bottom: 5px;
         }
 
-        .content-section p:nth-child(2) {
+        .phai p:nth-child(2) {
             font-size: 16px;
             color: #666;
             margin-bottom: 20px;
         }
 
-        /* Form */
-        form {
+        .main {
+            display: flex;
+            gap: 20px;
             margin-top: 20px;
+        }
+
+        .box1 {
+            width: 70%;
+        }
+
+        .content-section {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #ffffff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            margin-top: 50px;
+        }
+
+        /* Hồ sơ của tôi */
+        form {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
         }
 
         .form-group {
@@ -130,7 +149,7 @@ $role = $_SESSION['role'];
         }
 
         label {
-            font-size: 15px;
+            font-size: 14px;
             font-weight: bold;
             color: #333;
             display: block;
@@ -139,19 +158,18 @@ $role = $_SESSION['role'];
 
         input[type="text"],
         input[type="email"],
-        input[type="date"],
         select {
             width: 100%;
-            padding: 10px;
+            padding: 8px;
             font-size: 14px;
             border: 1px solid #ccc;
-            border-radius: 6px;
-            transition: 0.3s ease;
+            border-radius: 4px;
         }
 
-        input:focus {
-            border-color: #1abc9c;
-            outline: none;
+        .edit-link {
+            font-size: 14px;
+            color: #007bff;
+            text-decoration: none;
         }
 
         .gender {
@@ -164,28 +182,64 @@ $role = $_SESSION['role'];
         }
 
         .gender label {
-            margin-right: 30px;
-            font-size: 14px;
+            margin-right: 50px;
         }
 
-        /* Button */
-        .save-btn {
-            background: #1abc9c;
-            color: white;
-            padding: 12px 20px;
-            border: none;
-            border-radius: 6px;
-            cursor: pointer;
-            font-size: 16px;
-            transition: 0.3s ease;
-            display: block;
-            width: 100%;
+        .birth-date select {
+            width: 30%;
+            padding: 8px;
+            font-size: 14px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .box2 {
+            width: 30%;
             text-align: center;
         }
 
-        .save-btn:hover {
-            background: #16a085;
+        .avatar-preview {
+            margin-bottom: 20px;
         }
+
+        .avatar-preview img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 3px solid #ddd;
+            margin-top: 50px;
+        }
+
+        .upload-btn {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-bottom: 15px;
+        }
+
+        .box2 p {
+            font-size: 14px;
+            color: #555;
+        }
+
+        .box2 p br {
+            margin-bottom: 5px;
+        }
+
+        .save-btn {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
 
         /* Đổi mật khẩu */
         .change-password-form {
@@ -221,7 +275,53 @@ $role = $_SESSION['role'];
             border-radius: 4px;
         }
 
-        /* Quản lý người dùng */
+        /* Đăng kí bán hàng */
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        .register-form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .register {
+            margin-bottom: 15px;
+        }
+
+        .register label {
+            font-size: 14px;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .register input,
+        .register textarea,
+        .register select {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .form-buttons {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        /* Đăng bán sản phẩm */
+        .form-group textarea {
+            width: 100%;
+            height: 100px;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        /* Quản lý sản phẩm + Quản lý người dùng */
         .content-section {
             font-family: Arial, sans-serif;
             padding: 20px;
@@ -264,6 +364,24 @@ $role = $_SESSION['role'];
         .product-table tr:hover {
             background-color: #f1f1f1;
         }
+
+        .edit-btn {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        .edit-btn:hover {
+            text-decoration: underline;
+        }
+
+        .delete-btn {
+            color: black;
+            text-decoration: none;
+        }
+
+        .delete-btn:hover {
+            text-decoration: underline;
+        }
     </style>
 </head>
 
@@ -288,7 +406,7 @@ $role = $_SESSION['role'];
                 </div>
 
                 <div>
-                    <h3 style="font-size: 18px; color: yellow; margin: 10px 0">
+                    <h3 style="font-size: 18px; color: #333; margin: 10px 0">
                         Tài Khoản Của Tôi
                     </h3>
                     <ul class="menu">
@@ -306,7 +424,7 @@ $role = $_SESSION['role'];
                             <li>Danh Sách Di Sản</li>
                             <li>Thống Kê</li>
                         <?php endif; ?>
-                        <li><a href="../index.php" style="text-decoration: none;color:yellow;">Trở lại</a></li>
+                        <li><a href="../index.php" style="text-decoration: none;color:#444;">Trở lại</a></li>
                     </ul>
                 </div>
         </div>
@@ -350,23 +468,20 @@ $role = $_SESSION['role'];
                         <label>Ngày sinh</label>
                         <input type="date" name="date_of_birth" value="<?php echo $row['DateOfBirth']; ?>" />
                     </div>
-                    <div class="form-group">
-                        <label>Avatar</label>
-                        <input type="file" name="fileToUpload" id="fileToUpload">
-                    </div>
                     <button type="submit" class="save-btn">Lưu</button>
                 </form>
 
             </div>
 
             <!-- Đổi mật khẩu -->
-            <div id="change-password-content" class="content-section" style="display: none;">
-                <p>Đổi Mật Khẩu</p>
-                <p>Để bảo mật tài khoản, vui lòng không chia sẻ mật khẩu cho người khác</p>
+            <div
+                id="change-password-content"
+                class="content-section"
+                style="display: none">
                 <form class="change-password-form" action="../logic/resetPass.php" method="POST">
-
                     <input type="hidden" name="UserId" value="<?php echo $row['UserId']; ?>" />
-
+                    <p>Đổi Mật Khẩu</p>
+                    <p>Để bảo mật tài khoản, vui lòng không chia sẻ mật khẩu cho người khác</p>
                     <div class="change">
                         <label for="current-password">Mật khẩu hiện tại</label>
                         <input
@@ -535,22 +650,22 @@ $role = $_SESSION['role'];
                 condition: "User" // Chỉ hiển thị nếu vai trò là User
             },
             {
-                menu: ".menu li:nth-child(4)",
+                menu: ".menu li:nth-child(3)",
                 content: "favorites-content", // Danh sách yêu thích
                 condition: "User"
             },
             {
-                menu: ".menu li:nth-child(3)",
+                menu: ".menu li:nth-child(4)",
                 content: "user-management-content", // Quản Lý Người dùng
                 condition: "Admin"
             },
             {
-                menu: ".menu li:nth-child(4)",
+                menu: ".menu li:nth-child(3)",
                 content: "heritage-list-content", // Danh sách di sản
                 condition: "Admin" // Chỉ hiển thị nếu vai trò là Admin
             },
             {
-                menu: ".menu li:nth-child(5)",
+                menu: ".menu li:nth-child(3)",
                 content: "statistics-content", // Thống kê
                 condition: "Admin" // Chỉ hiển thị nếu vai trò là Admin
             }
