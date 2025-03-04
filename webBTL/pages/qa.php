@@ -1,6 +1,6 @@
 <html>
     <head>
-        <title>Câu hỏi và câu trả lời di sản toàn cầu</title>
+        <title>Câu hỏi và câu trả lời di sản toàn cầu.</title>
         <style>
          
             
@@ -9,6 +9,7 @@
                 background-color: #f5f5f5;
                 padding: 0;
                 margin: 0;
+                
             }
             .bentrai{       
                 flex-basis: 70%;
