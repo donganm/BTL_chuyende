@@ -44,30 +44,51 @@ session_start();
     }
 
     /* Header */
+    /* Header */
     .header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 20px;
+      padding: 15px 20px;
       background-color: #fff;
-      border-bottom: 2px solid var(--primary-color);
-      position: sticky;
-      top: 0;
-      z-index: 1000;
+      border-bottom: 2px solid #4caf50;
     }
 
-    .header a {
-      text-decoration: none;
-      color: var(--text-color);
-      font-size: 18px;
+    .header_phai {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      /* Khoảng cách giữa các phần tử */
+    }
+
+    /* Phần hiển thị tên người dùng */
+    .header__search-signin-des {
+      font-size: 16px;
       font-weight: bold;
-      padding: 8px 16px;
+      color: var(--text-color);
+      padding: 8px 12px;
+      border-radius: 5px;
       border: 2px solid var(--primary-color);
-      border-radius: 4px;
+      transition: background 0.3s ease;
+    }
+
+    .header__search-signin-des:hover {
+      background: var(--primary-color);
+      color: white;
+    }
+
+    /* Nút đăng nhập & đăng xuất */
+    .header__search-signout {
+      display: inline-block;
+      font-size: 14px;
+      color: var(--text-color);
+      padding: 8px 12px;
+      border: 2px solid var(--primary-color);
+      border-radius: 5px;
       transition: all 0.3s ease;
     }
 
-    .header a:hover {
+    .header__search-signout:hover {
       background-color: var(--primary-color);
       color: #fff;
     }
@@ -157,7 +178,7 @@ session_start();
         Global Heritage
       </h1>
 
-      <div class="header__search-abc">
+      <div class="header_phai">
         <?php if (isset($_SESSION['user'])): ?>
           <div class="header__search-signin-des" id="user" onclick="">
             <a
@@ -165,7 +186,7 @@ session_start();
               style="text-decoration: none; color: #444"><?php echo $_SESSION['user']; // Hiển thị tên người dùng 
                                                           ?></a>
           </div>
-          <div class="header__search-signin-icon">
+          <div>
             <a
               href="./pages/logout.php"
               style="text-decoration: none; color: #444"
@@ -176,9 +197,6 @@ session_start();
             <a
               href="./pages/login.php"
               style="text-decoration: none; color: #444">Đăng nhập</a>
-          </div>
-          <div class="header__search-signin-icon">
-            <i class="fa-solid fa-user"></i>
           </div>
         <?php endif; ?>
       </div>
@@ -201,19 +219,19 @@ session_start();
         </li> -->
         <li>
           <a href="./pages/tintuc.php" target="_blank">
-            <img src="assets/img/6.jpg" alt="Tin tức và Blog" />
+            <img src="./assets/img/6.jpg" alt="Tin tức và Blog" />
             <p>Tin tức và Blog</p>
           </a>
         </li>
         <li>
           <a href="./pages/congdong.php">
-            <img src="assets/img/7.jpg" alt="Cộng đồng" />
+            <img src="./assets/img/7.jpg" alt="Cộng đồng" />
             <p>Cộng đồng</p>
           </a>
         </li>
         <li>
-          <a href="./pages/qa.php">
-            <img src="assets/img/8.jpg" alt="Q&A" />
+          <a href="./pages/baidangketnoiq&a.php">
+            <img src="./assets/img/8.jpg" alt="Q&A" />
             <p>Q&A</p>
           </a>
         </li>
