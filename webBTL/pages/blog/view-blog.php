@@ -47,7 +47,7 @@ if (!$blog) {
     </header>
 
     <nav>
-        <a href="../index.php">Trang chủ</a>
+        <a href="../../index.php">Trang chủ</a>
         <a href="../tintuc.php">Tin tức</a>
         <a href="./blog.php" class="active">Blog</a>
     </nav>
