@@ -211,7 +211,7 @@
                     Vị trí đắc địa bên dòng sông Hương: Quần thể di tích nằm dọc theo dòng sông Hương thơ mộng, kết hợp hài hòa với thiên nhiên, tạo nên một không gian lịch sử đầy chất thơ.
                     Bảo tồn hệ sinh thái và môi trường: Cảnh quan thiên nhiên quanh khu di tích vẫn được giữ gìn gần như nguyên vẹn, tạo điều kiện để phát triển du lịch bền vững.</p>
                     <img class="anhto" src="..//assets/img/giatrivanhoalichsu.jpg" alt="">
-                    huhuS
+                    
                 
             </div>
         </div>
