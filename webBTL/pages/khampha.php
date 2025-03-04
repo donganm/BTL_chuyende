@@ -263,6 +263,8 @@
             showQuestion();
         }
 
+        //df
+
         function showQuestion() {
             if (currentQuestionIndex < selectedQuestions.length) {
                 document.getElementById("question").innerText = selectedQuestions[currentQuestionIndex].q;
@@ -298,6 +300,7 @@
         <button onclick="toggleHistory()">Xem Lịch Sử Tìm Kiếm</button>
         <div id="history-list" class="history-list"></div>
     </div>
+    
 
     <div class="quiz-container">
         <button onclick="startQuiz()">Chơi Mini Game</button>

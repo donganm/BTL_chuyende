@@ -1,3 +1,12 @@
+<?php
+    include '../includes/db.php';
+
+// Kết nối database
+    $conn = new mysqli($servername, $username, $password, $database);
+    if ($conn->connect_error) {
+    die("Kết nối thất bại: " . $conn->connect_error);
+}
+?>
 <html>
     <head>
         <title>Câu hỏi và câu trả lời di sản toàn cầu</title>
@@ -154,7 +163,7 @@
             <div class="logo">Q&A</div>
             <div class="menu">
                 <ul class="menungang">
-                    <li><a href="">Trang chủ</a></li>
+                    <li><a href="../index.php">Trang chủ</a></li>
                     <li><a href="">Theo dõi</a></li>
                     <li><a href="traloi.php">Trả lời</a></li>
                     <li><a href="">Thông báo</a></li>
@@ -202,6 +211,7 @@
                     Vị trí đắc địa bên dòng sông Hương: Quần thể di tích nằm dọc theo dòng sông Hương thơ mộng, kết hợp hài hòa với thiên nhiên, tạo nên một không gian lịch sử đầy chất thơ.
                     Bảo tồn hệ sinh thái và môi trường: Cảnh quan thiên nhiên quanh khu di tích vẫn được giữ gìn gần như nguyên vẹn, tạo điều kiện để phát triển du lịch bền vững.</p>
                     <img class="anhto" src="..//assets/img/giatrivanhoalichsu.jpg" alt="">
+                    
                 
             </div>
         </div>

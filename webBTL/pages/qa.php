@@ -1,6 +1,6 @@
 <html>
     <head>
-        <title>Câu hỏi và câu trả lời di sản toàn cầu</title>
+        <title>Câu hỏi và câu trả lời di sản toàn cầu.</title>
         <style>
          
             
@@ -9,6 +9,7 @@
                 background-color: #f5f5f5;
                 padding: 0;
                 margin: 0;
+                
             }
             .bentrai{       
                 flex-basis: 70%;
@@ -207,11 +208,11 @@
             <div class="logo">Q&A</div>
             <div class="menu">
                 <ul class="menungang">
-                    <li><a href="baidangketnoiq&a.php">Trang chủ</a></li>
+                    <li><a href="../index.php">Trang chủ</a></li>
                     <li><a href="">Theo dõi</a></li>
-                    <li><a href="">Trả lời</a></li>
+                    <li><a href="traloi.php">Trả lời</a></li>
                     <li><a href="">Thông báo</a></li>
-                    <li><a href="">Về Q&A</a></li>
+                    <li><a href="baidangketnoiq&a.php">Về Q&A</a></li>
                 </ul>
             </div>
             <div class="header-icons">
