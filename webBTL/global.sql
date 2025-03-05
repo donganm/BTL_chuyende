@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 28, 2025 at 06:55 AM
+-- Generation Time: Mar 05, 2025 at 05:52 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -108,7 +108,8 @@ CREATE TABLE `feedback` (
 --
 
 INSERT INTO `feedback` (`id`, `name`, `email`, `message`, `created_at`) VALUES
-(1, 'ptvh', 't@t.com', 'Nice', '2025-02-27 12:02:30');
+(1, 'ptvh', 't@t.com', 'Nice', '2025-02-27 12:02:30'),
+(2, 'Dong Anh', 'dta@gmail.com', 'Good', '2025-03-05 16:39:36');
 
 -- --------------------------------------------------------
 
@@ -251,7 +252,8 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`UserId`, `Username`, `Password`, `Email`, `Role`, `Avatar`, `Address`, `FullName`, `DateOfBirth`, `Gender`) VALUES
 (1, 'dta', '123', 'dta@gmail.com', 'User', NULL, 'Hà Nội', 'Đồng Thị Anh', '0000-00-00', 'Nữ'),
 (0, 'Nguyen Van A', '123', 'nguyenvana@gmail.com', 'User', NULL, 'Thái Bình', 'Nguyễn Văn A', '0000-00-00', 'Nam'),
-(0, 'Nguyen Thi B', '123', 'nguyenvanb@gmail.com', 'User', NULL, 'Thái Nguyên', 'Nguyễn Văn B', '0000-00-00', 'Nữ');
+(0, 'Nguyen Thi B', '123', 'nguyenvanb@gmail.com', 'User', NULL, 'Thái Nguyên', 'Nguyễn Văn B', '0000-00-00', 'Nữ'),
+(0, 'admin', '123', 'admin@gmail.com', 'Admin', NULL, 'HN', 'admin', NULL, 'Nam');
 
 --
 -- Indexes for dumped tables
@@ -338,7 +340,7 @@ ALTER TABLE `comments`
 -- AUTO_INCREMENT for table `feedback`
 --
 ALTER TABLE `feedback`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `hue_heritage`
