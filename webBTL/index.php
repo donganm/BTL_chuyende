@@ -153,6 +153,7 @@ session_start();
       </div>
     </div>
 
+    <p style="margin-left: 70px; font-size: 30px;"><i class="fas fa-arrow-right"></i> New Articles</p>
 
     <div class="box4">
       <div class="box4_trai">
