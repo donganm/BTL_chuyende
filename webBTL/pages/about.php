@@ -1,143 +1,120 @@
 <?php
-    // // Kết nối database
-    // include('database.php');
-
-    // // Truy vấn thông tin di sản từ database
-    // $query = "SELECT * FROM heritage_info WHERE id = 1"; // Lấy thông tin di sản cụ thể (có thể sửa theo ID tương ứng)
-    // $result = mysqli_query($conn, $query);
-    // $heritage = mysqli_fetch_assoc($result);
+// Bắt đầu phiên làm việc
+session_start();
 ?>
 
 <!DOCTYPE html>
-<html lang="vi">
+<html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Giới thiệu Di sản | Global Heritage</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About Us</title>
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
+        integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w=="
+        crossorigin="anonymous"
+        referrerpolicy="no-referrer" />
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+        integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+        crossorigin="anonymous"
+        referrerpolicy="no-referrer" />
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f8f9fa;
-        }
-
-        .back-button {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            z-index: 1000;
-        }
-
-        .header {
-            background-color: #4CAF50;
-            color: white;
-            text-align: center;
-            padding: 20px;
-            font-size: 26px;
-            font-weight: bold;
-        }
-        .container {
-            margin-top: 20px;
-        }
-        .heritage-img {
+        .container1 {
             width: 100%;
-            max-height: 450px;
-            object-fit: cover;
-            border-radius: 10px;
-            box-shadow: 3px 3px 10px rgba(0,0,0,0.2);
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 15px;
         }
-        .section-title {
-            margin-top: 30px;
-            font-size: 24px;
-            font-weight: bold;
+
+        /* BODY  */
+        .body_main {
+            display: flex;
+            gap: 40px;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .content {
+            width: 55%;
             color: #333;
         }
-        .footer {
-            background-color: #343a40;
-            color: white;
-            text-align: center;
-            padding: 15px;
-            margin-top: 30px;
+
+        .content p {
+            margin-bottom: 20px;
+            font-size: 17px;
+            color: #444;
+            text-align: justify;
+            /* căn, tạo cạnh đều ở 2 bên */
         }
+
+        .images {
+            width: 45%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .images img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            font-size: 28px;
+            font-weight: bold;
+            color: #222;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        /* END BODY */
     </style>
+    <link rel="stylesheet" href="../assets/css/styles.css">
+    <link rel="stylesheet" href="../assets/font/fontawesome-free-6.6.0-web/css/all.min.css">
 </head>
+
 <body>
-    <a href="../index.php">
-        <button onclick="window.history.back()" class="btn btn-secondary back-button">Quay lại trang chủ</button>
-    </a>
-    
-
-
     <!-- Header -->
-    <div class="header">
-        <h1>Giới thiệu về Di sản Văn hóa</h1>
+    <?php include("../includes/header.php"); ?>
+    <!-- End header -->
+
+    <!-- Body  -->
+    <div class="body">
+        <div class="container1">
+
+            <div class="body_main">
+                <div class="content">
+                    <h2>GLOBAL HERITAGE</h2>
+                    <p>
+                        Chào mừng bạn đến với Global Heritage, nơi mỗi hành trình là một cánh cửa mở ra quá khứ, và mỗi di tích kể một câu chuyện vượt thời gian. Được xây dựng với niềm đam mê bảo tồn lịch sử, Global Heritage không chỉ là một kho tư liệu số mà còn là cầu nối giữa những nhà thám hiểm, nhà nghiên cứu và những người yêu văn hóa trên toàn thế giới.</p>
+                    <p></p>
+                    <p>
+                        Chúng tôi là một nền tảng cộng đồng, nơi tôn vinh và chia sẻ những di sản quý giá của nhân loại. Từ những tàn tích cổ xưa đến những kỳ quan kiến trúc vĩ đại, sứ mệnh của chúng tôi là tái hiện lịch sử qua những góc nhìn sâu sắc, giúp bạn khám phá nền văn minh và truyền thống đã định hình thế giới ngày nay.</p>
+                    <p></p>
+                    <p>
+                        Tại Global Heritage, kiến thức không có ranh giới. Chúng tôi chào đón sự đóng góp từ các nhà nghiên cứu, du khách và những người đam mê lịch sử, tạo ra một không gian tương tác, nơi những câu chuyện của quá khứ tiếp tục truyền cảm hứng cho thế hệ tương lai. Thông qua các bài viết chất lượng, chuyến tham quan ảo và các cuộc thảo luận chuyên sâu, chúng tôi mong muốn mang lịch sử đến gần hơn với mọi người, giúp nó trở nên sống động và ý nghĩa hơn.</p>
+                    <p></p>
+                    <p>
+                        Được xây dựng trên nền tảng giáo dục và khám phá, Global Heritage cam kết nâng cao nhận thức, gìn giữ và phát huy giá trị của các di sản văn hóa. Dù bạn là một nhà nghiên cứu, một người yêu thích du lịch hay đơn giản chỉ là một tâm hồn đam mê lịch sử, nền tảng của chúng tôi sẽ mang đến cho bạn một cánh cửa rộng mở để bước vào những chương sử thi kỳ diệu của nhân loại.</p>
+                    <p></p>
+                    <p>
+                        Tại Global Heritage, chúng tôi không chỉ lưu giữ quá khứ mà còn đưa di sản ấy vươn xa vào tương lai.</p>
+                </div>
+                <div class="images">
+                    <img src="../assets/img/about.png">
+                </div>
+            </div>
+        </div>
     </div>
+    <!-- End Body -->
 
-    <div class="container">
-        <div class="row">
-            <!-- Hình ảnh -->
-            <div class="col-md-6">
-                <img src="../assets/about/thumbnail.webp" alt="Di sản Văn hóa" class="heritage-img">
-            </div>
-            <!-- Nội dung -->
-            <div class="col-md-6">
-                <h2 class="section-title">Di sản Văn hóa là gì?</h2>
-                <p>Di sản văn hóa bao gồm những giá trị tinh thần, kiến trúc, lịch sử và thiên nhiên được truyền qua nhiều thế hệ. Đây có thể là các di tích, đền đài, phong tục tập quán hoặc các di sản thiên nhiên đặc biệt.</p>
-                <p><b>Global Heritage</b> là nơi giúp bạn tìm hiểu và khám phá những di sản quan trọng trên thế giới.</p>
-                <ul>
-                    <li>Thông tin chi tiết về từng di sản.</li>
-                    <li>Bản đồ và hướng dẫn du lịch.</li>
-                    <li>Các bài viết chuyên sâu về lịch sử, văn hóa.</li>
-                    <li>Cộng đồng giao lưu, chia sẻ kiến thức.</li>
-                </ul>
-            </div>
-        </div>
-
-        <!-- Lịch sử Di sản -->
-        <div class="row">
-            <div class="col-12">
-                <h2 class="section-title">Lịch sử hình thành</h2>
-                <p>Di sản văn hóa đã tồn tại hàng ngàn năm, bắt nguồn từ nền văn minh cổ đại như Ai Cập, Hy Lạp, Trung Quốc, và Lưỡng Hà. Những công trình kiến trúc vĩ đại như Kim tự tháp Giza, Vạn Lý Trường Thành và Đền Parthenon là minh chứng cho sự phát triển rực rỡ của nhân loại.</p>
-                <p>Ngày nay, UNESCO đã công nhận hàng ngàn di sản trên thế giới nhằm bảo vệ và duy trì giá trị của chúng.</p>
-            </div>
-        </div>
-
-        <!-- Các loại di sản -->
-        <div class="row">
-            <div class="col-md-6">
-                <h2 class="section-title">Các loại Di sản</h2>
-                <ul>
-                    <li><b>Di sản Văn hóa:</b> Công trình kiến trúc, nghệ thuật, di tích lịch sử.</li>
-                    <li><b>Di sản Thiên nhiên:</b> Kỳ quan thiên nhiên, công viên quốc gia.</li>
-                    <li><b>Di sản Phi vật thể:</b> Nghệ thuật, âm nhạc, truyền thống văn hóa.</li>
-                </ul>
-            </div>
-            <div class="col-md-6">
-                <h2 class="section-title">Ý nghĩa của Di sản</h2>
-                <p>Di sản không chỉ là những công trình vật chất mà còn là ký ức và giá trị văn hóa của một dân tộc. Chúng giúp kết nối con người với quá khứ, bảo tồn bản sắc dân tộc và truyền cảm hứng cho thế hệ mai sau.</p>
-            </div>
-        </div>
-
-        <!-- Dữ liệu động từ database -->
-        <div class="row">
-            <div class="col-12">
-                <h2 class="section-title">Di sản Nổi bật</h2>
-                <!-- <?php if ($heritage): ?>
-                    <h3><?php echo $heritage['name']; ?></h3>
-                    <p><b>Vị trí:</b> <?php echo $heritage['location']; ?></p>
-                    <p><b>Mô tả:</b> <?php echo $heritage['description']; ?></p>
-                <?php else: ?>
-                    <p>Chưa có dữ liệu di sản trong hệ thống.</p>
-                <?php endif; ?> -->
-            </div>
-        </div>
-
-    </div>
-
-    <!-- Footer -->
-    <div class="footer">
-        <p>&copy; 2025 Global Heritage</p>
-    </div>
-
-</body>
-</html>
+    <!-- Footer  -->
+    <?php include("../includes/footer.php"); ?>
+    <!-- End Footer -->
