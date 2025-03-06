@@ -264,6 +264,7 @@ $role = $_SESSION['role'];
         .product-table tr:hover {
             background-color: #f1f1f1;
         }
+        
     </style>
 </head>
 
@@ -350,10 +351,12 @@ $role = $_SESSION['role'];
                         <label>Ngày sinh</label>
                         <input type="date" name="date_of_birth" value="<?php echo $row['DateOfBirth']; ?>" />
                     </div>
+
                     <div class="form-group">
                         <label>Avatar</label>
                         <input type="file" name="fileToUpload" id="fileToUpload">
                     </div>
+                    
                     <button type="submit" class="save-btn">Lưu</button>
                 </form>
 
