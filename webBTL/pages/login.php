@@ -103,7 +103,7 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
             display: inline-block;
             padding: 10px 15px;
             margin: 5px;
-            background: #4caf50;
+            background: #333;
             color: white;
             font-size: 14px;
             font-weight: bold;
@@ -115,7 +115,16 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
 
         .btn:hover {
             background: white;
-            color: #4caf50;
+            color: #333;
+        }
+
+        .goHome a {
+            color: #024b82;
+            text-decoration: none;
+        }
+
+        .goHome a:hover {
+            text-decoration: underline;
         }
     </style>
 </head>
@@ -144,15 +153,11 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
             </div>
             <!-- Nút quay lại trang chủ -->
             <div class="btn-group">
-                <div class="btn btn-home goHome" onclick="goHome()">Quay Lại Trang Chủ</div>
+                <div class="btn-home goHome"><a href="../index.php">..Quay Lại Trang Chủ..</a></div>
             </div>
         </form>
     </div>
 </body>
-<script>
-    function goHome() {
-        window.location.href = "../index.php";
-    }
-</script>
+
 
 </html>
