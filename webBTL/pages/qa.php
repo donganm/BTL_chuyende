@@ -1,9 +1,7 @@
 <html>
     <head>
         <title>Câu hỏi và câu trả lời di sản toàn cầu.</title>
-        <style>
-         
-            
+        <style>            
             body{
                 font-family: Arial, sans-serif;
                 background-color: #f5f5f5;
