@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Global Heritage - Cộng đồng</title>
-    <link rel="stylesheet" href="styless.css">
     <style>
         /* Reset mặc định */
 * {
@@ -19,7 +18,7 @@ nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #222;
+    background-color:rgb(70, 135, 155);
     padding: 15px 20px;
     position: sticky;
     top: 0;
@@ -54,7 +53,7 @@ nav .logo a {
 
 /* Hiệu ứng hover */
 .nav-links a:hover {
-    background-color: #575757;
+    background-color:rgb(59, 105, 103);
     border-radius: 5px;
 }
 
@@ -63,58 +62,58 @@ nav .logo a {
     background-color: #ff9800;
     border-radius: 5px;
 }
-
-/* Nút menu cho mobile */
-.menu-toggle {
-    display: none;
-    font-size: 30px;
-    color: white;
-    cursor: pointer;
+.banner {
+    position: relative; /* Để phần chữ định vị so với ảnh */
+    width: 100%;
+    max-height: 500px; /* Điều chỉnh chiều cao theo ảnh */
+    overflow: hidden;
 }
 
-/* Responsive: Hiển thị dạng menu dropdown trên màn hình nhỏ */
-@media screen and (max-width: 768px) {
-    .nav-links {
-        display: none;
-        flex-direction: column;
-        position: absolute;
-        top: 60px;
-        right: 0;
-        background: #333;
-        width: 100%;
-        text-align: center;
-    }
+.banner img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
 
-    .nav-links li {
-        padding: 15px;
-        border-bottom: 1px solid #444;
-    }
+.overlay {
+    position: absolute;
+    top: 50%; /* Đưa chữ vào giữa */
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    text-align: center;
+    
+    padding: 20px;
+    border-radius: 10px;
+}
 
-    .nav-links a {
-        display: block;
-    }
+.overlay h2 {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
 
-    .menu-toggle {
-        display: block;
-    }
+.overlay button {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
 }
 
     </style>
 </head>
 <body>
 <?php include 'congdong/nav.php'; ?>
-    <main>
-        <section id="map">
-            <h2>Bản đồ & Hướng dẫn viên cộng đồng</h2>
-            <p>Khám phá bản đồ di sản với hướng dẫn viên và đánh giá từ cộng đồng.</p>
-            <img src="images/map.jpg" alt="Bản đồ di sản" width="100%">
-            <a href="map.php">Xem bản đồ</a>
-        </section>
-    </main>
+<div class="banner">
+    <img src="./congdong/image_url/vltt.jpg" alt="Heritage Site">
+    <div class="overlay">
+        <h2>UNESCO recalls obligation to respect and protect the integrity of heritage sites</h2>
+        <button>Read more</button>
+    </div>
+</div>
+
     
-    <footer>
-        <p>&copy; 2025 Global Heritage. All rights reserved.</p>
-    </footer>
 </body>
 </html>
 
