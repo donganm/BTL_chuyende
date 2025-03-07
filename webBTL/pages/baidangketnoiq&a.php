@@ -301,7 +301,7 @@
                         post.classList.add("post");
                         post.innerHTML = `
                             <div class="user-info">
-                                <img src="user-avatar.png" alt="Avatar" class="avatar">
+                                <img src="../assets/img/avata1.jpg" alt="Avatar" class="avatar">
                                 <div><strong>Huy Nguyễn</strong></div>
                             </div>
                             <h3><a href="#">${title}</a></h3>
