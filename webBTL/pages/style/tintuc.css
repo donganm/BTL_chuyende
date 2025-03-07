@@ -143,3 +143,35 @@ button:hover {
 .back-link:hover {
   background: #2c3e50;
 }
+
+/* Navigation */
+nav {
+  background: #34495e;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between; /* Canh đều hai bên */
+  align-items: center;
+}
+
+.nav-links {
+  display: flex;
+  gap: 15px;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  color: white;
+}
+
+.user-info a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.user-info a:hover {
+  color: rgb(166, 255, 0);
+}
