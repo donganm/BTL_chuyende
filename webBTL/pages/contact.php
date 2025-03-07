@@ -1,111 +1,152 @@
+<?php
+
+session_start();
+
+?>
 <!DOCTYPE html>
-<html lang="vi">
+<html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Về Chúng Tôi | Global Heritage</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <title>Contact Us</title>
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
+
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f8f9fa;
-        }
-        .back-button {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            z-index: 1000;
-        }
-        .header {
-            background-color: #4CAF50;
-            color: white;
-            text-align: center;
-            padding: 20px;
-            font-size: 26px;
-            font-weight: bold;
-        }
         .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             margin-top: 20px;
         }
-        .section-title {
-            margin-top: 30px;
-            font-size: 24px;
-            font-weight: bold;
+
+        h1 {
             color: #333;
         }
-        .footer {
-            background-color: #343a40;
-            color: white;
+
+        .contact-info {
+            margin-bottom: 30px;
+        }
+
+        iframe {
+            border: 0;
+            width: 100%;
+            height: 400px;
+        }
+
+        /*Phần thông tin liên hệ (Contact Info)*/
+        .contact-info {
+            margin-bottom: 30px;
             text-align: center;
-            padding: 15px;
-            margin-top: 30px;
         }
-        .contact-form {
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 3px 3px 10px rgba(0,0,0,0.1);
-            margin-top: 30px;
+
+        .contact-info h2 {
+            color: #2c3e50;
+            font-size: 24px;
+            margin-bottom: 10px;
         }
-/* 
-        body {
-            background-color: blue;
-        } */
+
+        .contact-info p {
+            font-size: 18px;
+            color: #7f8c8d;
+        }
+
+        .contact-info a {
+            font-size: 18px;
+            color: #2980b9;
+            text-decoration: underline;
+        }
+
+
+        /*Social Media*/
+        .social-media {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .social-media a {
+            font-size: 18px;
+            color: #2980b9;
+            margin: 0 10px;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .social-media a:hover {
+            color: #1abc9c;
+        }
+
+        /*So dien thoai va thoi gian lam viec*/
+        .contact-info p a {
+            font-weight: bold;
+            color: #e74c3c;
+        }
+
+        .contact-info p {
+            margin: 5px 0;
+        }
     </style>
 </head>
+
 <body>
-
     <!-- Header -->
-    <div class="header">
-
-        <a href="../index.php">
-            <button onclick="window.history.back()" class="btn btn-secondary back-button">Quay lại trang chủ</button>
-        </a>
-
-        <h1>Về Chúng Tôi</h1>
-    </div>
+    <?php include("../includes/header.php"); ?>
+    <!-- End header -->
 
     <div class="container">
-        <h2 class="section-title">Giới thiệu về Global Heritage</h2>
-        <p>Global Heritage là tổ chức phi lợi nhuận với sứ mệnh bảo tồn và phát huy các giá trị di sản văn hóa trên toàn thế giới. Chúng tôi kết nối cộng đồng, nghiên cứu và nâng cao nhận thức về những di sản quan trọng.</p>
-        
-        <h2 class="section-title">Sứ mệnh của chúng tôi</h2>
-        <ul>
-            <li>Bảo tồn di sản văn hóa và thiên nhiên.</li>
-            <li>Tổ chức các chương trình giáo dục về lịch sử và văn hóa.</li>
-            <li>Hợp tác với các tổ chức quốc tế để bảo vệ di sản.</li>
-            <li>Phát triển các dự án nghiên cứu và phục hồi di sản.</li>
-        </ul>
+        <h1>Contact Us</h1>
+        <!-- Địa chỉ công ty -->
+        <div class="contact-info">
+            <h2>Our Office</h2>
+            <p>285 Đội Cấn, Ba Đình, Hà Nội</p>
 
-        <!-- Contact Us Section -->
-        <div class="row">
-            <div class="col-md-8 offset-md-2">
-                <h2 class="section-title">Liên hệ với chúng tôi</h2>
-                <div class="contact-form">
-                    <form action="#" method="POST">
-                        <div class="mb-3">
-                            <label for="name" class="form-label">Họ và Tên</label>
-                            <input type="text" class="form-control" id="name" name="name" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="email" class="form-label">Email</label>
-                            <input type="email" class="form-control" id="email" name="email" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="message" class="form-label">Nội dung</label>
-                            <textarea class="form-control" id="message" name="message" rows="4" required></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-primary">Gửi</button>
-                    </form>
-                </div>
-            </div>
+            <!-- Google Maps Iframe -->
+            <iframe
+                src="https://maps.google.com/maps?q=Aptech%20Computer%20Education&amp;t=&amp;z=13&amp;ie=UTF8&amp;iwloc=&amp;output=embed"
+                allowfullscreen=""
+                loading="lazy">
+            </iframe>
+        </div>
+
+        <!-- Liên kết Email -->
+        <div class="contact-info">
+            <h2>Email Us</h2>
+            <p>If you have any questions, feel free to send us an email at:
+                <a href="mailto:khanhnh309@gmail.com">nhom09@gmail.com</a>
+            </p>
+        </div>
+
+        <!--So dien thoai lien he -->
+        <div class="contact-info">
+            <h2>Call Us</h2>
+            <p>Phone: <a href="tel:+84987654321">+84 987654322</a></p>
+        </div>
+
+        <!--Mang xa hoi-->
+        <div class="social-media">
+            <h2>Follow Us</h2>
+            <a href="#">Facebook</a>
+            <a href="#">LinkedIn</a>
+            <a href="#">Twitter</a>
+        </div>
+
+        <!--Thoi gian lam viec-->
+        <div class="contact-info">
+            <h2>Working Hours</h2>
+            <p>Monday - Friday: 9 AM - 6 PM</p>
+            <p>Saturday: 9 AM - 12 PM</p>
+            <p>Sunday: Closed</p>
         </div>
     </div>
 
-    <!-- Footer -->
-    <div class="footer">
-        <p>&copy; 2025 Global Heritage</p>
-    </div>
+    <!-- Footer  -->
+    <?php include("../includes/footer.php"); ?>
 
+    <!-- End Footer -->
 </body>
+
 </html>
