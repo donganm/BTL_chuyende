@@ -1,0 +1,143 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0;
+    padding: 20px;
+}
+a { text-decoration: none; }
+
+h1, p { text-align: center; max-width: 900px; }
+
+.carousel-container {
+    position: relative;
+    width: 900px; 
+    overflow: hidden;
+}
+
+.carousel {
+    display: flex;
+    gap: 20px;
+    transition: transform 0.5s ease-in-out;
+}
+
+.card {
+    background: #fff;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 280px;
+    text-align: center;
+    flex-shrink: 0;
+}
+
+.card img {
+    width: 100%;
+    border-radius: 5px;
+}
+
+.card h3 {
+    color: #007bff;
+    margin-bottom: 10px;
+}
+
+.carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 50%;
+    font-size: 18px;
+    z-index: 10;
+}
+
+.prev { left: 10px; }
+.next { right: 10px; }
+
+.content {
+    display: flex;
+    align-items: center;
+    max-width: 900px;
+    margin: 20px auto;
+    gap: 20px;
+}
+
+/* Mặc định ảnh bên phải */
+.image-right {
+    flex-direction: row;
+}
+
+/* Ảnh bên trái */
+.image-left {
+    flex-direction: row-reverse;
+}
+
+.text {
+    flex: 1;
+}
+
+.image {
+    flex-shrink: 0;
+    width: 400px;
+}
+
+.image img {
+    width: 100%;
+    border-radius: 10px;
+}
+
+.story-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    max-width: 1000px;
+    margin: auto;
+}
+.story {
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 45%;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.story img {
+    width: 100%;
+    border-radius: 10px;
+}
+
+.story h3 {
+    color: #007bff;
+    margin: 10px 0;
+}
+
+.story p {
+    font-size: 14px;
+    color: #333;
+}
+
+/* Gạch chân ngăn cách giữa mỗi nhóm 2 câu chuyện */
+.divider {
+    width: 100%;
+    height: 2px;
+    background: #ccc;
+    margin: 20px 0;
+}
+
+/* Nếu có số lẻ câu chuyện, căn giữa cái cuối */
+.story:last-child:nth-child(odd) {
+    width: 100%;
+}
+
+html {
+    scroll-behavior: smooth;
+}
