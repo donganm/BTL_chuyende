@@ -1,15 +1,25 @@
 <?php
-// Đúng đường dẫn file kết nối DB
-// include './tintuc/db_connect.php';
-    include '../includes/db.php';
-// Kiểm tra kết nối
+session_start();
+$role = $_SESSION['role'] ?? 'User';
+include '../includes/db.php'; // Kết nối database
+
+// Kiểm tra kết nối database
 if (!$conn) {
     die("Lỗi kết nối database: " . mysqli_connect_error());
 }
 
-// Truy vấn lấy dữ liệu từ bảng `articles`
-$sql = "SELECT title, description, link, image FROM articles";
-$result = $conn->query($sql);
+// Kiểm tra người dùng đã đăng nhập chưa
+$userLoggedIn = isset($_SESSION['user']);
+$isAdmin = $userLoggedIn && isset($_SESSION['role']) && $_SESSION['role'] === "Admin";
+
+// Xử lý tìm kiếm bài viết
+$search = isset($_GET['search']) ? trim($_GET['search']) : "";
+$sql = "SELECT id, tieude, noidung, hinhanh FROM tintuc WHERE tieude LIKE ? ORDER BY id DESC";
+$stmt = $conn->prepare($sql);
+$searchTerm = "%$search%";
+$stmt->bind_param("s", $searchTerm);
+$stmt->execute();
+$result = $stmt->get_result();
 ?>
 
 <!DOCTYPE html>
@@ -18,68 +28,26 @@ $result = $conn->query($sql);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tin Tức</title>
+    <link rel="stylesheet" href="./style/tintuc.css">
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
+        .user-info {
+            float: right;
+            margin-right: 20px;
+            font-size: 14px;
+            color:lightblue;
         }
 
-        a {
+        .user-info a {
+            margin-left: 10px;
             text-decoration: none;
-        }
-
-        header {
-            background: #2c3e50;
-            color: white;
-            padding: 15px;
-            text-align: center;
-        }
-
-        nav {
-            background: #34495e;
-            padding: 10px;
-            text-align: center;
-        }
-
-        nav a {
-            color: white;
-            margin: 0 15px;
             font-weight: bold;
+            color: white;
         }
 
-        nav a.active {
-            font-weight: bold;
-            color:rgb(166, 255, 0); 
+        .user-info a:hover {
+            color: #007bff;
         }
 
-        .container {
-            max-width: 1000px;
-            margin: auto;
-            padding: 20px;
-            background: white;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .article {
-            border-bottom: 1px solid #ddd;
-            padding: 15px 0;
-        }
-
-        .article h2 {
-            color: #2c3e50;
-        }
-
-        .article p {
-            color: #555;
-        }
-
-        .article img {
-            width: 100%;
-            max-height: 300px;
-            object-fit: cover;
-        }
     </style>
 </head>
 
@@ -89,38 +57,85 @@ $result = $conn->query($sql);
         <p>Nơi lưu giữ giá trị văn hóa và lịch sử</p>
     </header>
 
-    <nav>
-        <a href="../index.php" class="<?php echo basename($_SERVER['PHP_SELF']) == 'index.php' ? 'active' : ''; ?>">Trang chủ</a>
-        <a href="./tintuc.php" class="active">Tin tức</a>
-        <a href="./blog/blog.php" class="<?php echo basename($_SERVER['PHP_SELF']) == 'blog.php' ? 'active' : ''; ?>">Blog</a>
+    <nav style="height: 70px">
+        <div class="nav-links">
+            <a href="../index.php">Trang chủ</a>
+            <a href="tintuc.php" class="active">Tin tức</a>
+            <a href="./blog/blog.php">Blog</a>
+        </div>
+        
+        
+        <div class="user-info">
+            <?php if ($userLoggedIn): ?>
+                <span>Xin chào, <strong><?php echo $_SESSION['user']; ?></strong> (<?php echo $isAdmin ? "Admin" : "User"; ?>)</span>
+                <a href="../pages/profile.php">Hồ sơ</a> |
+                <a href="#" id="logout-btn" style="color: red; cursor: pointer;">Đăng xuất</a>
+            <?php else: ?>
+                <a href="../pages/login.php">Đăng nhập</a>
+            <?php endif; ?>
+        </div>
+
+    <script>
+        document.getElementById("logout-btn").addEventListener("click", function(event) {
+            event.preventDefault(); // Ngăn chặn chuyển trang
+            fetch("../pages/logout.php", {
+                method: "POST"
+            }).then(response => {
+                if (response.ok) {
+                    location.reload(); // Tải lại trang sau khi đăng xuất
+                }
+            });
+        });
+    </script>
+
+
+
     </nav>
 
+
+
     <div class="container">
-        <?php
-        if ($result->num_rows > 0) {
-            while ($article = $result->fetch_assoc()) {
-                // Xử lý đường dẫn bài viết
-                $link = $article["link"];
-                if (strpos($link, 'tintuc/') === false) {
-                    $link = 'tintuc/' . $link;
-                }
+        <!-- Thanh tìm kiếm -->
+        <form method="GET">
+            <input type="text" name="search" placeholder="Tìm kiếm bài viết..." value="<?php echo htmlspecialchars($search); ?>">
+            <button type="submit">Tìm kiếm</button>
+        </form>
 
-                // Xử lý đường dẫn ảnh
-                $imagePath = '../images/' . $article["image"];
+        <!-- ✅ Chỉ hiển thị nút Đăng bài nếu là Admin -->
+        <?php if ($isAdmin): ?>
+            <a href="tintuc/dangbai.php" class="btn btn-primary" style="display: inline-block; margin: 10px; padding: 10px; background: #27ae60; color: white; text-decoration: none;">+ Đăng bài</a>
+        <?php endif; ?>
 
-                echo '<div class="article">';
-                echo '<img src="' . $imagePath . '" alt="' . $article["title"] . '">';
-                echo '<h2><a href="' . $link . '">' . $article["title"] . '</a></h2>';
-                echo '<p>' . $article["description"] . '</p>';
-                echo '</div>';
-            }
-        } else {
-            echo "<p>Không có bài viết nào.</p>";
-        }
+        <!-- Hiển thị bài viết -->
+        <?php if ($result->num_rows > 0): ?>
+            <?php while ($article = $result->fetch_assoc()): ?>
+                <div class="article">
+                    <img src="../images/<?php echo htmlspecialchars($article["hinhanh"]); ?>" 
+                         alt="<?php echo htmlspecialchars($article["tieude"]); ?>" 
+                         onerror="this.onerror=null;this.src='../images/default.jpg';">
+                    <h2>
+                        <a href="./tintuc/heritage.php?id=<?php echo $article['id']; ?>">
+                            <?php echo htmlspecialchars($article["tieude"]); ?>
+                        </a>
+                    </h2>
+                    <p><?php echo mb_substr(strip_tags($article["noidung"]), 0, 150, 'UTF-8'); ?>...</p>
+                    
+                    <!-- ✅ Chỉ Admin mới có quyền Sửa/Xóa -->
+                    <?php if ($isAdmin): ?>
+                        <a href="./tintuc/edit-post.php?id=<?php echo $article['id']; ?>" class="btn btn-warning">Sửa</a>
+                        <a href="./tintuc/delete.php?id=<?php echo $article['id']; ?>" class="btn btn-danger" onclick="return confirm('Bạn có chắc muốn xóa bài viết này?');">Xóa</a>
+                    <?php endif; ?>
+                </div>
+            <?php endwhile; ?>
+        <?php else: ?>
+            <p>Không có bài viết nào.</p>
+        <?php endif; ?>
 
-        // Đóng kết nối database
-        $conn->close();
-        ?>
     </div>
 </body>
 </html>
+
+<?php
+$stmt->close();
+$conn->close();
+?>

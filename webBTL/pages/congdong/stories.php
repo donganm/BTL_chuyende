@@ -24,195 +24,75 @@ $result_success = $conn->query($sql_success);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Trung tâm Di sản Thế giới - Những câu chuyện thành công</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin: 0;
-            padding: 20px;
-        }
-        a { text-decoration: none; }
-        
-        h1, p { text-align: center; max-width: 900px; }
-
-        .carousel-container {
-            position: relative;
-            width: 900px; 
-            overflow: hidden;
-        }
-
-        .carousel {
-            display: flex;
-            gap: 20px;
-            transition: transform 0.5s ease-in-out;
-        }
-
-        .card {
-            background: #fff;
-            padding: 15px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            width: 280px;
-            text-align: center;
-            flex-shrink: 0;
-        }
-
-        .card img {
-            width: 100%;
-            border-radius: 5px;
-        }
-
-        .card h3 {
-            color: #007bff;
-            margin-bottom: 10px;
-        }
-
-        .carousel-btn {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background: rgba(0, 0, 0, 0.5);
-            color: white;
-            border: none;
-            padding: 10px 15px;
-            cursor: pointer;
-            border-radius: 50%;
-            font-size: 18px;
-            z-index: 10;
-        }
-
-        .prev { left: 10px; }
-        .next { right: 10px; }
-        
-        .content {
-            display: flex;
-            align-items: center;
-            max-width: 900px;
-            margin: 20px auto;
-            gap: 20px;
-        }
-
-        /* Mặc định ảnh bên phải */
-        .image-right {
-            flex-direction: row;
-        }
-
-        /* Ảnh bên trái */
-        .image-left {
-            flex-direction: row-reverse;
-        }
-
-        .text {
-            flex: 1;
-        }
-
-        .image {
-            flex-shrink: 0;
-            width: 400px;
-        }
-
-        .image img {
-            width: 100%;
-            border-radius: 10px;
-        }
-
-        .story-container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 20px;
-            max-width: 1000px;
-            margin: auto;
-        }
-        .story {
-            padding: 15px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            width: 45%;
-            text-align: left;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        .story img {
-            width: 100%;
-            border-radius: 10px;
-        }
-
-        .story h3 {
-            color: #007bff;
-            margin: 10px 0;
-        }
-
-        .story p {
-            font-size: 14px;
-            color: #333;
-        }
-
-        /* Gạch chân ngăn cách giữa mỗi nhóm 2 câu chuyện */
-        .divider {
-            width: 100%;
-            height: 2px;
-            background: #ccc;
-            margin: 20px 0;
-        }
-
-        /* Nếu có số lẻ câu chuyện, căn giữa cái cuối */
-        .story:last-child:nth-child(odd) {
-            width: 100%;
-        }
-
-    </style>
+    <link rel="stylesheet" href="stories.css">
 </head>
 <body>
 
 <section id="stories">
     <h1>Câu chuyện & Dự án cộng đồng</h1>
     <p>Nơi người dùng chia sẻ câu chuyện, hình ảnh, video về các di sản, đồng thời cập nhật các dự án bảo tồn và kêu gọi đóng góp.</p>
-    <p>Bằng cách công nhận Giá trị Toàn cầu Nổi bật của một địa điểm, các Quốc gia Bên cam kết bảo tồn địa điểm đó và nỗ lực tìm giải pháp bảo vệ địa điểm đó. Nếu một địa điểm được ghi vào Danh sách Di sản Thế giới đang bị đe dọa, Ủy ban Di sản Thế giới có thể <a href="">hành động ngay lập tức</a> để giải quyết tình hình và điều này đã dẫn đến nhiều <a href="">đợt phục hồi thành công</a>. Công ước Di sản Thế giới cũng là một công cụ rất mạnh mẽ để tập hợp sự chú ý và hành động của quốc tế, thông qua <a href="">các chiến dịch bảo vệ quốc tế</a>.</p>
-    <h1>Tìm kiếm giải pháp </h1>
+    <p>
+    Bằng cách công nhận Giá trị Toàn cầu Nổi bật của một địa điểm, các Quốc gia Bên cam kết bảo tồn địa điểm đó và nỗ lực tìm giải pháp bảo vệ địa điểm đó. 
+    Nếu một địa điểm được ghi vào Danh sách Di sản Thế giới đang bị đe dọa, Ủy ban Di sản Thế giới có thể 
+    <a href="#solution">hành động ngay lập tức</a> để giải quyết tình hình và điều này đã dẫn đến nhiều 
+    <a href="#restoration">đợt phục hồi thành công</a>. 
+    Công ước Di sản Thế giới cũng là một công cụ rất mạnh mẽ để tập hợp sự chú ý và hành động của quốc tế, thông qua 
+    <a href="#campaigns">các chiến dịch bảo vệ quốc tế</a>.
+</p>
     <p>Thông thường, Ủy ban Di sản Thế giới và các quốc gia thành viên, với sự hỗ trợ của các chuyên gia UNESCO và các đối tác khác, sẽ tìm ra giải pháp trước khi tình hình trở nên xấu đi đến mức có thể gây thiệt hại cho địa điểm.</p>
 </section>
 
 <!-- Băng chuyền tìm kiếm giải pháp -->
+<h1 id="solution">Tìm kiếm giải pháp</h1>
 <div class="carousel-container">
     <button class="carousel-btn prev">&#10094;</button>
     <div class="carousel">
-        <?php while ($row = $result->fetch_assoc()): ?>
-            <div class="card">
-            <img src="/BTL_chuyende/webBTL/pages/congdong/image_url/<?php echo $row['image_url']; ?>" alt="<?php echo $row['title']; ?>">
-                <div class="card-content">
-                    <h3><?php echo $row['title']; ?></h3>
-                    <p><?php echo $row['description']; ?></p>
-                    <a href="<?php echo $row['link']; ?>" target="_blank">Xem chi tiết</a>
-                </div>
-            </div>
-        <?php endwhile; ?>
+    <?php
+if ($result->num_rows > 0) {
+    while ($article = $result->fetch_assoc()) {
+        $image = !empty($article["image_url"]) ? 'image_url/' . $article["image_url"] : 'image_url/default.jpg'; // Dùng ảnh mặc định nếu không có ảnh
+        $title = htmlspecialchars($article["title"], ENT_QUOTES, 'UTF-8');
+        $description = isset($article["description"]) ? mb_substr($article["description"], 0, 100, 'UTF-8') : "Không có mô tả.";
+        echo '<div class="card">';
+        echo '<img src="' . $image . '" alt="' . $title . '">';
+        echo '<div class="card-content">';
+        echo '<h3><a href="tintuc/heritage.php?id=' . $article["id"] . '">' . $title . '</a></h3>';
+        echo '<p>' . $description . '...</p>';
+        echo '</div>';
+        echo '</div>';
+    }
+} else {
+    echo "<p>Không có bài viết nào.</p>";
+}
+?>
     </div>
     <button class="carousel-btn next">&#10095;</button>
 </div>
 
-<h1>Phục hồi thành công</h1>
+
+<h1 id="restoration">Phục hồi thành công</h1>
 
 <!-- Phần phục hồi -->
 <?php 
 $index = 0; // Đếm số thứ tự câu chuyện phục hồi
-
 if ($result_projects->num_rows > 0) {
     while ($row = $result_projects->fetch_assoc()) {
+        // Kiểm tra nếu có ảnh, nếu không thì dùng ảnh mặc định
+        $image = !empty($row["image_path"]) ? 'image_path/' . $row["image_path"] : 'image_path/default.jpg';
+        // Bảo vệ dữ liệu đầu ra
+        $project_name = htmlspecialchars($row["project_name"], ENT_QUOTES, 'UTF-8');
+        $details = isset($row["details"]) ? htmlspecialchars($row["details"], ENT_QUOTES, 'UTF-8') : "Không có mô tả.";
+
         // Xác định class để đổi vị trí ảnh trái/phải
         $class = ($index % 2 == 0) ? "image-right" : "image-left";
         ?>
         <div class="content <?php echo $class; ?>">
             <div class="text">
-                <h2><?php echo $row["project_name"]; ?></h2>
-                <p><?php echo $row["details"]; ?></p>
+                <h2><?php echo $project_name; ?></h2>
+                <p><?php echo $details; ?></p>
             </div>
             <div class="image">
-                <img src="<?php echo $row["image_url"]; ?>" alt="<?php echo $row["project_name"]; ?>">
+                <img src="<?php echo $image; ?>" alt="<?php echo $project_name; ?>">
             </div>
         </div>
         <!-- Thêm gạch ngang giữa các câu chuyện -->
@@ -227,7 +107,7 @@ if ($result_projects->num_rows > 0) {
 }
 ?>
 
-<h1>Câu chuyện thành công</h1>
+<h1 id="campaigns">Các chiến dịch bảo vệ quốc tế</h1>
 
 <!-- Hiển thị câu chuyện thành công từ bảng success_stories -->
 <div class="story-container">
@@ -236,7 +116,7 @@ if ($result_projects->num_rows > 0) {
     while ($row = $result_success->fetch_assoc()):
     ?>
         <div class="story">
-            <img src="<?php echo $row['image_url']; ?>" alt="<?php echo $row['title']; ?>">
+            <img src="./image_success/<?php echo $row['image_success']; ?>" alt="<?php echo $row['title']; ?>">
             <h3><?php echo $row['title']; ?></h3>
             <p><?php echo $row['description']; ?></p>
         </div>

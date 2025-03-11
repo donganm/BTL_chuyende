@@ -30,28 +30,29 @@ $role = $_SESSION['role'];
 
         body {
             background-color: #f4f6f9;
-            display: flex;
+            /* display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 100vh;
+            min-height: 100vh; */
         }
 
         .body {
             display: flex;
-            width: 90%;
-            max-width: 1200px;
-            min-height: 80vh;
-            background: #ffffff;
+            /* width: 90%;
+            max-width: 1200px; */
+            min-height: 100vh;
+            /* background: #ffffff;
             overflow: hidden;
-            box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.1);
+            box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.1); */
         }
 
         /* Sidebar bên trái */
         .trai {
             background: #2c3e50;
-            width: 25%;
+            width: 20%;
             padding: 25px;
             color: #fff;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
         }
 
         .profile-section {
@@ -93,9 +94,10 @@ $role = $_SESSION['role'];
 
         /* Phần nội dung bên phải */
         .phai {
-            width: 75%;
+            width: 80%;
             padding: 40px;
             background-color: #fff;
+            box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
         }
 
         .content-section {
@@ -262,6 +264,7 @@ $role = $_SESSION['role'];
         .product-table tr:hover {
             background-color: #f1f1f1;
         }
+        
     </style>
 </head>
 
@@ -284,27 +287,33 @@ $role = $_SESSION['role'];
 
                     </div>
                 </div>
+
                 <div>
                     <h3 style="font-size: 18px; color: yellow; margin: 10px 0">
                         Tài Khoản Của Tôi
                     </h3>
                     <ul class="menu">
-                        <li id="profile">Hồ Sơ</li>
-                        <li id="change-password">Đổi Mật Khẩu</li>
-                        <li id="heritage-list">Danh Sách Di Sản</li>
-                        <li id="post-management">Quản Lý Bài Đăng</li>
-                        <li id="user-management">Quản Lý Người Dùng</li>
-                        <li id="favorites">Danh sách yêu thích</li>
-                        <li id="statistics">Thống Kê</li>
-                        <li><a href="../index.php" style="text-decoration: none;color: yellow;">Trở lại</a></li>
-                    </ul>
+                        <li>Hồ Sơ</li>
+                        <li>Đổi Mật Khẩu</li>
+                        <?php if ($role == 'User'): ?>
+                            <li>Quản Lý Bài Đăng</li>
+                            <li>Danh Sách Yêu Thích</li>
 
+                        <?php endif; ?>
+
+
+                        <?php if ($role == 'Admin'): ?>
+                            <li>Quản Lý Người Dùng</li>
+                            <li>Danh Sách Di Sản</li>
+                            <li>Thống Kê</li>
+                        <?php endif; ?>
+                        <li><a href="../index.php" style="text-decoration: none;color:yellow;">Trở lại</a></li>
+                    </ul>
                 </div>
         </div>
 
         <!-- Nội Dung Bên Phải -->
         <div class="phai">
-            <!-- Hồ sơ của tôi -->
             <div id="profile-content" class="content-section">
                 <p>Hồ Sơ Của Tôi</p>
                 <p>Quản lý thông tin hồ sơ để bảo mật tài khoản</p>
@@ -342,6 +351,12 @@ $role = $_SESSION['role'];
                         <label>Ngày sinh</label>
                         <input type="date" name="date_of_birth" value="<?php echo $row['DateOfBirth']; ?>" />
                     </div>
+
+                    <div class="form-group">
+                        <label>Avatar</label>
+                        <input type="file" name="fileToUpload" id="fileToUpload">
+                    </div>
+                    
                     <button type="submit" class="save-btn">Lưu</button>
                 </form>
 
@@ -393,12 +408,68 @@ $role = $_SESSION['role'];
             <div id="heritage-list-content" class="content-section" style="display: none;">
                 <p>Danh Sách Di Sản</p>
                 <p>Quản lý danh sách di sản đã lưu</p>
+                <table class="product-table">
+                    <thead>
+                        <tr>
+                            <th>STT</th>
+                            <th>Di Sản</th>
+                            <th>Mô Tả</th>
+                            <th>Chức Năng</th>
+                        </tr>
+                    </thead>
+                    <?php
+                    $sql = "Select * from hue_heritage";
+                    $result = mysqli_query($conn, $sql);
+                    while ($row = mysqli_fetch_array($result)) {
+                        $id = $row['id'];
+
+                    ?>
+                        <tbody>
+                            <tr>
+                                <td><?php echo $row['id']; ?></td>
+                                <td><?php echo $row['title']; ?></td>
+                                <td><?php echo $row['description']; ?></td>
+                                <td>
+                                    <a class="update" href="../logic/delete_user.php?id=<?php echo $id; ?>">Xóa</a>
+                                </td>
+                            </tr>
+                        <?php } ?>
+                        </tbody>
+                </table>
             </div>
 
             <!-- Quản lý bài đăng -->
             <div id="post-management-content" class="content-section" style="display: none;">
                 <p>Quản Lý Bài Đăng</p>
                 <p>Danh sách các bài đăng của bạn</p>
+                <table class="product-table">
+                    <thead>
+                        <tr>
+                            <th>STT</th>
+                            <th>Bài Viết</th>
+                            <th>Mô Tả</th>
+                            <th>Chức Năng</th>
+                        </tr>
+                    </thead>
+                    <?php
+                    $sql = "Select * from articles";
+                    $result = mysqli_query($conn, $sql);
+                    while ($row = mysqli_fetch_array($result)) {
+                        $id = $row['id'];
+
+                    ?>
+                        <tbody>
+                            <tr>
+                                <td><?php echo $row['id']; ?></td>
+                                <td><?php echo $row['title']; ?></td>
+                                <td><?php echo $row['description']; ?></td>
+                                <td>
+                                    <a class="update" href="../logic/delete_user.php?id=<?php echo $id; ?>">Xóa</a>
+                                </td>
+                            </tr>
+                        <?php } ?>
+                        </tbody>
+                </table>
             </div>
 
             <!-- Quản lý người dùng -->
@@ -449,40 +520,75 @@ $role = $_SESSION['role'];
         </div>
     <?php } ?>
     </div>
+
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            // Lấy tất cả các phần nội dung
-            const sections = {
-                "profile": document.getElementById("profile-content"),
-                "change-password": document.getElementById("change-password-content"),
-                "heritage-list": document.getElementById("heritage-list-content"),
-                "post-management": document.getElementById("post-management-content"),
-                "user-management": document.getElementById("user-management-content"),
-                "favorites": document.getElementById("favorites-content"),
-                "statistics": document.getElementById("statistics-content"),
-            };
-
-            // Ẩn tất cả nội dung
-            function hideAllSections() {
-                Object.values(sections).forEach(section => {
-                    section.style.display = "none";
-                });
+        // Danh sách các menu và nội dung liên kết
+        // Lấy danh sách menu và nội dung tương ứng
+        const menus = [{
+                menu: ".menu li:nth-child(1)",
+                content: "profile-content"
+            },
+            {
+                menu: ".menu li:nth-child(2)",
+                content: "change-password-content"
+            },
+            {
+                menu: ".menu li:nth-child(3)",
+                content: "post-management-content", // Quản lý bài đăng
+                condition: "User" // Chỉ hiển thị nếu vai trò là User
+            },
+            {
+                menu: ".menu li:nth-child(4)",
+                content: "favorites-content", // Danh sách yêu thích
+                condition: "User"
+            },
+            {
+                menu: ".menu li:nth-child(3)",
+                content: "user-management-content", // Quản Lý Người dùng
+                condition: "Admin"
+            },
+            {
+                menu: ".menu li:nth-child(4)",
+                content: "heritage-list-content", // Danh sách di sản
+                condition: "Admin" // Chỉ hiển thị nếu vai trò là Admin
+            },
+            {
+                menu: ".menu li:nth-child(5)",
+                content: "statistics-content", // Thống kê
+                condition: "Admin" // Chỉ hiển thị nếu vai trò là Admin
             }
+        ];
 
-            // Thêm sự kiện click cho từng mục menu
-            Object.keys(sections).forEach(menuId => {
-                const menuItem = document.getElementById(menuId);
-                if (menuItem) {
-                    menuItem.addEventListener("click", function() {
-                        hideAllSections(); // Ẩn tất cả nội dung
-                        sections[menuId].style.display = "block"; // Hiển thị nội dung tương ứng
-                    });
+        // Vai trò của người dùng (lấy từ PHP)
+        const userRole = "<?php echo $role; ?>";
+
+        // Hàm ẩn tất cả nội dung
+        function hideAllContent() {
+            menus.forEach(item => {
+                const contentElement = document.getElementById(item.content);
+                if (contentElement) {
+                    contentElement.style.display = "none";
                 }
             });
+        }
+
+        // Gắn sự kiện cho từng menu
+        menus.forEach((item, index) => {
+            // Chỉ gắn sự kiện nếu menu phù hợp với vai trò người dùng
+            if (!item.condition || item.condition === userRole) {
+                const menuElement = document.querySelector(item.menu);
+                const contentElement = document.getElementById(item.content);
+                if (menuElement && contentElement) {
+                    menuElement.addEventListener("click", () => {
+                        hideAllContent(); // Ẩn tất cả nội dung
+                        contentElement.style.display = "block"; // Hiển thị nội dung được chọn
+                    });
+                }
+            }
         });
     </script>
-
 </body>
+
 
 
 </html>

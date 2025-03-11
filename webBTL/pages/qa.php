@@ -1,14 +1,13 @@
 <html>
     <head>
-        <title>Câu hỏi và câu trả lời di sản toàn cầu. Vieejt nam 555</title>
+        <title>Câu hỏi và câu trả lời di sản toàn cầu.</title>
         <style>
-         
-            
             body{
                 font-family: Arial, sans-serif;
                 background-color: #f5f5f5;
                 padding: 0;
                 margin: 0;
+                
             }
             .bentrai{       
                 flex-basis: 70%;
@@ -313,7 +312,7 @@
         </div>
     </div>
     <div class="cuoi trang">
-        cuoi trang
+        
     </div>
     </div>
 
