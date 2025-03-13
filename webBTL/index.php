@@ -126,7 +126,7 @@ session_start();
               phát hiện khảo cổ và những nghiên cứu chuyên sâu giúp bạn hiểu rõ hơn về quá khứ của nhân loại.
             </p>
           </div>
-          <button><a href="./pages/tintuc.php">Đọc ngay</a></button>
+          <button><a href="./pages/tintuc/tintuc.php">Đọc ngay</a></button>
         </div>
         <div>
           <img src="./assets/img/trang chủ/machu.jpg" />

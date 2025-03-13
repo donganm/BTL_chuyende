@@ -20,8 +20,24 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
             session_start();
             $_SESSION['role'] = $row['Role'];
             $_SESSION['user'] = $userName;
-            header('Location: ../index.php');
+            // header('Location: ../index.php');
+            // exit();
+
+            // Bonus!!
+
+            // Kiểm tra và chuyển hướng về trang trước nếu có
+            if (isset($_SESSION['redirect_url'])) {
+                $redirectUrl = $_SESSION['redirect_url'];  // Lấy trang trước khi đăng nhập
+                unset($_SESSION['redirect_url']);  // Xóa URL sau khi đã sử dụng
+                header('Location: ' . $redirectUrl);  // Chuyển hướng về trang đó
+            } else {
+                // Nếu không có URL trước đó, chuyển hướng về trang chính
+                header('Location: ../index.php');
+            }
             exit();
+
+            // Bonus!!
+
         } else {
             echo "<script>alert('Vui lòng nhập lại mật khẩu');</script>";
         }

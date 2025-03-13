@@ -38,16 +38,16 @@ $article = $result->fetch_assoc();
 
     <nav>
         <a href="../../index.php">Trang chủ</a>
-        <a href="../tintuc.php">Tin tức</a>
+        <a href="./tintuc.php">Tin tức</a>
         <a href="../blog/blog.php">Blog</a>
     </nav>
 
     <div class="container single-article">
-        <img src="../images/<?php echo htmlspecialchars($article["hinhanh"]); ?>" 
+        <img src="../../images/<?php echo htmlspecialchars($article["hinhanh"]); ?>" 
              alt="<?php echo htmlspecialchars($article["tieude"]); ?>" 
              onerror="this.onerror=null;this.src='../images/default.jpg';">
         <p><?php echo nl2br(htmlspecialchars($article["noidung"])); ?></p>
-        <a href="../tintuc.php" class="back-link">Quay lại</a>
+        <a href="./tintuc.php" class="back-link">Quay lại</a>
     </div>
 </body>
 </html>
