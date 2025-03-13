@@ -105,11 +105,11 @@ session_start();
             <p>285 Đội Cấn, Ba Đình, Hà Nội</p>
 
             <!-- Google Maps Iframe -->
-            <iframe
+            <!-- <iframe
                 src="https://maps.google.com/maps?q=Aptech%20Computer%20Education&amp;t=&amp;z=13&amp;ie=UTF8&amp;iwloc=&amp;output=embed"
                 allowfullscreen=""
                 loading="lazy">
-            </iframe>
+            </iframe> -->
         </div>
 
         <!-- Liên kết Email -->
