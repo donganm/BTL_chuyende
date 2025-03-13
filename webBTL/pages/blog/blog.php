@@ -70,19 +70,19 @@ $result = $conn->query($sql);
 
     <nav style="height: 50px">
         <div class="nav-links">
-            <a href="../index.php">Trang chủ</a>
-            <a href="../tintuc.php">Tin tức</a>
-            <a href="./blog/blog.php" class="active">Blog</a>
+            <a href="../../index.php">Trang chủ</a>
+            <a href="../tintuc/tintuc.php">Tin tức</a>
+            <a href="./blog.php" class="active">Blog</a>
         </div>
         
         
         <div class="user-info">
             <?php if ($userLoggedIn): ?>
                 <span>Xin chào, <strong><?php echo $_SESSION['user']; ?></strong> (<?php echo $isAdmin ? "Admin" : "User"; ?>)</span>
-                <a href="../pages/profile.php">Hồ sơ</a> |
+                <a href="../profile.php">Hồ sơ</a> |
                 <a href="#" id="logout-btn" style="color: red; cursor: pointer;">Đăng xuất</a>
             <?php else: ?>
-                <a href="../pages/login.php">Đăng nhập</a>
+                <a href="../login.php">Đăng nhập</a>
             <?php endif; ?>
         </div>
 

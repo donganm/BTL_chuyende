@@ -134,7 +134,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 </button>
             
         </form>
-        <a href="../tintuc.php" class="back-link">🔙 Quay lại Tin Tức</a>
+        <a href="./tintuc.php" class="back-link">🔙 Quay lại Tin Tức</a>
     </div>
 </body>
 </html>

@@ -51,7 +51,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $stmt_update->bind_param("ssi", $title, $content, $id);
 
         if ($stmt_update->execute()) {
-            echo "<script>alert('Cập nhật bài viết thành công!'); window.location.href = '../tintuc.php';</script>";
+            echo "<script>alert('Cập nhật bài viết thành công!'); window.location.href = './tintuc.php';</script>";
         } else {
             echo "<script>alert('Lỗi khi cập nhật bài viết!');</script>";
         }
@@ -65,7 +65,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chỉnh sửa bài viết</title>
-    <link rel="stylesheet" href="../style/tintuc.css">
+    <link rel="stylesheet" href="../styles/tintuc.css">
 </head>
 <body>
     <h2>Chỉnh sửa bài viết</h2>
