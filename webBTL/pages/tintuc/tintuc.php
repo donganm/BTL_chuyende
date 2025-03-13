@@ -1,12 +1,18 @@
 <?php
 session_start();
-$role = $_SESSION['role'] ?? 'User';
+
+// Lưu lại trang hiện tại trước khi chuyển đến trang đăng nhập
+if (!isset($_SESSION['redirect_url'])) {
+    $_SESSION['redirect_url'] = $_SERVER['REQUEST_URI'];  // Lưu URL của trang hiện tại (ví dụ: blog.php hoặc tintuc.php)
+}
 include '../../includes/db.php'; // Kết nối database
 
 // Kiểm tra kết nối database
 if (!$conn) {
     die("Lỗi kết nối database: " . mysqli_connect_error());
 }
+
+$role = $_SESSION['role'] ?? 'User';
 
 // Kiểm tra người dùng đã đăng nhập chưa
 $userLoggedIn = isset($_SESSION['user']);
@@ -248,23 +254,29 @@ $result = $stmt->get_result();
             <?php if ($userLoggedIn): ?>
                 <span>Xin chào, <strong><?php echo $_SESSION['user']; ?></strong> (<?php echo $isAdmin ? "Admin" : "User"; ?>)</span>
                 <a href="../profile.php">Hồ sơ</a> |
-                <a href="../logout.php" id="logout-btn" style="color: red; cursor: pointer;">Đăng xuất</a>
+                <a href="#" id="logout-btn" style="color: #007bff; cursor: pointer;">Đăng xuất</a>
             <?php else: ?>
-                <a href="../../login.php">Đăng nhập</a>
+                <a href="../login.php">Đăng nhập</a>
             <?php endif; ?>
         </div>
 
     <script>
         document.getElementById("logout-btn").addEventListener("click", function(event) {
-            event.preventDefault(); // Ngăn chặn chuyển trang
-            fetch("../pages/logout.php", {
-                method: "POST"
-            }).then(response => {
-                if (response.ok) {
-                    location.reload(); // Tải lại trang sau khi đăng xuất
+            event.preventDefault(); // Ngừng hành động mặc định (chuyển hướng)
+
+            fetch('../logout.php', {
+                method: 'POST',
+            })
+            .then(response => {
+                if (response.ok) { // Kiểm tra xem yêu cầu có thành công
+                    location.reload(); // Làm mới trang sau khi đăng xuất
                 }
+            })
+            .catch(error => {
+                console.error("Lỗi khi đăng xuất:", error);
             });
         });
+
     </script>
 
 
@@ -289,7 +301,7 @@ $result = $stmt->get_result();
         <?php if ($result->num_rows > 0): ?>
             <?php while ($article = $result->fetch_assoc()): ?>
                 <div class="article">
-                    <img src="../../images/<?php echo htmlspecialchars($article["hinhanh"]); ?>" 
+                    <img src="./images/<?php echo htmlspecialchars($article["hinhanh"]); ?>" 
                          alt="<?php echo htmlspecialchars($article["tieude"]); ?>" 
                          onerror="this.onerror=null;this.src='../images/default.jpg';">
                     <h2>

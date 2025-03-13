@@ -1,5 +1,11 @@
 <?php
 session_start();
+
+// Lưu lại trang hiện tại trước khi chuyển đến trang đăng nhập
+if (!isset($_SESSION['redirect_url'])) {
+    $_SESSION['redirect_url'] = $_SERVER['REQUEST_URI'];  // Lưu URL của trang hiện tại (ví dụ: blog.php hoặc tintuc.php)
+}
+
 include '../../includes/db.php';
 
 if (!$conn) {
@@ -13,6 +19,7 @@ $isAdmin = $userLoggedIn && isset($_SESSION['role']) && $_SESSION['role'] === 'A
 $sql = "SELECT id, title, description FROM blog_articles";
 $result = $conn->query($sql);
 ?>
+
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -20,46 +27,7 @@ $result = $conn->query($sql);
     <title>Blog</title>
     <link rel="stylesheet" href="style.css">
     <style>
-        .nav-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 10px;
-            gap: 15px;
-        }
-
-        .menu {
-            display: flex;
-            gap: 15px;
-        }
-
-        .container {
-            width: 80%;
-            margin: auto;
-        }
-
-        .article {
-            border-bottom: 1px solid #ddd;
-            padding: 15px 0;
-        }
-
-        .user-info {
-            float: right;
-            margin-right: 20px;
-            font-size: 14px;
-            color:lightblue;
-        }
-
-        .user-info a {
-            margin-left: 10px;
-            text-decoration: none;
-            font-weight: bold;
-            color: white;
-        }
-
-        .user-info a:hover {
-            color: #007bff;
-        }
+        /* Các styles cho trang */
     </style>
 </head>
 <body>
@@ -75,7 +43,6 @@ $result = $conn->query($sql);
             <a href="./blog.php" class="active">Blog</a>
         </div>
         
-        
         <div class="user-info">
             <?php if ($userLoggedIn): ?>
                 <span>Xin chào, <strong><?php echo $_SESSION['user']; ?></strong> (<?php echo $isAdmin ? "Admin" : "User"; ?>)</span>
@@ -86,22 +53,25 @@ $result = $conn->query($sql);
             <?php endif; ?>
         </div>
 
+    </nav>
+
     <script>
         document.getElementById("logout-btn").addEventListener("click", function(event) {
-            event.preventDefault(); // Ngăn chặn chuyển trang
-            fetch("../pages/logout.php", {
+            event.preventDefault(); // Ngừng hành động mặc định (chuyển hướng)
+
+            // Lưu lại URL trước khi đăng xuất
+            let redirectUrl = document.referrer || "../blog.php";  // Nếu không có referrer, quay lại trang blog
+
+            fetch("../logout.php", {
                 method: "POST"
             }).then(response => {
                 if (response.ok) {
-                    location.reload(); // Tải lại trang sau khi đăng xuất
+                    // Chuyển hướng về trang trước đó hoặc trang blog nếu không có trang trước
+                    window.location.href = redirectUrl;
                 }
             });
         });
     </script>
-
-
-
-    </nav>
 
     <div class="container">
         <?php if ($isAdmin): ?>
