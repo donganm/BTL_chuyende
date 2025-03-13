@@ -232,7 +232,13 @@ $result = $stmt->get_result();
         color: rgb(166, 255, 0);
         }
 
+        .btn-warning {
+            color: lightcoral;
+        }
 
+        .btn-danger {
+            color: red;
+        }
     </style>
 </head>
 
@@ -242,48 +248,37 @@ $result = $stmt->get_result();
         <p>Nơi lưu giữ giá trị văn hóa và lịch sử</p>
     </header>
 
-    <nav style="height: 70px">
-        <div class="nav-links">
-            <a href="../../index.php">Trang chủ</a>
-            <a href="tintuc.php" class="active">Tin tức</a>
-            <a href="../blog/blog.php">Blog</a>
-        </div>
-        
-        
+    <nav>
+        <a href="../../index.php">Trang chủ</a>
+        <a href="tintuc.php" class="active">Tin tức</a>
+        <a href="../blog/blog.php">Blog</a>
         <div class="user-info">
             <?php if ($userLoggedIn): ?>
                 <span>Xin chào, <strong><?php echo $_SESSION['user']; ?></strong> (<?php echo $isAdmin ? "Admin" : "User"; ?>)</span>
                 <a href="../profile.php">Hồ sơ</a> |
-                <a href="#" id="logout-btn" style="color: #007bff; cursor: pointer;">Đăng xuất</a>
+                <a href="#" id="logout-btn">Đăng xuất</a>
             <?php else: ?>
                 <a href="../login.php">Đăng nhập</a>
             <?php endif; ?>
         </div>
+        <script>
+            document.getElementById("logout-btn").addEventListener("click", function(event) {
+                event.preventDefault(); // Ngừng hành động mặc định (chuyển hướng)
 
-    <script>
-        document.getElementById("logout-btn").addEventListener("click", function(event) {
-            event.preventDefault(); // Ngừng hành động mặc định (chuyển hướng)
-
-            fetch('../logout.php', {
-                method: 'POST',
-            })
-            .then(response => {
-                if (response.ok) { // Kiểm tra xem yêu cầu có thành công
-                    location.reload(); // Làm mới trang sau khi đăng xuất
-                }
-            })
-            .catch(error => {
-                console.error("Lỗi khi đăng xuất:", error);
+                fetch('../logout.php', {
+                    method: 'POST',
+                })
+                .then(response => {
+                    if (response.ok) { // Kiểm tra xem yêu cầu có thành công
+                        location.reload(); // Làm mới trang sau khi đăng xuất
+                    }
+                })
+                .catch(error => {
+                    console.error("Lỗi khi đăng xuất:", error);
+                });
             });
-        });
-
-    </script>
-
-
-
+        </script>
     </nav>
-
-
 
     <div class="container">
         <!-- Thanh tìm kiếm -->
@@ -313,8 +308,8 @@ $result = $stmt->get_result();
                     
                     <!-- ✅ Chỉ Admin mới có quyền Sửa/Xóa -->
                     <?php if ($isAdmin): ?>
-                        <a href="./edit-post.php?id=<?php echo $article['id']; ?>" class="btn btn-warning">Sửa</a>
-                        <a href="./delete.php?id=<?php echo $article['id']; ?>" class="btn btn-danger" onclick="return confirm('Bạn có chắc muốn xóa bài viết này?');">Xóa</a>
+                        <a href="./edit-post.php?id=<?php echo $article['id']; ?>" class="btn btn-warning" style="color: blue">Sửa</a>
+                        <a href="./delete.php?id=<?php echo $article['id']; ?>" class="btn btn-danger" style="color: red" onclick="return confirm('Bạn có chắc muốn xóa bài viết này?');">Xóa</a>
                     <?php endif; ?>
                 </div>
             <?php endwhile; ?>
