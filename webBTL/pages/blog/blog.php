@@ -240,8 +240,8 @@ $result = $conn->query($sql);
 
     <nav>
     <a href="../../index.php">Trang chủ</a>
-    <a href="../tintuc/tintuc.php" class="active">Tin tức</a>
-    <a href="./blog.php">Blog</a>
+    <a href="../tintuc/tintuc.php">Tin tức</a>
+    <a href="./blog.php" class="active">Blog</a>
     <div class="user-info">
         <?php if ($userLoggedIn): ?>
             <span>Xin chào, <strong><?php echo $_SESSION['user']; ?></strong> (<?php echo $isAdmin ? "Admin" : "User"; ?>)</span>
