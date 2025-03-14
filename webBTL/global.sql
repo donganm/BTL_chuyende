@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 05, 2025 at 05:52 PM
+-- Generation Time: Mar 14, 2025 at 06:46 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -114,25 +114,24 @@ INSERT INTO `feedback` (`id`, `name`, `email`, `message`, `created_at`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `hue_heritage`
+-- Table structure for table `posts`
 --
 
-CREATE TABLE `hue_heritage` (
+CREATE TABLE `posts` (
   `id` int(11) NOT NULL,
   `title` varchar(255) NOT NULL,
-  `description` text NOT NULL,
-  `image` varchar(255) NOT NULL,
-  `link` varchar(255) NOT NULL
+  `content` text NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `image` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `hue_heritage`
+-- Dumping data for table `posts`
 --
 
-INSERT INTO `hue_heritage` (`id`, `title`, `description`, `image`, `link`) VALUES
-(1, 'Cố đô Huế', 'Di sản văn hóa thế giới với kiến trúc cung đình độc đáo.', 'hue.jpg', 'hue.php'),
-(2, 'Lăng Minh Mạng', 'Lăng tẩm vua Minh Mạng, nơi có kiến trúc tuyệt đẹp.', 'lang-minh-mang.jpg', 'lang-minh-mang.php'),
-(3, 'Chùa Thiên Mụ', 'Ngôi chùa cổ kính bên dòng sông Hương thơ mộng.', 'chua-thien-mu.jpg', 'chua-thien-mu.php');
+INSERT INTO `posts` (`id`, `title`, `content`, `created_at`, `image`) VALUES
+(25, 'Vì sao ẩm thực Huế có nhiều món ăn cung đình?', 'Ảnh hưởng từ văn hóa cung đình\r\nCác vua triều Nguyễn rất quan tâm đến ăn uống, yêu cầu các món ăn phải không chỉ ngon mà còn đẹp mắt, tinh tế và cầu kỳ trong cách chế biến.\r\nNhiều món ăn được chế biến theo công thức đặc biệt chỉ dành riêng cho hoàng gia.', '2025-03-09 22:39:14', 'uploads/67ce7b024304a_am_thuc_hue_1.jpg'),
+(26, 'Thời điểm nào là đẹp nhất để du lịch Hội An?', 'Vào ngày 14 âm lịch mỗi tháng, Hội An tổ chức Đêm phố cổ, nơi toàn bộ khu phố sẽ lung linh với hàng ngàn chiếc đèn lồng, không có ánh đèn điện.\r\nĐây là thời điểm tuyệt vời để tham gia lễ hội thả đèn hoa đăng trên sông Hoài và tận hưởng không gian truyền thống.', '2025-03-09 22:47:03', 'uploads/67ce7cd7a7e19_le-hoi-den-hoa-dang.jpg');
 
 -- --------------------------------------------------------
 
@@ -285,9 +284,9 @@ ALTER TABLE `feedback`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `hue_heritage`
+-- Indexes for table `posts`
 --
-ALTER TABLE `hue_heritage`
+ALTER TABLE `posts`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -343,10 +342,10 @@ ALTER TABLE `feedback`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT for table `hue_heritage`
+-- AUTO_INCREMENT for table `posts`
 --
-ALTER TABLE `hue_heritage`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+ALTER TABLE `posts`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT for table `restoration_projects`
