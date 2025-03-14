@@ -43,9 +43,10 @@ $article = $result->fetch_assoc();
     </nav>
 
     <div class="container single-article">
-        <img src="../../images/<?php echo htmlspecialchars($article["hinhanh"]); ?>" 
-             alt="<?php echo htmlspecialchars($article["tieude"]); ?>" 
-             onerror="this.onerror=null;this.src='../images/default.jpg';">
+    <img src="../tintuc/images/<?php echo htmlspecialchars($article['hinhanh']); ?>" 
+     alt="<?php echo htmlspecialchars($article['tieude']); ?>" 
+     onerror="this.onerror=null;this.src='../tintuc/images/default.jpg';">
+
         <p><?php echo nl2br(htmlspecialchars($article["noidung"])); ?></p>
         <a href="./tintuc.php" class="back-link">Quay lại</a>
     </div>
