@@ -238,38 +238,7 @@ $result = $conn->query($sql);
         <p>Chia sẻ trải nghiệm và góc nhìn</p>
     </header>
 
-    <nav>
-    <a href="../../index.php">Trang chủ</a>
-    <a href="../tintuc/tintuc.php">Tin tức</a>
-    <a href="./blog.php" class="active">Blog</a>
-    <div class="user-info">
-        <?php if ($userLoggedIn): ?>
-            <span>Xin chào, <strong><?php echo $_SESSION['user']; ?></strong> (<?php echo $isAdmin ? "Admin" : "User"; ?>)</span>
-            <a href="../profile.php">Hồ sơ</a> |
-            <a href="#" id="logout-btn" style="color: red; cursor: pointer;">Đăng xuất</a>
-        <?php else: ?>
-            <a href="../login.php">Đăng nhập</a>
-        <?php endif; ?>
-    </div>
-
-    <script>
-        document.getElementById("logout-btn").addEventListener("click", function(event) {
-            event.preventDefault(); // Ngừng hành động mặc định (chuyển hướng)
-
-            fetch('../logout.php', {
-                method: 'POST',
-            })
-            .then(response => {
-                if (response.ok) { // Kiểm tra xem yêu cầu có thành công
-                    location.reload(); // Làm mới trang sau khi đăng xuất
-                }
-            })
-            .catch(error => {
-                console.error("Lỗi khi đăng xuất:", error);
-            });
-        });
-    </script>
-</nav>
+    <?php include '../tintuc/includes/nav.php'; ?>
 
     <div class="container">
         <?php if ($isAdmin): ?>
