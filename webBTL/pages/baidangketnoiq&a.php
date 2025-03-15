@@ -273,9 +273,18 @@
                 <p>Quần thể Di tích Cố đô Huế được UNESCO công nhận là Di sản Thế giới vào năm 1993 nhờ vào những giá trị nổi bật về lịch sử, văn hóa, kiến trúc và cảnh quan.</p>
                 <img class="anhto" src="../assets/img/codohue.jpg" alt="">
                 <p>
-                Nơi đây từng là kinh đô của triều đại Nguyễn với các công trình như kinh thành, lăng tẩm, đền đài và chùa chiền độc đáo. Di tích không chỉ phản ánh sự phát triển 
-                của nền văn hóa Việt Nam mà còn là nơi giao thoa của các giá trị nghệ thuật, truyền thống và phong tục tập quán, góp phần làm giàu thêm di sản nhân loại.
+                    1. Giá trị lịch sử và văn hóa<br>
+                    Kinh đô triều Nguyễn (1802-1945): Huế từng là trung tâm chính trị, văn hóa và tôn giáo của Việt Nam dưới triều Nguyễn.<br>
+                    Bảo tồn văn hóa cung đình: Cố đô Huế lưu giữ nhiều giá trị văn hóa từ tổ chức triều chính đến nghi lễ và nghệ thuật cung đình.<br>
+                    Di sản văn hóa phi vật thể: Nhã nhạc cung đình Huế được UNESCO công nhận vào năm 2003.<br>
+                    2. Giá trị kiến trúc độc đáo<br>
+                    Hệ thống cung điện, lăng tẩm và đền đài với sự hài hòa giữa kiến trúc và thiên nhiên.<br>
+                    3. Giá trị nghệ thuật và kỹ thuật xây dựng<br>
+                    Trang trí tinh xảo và kỹ thuật xây dựng bền vững.<br>
+                    4. Giá trị cảnh quan và môi trường<br>
+                    Vị trí bên dòng sông Hương và bảo tồn hệ sinh thái tự nhiên.
                 </p>
+
             </div>
         </div>
         
