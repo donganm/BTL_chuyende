@@ -129,10 +129,9 @@
                 display: flex;
                 align-items: center;
                 gap: 15px;
-                padding: 27px 10px  0px 0px;
+                
             }
-
-            .answer-btn {
+               .answer-btn {
                 border: 2px solid #1a73e8;
                 background: none;
                 color: #1a73e8;
