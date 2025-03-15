@@ -135,8 +135,8 @@
             <div class="menu">
                 <ul class="menungang">
                     <li><a href="baidangketnoiq&a.php">Về Q&A</a></li>
-                    <li><a href="">Theo dõi</a></li>
-                    <li><a href="">Trả lời</a></li>
+                    <li><a href="theodoi.php">Theo dõi</a></li>
+                    <li><a href="traloi.php">Trả lời</a></li>
                     <li><a href="thongbao.php">Thông báo</a></li>
                     <li><a href="../index.php">Home</a></li>
                 </ul>
