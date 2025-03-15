@@ -225,39 +225,6 @@
 
             </span>
             <div class="container">
-                <div class="post">
-                    <div class="user-info">
-                        <img src="..//assets/img/AI.jpg" alt="Assistant Avatar" class="avatar">
-                        <div>
-                            <strong>Trợ lý</strong> <span class="bot-tag">AI • 3y</span>
-                        </div>
-                    </div>
-                    <p class="post-content">
-                        Quần thể Di tích Cố đô Huế được UNESCO công nhận là Di sản Thế giới vào ngày 11 tháng 12 năm 1993, nhờ những giá trị nổi bật sau:
-                    </p>
-                    <h3>1. Giá trị lịch sử và văn hóa:</h3>
-                    <ul>
-                        <li><strong>Trung tâm chính trị của triều Nguyễn:</strong> 
-                            Từ năm 1802 đến 1945, Huế là kinh đô của Việt Nam dưới triều đại nhà Nguyễn, triều đại phong kiến cuối cùng của Việt Nam. Trong giai đoạn này, Huế chứng kiến nhiều sự kiện lịch sử quan trọng, đóng vai trò then chốt trong việc hình thành và phát triển văn hóa, chính trị của quốc gia.</li>
-                        <li><strong>Di sản văn hóa phi vật thể phong phú:</strong> Huế không chỉ nổi tiếng với kiến trúc cung đình mà còn với các di sản văn hóa phi vật thể như Nhã nhạc cung đình Huế, được UNESCO công nhận là Kiệt tác Di sản Văn hóa Phi vật thể và Truyền khẩu của Nhân loại vào năm 2003.</li>
-                    </ul>
-                    <h3>2. Giá trị kiến trúc và nghệ thuật:</h3>
-                    <ul>
-                        <li><strong>Lăng tẩm và đền đài tinh xảo:</strong> 
-                            Quần thể di tích bao gồm Kinh thành, Hoàng thành và Tử Cấm thành, được xây dựng theo nguyên tắc phong thủy và kiến trúc truyền thống Việt Nam, kết hợp hài hòa với yếu tố thiên nhiên như sông Hương, núi Ngự Bình.</li>
-                        <li><strong>Di sản văn hóa phi vật thể phong phú:</strong> Các lăng tẩm của các vua Nguyễn như lăng Gia Long, Minh Mạng, Thiệu Trị, Tự Đức... đều được thiết kế công phu, phản ánh triết lý sống và gu thẩm mỹ của từng vị vua, tạo nên một bức tranh kiến trúc đa dạng và phong phú.</li>
-                    </ul>
-                    <h3>3. Giá trị bảo tồn và phát huy:</h3>
-                    <ul>
-                        <li><strong>Nỗ lực bảo tồn và phục hồi:</strong> 
-                            Trải qua nhiều biến cố lịch sử và thiên tai, quần thể di tích đã chịu nhiều hư hại. Tuy nhiên, với sự hỗ trợ của UNESCO và cộng đồng quốc tế, cùng với nỗ lực của chính quyền và nhân dân địa phương, nhiều công trình đã được trùng tu, bảo tồn, đưa Huế trở thành một trong những khu di tích được bảo tồn hiệu quả nhất.</li>
-                        <li><strong>Phát huy giá trị di sản:</strong>Huế đã tổ chức nhiều lễ hội văn hóa, nghệ thuật như Festival Huế, thu hút du khách trong và ngoài nước, góp phần quảng bá và phát huy giá trị di sản văn hóa cố đô.</li>
-                    </ul>
-                    <div class="post-footer">
-                        <button class="upvote-btn">⬆ Upvote</button>
-                       <button class="upvote-btn"><span></span>•••</span></button> 
-                    </div>
-                </div>
                     <div class="post">
                     <div class="user-info">
                         <img src="..//assets/img/avata3.jpeg" alt="User Avatar" class="avatar">
@@ -275,7 +242,7 @@
 
                 <div class="post">
                     <div class="user-info">
-                        <img src="..//assets/img/avata1.jpg" alt="User Avatar" class="avatar">   1 chấm ngang hàng, 2 chấm out ra
+                        <img src="..//assets/img/avata1.jpg" alt="User Avatar" class="avatar">  
                         <div>
                             <strong>Huy Nguyễn</strong> <span class="user-tag">Di tích Cố Đô Huế Việt Nam • 2y</span>
                         </div>
