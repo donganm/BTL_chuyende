@@ -137,7 +137,7 @@
                     <li><a href="../index.php">Trang chủ</a></li>
                     <li><a href="">Theo dõi</a></li>
                     <li><a href="">Trả lời</a></li>
-                    <li><a href="">Thông báo</a></li>
+                    <li><a href="thongbao.php">Thông báo</a></li>
                     <li><a href="baidangketnoiq&a.php">Về Q&A</a></li>
                 </ul>
             </div>
