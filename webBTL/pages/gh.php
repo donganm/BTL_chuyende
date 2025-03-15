@@ -84,20 +84,6 @@ session_start();
             </div>
         </div>
 
-        <!-- Dữ liệu động từ database -->
-        <div class="row">
-            <div class="col-12">
-                <h2 class="section-title">Di sản Nổi bật</h2>
-                <!-- <?php if ($heritage): ?>
-                    <h3><?php echo $heritage['name']; ?></h3>
-                    <p><b>Vị trí:</b> <?php echo $heritage['location']; ?></p>
-                    <p><b>Mô tả:</b> <?php echo $heritage['description']; ?></p>
-                <?php else: ?>
-                    <p>Chưa có dữ liệu di sản trong hệ thống.</p>
-                <?php endif; ?> -->
-            </div>
-        </div>
-
     </div>
 
     <!-- Footer  -->
