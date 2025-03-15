@@ -4,14 +4,14 @@
     <meta charset="UTF-8">
     <title>Thông báo</title>
     <style>
-        /* ======= CSS CƠ BẢN ======= */
+
         body {
             font-family: Arial, sans-serif;
             background-color: #f5f5f5;
             margin: 0;
             padding: 0;
         }
-        /* ======= HEADER GIỐNG CÁC TRANG TRƯỚC ======= */
+
         .header {
             display: flex;
             align-items: center;
