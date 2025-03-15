@@ -139,7 +139,7 @@ session_start();
               Hãy đặt câu hỏi và nhận câu trả lời từ các chuyên gia, nhà nghiên cứu và cộng đồng yêu thích lịch sử.
             </p>
           </div>
-          <button><a href="./pages/qa.php">Hỏi ngay</a></button>
+          <button><a href="./pages/baidangketnoiq&a.php">Hỏi ngay</a></button>
         </div>
       </div>
     </div>
