@@ -43,7 +43,7 @@ $feedbacks = $conn->query("SELECT * FROM feedback ORDER BY created_at DESC");
             padding: 20px;
             background: white;
             text-align: center;
-            margin-top: 20px;
+            margin-top: 100px;
         }
 
         .feedback-form,

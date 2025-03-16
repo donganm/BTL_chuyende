@@ -14,7 +14,7 @@ session_start();
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <style>
         .container {
-            margin-top: 20px;
+            margin-top: 100px;
         }
 
         .heritage-img {
