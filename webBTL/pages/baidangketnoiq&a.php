@@ -29,6 +29,7 @@
                 background-color: white;
                 padding: 0px 200px;
                 box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+                
             }
             .logo {
                 font-size: 30px;
@@ -46,7 +47,7 @@
                 border-radius: 5px;
                 width: 300px;
             }
-            .taobaidang {
+            .timkiem {
                 background-color: #b92b27;
                 color: white;
                 border: none;
@@ -204,14 +205,17 @@
                 </ul>
             </div>
             <div class="header-icons">
-                <input type="text" class="search-bar" placeholder="Tìm kiếm...">
-                <button class="taobaidang" id="openModalBtn">Tạo bài đăng</button>
+            <form action="search.php" method="GET" style="display: flex; align-items: center; gap: 15px;">
+            <input type="text" name="q" class="search-bar" placeholder="Tìm kiếm...">
+                <button type = "submit" class="timkiem">Tìm kiếm</button>
             </div>
+            </form>
         </div>
         
         <!-- Thanh công cụ để kích hoạt đăng bài -->
         <div class="thanhcongcu">
             <img src="../assets/img/avata1.jpg" alt="Avatar" class="avatar">
+            <!-- Khi click vào ô này, form đăng bài sẽ hiển thị -->
             <input type="text" placeholder="Bạn muốn hỏi hoặc chia sẻ điều gì?" id="triggerInput" readonly>
         </div>
         
@@ -259,7 +263,7 @@
             $conn->close();
             ?>
 
-            <!-- Bài viết cố đô Huế (bài cố định, hiển thị sau các bài từ DB) -->
+            <!-- Bài viết cố định hiển thị sau các bài từ DB -->
             <div class="post">
                 <div class="user-info">
                     <img src="../assets/img/avata1.jpg" alt="Avatar" class="avatar">
@@ -294,7 +298,6 @@
         
         <script>
             const triggerInput = document.getElementById("triggerInput");
-            const openModalBtn = document.getElementById("openModalBtn");
             const modal = document.getElementById("postModal");
             const overlay = document.getElementById("overlay");
             const closeModalBtn = document.getElementById("closeModal");
@@ -308,7 +311,6 @@
                 overlay.style.display = "none";
             }
             triggerInput.addEventListener("click", openModal);
-            openModalBtn.addEventListener("click", openModal);
             closeModalBtn.addEventListener("click", closeModal);
             overlay.addEventListener("click", closeModal);
         </script>

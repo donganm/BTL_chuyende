@@ -143,7 +143,7 @@
             </div>
             <div class="header-icons">
                 <input type="text" class="search-bar" placeholder="Tìm kiếm...">
-                <button class="add-question">Tạo bài đăng</button>
+                <button class="add-question">Tìm kiếm</button>
             </div>
         </div>
         <div class="hop">

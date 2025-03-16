@@ -35,7 +35,7 @@
             border-radius: 5px;
             width: 300px;
         }
-        .taobaidang {
+        .timkiem {
             background-color: #b92b27;
             color: white;
             border: none;
@@ -43,7 +43,7 @@
             border-radius: 5px;
             cursor: pointer;
         }
-        .taobaidang:hover {
+        .timkiem:hover {
             background-color: #a1201e;
         }
         .menu {
@@ -155,7 +155,7 @@
         </div>
         <div class="header-icons">
             <input type="text" class="search-bar" placeholder="Tìm kiếm...">
-            <button class="taobaidang">Tạo bài đăng</button>
+            <button class="timkiem">Tìm kiếm</button>
         </div>
     </div>
 
