@@ -20,41 +20,44 @@ session_start();
 <body>
 
   <!-- Header -->
-  <div class="header">Welcome to Global Heritage...</div>
+  <div class="header_container">
+    <div class="header">Welcome to Global Heritage...</div>
 
-  <!-- Navigation Menu -->
-  <div class="menu">
-    <div class="box1"><a href="index.php">G.H</a></div>
-    <div class="box2">
-      <ul>
-        <li><a href="./pages/gh.php">Global Heritage</a></li>
-        <li><a href="./pages/image.php">Photo Gallery</a></li>
-        <li><a href="./pages/about.php">About Us</a></li>
-        <li><a href="./pages/contact.php">Contact Us</a></li>
-        <li style="color: red; font-weight: bold"><a href="./pages/feedback.php">Feedback</a></li>
-      </ul>
-    </div>
-    <div class="box3">
-      <?php if (isset($_SESSION['user'])): ?>
-        <div class="header__search-signin-des" id="user" onclick="">
-          <a
-            href="./pages/profile.php"
-            style="text-decoration: none; color: #444"><?php echo $_SESSION['user']; // Hiển thị tên người dùng 
-                                                        ?></a>
-        </div>
-        <div>
-          <a
-            href="./pages/logout.php"
-            style="text-decoration: none; color: #444"
-            class="header__search-signout">Đăng xuất</a>
-        </div>
-      <?php else: ?>
-        <div class="header__search-signin-des" id="signin">
-          <a href="./pages/login.php" style="text-decoration: none; color: #444">Đăng nhập</a>
-        </div>
-      <?php endif; ?>
+    <!-- Navigation Menu -->
+    <div class="menu">
+      <div class="box1"><a href="index.php">G.H</a></div>
+      <div class="box2">
+        <ul>
+          <li><a href="./pages/gh.php">Global Heritage</a></li>
+          <li><a href="./pages/image.php">Photo Gallery</a></li>
+          <li><a href="./pages/about.php">About Us</a></li>
+          <li><a href="./pages/contact.php">Contact Us</a></li>
+          <li style="color: red; font-weight: bold"><a href="./pages/feedback.php">Feedback</a></li>
+        </ul>
+      </div>
+      <div class="box3">
+        <?php if (isset($_SESSION['user'])): ?>
+          <div class="header__search-signin-des" id="user" onclick="">
+            <a
+              href="./pages/profile.php"
+              style="text-decoration: none; color: #444"><?php echo $_SESSION['user']; // Hiển thị tên người dùng 
+                                                          ?></a>
+          </div>
+          <div>
+            <a
+              href="./pages/logout.php"
+              style="text-decoration: none; color: #444"
+              class="header__search-signout">Đăng xuất</a>
+          </div>
+        <?php else: ?>
+          <div class="header__search-signin-des" id="signin">
+            <a href="./pages/login.php" style="text-decoration: none; color: #444">Đăng nhập</a>
+          </div>
+        <?php endif; ?>
+      </div>
     </div>
   </div>
+
   <!-- End header -->
 
   <!-- Slideshow -->
