@@ -264,7 +264,6 @@ $role = $_SESSION['role'];
         .product-table tr:hover {
             background-color: #f1f1f1;
         }
-        
     </style>
 </head>
 
@@ -356,7 +355,7 @@ $role = $_SESSION['role'];
                         <label>Avatar</label>
                         <input type="file" name="fileToUpload" id="fileToUpload">
                     </div>
-                    
+
                     <button type="submit" class="save-btn">Lưu</button>
                 </form>
 
@@ -418,7 +417,7 @@ $role = $_SESSION['role'];
                         </tr>
                     </thead>
                     <?php
-                    $sql = "Select * from hue_heritage";
+                    $sql = "Select * from articles";
                     $result = mysqli_query($conn, $sql);
                     while ($row = mysqli_fetch_array($result)) {
                         $id = $row['id'];
