@@ -38,25 +38,33 @@ $conn->close();
     <link rel="stylesheet" href="sukien.css">
 </head>
 <style>
-    .event-header {
+    .activity-header {
     width: 100%;
     background:rgb(47, 148, 255); /* Màu xanh giống navbar */
     color: white;
     text-align: center;
-    padding: 15px 0;
+    padding: 20px 0;
     font-size: 18px;
+    font-weight: bold;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Căn giữa nội dung */
+    justify-content: center;
+    box-sizing: border-box;
+}
+
+.activity-header h2 {
+    margin: 0;
+    font-size: 26px;
     font-weight: bold;
 }
 
-.event-header h2 {
-    margin: 0;
-    font-size: 24px;
-}
-
-.event-header p {
-    margin: 5px 0 0;
+.activity-header p {
+    margin: 5px auto;
     font-size: 18px;
     font-weight: normal;
+    max-width: 80%; /* Giới hạn chiều rộng để không quá dài */
+    text-align: center; /* Căn giữa đoạn mô tả */
 }
 
 </style>
@@ -69,17 +77,17 @@ $conn->close();
         <li><a href="activity.php" class="<?= basename($_SERVER['PHP_SELF']) == 'activity.php' ? 'active' : '' ?>">Hoạt Động</a></li>
     </ul>
     </nav>
-<!-- navbar giới thiệu eventevent -->
-    <div class="event-header">
-    <h2>🌍 Giới thiệu về Sự kiện</h2>
-    <p>Trang này cung cấp thông tin về các sự kiện di sản văn hóa trên toàn thế giới. 
-       Khám phá và tham gia các sự kiện quan trọng liên quan đến bảo tồn di sản!</p>
-</div>
+      
+    <!-- navbar giới thiệu eventevent -->
+    <div class="activity-header">
+    <h2>🌍 Giới thiệu về Hoạt động </h2>
+    <p>Trung tâm Di sản Thế giới đi đầu trong những nỗ lực bảo vệ và bảo tồn của cộng đồng quốc tế.</p>
+    </div>
 
     <!-- Thanh tìm kiếm -->
     <div class="search-container">
         <form action="events.php" method="GET">
-            <input type="text" name="search" id="search" placeholder="Search Events" value="<?= htmlspecialchars($search) ?>">
+            <input type="text" name="search" id="search" placeholder="Search Activity" value="<?= htmlspecialchars($search) ?>">
             <button type="submit">Search</button>
         </form>
     </div>
@@ -110,4 +118,3 @@ $conn->close();
     </div>
 </body>
 </html>
-
