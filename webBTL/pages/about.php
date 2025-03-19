@@ -28,7 +28,7 @@ session_start();
             max-width: 1200px;
             margin-left: auto;
             margin-right: auto;
-            margin-top: 15px;
+            margin-top: 100px;
         }
 
         /* BODY  */

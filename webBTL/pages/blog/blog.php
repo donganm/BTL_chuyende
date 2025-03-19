@@ -1,5 +1,11 @@
 <?php
 session_start();
+
+// Lưu lại trang hiện tại trước khi chuyển đến trang đăng nhập
+if (!isset($_SESSION['redirect_url'])) {
+    $_SESSION['redirect_url'] = $_SERVER['REQUEST_URI'];  // Lưu URL của trang hiện tại (ví dụ: blog.php hoặc tintuc.php)
+}
+
 include '../../includes/db.php';
 
 if (!$conn) {
@@ -13,37 +19,15 @@ $isAdmin = $userLoggedIn && isset($_SESSION['role']) && $_SESSION['role'] === 'A
 $sql = "SELECT id, title, description FROM blog_articles";
 $result = $conn->query($sql);
 ?>
+
 <!DOCTYPE html>
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
     <title>Blog</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="./style.css">
     <style>
-        .nav-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 10px;
-            gap: 15px;
-        }
-
-        .menu {
-            display: flex;
-            gap: 15px;
-        }
-
-        .container {
-            width: 80%;
-            margin: auto;
-        }
-
-        .article {
-            border-bottom: 1px solid #ddd;
-            padding: 15px 0;
-        }
-
-        .user-info {
+                .user-info {
             float: right;
             margin-right: 20px;
             font-size: 14px;
@@ -60,6 +44,192 @@ $result = $conn->query($sql);
         .user-info a:hover {
             color: #007bff;
         }
+
+                /* Reset CSS */
+        * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Arial, sans-serif;
+        }
+
+        /* Body */
+        body {
+        background-color: #f4f4f4;
+        color: #333;
+        line-height: 1.6;
+        }
+
+        /* Header */
+        header {
+        background: #2c3e50;
+        color: white;
+        padding: 15px;
+        text-align: center;
+        }
+
+        /* Navigation */
+        nav {
+        background: #34495e;
+        text-align: center;
+        padding: 10px;
+        }
+
+        nav a {
+        color: white;
+        text-decoration: none;
+        font-weight: bold;
+        margin: 0 15px;
+        transition: color 0.3s;
+        }
+
+        nav a:hover,
+        nav a.active {
+        color: rgb(166, 255, 0);
+        }
+
+        /* Container */
+        .container {
+        max-width: 900px;
+        margin: 20px auto;
+        padding: 20px;
+        background: white;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        border-radius: 5px;
+        }
+
+        /* Bài viết */
+        .article {
+        border-bottom: 1px solid #ddd;
+        padding: 20px 0;
+        }
+
+        .article:last-child {
+        border-bottom: none;
+        }
+
+        .article h2 {
+        color: #2c3e50;
+        font-size: 22px;
+        }
+
+        .article a {
+        text-decoration: none;
+        color: #2c3e50;
+        }
+
+        .article a:hover {
+        color: #2980b9;
+        }
+
+        .article p {
+        color: #555;
+        font-size: 16px;
+        }
+
+        .article img {
+        width: 100%;
+        max-height: 300px;
+        object-fit: cover;
+        border-radius: 5px;
+        }
+
+        /* Form tìm kiếm */
+        form {
+        text-align: center;
+        margin-bottom: 20px;
+        }
+
+        input[type="text"] {
+        padding: 8px;
+        width: 60%;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        }
+
+        button {
+        padding: 8px 15px;
+        background: #2980b9;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background 0.3s;
+        }
+
+        button:hover {
+        background: #1f618d;
+        }
+
+        /* Chi tiết bài viết */
+        .single-article img {
+        width: 100%;
+        max-height: 400px;
+        object-fit: cover;
+        border-radius: 5px;
+        }
+
+        .single-article p {
+        font-size: 18px;
+        color: #444;
+        line-height: 1.8;
+        }
+
+        /* Nút quay lại */
+        .back-link {
+        display: inline-block;
+        margin-top: 20px;
+        padding: 10px 15px;
+        background: #34495e;
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+        transition: background 0.3s;
+        }
+
+        .back-link:hover {
+        background: #2c3e50;
+        }
+
+        /* Navigation */
+        nav {
+        background: #34495e;
+        padding: 10px;
+        display: flex;
+        justify-content: space-between; /* Canh đều hai bên */
+        align-items: center;
+        }
+
+        .nav-links {
+        display: flex;
+        gap: 15px;
+        }
+
+        .user-info {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 14px;
+        color: white;
+        }
+
+        .user-info a {
+        color: white;
+        text-decoration: none;
+        font-weight: bold;
+        }
+
+        .user-info a:hover {
+        color: rgb(166, 255, 0);
+        }
+
+        .btn-warning {
+            color: lightcoral;
+        }
+
+        .btn-danger {
+            color: red;
+        }
     </style>
 </head>
 <body>
@@ -68,40 +238,7 @@ $result = $conn->query($sql);
         <p>Chia sẻ trải nghiệm và góc nhìn</p>
     </header>
 
-    <nav style="height: 50px">
-        <div class="nav-links">
-            <a href="../index.php">Trang chủ</a>
-            <a href="../tintuc.php">Tin tức</a>
-            <a href="./blog/blog.php" class="active">Blog</a>
-        </div>
-        
-        
-        <div class="user-info">
-            <?php if ($userLoggedIn): ?>
-                <span>Xin chào, <strong><?php echo $_SESSION['user']; ?></strong> (<?php echo $isAdmin ? "Admin" : "User"; ?>)</span>
-                <a href="../pages/profile.php">Hồ sơ</a> |
-                <a href="#" id="logout-btn" style="color: red; cursor: pointer;">Đăng xuất</a>
-            <?php else: ?>
-                <a href="../pages/login.php">Đăng nhập</a>
-            <?php endif; ?>
-        </div>
-
-    <script>
-        document.getElementById("logout-btn").addEventListener("click", function(event) {
-            event.preventDefault(); // Ngăn chặn chuyển trang
-            fetch("../pages/logout.php", {
-                method: "POST"
-            }).then(response => {
-                if (response.ok) {
-                    location.reload(); // Tải lại trang sau khi đăng xuất
-                }
-            });
-        });
-    </script>
-
-
-
-    </nav>
+    <?php include '../tintuc/includes/nav.php'; ?>
 
     <div class="container">
         <?php if ($isAdmin): ?>

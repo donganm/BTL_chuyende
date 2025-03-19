@@ -1,42 +1,26 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="icon" href="https://glitch.com/favicon.ico" />
-    <title>KHÁM PHÁ</title>
-    
-  </head>
-  <h1>
-  KHÁM PHÁ
-  </h1>
-  <body>
-    <!DOCTYPE html>
 <html lang="vi">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Thanh Tìm Kiếm</title>
+    <title>Khám Phá Di Tích Lịch Sử</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin-top: 50px;
+            text-align: center;
+            padding: 20px;
+            background-color: #f4f4f4;
         }
 
+        /* Thanh tìm kiếm */
         .search-container {
+            margin-top: 20px;
             position: relative;
             width: 400px;
+            margin: auto;
         }
 
         #search-input {
-
-
-        input[type="text"] {
-
             width: 100%;
             padding: 10px;
             font-size: 16px;
@@ -53,298 +37,104 @@
             display: none;
             max-height: 150px;
             overflow-y: auto;
+            z-index: 10;
         }
 
         .suggestions div {
-
-        .suggestions p {
-            background: #f0f0f0;
- main
             padding: 10px;
             cursor: pointer;
         }
- thien
+
         .suggestions div:hover {
-            background: #f0f0f0;
+            background: #e0e0e0;
         }
+
         #history-btn {
-
-        .suggestions p:hover {
-            background: lightblue;
-        }
-
-        .history-container,
-        .quiz-container {
-            margin-top: 20px;
-        }
-
-        .history-list {
-            display: none;
-            text-align: left;
-        }
-
-        .info-box {
-            display: none;
             margin-top: 10px;
-            padding: 10px;
+            padding: 10px 20px;
             background: #007bff;
             color: white;
             border: none;
             border-radius: 5px;
             cursor: pointer;
+            transition: background 0.3s;
         }
+
         #history-btn:hover {
             background: #0056b3;
+        }
+
+        /* Mini game */
+        #quiz-container {
+            max-width: 500px;
+            margin: 40px auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .answer-btn {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            transition: background-color 0.2s;
+        }
+
+        .answer-btn:hover {
+            background-color: #dcdcdc;
+        }
+
+        .correct {
+            background-color: lightgreen;
+        }
+
+        .wrong {
+            background-color: lightcoral;
         }
     </style>
 </head>
 <body>
 
+    <h1>KHÁM PHÁ DI TÍCH LỊCH SỬ</h1>
+
+    <!-- Thanh tìm kiếm -->
     <div class="search-container">
         <input type="text" id="search-input" placeholder="Tìm kiếm...">
         <div class="suggestions" id="suggestions-box"></div>
     </div>
     <button id="history-btn">Xem lịch sử tìm kiếm</button>
 
-    <script>
-        const searchInput = document.getElementById("search-input");
-        const suggestionsBox = document.getElementById("suggestions-box");
-        const historyBtn = document.getElementById("history-btn");
-
-        // Danh sách gợi ý
-        const suggestions = ["Vịnh Hạ Long", "Chùa Thiên Mụ", "Tháp Rùa", "Đền Hùng", "Hoàng Thành Thăng Long", "Phố Cổ Hội An"];
-
-        // Lưu lịch sử tìm kiếm
-        let searchHistory = JSON.parse(localStorage.getItem("searchHistory")) || [];
-
-        searchInput.addEventListener("input", function () {
-            const value = this.value.toLowerCase();
-            suggestionsBox.innerHTML = "";
-            if (value) {
-                const filteredSuggestions = suggestions.filter(item => item.toLowerCase().includes(value));
-                if (filteredSuggestions.length) {
-                    suggestionsBox.style.display = "block";
-                    filteredSuggestions.forEach(item => {
-                        const div = document.createElement("div");
-                        div.textContent = item;
-                        div.addEventListener("click", function () {
-                            searchInput.value = item;
-                            saveSearchHistory(item);
-                            suggestionsBox.style.display = "none";
-                        });
-                        suggestionsBox.appendChild(div);
-                    });
-                } else {
-                    suggestionsBox.style.display = "none";
-                }
-            } else {
-                suggestionsBox.style.display = "none";
-            }
-        });
-
-        // Lưu tìm kiếm vào lịch sử
-        function saveSearchHistory(query) {
-            if (!searchHistory.includes(query)) {
-                searchHistory.push(query);
-                localStorage.setItem("searchHistory", JSON.stringify(searchHistory));
-            }
-        }
-
-        // Xem lịch sử tìm kiếm
-        historyBtn.addEventListener("click", function () {
-            alert("Lịch sử tìm kiếm:\n" + (searchHistory.length ? searchHistory.join("\n") : "Không có lịch sử"));
-        });
-
-        // Ẩn gợi ý khi click ra ngoài
-        document.addEventListener("click", function (event) {
-            if (!searchInput.contains(event.target) && !suggestionsBox.contains(event.target)) {
-                suggestionsBox.style.display = "none";
-            }
-        });
-    </script>
-
-
-</body>
-</html>
-    <!DOCTYPE html>
-<html lang="vi">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mini Game Lịch Sử</title>
-    <style>
-        body { font-family: Arial, sans-serif; text-align: center; padding: 20px; }
-        #quiz-container { max-width: 500px; margin: auto; padding: 20px; border: 1px solid #ccc; border-radius: 10px; }
-        .answer-btn { display: block; width: 100%; padding: 10px; margin: 5px 0; cursor: pointer; }
-        .correct { background-color: lightgreen; }
-        .wrong { background-color: lightcoral; }
-    </style>
-</head>
-<body>
-    <h2>Mini Game: Đoán Di Tích Lịch Sử</h2>
+    <!-- Mini game -->
     <div id="quiz-container">
         <p id="question">Câu hỏi sẽ hiển thị ở đây</p>
         <div id="answers"></div>
         <p id="feedback" style="display:none;"></p>
         <button id="next-btn" style="display:none;">Câu tiếp theo</button>
     </div>
-    
+
     <script>
+        const suggestions = ["Vịnh Hạ Long", "Chùa Thiên Mụ", "Tháp Rùa", "Đền Hùng", "Hoàng Thành Thăng Long", "Phố Cổ Hội An"];
         const places = [
             {"name": "Hoa Lư", "location": "Ninh Bình", "description": "Kinh đô đầu tiên của Việt Nam thời Đinh - Tiền Lê."},
             {"name": "Chùa Một Cột", "location": "Hà Nội", "description": "Ngôi chùa có kiến trúc độc đáo, biểu tượng của thủ đô Hà Nội."},
             {"name": "Lăng Chủ tịch Hồ Chí Minh", "location": "Hà Nội", "description": "Nơi an nghỉ của Chủ tịch Hồ Chí Minh."},
             {"name": "Hoàng Thành Thăng Long", "location": "Hà Nội", "description": "Di sản thế giới, trung tâm chính trị của nhiều triều đại."},
             {"name": "Vịnh Hạ Long", "location": "Quảng Ninh", "description": "Kỳ quan thiên nhiên thế giới với hàng nghìn đảo đá vôi."}
-        const questions = [
-            [{
-                    "name": "Hoa Lư",
-                    "location": "Ninh Bình",
-                    "description": "Kinh đô đầu tiên của Việt Nam thời Đinh - Tiền Lê."
-                },
-                {
-                    "name": "Chùa Một Cột",
-                    "location": "Hà Nội",
-                    "description": "Ngôi chùa có kiến trúc độc đáo, biểu tượng của thủ đô Hà Nội."
-                },
-                {
-                    "name": "Lăng Chủ tịch Hồ Chí Minh",
-                    "location": "Hà Nội",
-                    "description": "Nơi an nghỉ của Chủ tịch Hồ Chí Minh."
-                },
-                {
-                    "name": "Hoàng Thành Thăng Long",
-                    "location": "Hà Nội",
-                    "description": "Di sản thế giới, trung tâm chính trị của nhiều triều đại."
-                },
-                {
-                    "name": "Văn Miếu Quốc Tử Giám",
-                    "location": "Hà Nội",
-                    "description": "Trường đại học đầu tiên của Việt Nam."
-                },
-                {
-                    "name": "Thành Nhà Hồ",
-                    "location": "Thanh Hóa",
-                    "description": "Di sản thế giới được xây dựng vào thời Hồ Quý Ly."
-                },
-                {
-                    "name": "Chùa Bái Đính",
-                    "location": "Ninh Bình",
-                    "description": "Ngôi chùa lớn nhất Đông Nam Á, nổi tiếng với kiến trúc đồ sộ."
-                },
-                {
-                    "name": "Vịnh Hạ Long",
-                    "location": "Quảng Ninh",
-                    "description": "Kỳ quan thiên nhiên thế giới với hàng nghìn đảo đá vôi."
-                },
-                {
-                    "name": "Cố đô Huế",
-                    "location": "Thừa Thiên Huế",
-                    "description": "Trung tâm văn hóa của triều đại nhà Nguyễn."
-                },
-                {
-                    "name": "Chùa Hương",
-                    "location": "Hà Nội",
-                    "description": "Nơi diễn ra lễ hội chùa Hương lớn nhất Việt Nam."
-                },
-                {
-                    "name": "Chợ Bến Thành",
-                    "location": "TP. Hồ Chí Minh",
-                    "description": "Biểu tượng nổi bật của TP. Hồ Chí Minh."
-                },
-                {
-                    "name": "Đền Hùng",
-                    "location": "Phú Thọ",
-                    "description": "Nơi thờ các vua Hùng, tổ tiên của dân tộc Việt Nam."
-                },
-                {
-                    "name": "Thánh địa Mỹ Sơn",
-                    "location": "Quảng Nam",
-                    "description": "Khu di tích của nền văn hóa Chăm Pa cổ đại."
-                },
-                {
-                    "name": "Cột cờ Hà Nội",
-                    "location": "Hà Nội",
-                    "description": "Công trình lịch sử gắn liền với Hoàng thành Thăng Long."
-                },
-                {
-                    "name": "Nhà tù Côn Đảo",
-                    "location": "Bà Rịa - Vũng Tàu",
-                    "description": "Nơi từng giam giữ các chiến sĩ cách mạng."
-                },
-                {
-                    "name": "Cầu Rồng",
-                    "location": "Đà Nẵng",
-                    "description": "Cây cầu nổi tiếng với thiết kế hình rồng phun lửa."
-                },
-                {
-                    "name": "Tháp Nhạn",
-                    "location": "Phú Yên",
-                    "description": "Ngọn tháp Chăm cổ nổi tiếng ở miền Trung."
-                },
-                {
-                    "name": "Lễ hội Gióng",
-                    "location": "Hà Nội",
-                    "description": "Lễ hội tưởng nhớ Thánh Gióng, vị anh hùng dân tộc."
-                },
-                {
-                    "name": "Bảo tàng Chứng tích Chiến tranh",
-                    "location": "TP. Hồ Chí Minh",
-                    "description": "Trưng bày hiện vật về chiến tranh Việt Nam."
-                },
-                {
-                    "name": "Cầu Hiền Lương",
-                    "location": "Quảng Trị",
-                    "description": "Nơi chia cắt hai miền Nam - Bắc trong giai đoạn 1954-1975."
-                },
-                {
-                    "name": "Phố cổ Hội An",
-                    "location": "Quảng Nam",
-                    "description": "Di sản thế giới với nét kiến trúc cổ kính."
-                },
-                {
-                    "name": "Ruộng bậc thang Mù Cang Chải",
-                    "location": "Yên Bái",
-                    "description": "Danh thắng nổi tiếng với ruộng bậc thang đẹp nhất Việt Nam."
-                },
-                {
-                    "name": "Nhà thờ Đức Bà",
-                    "location": "TP. Hồ Chí Minh",
-                    "description": "Kiến trúc Gothic cổ kính, biểu tượng của thành phố."
-                },
-                {
-                    "name": "Thác Bản Giốc",
-                    "location": "Cao Bằng",
-                    "description": "Thác nước hùng vĩ nằm giữa biên giới Việt - Trung."
-                },
-                {
-                    "name": "Chùa Thiên Mụ",
-                    "location": "Huế",
-                    "description": "Ngôi chùa cổ gắn liền với lịch sử triều Nguyễn."
-                },
-                {
-                    "name": "Hang Sơn Đoòng",
-                    "location": "Quảng Bình",
-                    "description": "Hang động lớn nhất thế giới với hệ sinh thái độc đáo."
-                },
-                {
-                    "name": "Núi Bà Đen",
-                    "location": "Tây Ninh",
-                    "description": "Ngọn núi linh thiêng, thu hút nhiều khách du lịch."
-                },
-                {
-                    "name": "Cổng Trời Sa Pa",
-                    "location": "Lào Cai",
-                    "description": "Nơi ngắm cảnh tuyệt đẹp ở độ cao hơn 2.000m."
-                },
-                {
-                    "name": "Thành cổ Quảng Trị",
-                    "location": "Quảng Trị",
-                    "description": "Gắn liền với chiến dịch 81 ngày đêm khốc liệt."
-                }
-            ]
         ];
-        
+
+        let searchHistory = JSON.parse(localStorage.getItem('searchHistory')) || [];
+
+        document.getElementById('history-btn').onclick = () => {
+            alert('Lịch sử tìm kiếm:\n' + (searchHistory.length ? searchHistory.join('\n') : 'Không có lịch sử'));
+        };
+
+        // Khởi tạo mini game
         let questions = [];
         let currentIndex = 0;
 
@@ -359,15 +149,14 @@
                 document.getElementById("quiz-container").innerHTML = "<h3>Chúc mừng! Bạn đã hoàn thành game!</h3>";
                 return;
             }
-            
             const question = questions[currentIndex];
             document.getElementById("question").textContent = `Di tích nào nằm ở ${question.location}?`;
             const answersContainer = document.getElementById("answers");
             answersContainer.innerHTML = "";
-            
+
             let options = [...places].sort(() => 0.5 - Math.random()).slice(0, 3);
             if (!options.includes(question)) options[Math.floor(Math.random() * 3)] = question;
-            
+
             options.forEach(place => {
                 const btn = document.createElement("button");
                 btn.textContent = place.name;
@@ -375,7 +164,7 @@
                 btn.onclick = () => checkAnswer(place, question);
                 answersContainer.appendChild(btn);
             });
-            
+
             document.getElementById("feedback").style.display = "none";
             document.getElementById("next-btn").style.display = "none";
         }
@@ -385,29 +174,24 @@
             if (selected.name === correct.name) {
                 feedback.textContent = "Đúng!";
                 feedback.style.color = "green";
-                document.querySelectorAll(".answer-btn").forEach(btn => btn.classList.add("correct"));
             } else {
                 feedback.textContent = `Sai! Đáp án đúng là: ${correct.name}. \nMô tả: ${correct.description}`;
                 feedback.style.color = "red";
-                document.querySelectorAll(".answer-btn").forEach(btn => {
-                    if (btn.textContent === correct.name) btn.classList.add("correct");
-                    else btn.classList.add("wrong");
-                });
             }
             feedback.style.display = "block";
             document.getElementById("next-btn").style.display = "block";
         }
-        
-        document.getElementById("next-btn").addEventListener("click", function() {
+
+        document.getElementById("next-btn").onclick = () => {
             currentIndex++;
             showQuestion();
-        });
-        
+        };
+
         startGame();
     </script>
-
 </body>
 </html>
+
 
     <h2>
     I.KỲ QUAN THIÊN NHIÊN
@@ -670,29 +454,4 @@ Tư tưởng lớn của chúa Nguyễn Hoàng dường như cùng bắt nhịp 
       
     </p>
   </body>
-</head>
-
-<body>
-    <div class="search-container">
-        <h2>Tìm Kiếm Địa Điểm Lịch Sử</h2>
-        <input type="text" id="search" onkeyup="showSuggestions()" placeholder="Nhập địa danh...">
-        <div id="suggestions" class="suggestions"></div>
-    </div>
-
-    <div class="history-container">
-        <button onclick="toggleHistory()">Xem Lịch Sử Tìm Kiếm</button>
-        <div id="history-list" class="history-list"></div>
-    </div>
-    
-
-    <div class="quiz-container">
-        <button onclick="startQuiz()">Chơi Mini Game</button>
-        <div id="quiz-box" style="display:none;">
-            <p id="question"></p>
-            <input type="text" id="quiz-answer">
-            <button onclick="checkAnswer()">Trả lời</button>
-        </div>
-    </div>
-</body>
-
 </html>

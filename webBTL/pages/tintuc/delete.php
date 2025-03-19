@@ -39,7 +39,7 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
     $stmt_delete->bind_param("i", $id);
 
     if ($stmt_delete->execute()) {
-        echo "<script>alert('Xóa bài thành công!'); window.location.href = '../tintuc.php';</script>";
+        echo "<script>alert('Xóa bài thành công!'); window.location.href = './tintuc.php';</script>";
     } else {
         echo "<script>alert('Lỗi khi xóa bài!'); window.history.back();</script>";
     }

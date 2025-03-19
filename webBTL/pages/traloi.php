@@ -134,16 +134,16 @@
             <div class="logo">Q&A</div>
             <div class="menu">
                 <ul class="menungang">
-                    <li><a href="../index.php">Trang chủ</a></li>
-                    <li><a href="">Theo dõi</a></li>
-                    <li><a href="">Trả lời</a></li>
-                    <li><a href="">Thông báo</a></li>
                     <li><a href="baidangketnoiq&a.php">Về Q&A</a></li>
+                    <li><a href="theodoi.php">Theo dõi</a></li>
+                    <li><a href="traloi.php">Trả lời</a></li>
+                    <li><a href="thongbao.php">Thông báo</a></li>
+                    <li><a href="../index.php">Home</a></li>
                 </ul>
             </div>
             <div class="header-icons">
                 <input type="text" class="search-bar" placeholder="Tìm kiếm...">
-                <button class="add-question">Tạo bài đăng</button>
+                <button class="add-question">Tìm kiếm</button>
             </div>
         </div>
         <div class="hop">

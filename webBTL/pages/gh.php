@@ -14,7 +14,7 @@ session_start();
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <style>
         .container {
-            margin-top: 20px;
+            margin-top: 100px;
         }
 
         .heritage-img {
@@ -81,20 +81,6 @@ session_start();
             <div class="col-md-6">
                 <h2 class="section-title">Ý nghĩa của Di sản</h2>
                 <p>Di sản không chỉ là những công trình vật chất mà còn là ký ức và giá trị văn hóa của một dân tộc. Chúng giúp kết nối con người với quá khứ, bảo tồn bản sắc dân tộc và truyền cảm hứng cho thế hệ mai sau.</p>
-            </div>
-        </div>
-
-        <!-- Dữ liệu động từ database -->
-        <div class="row">
-            <div class="col-12">
-                <h2 class="section-title">Di sản Nổi bật</h2>
-                <!-- <?php if ($heritage): ?>
-                    <h3><?php echo $heritage['name']; ?></h3>
-                    <p><b>Vị trí:</b> <?php echo $heritage['location']; ?></p>
-                    <p><b>Mô tả:</b> <?php echo $heritage['description']; ?></p>
-                <?php else: ?>
-                    <p>Chưa có dữ liệu di sản trong hệ thống.</p>
-                <?php endif; ?> -->
             </div>
         </div>
 
