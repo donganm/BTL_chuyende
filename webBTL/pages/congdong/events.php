@@ -38,6 +38,20 @@ $conn->close();
     <link rel="stylesheet" href="sukien.css">
 </head>
 <style>
+* navbar */
+.navbar {
+    display: flex;
+    justify-content: space-between; /* Căn đều các phần tử */
+    align-items: center;
+    background: #007bff; /* Màu xanh */
+    color: white;
+    padding: 15px 30px;
+    width: 100%; /* Đảm bảo chiếm toàn bộ chiều rộng */
+    position: sticky; /* Dính khi cuộn */
+    top: 0; /* Dính vào đầu trang khi cuộn đến */
+    z-index: 1000; /* Đảm bảo navbar nằm trên các phần tử khác */
+}
+
     .event-header {
     width: 100%;
     background:rgb(47, 148, 255); /* Màu xanh giống navbar */
@@ -58,6 +72,82 @@ $conn->close();
     font-size: 18px;
     font-weight: normal;
 }
+/*thanh tìm kiếm*/
+.search-container {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.search-container form {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.search-container input {
+    width: 50%;
+    padding: 10px;
+    font-size: 16px;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+}
+
+.search-container button {
+    background: #0078d4;
+    color: white;
+    padding: 10px 12px;
+    border: none;
+    font-size: 14px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.search-container button:hover {
+    background: #005bb5;
+}
+
+/* Footer  */
+.footer_1 {
+  width: 100%;
+  max-width: 1350px;
+  margin-left: auto;
+}
+
+.footer_1 p a {
+  color: gray;
+  text-decoration: none;
+}
+
+.footer_2 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: black;
+  color: white;
+  padding: 10px;
+}
+
+.footer_2 .VN {
+  display: flex;
+  align-items: center;
+}
+
+.footer_2 .VN img {
+  height: 15px;
+  width: auto;
+  margin-right: 10px;
+}
+
+.footer_3 {
+  color: gray;
+  padding: 6px;
+  font-size: 12px;
+  text-align: center;
+}
+
+/* End Footer */
+
 
 </style>
 <body>
@@ -78,9 +168,9 @@ $conn->close();
 
     <!-- Thanh tìm kiếm -->
     <div class="search-container">
-        <form action="events.php" method="GET">
-            <input type="text" name="search" id="search" placeholder="Search Events" value="<?= htmlspecialchars($search) ?>">
-            <button type="submit">Search</button>
+        <form action="activity.php" method="GET">
+            <input type="text" name="search" id="search" placeholder="Tìm kiếm sự kiện..." value="<?= htmlspecialchars($search) ?>">
+            <button type="submit">Tìm kiếm</button>
         </form>
     </div>
 

@@ -4,16 +4,19 @@ body {
     padding: 0;
     background: #f4f4f4;
 }
-
+/* navbar */
 .navbar {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-between; /* Căn đều các phần tử */
     align-items: center;
-    background: #007bff;
+    background: #007bff; /* Màu xanh */
     color: white;
     padding: 15px 30px;
+    width: 100%; /* Đảm bảo chiếm toàn bộ chiều rộng */
+    position: sticky; /* Dính khi cuộn */
+    top: 0; /* Dính vào đầu trang khi cuộn đến */
+    z-index: 1000; /* Đảm bảo navbar nằm trên các phần tử khác */
 }
-
 .nav-links a {
     color: white;
     font-size: 18px;
@@ -27,35 +30,8 @@ body {
     border-radius: 15px;
 }
 
-.search-container {
-    margin-top: 10px;
-    text-align: center;
-}
 
-.search-container input {
-    padding: 8px;
-    font-size: 16px;
-    border: none;
-    border-radius: 15px; 
-    width: 250px;
-    margin: 5px;
-}
-
-.search-container button {
-    background: white;
-    color: #007bff;
-    font-size: 14px;
-    padding: 8px 15px;
-    border: none;
-    border-radius: 15px;
-    cursor: pointer;
-}
-
-.search-container button:hover {
-    background: #0056b3;
-    color: white;
-}
-
+/* danh sách sự kiện */
 .container {
     width: 80%;
     margin: auto;
