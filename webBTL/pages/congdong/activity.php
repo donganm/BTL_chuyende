@@ -51,6 +51,80 @@ $conn->close();
     z-index: 1000; /* Đảm bảo navbar nằm trên các phần tử khác */
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Thêm bóng để nổi bật */
 }
+
+/* Footer  */
+footer {
+      background-color: #f8f8f8;
+      padding: 20px 0;
+      font-family: Arial, sans-serif;
+      border-top: 1px solid #ddd;
+      width: 100%;
+    }
+
+    .footer-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 20px;
+      
+      margin: 0 auto;
+      padding: 0 20px;
+      flex-wrap: wrap;
+    }
+
+    .footer-section {
+      flex: 1;
+      min-width: 200px;
+      margin: 10px 0;
+    }
+
+    .footer-section h5 {
+      margin-bottom: 10px;
+      font-size: 16px;
+      color: #333;
+    }
+
+    .footer-section p {
+      margin: 5px 0;
+    }
+
+    .footer-section a {
+      text-decoration: none;
+      color: #555;
+      font-size: 14px;
+    }
+
+    .footer-section a:hover {
+      color: #007bff;
+    }
+
+    .footer-center {
+      text-align: center;
+    }
+
+    .footer-center img {
+      width: 24px;
+      vertical-align: middle;
+      margin-right: 5px;
+    }
+
+    .footer-right {
+      text-align: right;
+      font-size: 14px;
+      color: #555;
+    }
+
+    @media (max-width: 768px) {
+      .footer-container {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .footer-right {
+        text-align: center;
+      }}
+/* End Footer */
+
 </style>
 <body>
 
@@ -95,5 +169,29 @@ $conn->close();
         <?php endif; ?>
     </div>
 
+    <footer>
+    <div class="footer-container">
+      <!-- Phần 1: Get Help -->
+      <div class="footer-section">
+        <h5>Get Help</h5>
+        <p><a href="../feedback.php">Feedback</a></p>
+        <p><a href="../contact.php">Contact Us</a></p>
+      </div>
+
+      <!-- Phần 2: VIE VN -->
+      <div class="footer-section footer-center">
+        <div>
+          <img src="./image_path/VN_Flag.webp" alt="Vietnam Flag" />
+          <span>VIE VN</span>
+        </div>
+        <p>© 2025 G.H</p>
+      </div>
+
+      <!-- Phần 3: Copyright -->
+      <div class="footer-section footer-right">
+        <p>© 2025 G.H. ALL RIGHTS RESERVED</p>
+      </div>
+    </div>
+  </footer>
 </body>
 </html>

@@ -1,17 +1,4 @@
 /* Căn chỉnh navbar */
-.navbar {
-    background-color: #0078d4; /* Màu xanh UNESCO */
-    padding: 10px 0;
-    display: flex;
-    justify-content: center; /* Căn giữa nội dung */
-    max-width: 100vw; /* Đảm bảo chiếm toàn bộ chiều rộng viewport */
-    width: 100%; /* Đảm bảo chiều rộng đầy đủ */
-    position: sticky; /* Dính khi cuộn */
-    top: 0; /* Dính vào đầu trang khi cuộn đến */
-    z-index: 1000; /* Đảm bảo navbar nằm trên các phần tử khác */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Thêm bóng để nổi bật */
-}
-
 .nav-links {
     list-style: none;
     display: flex;
