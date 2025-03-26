@@ -6,7 +6,7 @@ if (!isset($_SESSION['redirect_url'])) {
     $_SESSION['redirect_url'] = $_SERVER['REQUEST_URI'];  // Lưu URL của trang hiện tại (ví dụ: blog.php hoặc tintuc.php)
 }
 
-include '../../includes/db.php';
+include '../../../includes/db.php';
 
 if (!$conn) {
     die("Lỗi kết nối database: " . mysqli_connect_error());
@@ -238,7 +238,7 @@ $result = $conn->query($sql);
         <p>Chia sẻ trải nghiệm và góc nhìn</p>
     </header>
 
-    <?php include '../tintuc/includes/nav.php'; ?>
+    <?php include '../news/includes/nav.php'; ?>
 
     <div class="container">
         <?php if ($isAdmin): ?>

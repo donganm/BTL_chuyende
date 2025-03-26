@@ -5,7 +5,7 @@ session_start();
 if (!isset($_SESSION['redirect_url'])) {
     $_SESSION['redirect_url'] = $_SERVER['REQUEST_URI'];  // Lưu URL của trang hiện tại (ví dụ: blog.php hoặc tintuc.php)
 }
-include '../../includes/db.php'; // Kết nối database
+include '../../../includes/db.php'; // Kết nối database
 
 // Kiểm tra kết nối database
 if (!$conn) {
@@ -34,7 +34,8 @@ $result = $stmt->get_result();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tin Tức</title>
-    <link rel="stylesheet" href="./styles/tintuc.css">
+    <link rel="stylesheet" href="./styles/index.css">
+    <link rel="stylesheet" href="./includes/nav.css">
     <style>
         
     </style>
@@ -59,7 +60,7 @@ $result = $stmt->get_result();
                 <a href="../profile.php">Hồ sơ</a> |
                 <a href="#" id="logout-btn">Đăng xuất</a>
             <?php else: ?>
-                <a href="../login.php">Đăng nhập</a>
+                <a href="../../../login.php">Đăng nhập</a>
             <?php endif; ?>
         </div>
         <script>
