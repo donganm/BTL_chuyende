@@ -35,7 +35,7 @@ $result = $stmt->get_result();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tin Tức</title>
     <link rel="stylesheet" href="./styles/index.css">
-    <link rel="stylesheet" href="./includes/nav.css">
+    <link rel="stylesheet" href="../includes/nav.css">
     <style>
         
     </style>
@@ -47,7 +47,7 @@ $result = $stmt->get_result();
         <p>Nơi lưu giữ giá trị văn hóa và lịch sử</p>
     </header>
 
-    <?php include './includes/nav.php'; ?>
+    <?php include '../includes/nav.php'; ?>
 
 
     <!-- <nav>
@@ -110,7 +110,7 @@ $result = $stmt->get_result();
                     
                     <!-- ✅ Chỉ Admin mới có quyền Sửa/Xóa -->
                     <?php if ($isAdmin): ?>
-                        <a href="./edit-post.php?id=<?php echo $article['id']; ?>" class="btn btn-warning" style="color: blue">Sửa</a>
+                        <a href="./edit.php?id=<?php echo $article['id']; ?>" class="btn btn-warning" style="color: blue">Sửa</a>
                         <a href="./delete.php?id=<?php echo $article['id']; ?>" class="btn btn-danger" style="color: red" onclick="return confirm('Bạn có chắc muốn xóa bài viết này?');">Xóa</a>
                     <?php endif; ?>
                 </div>

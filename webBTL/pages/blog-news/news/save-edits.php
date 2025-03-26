@@ -1,6 +1,6 @@
 <?php
 session_start();
-include '../../includes/db.php'; // Đảm bảo kết nối với cơ sở dữ liệu
+include '../../../includes/db.php'; // Đảm bảo kết nối với cơ sở dữ liệu
 
 // Kiểm tra kết nối database
 if (!$conn) {
@@ -30,7 +30,7 @@ if (isset($_POST['id'])) {
 
     if ($stmt->execute()) {
         // Nếu thành công, chuyển hướng về trang tin tức
-        header("Location: tintuc.php");
+        header("Location: index.php");
         exit;
     } else {
         echo "<script>alert('Lỗi khi cập nhật bài viết.'); history.back();</script>";

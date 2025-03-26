@@ -29,8 +29,8 @@ $isAdmin = $userLoggedIn && isset($_SESSION['role']) && $_SESSION['role'] === "A
     <div class="user-info">
         <?php if ($userLoggedIn): ?>
             <span>Xin chào, <strong><?php echo $_SESSION['user']; ?></strong> (<?php echo $isAdmin ? "Admin" : "User"; ?>)</span>
-            <a href="../profile.php">Hồ sơ</a> |
-            <a href="../../../logout.php" id="logout-btn">Đăng xuất</a>
+            <a href="../../profile.php">Hồ sơ</a> |
+            <a href="../../logout.php" id="logout-btn">Đăng xuất</a>
         <?php else: ?>
             <a href="../../login.php">Đăng nhập</a>
         <?php endif; ?>
@@ -41,7 +41,7 @@ $isAdmin = $userLoggedIn && isset($_SESSION['role']) && $_SESSION['role'] === "A
 <script>
 document.getElementById("logout-btn")?.addEventListener("click", function(event) {
     event.preventDefault();
-    fetch('../logout.php', { method: 'POST' })
+    fetch('../../logout.php', { method: 'POST' })
     .then(response => {
         if (response.ok) location.reload();
     })

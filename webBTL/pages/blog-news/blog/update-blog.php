@@ -1,6 +1,6 @@
 <?php
 session_start();
-include '../../includes/db.php';
+include '../../../includes/db.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $id = isset($_POST['id']) ? (int)$_POST['id'] : 0;
@@ -16,7 +16,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt->bind_param("ssi", $title, $description, $id);
 
     if ($stmt->execute()) {
-        header("Location: blog.php");
+        header("Location: index.php");
         exit();
     } else {
         die("Lỗi cập nhật bài viết: " . $conn->error);
