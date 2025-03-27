@@ -12,6 +12,7 @@ if (!isset($_SESSION['user'])) {
 $role = $_SESSION['role'];
 ?>
 
+
 <!DOCTYPE html>
 <html lang="vi">
 
@@ -280,7 +281,8 @@ $role = $_SESSION['role'];
 
             ?>
                 <div class="profile-section">
-                    <img class="avatar" src="<?php echo $row['Avatar'] ?>" alt="Avatar" />
+                    <img class="avatar" src="<?php echo !empty($row['Avatar']) ? $row['Avatar'] : '../uploads/default-avatar.png'; ?>" alt="Avatar" />
+
                     <div class="details">
                         <div class="name"><?php echo $row['FullName']; ?></div>
 
@@ -296,7 +298,7 @@ $role = $_SESSION['role'];
                         <li>Đổi Mật Khẩu</li>
                         <?php if ($role == 'User'): ?>
                             <li>Quản Lý Bài Đăng</li>
-                            <li>Danh Sách Yêu Thích</li>
+                            <!-- <li>Danh Sách Yêu Thích</li> -->
 
                         <?php endif; ?>
 
@@ -304,7 +306,7 @@ $role = $_SESSION['role'];
                         <?php if ($role == 'Admin'): ?>
                             <li>Quản Lý Người Dùng</li>
                             <li>Danh Sách Di Sản</li>
-                            <li>Thống Kê</li>
+                            <li>Danh Sách Các Bình Luận</li>
                         <?php endif; ?>
                         <li><a href="../index.php" style="text-decoration: none;color:yellow;">Trở lại</a></li>
                     </ul>
@@ -317,7 +319,7 @@ $role = $_SESSION['role'];
                 <p>Hồ Sơ Của Tôi</p>
                 <p>Quản lý thông tin hồ sơ để bảo mật tài khoản</p>
                 <hr />
-                <form action="../logic/process_user_update.php" method="POST">
+                <form action="../logic/process_user_update.php" method="POST" enctype="multipart/form-data">
                     <input type="hidden" name="UserId" value="<?php echo $row['UserId']; ?>" />
                     <div class="form-group">
                         <label for="username">Tên đăng nhập</label>
@@ -429,7 +431,7 @@ $role = $_SESSION['role'];
                                 <td><?php echo $row['title']; ?></td>
                                 <td><?php echo $row['description']; ?></td>
                                 <td>
-                                    <a class="update" href="../logic/delete_user.php?id=<?php echo $id; ?>">Xóa</a>
+                                    <a class="update" href="../logic/delete_disan.php?id=<?php echo $id; ?>">Xóa</a>
                                 </td>
                             </tr>
                         <?php } ?>
@@ -447,11 +449,12 @@ $role = $_SESSION['role'];
                             <th>STT</th>
                             <th>Bài Viết</th>
                             <th>Mô Tả</th>
+                            <th>Thời Gian Tạo</th>
                             <th>Chức Năng</th>
                         </tr>
                     </thead>
                     <?php
-                    $sql = "Select * from articles";
+                    $sql = "Select * from posts";
                     $result = mysqli_query($conn, $sql);
                     while ($row = mysqli_fetch_array($result)) {
                         $id = $row['id'];
@@ -461,9 +464,11 @@ $role = $_SESSION['role'];
                             <tr>
                                 <td><?php echo $row['id']; ?></td>
                                 <td><?php echo $row['title']; ?></td>
-                                <td><?php echo $row['description']; ?></td>
+                                <td><?php echo $row['content']; ?></td>
+                                <td><?php echo $row['created_at']; ?></td>
+
                                 <td>
-                                    <a class="update" href="../logic/delete_user.php?id=<?php echo $id; ?>">Xóa</a>
+                                    <a class="update" href="../logic/delete_baidang.php?id=<?php echo $id; ?>">Xóa</a>
                                 </td>
                             </tr>
                         <?php } ?>
@@ -506,15 +511,44 @@ $role = $_SESSION['role'];
             </div>
 
             <!-- Danh sách yêu thích -->
-            <div id="favorites-content" class="content-section" style="display: none;">
+            <!-- <div id="favorites-content" class="content-section" style="display: none;">
                 <p>Danh sách yêu thích</p>
-                <p>Danh sách di sản bạn yêu thích</p>
-            </div>
+                <p>Danh sách các di tích yêu thích</p>
+                
+            </div> -->
 
-            <!-- Thống kê -->
+            <!-- Quản lý bình luận -->
             <div id="statistics-content" class="content-section" style="display: none;">
-                <p>Thống Kê</p>
-                <p>Thống kê số lượng người dùng, bài đăng...</p>
+                <p>Comments</p>
+                <p>Danh sách bình luận</p>
+                <table class="product-table">
+                    <thead>
+                        <tr>
+                            <th>Tên Người Dùng</th>
+                            <th>Bình Luận</th>
+                            <th>Ngày Tạo</th>
+                            <th>Chức Năng</th>
+                        </tr>
+                    </thead>
+                    <?php
+                    $sql = "Select * from comments";
+                    $result = mysqli_query($conn, $sql);
+                    while ($row = mysqli_fetch_array($result)) {
+                        $id = $row['id'];
+
+                    ?>
+                        <tbody>
+                            <tr>
+                                <td><?php echo $row['username']; ?></td>
+                                <td><?php echo $row['content']; ?></td>
+                                <td><?php echo $row['created_at']; ?></td>
+                                <td>
+                                    <a class="update" href="../logic/delete_binhluan.php?id=<?php echo $id; ?>">Xóa</a>
+                                </td>
+                            </tr>
+                        <?php } ?>
+                        </tbody>
+                </table>
             </div>
         </div>
     <?php } ?>

@@ -74,7 +74,7 @@ session_start();
           <li><a href="./pages/gh.php">Global Heritage</a></li>
           <li><a href="./pages/image.php">Photo Gallery</a></li>
           <li><a href="./pages/about.php">About Us</a></li>
-          <li><a href="./pages/contact.php">Contact Us</a></li>
+          <!-- <li><a href="./pages/contact.php">Contact Us</a></li> -->
           <li style="color: red; font-weight: bold"><a href="./pages/feedback.php">Feedback</a></li>
         </ul>
       </div>
@@ -213,7 +213,7 @@ session_start();
             thống của Việt Nam.
           </p>
         </div>
-        <button><a href="./pages/tintuc.php">Tìm hiểu thêm</a></button>
+        <button><a href="./pages/tintuc/tintuc.php">Tìm hiểu thêm</a></button>
       </div>
     </div>
 
@@ -232,7 +232,7 @@ session_start();
             hóa vùng vịnh Bắc Bộ.
           </p>
         </div>
-        <button><a href="./pages/tintuc.php">Tìm hiểu thêm</a></button>
+        <button><a href="./pages/tintuc/tintuc.php">Tìm hiểu thêm</a></button>
       </div>
     </div>
   </div>
