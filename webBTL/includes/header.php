@@ -14,7 +14,7 @@
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f4f4f4;
+            /* background-color: #f4f4f4; */
         }
 
         a {
@@ -185,7 +185,7 @@
                     <li><a href="gh.php">Global Heritage</a></li>
                     <li><a href="image.php">Photo Gallery</a></li>
                     <li><a href="about.php">About Us</a></li>
-                    <li><a href="contact.php">Contact Us</a></li>
+                    <!-- <li><a href="contact.php">Contact Us</a></li> -->
                     <li style="color: red; font-weight: bold"><a href="feedback.php">Feedback</a></li>
                 </ul>
             </div>
