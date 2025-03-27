@@ -152,7 +152,7 @@
                 <hr>
                 <ul>
                     <li><button onclick="showQuestions()">Câu hỏi dành cho bạn</button></li>
-                    <li><button onclick="showDrafts()">Bản nháp</button></li>
+                    <li><button onclick="showDrafts()">Câu trả lời của bạn</button></li>
                 </ul>
             </div>
             <div class="container" id="questions-container">
@@ -197,9 +197,9 @@
             </div>
         
             <div class="container hidden" id="drafts-container">
-                <h2>Bản nháp</h2>
+                <h2>Câu trả lời của bạn</h2>
                 <hr>
-                <p>Chưa có bản nháp nào.</p>
+                <p>Chưa có câu trả lời nào.</p>
             </div>
         </div>
         <script>

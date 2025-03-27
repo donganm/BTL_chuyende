@@ -98,9 +98,11 @@
             font-size: 14px;
             color: #777;
         }
-        .notification-title {
+        .notification-title a {
             font-weight: bold;
             margin: 5px 0;
+            text-decoration: none; 
+            color: black;
         }
         .notification-content {
             margin-left: 10px;
@@ -148,14 +150,14 @@
             <h2>Thông báo</h2>
             <div class="notification-item">
                 <div class="notification-date">1 phút trước</div>
-                <div class="notification-title">Những câu trả lời của bạn</div>
+                <div class="notification-title"> <a href="traloi.php">Những câu trả lời của bạn</a></div>
                 <div class="notification-content">
                     Hãy xem lại những câu trả lời của bạn.
                 </div>
             </div>
             <div class="notification-item">
                 <div class="notification-date">Ngày 25 tháng 2</div>
-                <div class="notification-title">Tham gia cộng đồng Q&A</div>
+                <div class="notification-title"><a href="theodoi.php">Tham gia cộng đồng Q&A</a></div>
                 <div class="notification-content">
                     Tìm những bạn đồng hành có cùng sở thích với bạn. 
                 </div>
