@@ -21,12 +21,13 @@
 
 .nav-links a.active,
 .nav-links a:hover {
-    background-color: rgba(255, 255, 255, 0.2);
+    background: white;
+    color: #007bff;
 }
 
 /* Header giới thiệu hoạt động */
 .activity-header {
-    background: #1E90FF;
+    background:rgb(47, 148, 255);
     color: white;
     text-align: center;
     padding: 25px 0;

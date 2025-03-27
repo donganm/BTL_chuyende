@@ -40,7 +40,7 @@ $conn->close();
 </head>
 <style>
     .navbar {
-    background-color: #0078d4; /* Màu xanh UNESCO */
+    background: #007bff; /* Màu xanh UNESCO */
     padding: 10px 0;
     display: flex;
     justify-content: center; /* Căn giữa nội dung */
@@ -50,6 +50,11 @@ $conn->close();
     top: 0; /* Dính vào đầu trang khi cuộn đến */
     z-index: 1000; /* Đảm bảo navbar nằm trên các phần tử khác */
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Thêm bóng để nổi bật */
+}
+.nav-links a.active,
+.nav-links a:hover {
+    background: white;
+    color: #007bff;
 }
 
 /* Footer  */

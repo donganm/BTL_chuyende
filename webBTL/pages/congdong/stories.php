@@ -25,7 +25,7 @@ $result_success = $conn->query($sql_success);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Trung tâm Di sản Thế giới - Những câu chuyện thành công</title>
     <link rel="stylesheet" href="stories.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+   
 
 </head>
 <nav class="navbar">
@@ -33,34 +33,44 @@ $result_success = $conn->query($sql_success);
         <a href="../congdong.php">⬅ Quay lại Cộng Đồng</a>
     </button>
     <ul class="nav-links">
-        <li><i class="fas fa-hand-holding-heart"></i> Câu chuyện & Dự án Cộng đồng</li>
+        <li><a href="./stories.php" class="<?= $current_page == 'stories.php' ? 'active' : '' ?>">Câu chuyện & Dự án</a></li>
+        <li><a href="./events.php" class="<?= $current_page == 'events.php' ? 'active' : '' ?>">Sự kiện & Hoạt động</a></li>
+        <li><a href="./network.php" class="<?= $current_page == 'network.php' ? 'active' : '' ?>">Mạng lưới kết nối</a></li>
+        
     </ul>
 </nav>
 
 <style>
 .navbar {
     display: flex;
-    justify-content: center; /* Căn giữa nội dung */
+    justify-content: space-between; /* Giữ căn chỉnh giữa các phần tử */
     align-items: center;
-    background-color: #0078D4; /* Màu xanh UNESCO */
+    background-color: #0078D4;
     padding: 15px 20px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     width: 100%;
-    position: sticky; /* Dính khi cuộn */
-    top: 0; /* Dính vào đầu trang khi cuộn đến */
-    z-index: 1000; /* Đảm bảo navbar nằm trên các phần tử khác */
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0;
+    padding: 0;
 }
 
-/* Nút quay về */
 .back-btn {
-    position: absolute;
-    left: 15px; /* Đặt ở góc trái */
     background-color: white;
     border: none;
-    padding: 10px 15px;
+    padding: 10px 10px;
     font-size: 16px;
     cursor: pointer;
     border-radius: 5px;
+    margin-left: 15px;
 }
 
 .back-btn a {
@@ -73,20 +83,27 @@ $result_success = $conn->query($sql_success);
     background-color: #e0e0e0;
 }
 
-/* Danh sách liên kết */
 .nav-links {
     list-style: none;
     margin: 0;
     padding: 0;
-    flex: 1; /* Giúp nội dung căn giữa */
-    text-align: center;
+    display: flex; /* Sử dụng Flexbox để các liên kết nằm ngang */
+    justify-content: center; /* Căn giữa các liên kết */
 }
 
-.nav-links li {
-    display: inline;
+.nav-links li a {
     color: white;
     font-size: 20px;
     font-weight: bold;
+    margin: 0 20px;
+    padding: 10px 15px;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+    background: white;
+    color: #007bff;
+    border-radius: 5px;
 }
 
 /* Định dạng icon */
