@@ -14,7 +14,50 @@ session_start();
   <link
     rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
   <link rel="stylesheet" href="trangchu.css" />
+  <style>
+    /* Hiệu ứng làm mờ */
+    .overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 9;
+    }
+
+    /* Cửa sổ đăng nhập */
+    .login-modal {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 550px;
+      height: 400px;
+      background: white;
+      padding: 20px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+      z-index: 10;
+    }
+
+    .login-modal iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      font-size: 20px;
+      cursor: pointer;
+    }
+  </style>
 </head>
 
 <body>
@@ -51,11 +94,17 @@ session_start();
           </div>
         <?php else: ?>
           <div class="header__search-signin-des" id="signin">
-            <a href="./pages/login.php" style="text-decoration: none; color: #444">Đăng nhập</a>
+            <a href="#" class="login-btn" onclick="openLoginForm()" style="text-decoration: none; color: #444">Đăng nhập</a>
           </div>
         <?php endif; ?>
       </div>
     </div>
+  </div>
+
+  <div class="overlay" id="overlay" onclick="closeLoginForm()"></div>
+  <div class="login-modal" id="loginModal">
+    <span class="close-btn" onclick="closeLoginForm()">&times;</span>
+    <iframe src="./pages/login.php" frameborder="0"></iframe>
   </div>
 
   <!-- End header -->
@@ -216,6 +265,24 @@ session_start();
   </div>
   <!-- End footer  -->
 
+  <script>
+    function openLoginForm() {
+      document.getElementById("overlay").style.display = "block";
+      document.getElementById("loginModal").style.display = "block";
+    }
+
+    function closeLoginForm() {
+      document.getElementById("overlay").style.display = "none";
+      document.getElementById("loginModal").style.display = "none";
+    }
+
+    // Tự động đóng modal sau khi đăng nhập thành công
+    window.addEventListener("message", function(event) {
+      if (event.data === "closeModal") {
+        closeLoginForm();
+      }
+    });
+  </script>
 </body>
 
 </html>
