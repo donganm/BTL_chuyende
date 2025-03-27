@@ -25,7 +25,7 @@ session_start();
     <style>
         .container1 {
             width: 100%;
-            max-width: 1200px;
+            max-width: 1100px;
             margin-left: auto;
             margin-right: auto;
             margin-top: 100px;
@@ -52,7 +52,7 @@ session_start();
             /* căn, tạo cạnh đều ở 2 bên */
         }
 
-        .images {
+        /* .images {
             width: 45%;
             display: flex;
             justify-content: center;
@@ -64,7 +64,7 @@ session_start();
             height: auto;
             border-radius: 8px;
             box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-        }
+        } */
 
         h2 {
             font-size: 28px;
@@ -75,6 +75,39 @@ session_start();
         }
 
         /* END BODY */
+        .image-container {
+            /* width: 45%; */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            perspective: 1000px;
+            margin: 20px 0;
+        }
+
+        .image-box {
+            max-width: 100%;
+            height: auto;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 0.5s, box-shadow 0.5s;
+        }
+
+        .image-box:hover {
+            transform: rotateY(30deg) rotateX(15deg) scale(1.1);
+            box-shadow: 0px 20px 40px rgba(255, 255, 255, 0.5);
+        }
+
+        .image-box img {
+            width: 100%;
+            height: 100%;
+            border-radius: 10px;
+            box-shadow: 0px 10px 30px rgba(255, 255, 255, 0.3);
+            transition: transform 0.5s ease;
+        }
+
+        .image-box:hover img {
+            transform: translateZ(50px);
+        }
     </style>
     <link rel="stylesheet" href="../assets/css/styles.css">
     <link rel="stylesheet" href="../assets/font/fontawesome-free-6.6.0-web/css/all.min.css">
@@ -107,9 +140,14 @@ session_start();
                     <p>
                         Tại Global Heritage, chúng tôi không chỉ lưu giữ quá khứ mà còn đưa di sản ấy vươn xa vào tương lai.</p>
                 </div>
-                <div class="images">
-                    <img src="../assets/img/about.png">
+                <div class="image-container">
+                    <div class="image-box">
+                        <img src="../assets/img/about.png" alt="Di sản hỗn hợp">
+                    </div>
                 </div>
+                <!-- <div class="images">
+                    <img src="../assets/img/about.png">
+                </div> -->
             </div>
         </div>
     </div>

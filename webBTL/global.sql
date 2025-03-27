@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 14, 2025 at 06:46 AM
+-- Generation Time: Mar 27, 2025 at 05:54 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -20,6 +20,30 @@ SET time_zone = "+00:00";
 --
 -- Database: `global`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `activity`
+--
+
+CREATE TABLE `activity` (
+  `id` int(11) NOT NULL,
+  `title` varchar(255) NOT NULL,
+  `description` text NOT NULL,
+  `image` varchar(255) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `activity`
+--
+
+INSERT INTO `activity` (`id`, `title`, `description`, `image`, `created_at`) VALUES
+(1, 'World Heritage and Biodiversity', 'Biological diversity underpins ecosystem functioning and the provision of ecosystem services essential for human well-being. World Heritage properties are the most outstanding places on the planet and constitute a ...', '1.jpg', '2025-03-20 10:58:00'),
+(2, 'UNESCO Urban Heritage Atlas: Cultural mapping for historic cities and settlements', 'The Urban Heritage Atlas is an atlas and an archive that documents and explains, visually, narratively and with analytical maps, the diversity and uniqueness of the world’s historic cities and settlements. As such, ...', '2.jpg', '2025-03-20 11:08:32'),
+(3, 'World Heritage Cities Programme', 'The World Heritage Cities Programme is one of six thematic programmes formally approved and monitored by the World Heritage Committee. The programme concerns the development of a theoretical framework for urban ...', '3.jpg', '2025-03-20 11:08:32'),
+(4, 'Capacity Building', 'Understanding, managing and conserving World Heritage properties requires up-to-date knowledge and well-honed skills. To help build the capacity of all stakeholders in World Heritage – whether they are ...', '4.jpg', '2025-03-20 11:09:42');
 
 -- --------------------------------------------------------
 
@@ -73,21 +97,50 @@ INSERT INTO `blog_articles` (`id`, `title`, `description`, `link`) VALUES
 
 CREATE TABLE `comments` (
   `id` int(11) NOT NULL,
-  `article_id` int(11) NOT NULL,
+  `article_id` int(11) DEFAULT NULL,
   `username` varchar(255) NOT NULL,
   `content` text NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `user_id` int(11) DEFAULT NULL,
+  `post_id` int(11) DEFAULT NULL,
+  `article_type` enum('blog_article','post') NOT NULL DEFAULT 'post'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `comments`
 --
 
-INSERT INTO `comments` (`id`, `article_id`, `username`, `content`, `created_at`) VALUES
-(3, 23, 'Ẩn danh', 'ok', '2025-02-27 12:17:11'),
-(4, 23, 'Ẩn danh', 'nice', '2025-02-27 12:17:18'),
-(5, 23, 'Ẩn danh', 'ok nhé', '2025-02-27 12:28:47'),
-(6, 24, 'Ẩn danh', '10đ', '2025-02-27 12:29:00');
+INSERT INTO `comments` (`id`, `article_id`, `username`, `content`, `created_at`, `user_id`, `post_id`, `article_type`) VALUES
+(3, 23, 'Ẩn danh', 'ok', '2025-02-27 12:17:11', NULL, NULL, 'post'),
+(4, 23, 'Ẩn danh', 'nice', '2025-02-27 12:17:18', NULL, NULL, 'post'),
+(5, 23, 'Ẩn danh', 'ok nhé', '2025-02-27 12:28:47', NULL, NULL, 'post'),
+(6, 24, 'Ẩn danh', '10đ', '2025-02-27 12:29:00', NULL, NULL, 'post'),
+(14, NULL, '', 'heloo', '2025-03-25 09:10:07', NULL, 5, 'post'),
+(15, NULL, 'Ẩn danh', 'xin chao', '2025-03-25 14:42:25', NULL, 5, 'post'),
+(16, NULL, 'Ẩn danh', 'heloo', '2025-03-26 03:09:25', NULL, 5, 'post');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `events`
+--
+
+CREATE TABLE `events` (
+  `id` int(11) NOT NULL,
+  `title` varchar(255) NOT NULL,
+  `date` date NOT NULL,
+  `description` text DEFAULT NULL,
+  `image` varchar(255) NOT NULL DEFAULT 'default.jpg'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `events`
+--
+
+INSERT INTO `events` (`id`, `title`, `date`, `description`, `image`) VALUES
+(1, 'African Heritage Sites Facing Climate Change: Workshop 1', '2025-03-13', 'African Heritage Sites Facing Climate Change is a series of workshops and capacity-building sessions launched in partnership with the Foundation for the Safeguarding of Cultural Heritage in Rabat. This initiative is aimed at site managers, mentees, experts, representatives of civil society, institutional stakeholders, cultural heritage professionals, and young Africans. It seeks to address ...', '1.jpg'),
+(2, 'International Conference on Heritage Authenticity in Africa', '2025-03-14', 'The International Conference on Heritage Authenticity in Africa will take place in Nairobi, Kenya, from 5 to 9 May 2025, with the aim of fostering an exchange of research, experience, knowledge, and observations. Event International Scientific Conference on Heritage Authenticity and Integrity in Africa 5 May 2025 - 8:00 am - 9 May 2025 - 6:00 pm Location:  Nairobi, Kenya Rooms: ...', '2.jpg'),
+(3, 'Women. Heritage. Digital Technology – Action to Safeguard the World Heritage in Africa', '2025-03-15', 'From 6-8 March 2025, UNESCO is organising an event entitled \"Women. Heritage. Digital Technology\" in Dakar, Senegal. Held in conjunction of the International Women’s Day, this event celebrates the vital role of African women in safeguarding and promoting heritage, particularly through the use of digital technologies. Despite systemic barriers, including limited access to education, ...', '3.jpg');
 
 -- --------------------------------------------------------
 
@@ -119,19 +172,23 @@ INSERT INTO `feedback` (`id`, `name`, `email`, `message`, `created_at`) VALUES
 
 CREATE TABLE `posts` (
   `id` int(11) NOT NULL,
+  `UserId` int(11) NOT NULL,
   `title` varchar(255) NOT NULL,
   `content` text NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `image` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `image` varchar(255) DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `posts`
 --
 
-INSERT INTO `posts` (`id`, `title`, `content`, `created_at`, `image`) VALUES
-(25, 'Vì sao ẩm thực Huế có nhiều món ăn cung đình?', 'Ảnh hưởng từ văn hóa cung đình\r\nCác vua triều Nguyễn rất quan tâm đến ăn uống, yêu cầu các món ăn phải không chỉ ngon mà còn đẹp mắt, tinh tế và cầu kỳ trong cách chế biến.\r\nNhiều món ăn được chế biến theo công thức đặc biệt chỉ dành riêng cho hoàng gia.', '2025-03-09 22:39:14', 'uploads/67ce7b024304a_am_thuc_hue_1.jpg'),
-(26, 'Thời điểm nào là đẹp nhất để du lịch Hội An?', 'Vào ngày 14 âm lịch mỗi tháng, Hội An tổ chức Đêm phố cổ, nơi toàn bộ khu phố sẽ lung linh với hàng ngàn chiếc đèn lồng, không có ánh đèn điện.\r\nĐây là thời điểm tuyệt vời để tham gia lễ hội thả đèn hoa đăng trên sông Hoài và tận hưởng không gian truyền thống.', '2025-03-09 22:47:03', 'uploads/67ce7cd7a7e19_le-hoi-den-hoa-dang.jpg');
+INSERT INTO `posts` (`id`, `UserId`, `title`, `content`, `image`, `created_at`) VALUES
+(1, 1, 'cầu monstar', 'Trong cuộc xung đột ở Nam Tư cũ, cầu Mostar đã bị phá hủy hoàn toàn. Việc tái sinh cây cầu là một bư...', '1.jpg', '2025-03-24 04:02:53'),
+(2, 1, 'cầu monstar', 'Trong cuộc xung đột ở Nam Tư cũ, cầu Mostar đã bị phá hủy hoàn toàn. Việc tái sinh cây cầu là một bư...', '1.jpg', '2025-03-24 04:11:19'),
+(3, 1, 'cầu monstar', 'Trong cuộc xung đột ở Nam Tư cũ, cầu Mostar đã bị phá hủy hoàn toàn. Việc tái sinh cây cầu là một bư...', '1.jpg', '2025-03-24 04:18:09'),
+(4, 1, 'cầu monstar', 'Trong cuộc xung đột ở Nam Tư cũ, cầu Mostar đã bị phá hủy hoàn toàn. Việc tái sinh cây cầu là một bư...', '1.jpg', '2025-03-24 07:12:16'),
+(5, 1, 'cầu monstar', 'Trong cuộc xung đột ở Nam Tư cũ, cầu Mostar đã bị phá hủy hoàn toàn. Việc tái sinh cây cầu là một bư...', '1.jpg', '2025-03-24 07:13:30');
 
 -- --------------------------------------------------------
 
@@ -143,18 +200,19 @@ CREATE TABLE `restoration_projects` (
   `id` int(11) NOT NULL,
   `project_name` varchar(255) NOT NULL,
   `details` text NOT NULL,
-  `image_url` varchar(255) NOT NULL
+  `image_path` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `restoration_projects`
 --
 
-INSERT INTO `restoration_projects` (`id`, `project_name`, `details`, `image_url`) VALUES
-(1, 'Khôi phục Lăng mộ Timbuktu', 'Tính đến tháng 5 năm 2012, Chính phủ Mali đã tìm kiếm sự giúp đỡ từ cộng đồng quốc tế thông qua UNESCO. Timbuktu và Lăng mộ Askia đã được đưa vào Danh sách Di sản Thế giới đang bị đe dọa và UNESCO đã khởi xướng một loạt các hành động lớn để hỗ trợ Mali. UNESCO đã bắt đầu một chiến dịch nâng cao nhận thức về ý nghĩa văn hóa của các lăng mộ và vai trò của chúng trong việc định hình cuộc sống của cư dân Timbuktu. Một \'Hộ chiếu Di sản\' của Mali đã được phân phối cho quân nhân, với các bản đồ hiển thị các địa điểm văn hóa quan trọng nhất.', '/webBTL/assets/img/restoration.jpg'),
-(2, 'Angkor,Campuchia', 'Một trong những địa điểm khảo cổ quan trọng nhất ở Đông Nam Á, Công viên Khảo cổ Angkor chứa đựng những di tích tráng lệ của nhiều thủ đô khác nhau của Đế chế Khmer, từ thế kỷ thứ 9 đến thế kỷ thứ 15. Năm 1993, UNESCO đã bắt tay vào một kế hoạch đầy tham vọng nhằm bảo vệ và phát triển địa điểm lịch sử này do Ban Di sản Văn hóa thực hiện với sự hợp tác chặt chẽ với Trung tâm Di sản Thế giới. Khai quật trái phép, cướp bóc các địa điểm khảo cổ và mìn là những vấn đề chính. Ủy ban Di sản Thế giới, sau khi lưu ý rằng những mối đe dọa này đối với địa điểm này không còn tồn tại nữa và nhiều hoạt động bảo tồn và phục hồi do UNESCO phối hợp đã thành công, đã đưa địa điểm này ra khỏi Danh sách Di sản Thế giới đang bị đe dọa vào năm 2004.', '/webBTL/assets/img/new_project.jpg'),
-(3, 'Thành phố cổ ở Dubrovnik ở Crotia', 'Viên ngọc của biển Adriatic, rải rác những tòa nhà Gothic, Phục hưng và Baroque tuyệt đẹp đã chống chọi qua nhiều thế kỷ và sống sót sau nhiều trận động đất. Vào tháng 11 và tháng 12 năm 1991, khi bị hư hại nghiêm trọng do hỏa lực pháo binh, thành phố đã ngay lập tức được đưa vào Danh sách Di sản Thế giới đang bị đe dọa. Với sự tư vấn kỹ thuật và hỗ trợ tài chính của UNESCO, Chính phủ Croatia đã khôi phục lại mặt tiền của các tu viện dòng Phanxicô và dòng Đaminh, sửa chữa mái nhà và xây dựng lại các cung điện. Kết quả là, vào tháng 12 năm 1998, thành phố đã có thể được đưa khỏi Danh sách Di sản Thế giới đang bị đe dọa.', '/webBTL/assets/img/new_project.jpg'),
-(4, 'Mỏ muối Wieliczka, gần Cracow ở Ba Lan', 'Tài sản này được ghi vào năm 1978 là một trong mười hai di sản thế giới đầu tiên. Mỏ lớn này đã được khai thác tích cực từ thế kỷ 13. 300 km phòng trưng bày của nó chứa các tác phẩm nghệ thuật nổi tiếng với các bàn thờ và tượng được điêu khắc bằng muối, tất cả đều bị đe dọa nghiêm trọng bởi độ ẩm do sự ra đời của hệ thống thông gió nhân tạo vào cuối thế kỷ 19. Địa điểm này đã được đưa vào Danh sách Di sản thế giới đang bị đe dọa vào năm 1989. Trong chín năm nỗ lực chung của cả Ba Lan và cộng đồng quốc tế, một hệ thống hút ẩm hiệu quả đã được lắp đặt và Ủy ban, tại phiên họp vào tháng 12 năm 1998, đã có sự hài lòng khi đưa địa điểm này ra khỏi Danh sách Di sản thế giới đang bị đe dọa.', '/webBTL/assets/img/new_project.jpg');
+INSERT INTO `restoration_projects` (`id`, `project_name`, `details`, `image_path`) VALUES
+(1, 'Khôi phục Lăng mộ Timbuktu', 'Tính đến tháng 5 năm 2012, Chính phủ Mali đã tìm kiếm sự giúp đỡ từ cộng đồng quốc tế thông qua UNESCO. Timbuktu và Lăng mộ Askia đã được đưa vào Danh sách Di sản Thế giới đang bị đe dọa và UNESCO đã khởi xướng một loạt các hành động lớn để hỗ trợ Mali. UNESCO đã bắt đầu một chiến dịch nâng cao nhận thức về ý nghĩa văn hóa của các lăng mộ và vai trò của chúng trong việc định hình cuộc sống của cư dân Timbuktu. Một \'Hộ chiếu Di sản\' của Mali đã được phân phối cho quân nhân, với các bản đồ hiển thị các địa điểm văn hóa quan trọng nhất.', 'timbuktu.jpg'),
+(2, 'Angkor,Campuchia', 'Một trong những địa điểm khảo cổ quan trọng nhất ở Đông Nam Á, Công viên Khảo cổ Angkor chứa đựng những di tích tráng lệ của nhiều thủ đô khác nhau của Đế chế Khmer, từ thế kỷ thứ 9 đến thế kỷ thứ 15. Năm 1993, UNESCO đã bắt tay vào một kế hoạch đầy tham vọng nhằm bảo vệ và phát triển địa điểm lịch sử này do Ban Di sản Văn hóa thực hiện với sự hợp tác chặt chẽ với Trung tâm Di sản Thế giới. Khai quật trái phép, cướp bóc các địa điểm khảo cổ và mìn là những vấn đề chính. Ủy ban Di sản Thế giới, sau khi lưu ý rằng những mối đe dọa này đối với địa điểm này không còn tồn tại nữa và nhiều hoạt động bảo tồn và phục hồi do UNESCO phối hợp đã thành công, đã đưa địa điểm này ra khỏi Danh sách Di sản Thế giới đang bị đe dọa vào năm 2004.', 'angkor.jpg'),
+(3, 'Thành phố cổ ở Dubrovnik ở Crotia', 'Viên ngọc của biển Adriatic, rải rác những tòa nhà Gothic, Phục hưng và Baroque tuyệt đẹp đã chống chọi qua nhiều thế kỷ và sống sót sau nhiều trận động đất. Vào tháng 11 và tháng 12 năm 1991, khi bị hư hại nghiêm trọng do hỏa lực pháo binh, thành phố đã ngay lập tức được đưa vào Danh sách Di sản Thế giới đang bị đe dọa. Với sự tư vấn kỹ thuật và hỗ trợ tài chính của UNESCO, Chính phủ Croatia đã khôi phục lại mặt tiền của các tu viện dòng Phanxicô và dòng Đaminh, sửa chữa mái nhà và xây dựng lại các cung điện. Kết quả là, vào tháng 12 năm 1998, thành phố đã có thể được đưa khỏi Danh sách Di sản Thế giới đang bị đe dọa.', 'crotia.jpg'),
+(4, 'Mỏ muối Wieliczka, gần Cracow ở Ba Lan', 'Tài sản này được ghi vào năm 1978 là một trong mười hai di sản thế giới đầu tiên. Mỏ lớn này đã được khai thác tích cực từ thế kỷ 13. 300 km phòng trưng bày của nó chứa các tác phẩm nghệ thuật nổi tiếng với các bàn thờ và tượng được điêu khắc bằng muối, tất cả đều bị đe dọa nghiêm trọng bởi độ ẩm do sự ra đời của hệ thống thông gió nhân tạo vào cuối thế kỷ 19. Địa điểm này đã được đưa vào Danh sách Di sản thế giới đang bị đe dọa vào năm 1989. Trong chín năm nỗ lực chung của cả Ba Lan và cộng đồng quốc tế, một hệ thống hút ẩm hiệu quả đã được lắp đặt và Ủy ban, tại phiên họp vào tháng 12 năm 1998, đã có sự hài lòng khi đưa địa điểm này ra khỏi Danh sách Di sản thế giới đang bị đe dọa.', 'momuoi.jpg'),
+(5, 'Khu bảo tồn Ngorongoro ở Cộng hòa Thống nhất Tanzania', 'Hố khổng lồ này có mật độ động vật hoang dã lớn nhất thế giới đã được liệt kê là một địa điểm có nguy cơ tuyệt chủng vào năm 1984 do tình trạng xuống cấp chung của địa điểm do thiếu sự quản lý. Đến năm 1989, nhờ các dự án hợp tác kỹ thuật và giám sát liên tục, tình hình đã được cải thiện và địa điểm này đã được đưa ra khỏi Danh sách Di sản Thế giới đang bị đe dọa.', 'tanzania.jpg');
 
 -- --------------------------------------------------------
 
@@ -175,11 +233,11 @@ CREATE TABLE `stories` (
 --
 
 INSERT INTO `stories` (`id`, `title`, `description`, `image_url`, `link`) VALUES
-(1, 'Tạo sự hòa giải: Cầu Mostar', 'Trong cuộc xung đột ở Nam Tư cũ, cầu Mostar đã bị phá hủy hoàn toàn. Việc tái sinh cây cầu là một bước tiến quan trọng.', '/webBTL/assets/img/caumosta.jpg', 'https://example.com/mostar'),
-(2, 'Cùng nhau phát triển: Tongariro', 'Công viên quốc gia Tongariro ở New Zealand đã đạt được đến cân bằng giữa bảo tồn thiên nhiên và văn hóa.', 'https://via.placeholder.com/280x150', 'https://example.com/tongariro'),
-(3, 'Bảo tồn Machu Picchu', 'Các nhà nghiên cứu và cộng đồng địa phương đã nỗ lực bảo tồn Machu Picchu trước nguy cơ xuống cấp.', 'https://via.placeholder.com/280x150', 'https://example.com/machu-picchu'),
-(4, 'Bảo vệ Vạn Lý Trường Thành', 'Các sáng kiến bảo vệ và tái tạo Vạn Lý Trường Thành nhằm bảo tồn lịch sử và văn hóa Trung Hoa.', 'https://via.placeholder.com/280x150', 'https://example.com/great-wall'),
-(5, 'Trùng tu Đấu trường La Mã', 'Các chuyên gia đang làm việc để bảo tồn di tích lịch sử quan trọng này tại Ý.', 'https://via.placeholder.com/280x150', 'https://example.com/colosseum');
+(1, 'Tạo sự hòa giải: Cầu Mostar', 'Trong cuộc xung đột ở Nam Tư cũ, cầu Mostar đã bị phá hủy hoàn toàn. Việc tái sinh cây cầu là một bước tiến quan trọng.', 'caumosta.jpg', 'https://example.com/mostar'),
+(2, 'Cùng nhau phát triển: Tongariro', 'Công viên quốc gia Tongariro ở New Zealand đã đạt được đến cân bằng giữa bảo tồn thiên nhiên và văn hóa.', 'tonggariro.jpg', 'https://example.com/tongariro'),
+(3, 'Bảo tồn Machu Picchu', 'Các nhà nghiên cứu và cộng đồng địa phương đã nỗ lực bảo tồn Machu Picchu trước nguy cơ xuống cấp.', 'machupichu.jpg', 'https://example.com/machu-picchu'),
+(4, 'Bảo vệ Vạn Lý Trường Thành', 'Các sáng kiến bảo vệ và tái tạo Vạn Lý Trường Thành nhằm bảo tồn lịch sử và văn hóa Trung Hoa.', 'vltt.jpg', 'https://example.com/great-wall'),
+(5, 'Trùng tu Đấu trường La Mã', 'Các chuyên gia đang làm việc để bảo tồn di tích lịch sử quan trọng này tại Ý.', 'colosseo.jpg', 'https://example.com/colosseum');
 
 -- --------------------------------------------------------
 
@@ -191,17 +249,17 @@ CREATE TABLE `success_stories` (
   `id` int(11) NOT NULL,
   `title` varchar(255) NOT NULL,
   `description` text NOT NULL,
-  `image_url` varchar(255) NOT NULL
+  `image_success` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `success_stories`
 --
 
-INSERT INTO `success_stories` (`id`, `title`, `description`, `image_url`) VALUES
-(1, 'Làm việc cùng nhau:\r\n     Abu Simbel', 'Năm 1959, Ai Cập đã xây dựng Đập cao Aswan, cần thiết để thúc đẩy nông nghiệp và cung cấp điện. Hồ chứa nước được tạo ra sẽ nhấn chìm các di tích trong khu vực. Đảo Philae đã bị ngập nước theo định kỳ do mực nước dâng cao của sông Nile. Ai Cập và nước láng giềng Sudan đã yêu cầu UNESCO giúp bảo vệ di sản Nubia quý giá của họ. UNESCO đã chấp nhận thách thức và kích hoạt một hoạt động cứu hộ ngoạn mục. Tổ chức này sẽ cho thế giới thấy cách bảo tồn kho báu của quá khứ cho các thế hệ tương lai, chứ không phải hy sinh vì sự tiến bộ. Chìa khóa là sự đoàn kết quốc tế. UNESCO đã triệu tập các chuyên gia hàng đầu - các nhà thủy văn, kỹ sư, nhà khảo cổ học, kiến ​​trúc sư - những người đã đưa ra một kế hoạch cấp tiến: các ngôi đền sẽ bị tháo dỡ, di chuyển đến vùng đất cao hơn và lắp ráp lại.', '/webBTL/assets/img/restoration.jpg'),
-(2, 'Venice, Ý', 'Chiến dịch bảo vệ quốc tế kéo dài nhất đã diễn ra kể từ năm 1966 khi UNESCO quyết định phát động chiến dịch cứu thành phố sau trận lũ lụt thảm khốc năm 1965, một nhiệm vụ đòi hỏi thời gian, trình độ kỹ thuật cao và trên hết là tiền bạc. Sự hợp tác quốc tế nảy sinh từ dự án này là nguồn cảm hứng quan trọng cho những nỗ lực sáng lập Công ước.', '/webBTL/assets/img/new_story.jpg'),
-(3, 'Đền Borobudur, Indonesia', 'Một chiến dịch bảo vệ quốc tế đã được UNESCO phát động vào năm 1972 để khôi phục ngôi chùa Phật giáo nổi tiếng này, có niên đại từ thế kỷ thứ 8 và thế kỷ thứ 9. Bị bỏ hoang vào năm 1000, ngôi chùa dần bị cây cối che phủ và không được phát hiện lại cho đến thế kỷ 19. Với sự tham gia tích cực của Quỹ Ủy thác Nhật Bản bảo tồn Di sản Văn hóa Thế giới và các đối tác khác, việc khôi phục Borobudur đã hoàn thành vào năm 1983.', '/webBTL/assets/img/new_story.jpg');
+INSERT INTO `success_stories` (`id`, `title`, `description`, `image_success`) VALUES
+(1, 'Làm việc cùng nhau:\r\n     Abu Simbel', 'Năm 1959, Ai Cập đã xây dựng Đập cao Aswan, cần thiết để thúc đẩy nông nghiệp và cung cấp điện. Hồ chứa nước được tạo ra sẽ nhấn chìm các di tích trong khu vực. Đảo Philae đã bị ngập nước theo định kỳ do mực nước dâng cao của sông Nile. Ai Cập và nước láng giềng Sudan đã yêu cầu UNESCO giúp bảo vệ di sản Nubia quý giá của họ. UNESCO đã chấp nhận thách thức và kích hoạt một hoạt động cứu hộ ngoạn mục. Tổ chức này sẽ cho thế giới thấy cách bảo tồn kho báu của quá khứ cho các thế hệ tương lai, chứ không phải hy sinh vì sự tiến bộ. Chìa khóa là sự đoàn kết quốc tế. UNESCO đã triệu tập các chuyên gia hàng đầu - các nhà thủy văn, kỹ sư, nhà khảo cổ học, kiến ​​trúc sư - những người đã đưa ra một kế hoạch cấp tiến: các ngôi đền sẽ bị tháo dỡ, di chuyển đến vùng đất cao hơn và lắp ráp lại.', 'abu.jpg'),
+(2, 'Venice, Ý', 'Chiến dịch bảo vệ quốc tế kéo dài nhất đã diễn ra kể từ năm 1966 khi UNESCO quyết định phát động chiến dịch cứu thành phố sau trận lũ lụt thảm khốc năm 1965, một nhiệm vụ đòi hỏi thời gian, trình độ kỹ thuật cao và trên hết là tiền bạc. Sự hợp tác quốc tế nảy sinh từ dự án này là nguồn cảm hứng quan trọng cho những nỗ lực sáng lập Công ước.', 'y.jpg'),
+(3, 'Đền Borobudur, Indonesia', 'Một chiến dịch bảo vệ quốc tế đã được UNESCO phát động vào năm 1972 để khôi phục ngôi chùa Phật giáo nổi tiếng này, có niên đại từ thế kỷ thứ 8 và thế kỷ thứ 9. Bị bỏ hoang vào năm 1000, ngôi chùa dần bị cây cối che phủ và không được phát hiện lại cho đến thế kỷ 19. Với sự tham gia tích cực của Quỹ Ủy thác Nhật Bản bảo tồn Di sản Văn hóa Thế giới và các đối tác khác, việc khôi phục Borobudur đã hoàn thành vào năm 1983.', 'indo.jpg');
 
 -- --------------------------------------------------------
 
@@ -236,7 +294,7 @@ CREATE TABLE `users` (
   `Username` varchar(50) NOT NULL,
   `Password` varchar(255) NOT NULL,
   `Email` varchar(100) NOT NULL,
-  `Role` enum('User','Seller','Admin') DEFAULT 'User',
+  `Role` enum('User','Admin') DEFAULT 'User',
   `Avatar` varchar(255) DEFAULT NULL,
   `Address` varchar(255) DEFAULT NULL,
   `FullName` varchar(255) DEFAULT NULL,
@@ -249,14 +307,18 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`UserId`, `Username`, `Password`, `Email`, `Role`, `Avatar`, `Address`, `FullName`, `DateOfBirth`, `Gender`) VALUES
-(1, 'dta', '123', 'dta@gmail.com', 'User', NULL, 'Hà Nội', 'Đồng Thị Anh', '0000-00-00', 'Nữ'),
-(0, 'Nguyen Van A', '123', 'nguyenvana@gmail.com', 'User', NULL, 'Thái Bình', 'Nguyễn Văn A', '0000-00-00', 'Nam'),
-(0, 'Nguyen Thi B', '123', 'nguyenvanb@gmail.com', 'User', NULL, 'Thái Nguyên', 'Nguyễn Văn B', '0000-00-00', 'Nữ'),
-(0, 'admin', '123', 'admin@gmail.com', 'Admin', NULL, 'HN', 'admin', NULL, 'Nam');
+(1, 'dta', '123', 'dta@gmail.com', 'User', '../uploads/avatar_1743089571_7993.jpg', 'Hà Nội', 'Đồng Thị Anh', '0000-00-00', 'Khác'),
+(4, 'admin', '123', 'admin@gmail.com', 'Admin', '../uploads/avatar_1743089546_5937.jpg', 'HN', 'admin', '0000-00-00', 'Nam');
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `activity`
+--
+ALTER TABLE `activity`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `articles`
@@ -275,7 +337,14 @@ ALTER TABLE `blog_articles`
 --
 ALTER TABLE `comments`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `article_id` (`article_id`);
+  ADD KEY `article_id` (`article_id`),
+  ADD KEY `fk_post_id` (`post_id`);
+
+--
+-- Indexes for table `events`
+--
+ALTER TABLE `events`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `feedback`
@@ -287,7 +356,8 @@ ALTER TABLE `feedback`
 -- Indexes for table `posts`
 --
 ALTER TABLE `posts`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `UserId` (`UserId`);
 
 --
 -- Indexes for table `restoration_projects`
@@ -314,6 +384,12 @@ ALTER TABLE `tintuc`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`UserId`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -330,12 +406,6 @@ ALTER TABLE `blog_articles`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
--- AUTO_INCREMENT for table `comments`
---
-ALTER TABLE `comments`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
-
---
 -- AUTO_INCREMENT for table `feedback`
 --
 ALTER TABLE `feedback`
@@ -345,19 +415,19 @@ ALTER TABLE `feedback`
 -- AUTO_INCREMENT for table `posts`
 --
 ALTER TABLE `posts`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `restoration_projects`
 --
 ALTER TABLE `restoration_projects`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `stories`
 --
 ALTER TABLE `stories`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `success_stories`
@@ -372,14 +442,20 @@ ALTER TABLE `tintuc`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
+-- AUTO_INCREMENT for table `users`
+--
+ALTER TABLE `users`
+  MODIFY `UserId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
 -- Constraints for dumped tables
 --
 
 --
--- Constraints for table `comments`
+-- Constraints for table `posts`
 --
-ALTER TABLE `comments`
-  ADD CONSTRAINT `comments_ibfk_1` FOREIGN KEY (`article_id`) REFERENCES `blog_articles` (`id`) ON DELETE CASCADE;
+ALTER TABLE `posts`
+  ADD CONSTRAINT `posts_ibfk_1` FOREIGN KEY (`UserId`) REFERENCES `users` (`UserId`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
