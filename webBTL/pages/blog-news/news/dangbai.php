@@ -1,6 +1,6 @@
 <?php
 session_start();
-include '../../includes/db.php';
+include '../../../includes/db.php';
 
 // Kiểm tra nếu không phải Admin thì chuyển về trang chủ
 if (!isset($_SESSION['role']) || $_SESSION['role'] !== "Admin") {
@@ -68,13 +68,96 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Đăng Bài</title>
-    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="../includes/nav.css">
+    <!-- <link rel="stylesheet" href="../styles/dangbai.css"> -->
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 0;
+      }
+
+      .container {
+        max-width: 600px;
+        background: #fff;
+        margin: 50px auto;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+
+      h1 {
+        text-align: center;
+        color: #333;
+        margin-bottom: 20px;
+      }
+
+      form {
+        display: flex;
+        flex-direction: column;
+      }
+
+      label {
+        font-weight: bold;
+        margin: 10px 0 5px;
+      }
+
+      input[type="text"],
+      textarea {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 16px;
+      }
+
+      textarea {
+        resize: vertical;
+        min-height: 100px;
+      }
+
+      input[type="file"] {
+        border: none;
+        background: #fff;
+      }
+
+      button {
+        margin-top: 20px;
+        padding: 10px;
+        font-size: 18px;
+        color: white;
+        background: #007BFF;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background 0.3s ease;
+      }
+
+      button:hover {
+        background: #0056b3;
+      }
+
+      .back-link {
+        display: block;
+        text-align: center;
+        margin-top: 15px;
+        color: #007BFF;
+        text-decoration: none;
+        font-size: 16px;
+      }
+
+      .back-link:hover {
+        text-decoration: underline;
+      }
+
+    </style>
 </head>
 <body>
 
-    <nav>
+    <!-- <nav>
         <a href="../../index.php">Trang chủ</a>
-        <a href="tintuc.php" class="active">Tin tức</a>
+        <a href="index.php" class="active">Tin tức</a>
         <a href="../blog/blog.php">Blog</a>
         <div class="user-info">
             <?php if ($userLoggedIn): ?>
@@ -102,7 +185,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 });
             });
         </script>
-    </nav>
+    </nav> -->
+
+    <?php include '../includes/nav.php'; ?>
 
     <div class="container">
         <h1>Đăng Bài Viết Mới</h1>
@@ -118,7 +203,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             
             <button type="submit">Đăng bài</button>
         </form>
-        <a href="./tintuc.php" class="back-link">🔙 Quay lại Tin Tức</a>
+        <a href="./index.php" class="back-link">🔙 Quay lại Tin Tức</a>
     </div>
 </body>
 </html>
