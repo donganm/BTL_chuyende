@@ -1,6 +1,6 @@
 <?php
 session_start();
-include '../../includes/db.php'; // Đảm bảo file này kết nối với cơ sở dữ liệu
+include '../../../includes/db.php'; // Đảm bảo file này kết nối với cơ sở dữ liệu
 
 // Kiểm tra kết nối database
 if (!$conn) {
@@ -39,6 +39,7 @@ if (isset($_GET['id'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chỉnh sửa bài viết</title>
     <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="../includes/nav.css">
     <style>
         /* Áp dụng các style giống trang Tin tức */
         body {
@@ -52,26 +53,6 @@ if (isset($_GET['id'])) {
             color: white;
             padding: 15px;
             text-align: center;
-        }
-
-        nav {
-            background: #34495e;
-            padding: 10px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        nav a {
-            color: white;
-            text-decoration: none;
-            font-weight: bold;
-            margin: 0 15px;
-        }
-
-        nav a:hover,
-        nav a.active {
-            color: rgb(166, 255, 0);
         }
 
         .container {
@@ -117,11 +98,7 @@ if (isset($_GET['id'])) {
             background: #1f618d;
         }
 
-        .user-info {
-            float: right;
-            font-size: 14px;
-            color: lightblue;
-        }
+       
     </style>
 </head>
 <body>
@@ -129,7 +106,7 @@ if (isset($_GET['id'])) {
         <h1>Chỉnh sửa bài viết</h1>
     </header>
 
-    <nav>
+    <!-- <nav>
         <a href="../../index.php">Trang chủ</a>
         <a href="tintuc.php" class="active">Tin tức</a>
         <a href="../blog/blog.php">Blog</a>
@@ -159,7 +136,9 @@ if (isset($_GET['id'])) {
                 });
             });
         </script>
-    </nav>
+    </nav> -->
+
+    <?php include '../includes/nav.php'; ?>
 
     <div class="container">
     <form method="POST" action="save-edits.php">

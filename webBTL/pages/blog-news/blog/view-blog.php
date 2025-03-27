@@ -1,6 +1,6 @@
 <?php
 session_start();
-include '../../includes/db.php'; // Kết nối database
+include '../../../includes/db.php'; // Kết nối database
 
 $id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
 if ($id <= 0) {
@@ -48,8 +48,8 @@ if (!$blog) {
 
     <nav>
         <a href="../../index.php">Trang chủ</a>
-        <a href="../tintuc.php">Tin tức</a>
-        <a href="./blog.php" class="active">Blog</a>
+        <a href="../news/index.php">Tin tức</a>
+        <a href="./index.php" class="active">Blog</a>
     </nav>
 
     <div class="container">

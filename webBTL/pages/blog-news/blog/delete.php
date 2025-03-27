@@ -1,6 +1,6 @@
 <?php
     session_start();
-    include '../../includes/db.php'; // Kết nối database
+    include '../../../includes/db.php'; // Kết nối database
 
     if (!$conn) {
         die("Lỗi kết nối database: " . mysqli_connect_error());
@@ -16,7 +16,7 @@
 
         if ($stmt->execute()) {
             // Xóa thành công -> chuyển về blog.php với thông báo
-            header("Location: blog.php?message=deleted");
+            header("Location: index.php?message=deleted");
             exit();
         } else {
             echo "Lỗi khi xóa bài viết!";

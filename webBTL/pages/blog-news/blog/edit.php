@@ -1,6 +1,6 @@
 <?php
 session_start();
-include '../../includes/db.php';
+include '../../../includes/db.php';
 
 $id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
 if ($id <= 0) {
@@ -44,6 +44,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
     <meta charset="UTF-8">
     <title>Chỉnh sửa bài viết</title>
+    <link rel="stylesheet" href="../includes/nav.css">
     <style>
         body { font-family: Arial, sans-serif; background: #f4f4f4; padding: 20px; }
         .container { max-width: 600px; margin: auto; background: white; padding: 20px; box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); }
@@ -53,6 +54,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </style>
 </head>
 <body>
+    <?php include '../includes/nav.php'; ?>
     <div class="container">
         <h2>Chỉnh sửa bài viết</h2>
         <form action="update-blog.php" method="POST">
