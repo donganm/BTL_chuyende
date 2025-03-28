@@ -1,7 +1,10 @@
 <?php
-
 session_start();
+include('../includes/db.php');
 
+// Truy vấn lấy danh sách ảnh
+$sql = "SELECT image_path, description FROM images";
+$result = $conn->query($sql);
 ?>
 
 <!DOCTYPE html>
@@ -24,7 +27,7 @@ session_start();
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            background-color: #a5b1c2;
+            background-color: #ecf0f1;
         }
 
         .back {
@@ -82,7 +85,7 @@ session_start();
             column-count: 4;
             column-gap: 40px;
             /* padding: 20px; */
-            max-width: 1400px;
+            max-width: 1200px;
             margin: auto;
         }
 
@@ -128,17 +131,116 @@ session_start();
 
         h2 {
             /* color: #f5f6fa; */
-            font-size: 2rem;
+            font-size: 40px;
             text-align: center;
             margin-top: 60px;
+            color: #2c3e50;
+        }
+
+        /* SLide  */
+        .slider {
+            width: 70vw;
+            height: 500px;
+            position: relative;
+            overflow: hidden;
+            margin-top: 100px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .slider figure {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            background-size: cover;
+            background-position: center;
+            animation: fade 20s infinite;
+            opacity: 0;
+            margin: 0;
+            padding: 0;
+
+        }
+
+        /* Add image  */
+        .slider figure:nth-child(1) {
+            background-image: url('../assets/img/trangimage/background.png');
+            animation-delay: 0s;
+        }
+
+        .slider figure:nth-child(2) {
+            background-image: url('../assets/img/trangimage/background2.jpg');
+            animation-delay: -4s;
+        }
+
+        .slider figure:nth-child(3) {
+            background-image: url('../assets/img/trangimage/background3.jpg');
+            animation-delay: -8s;
+        }
+
+        .slider figure:nth-child(4) {
+            background-image: url('../assets/img/trangimage/background4.webp');
+            animation-delay: -12s;
+        }
+
+        .slider figure:nth-child(5) {
+            background-image: url('../assets/img/trangimage/background5.jpg');
+            animation-delay: -16s;
+        }
+
+        @keyframes fade {
+            0% {
+                opacity: 0;
+            }
+
+            5% {
+                opacity: 1;
+            }
+
+            25% {
+                opacity: 1;
+            }
+
+            30% {
+                opacity: 0;
+            }
+
+            100% {
+                opacity: 0;
+            }
+        }
+
+        /* End slide */
+
+        footer {
+            all: unset;
+            /* không ăn css body */
+            width: 100%;
         }
     </style>
 </head>
 
 <body>
-    <a href="javascript:history.back()" class="back">
+    <!-- <a href="javascript:history.back()" class="back">
         ← Quay lại
-    </a>
+    </a> -->
+
+    <!-- Header -->
+    <?php include("../includes/header.php"); ?>
+    <!-- End header -->
+
+    <!-- Slideshow -->
+    <div class="slider">
+        <figure></figure>
+        <figure></figure>
+        <figure></figure>
+        <figure></figure>
+        <figure></figure>
+    </div>
+
+    <!-- End slideshow -->
 
     <div class="carousel-content">
         <h1>TRANH VẼ SƯU TẦM</h1>
@@ -155,75 +257,29 @@ session_start();
             <img src="../assets/img/trangimage/dautruongcolosseum.jpg" alt="" />
         </div>
     </div>
+
     <main>
         <h2>THƯ VIỆN ẢNH</h2>
         <div class="gallery-container">
-            <div class="gallery-item">
-                <img src="../assets/img/3.jpg" alt="Di sản 1">
-            </div>
-            <div class="gallery-item">
-                <img src="../assets/img/4.jpg" alt="Di sản 2">
-            </div>
-            <div class="gallery-item">
-                <img src="../assets/img/5.jpg" alt="Di sản 3">
-            </div>
-            <div class="gallery-item">
-                <img src="../assets/img/6.jpg" alt="Di sản 4">
-            </div>
-            <div class="gallery-item">
-                <img src="../assets/img/7.jpg" alt="Di sản 5">
-            </div>
-            <div class="gallery-item">
-                <img src="../assets/img/8.jpg" alt="Di sản 6">
-            </div>
-            <div class="gallery-item">
-                <img src="../assets/img/3.jpg" alt="Di sản 7">
-            </div>
-            <div class="gallery-item">
-                <img src="../assets/img/7.jpg" alt="Di sản 8">
-            </div>
-            <div class="gallery-item">
-                <img src="../assets/img/3.jpg" alt="Di sản 1">
-            </div>
-            <div class="gallery-item">
-                <img src="../assets/img/trangimage/nuthantudo.jpg" alt="Di sản 2">
-            </div>
-            <div class="gallery-item">
-                <img src="../assets/img/5.jpg" alt="Di sản 3">
-            </div>
-            <div class="gallery-item">
-                <img src="../assets/img/trangimage/thapeiffel.jpg" alt="Di sản 4">
-            </div>
-            <div class="gallery-item">
-                <img src="../assets/img/trangimage/tajmahal.jpg" alt="Di sản 5">
-            </div>
-            <div class="gallery-item">
-                <img src="../assets/img/8.jpg" alt="Di sản 6">
-            </div>
-            <div class="gallery-item">
-                <img src="../assets/img/trangimage/anglorwat.jpg" alt="Di sản 7">
-            </div>
-            <div class="gallery-item">
-                <img src="../assets/img/trangimage/vanlytruongthanh.jpg" alt="Di sản 8">
-            </div>
-            <div class="gallery-item">
-                <img src="../assets/img/6.jpg" alt="Di sản 4">
-            </div>
-            <div class="gallery-item">
-                <img src="../assets/img/7.jpg" alt="Di sản 5">
-            </div>
-            <div class="gallery-item">
-                <img src="../assets/img/trangimage/hue.jpg" alt="Di sản 6">
-            </div>
-            <div class="gallery-item">
-                <img src="../assets/img/trangimage/dautruongcolosseum.jpg" alt="Di sản 7">
-            </div>
-            <div class="gallery-item">
-                <img src="../assets/img/trangimage/kyoto.jpg" alt="Di sản 8">
-            </div>
+            <?php
+            if ($result->num_rows > 0) {
+                while ($row = $result->fetch_assoc()) {
+                    echo '<div class="gallery-item">';
+                    echo '<img src="' . $row['image_path'] . '" alt="' . htmlspecialchars($row['description']) . '">';
+                    echo '</div>';
+                }
+            } else {
+                echo "<p>Không có ảnh nào trong thư viện.</p>";
+            }
+            ?>
         </div>
     </main>
+    <!-- Footer  -->
+    <footer>
+        <?php include("../includes/footer.php"); ?>
+    </footer>
 
+    <!-- End Footer -->
 
 </body>
 
