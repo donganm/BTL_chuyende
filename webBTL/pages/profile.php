@@ -265,6 +265,11 @@ $role = $_SESSION['role'];
         .product-table tr:hover {
             background-color: #f1f1f1;
         }
+
+        /* Thư viện ảnh */
+        .add_image {
+            margin-bottom: 50px;
+        }
     </style>
 </head>
 
@@ -307,6 +312,7 @@ $role = $_SESSION['role'];
                             <li>Quản Lý Người Dùng</li>
                             <li>Danh Sách Di Sản</li>
                             <li>Danh Sách Các Bình Luận</li>
+                            <li>Thư Viện Ảnh</li>
                         <?php endif; ?>
                         <li><a href="../index.php" style="text-decoration: none;color:yellow;">Trở lại</a></li>
                     </ul>
@@ -550,6 +556,51 @@ $role = $_SESSION['role'];
                         </tbody>
                 </table>
             </div>
+
+            <!-- Quản lý thư viện ảnh -->
+            <div id="manage_images" class="content-section" style="display: none;">
+                <div class="add_image">
+                    <p>Thư viện ảnh</p>
+                    <p>Thêm ảnh</p>
+                    <form action="../logic/uploads_image.php" method="POST" enctype="multipart/form-data">
+                        <input type="file" name="fileToUpload" id="fileToUpload">
+                        <button type="submit" style="padding: 5px;">Lưu</button>
+                    </form>
+
+                </div>
+
+
+                <p>Quản lý ảnh, cập nhật, xóa ảnh..</p>
+                <table class="product-table">
+                    <thead>
+                        <tr>
+                            <th>Ảnh</th>
+                            <th>Mô Tả</th>
+
+                            <th>Chức Năng</th>
+                        </tr>
+                    </thead>
+                    <?php
+                    $sql = "Select * from images";
+                    $result = mysqli_query($conn, $sql);
+                    while ($row = mysqli_fetch_array($result)) {
+                        $id = $row['id'];
+
+                    ?>
+                        <tbody>
+                            <tr>
+                                <td><?php echo $row['image_path']; ?></td>
+                                <td><?php echo $row['description']; ?></td>
+
+                                <td>
+                                    <a class="update" href="../logic/update_image.php?id=<?php echo $id; ?>">Cập nhật</a>
+                                    <a class="update" href="../logic/delete_image.php?id=<?php echo $id; ?>">Xóa</a>
+                                </td>
+                            </tr>
+                        <?php } ?>
+                        </tbody>
+                </table>
+            </div>
         </div>
     <?php } ?>
     </div>
@@ -587,7 +638,12 @@ $role = $_SESSION['role'];
             },
             {
                 menu: ".menu li:nth-child(5)",
-                content: "statistics-content", // Thống kê
+                content: "statistics-content", // Bình luận
+                condition: "Admin" // Chỉ hiển thị nếu vai trò là Admin
+            },
+            {
+                menu: ".menu li:nth-child(6)",
+                content: "manage_images", // thư viện ảnh
                 condition: "Admin" // Chỉ hiển thị nếu vai trò là Admin
             }
         ];
