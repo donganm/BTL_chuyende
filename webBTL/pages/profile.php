@@ -520,7 +520,7 @@ $role = $_SESSION['role'];
             <!-- Quản lý bình luận -->
             <div id="statistics-content" class="content-section" style="display: none;">
                 <p>Comments</p>
-                <p>Danh sách bình luận</p>
+                <p>Quản lý, xóa bình luận tiêu cực..</p>
                 <table class="product-table">
                     <thead>
                         <tr>
