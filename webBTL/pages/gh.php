@@ -17,19 +17,20 @@ session_start();
             font-family: 'Poppins', sans-serif;
             margin: 0;
             padding: 0;
-            background: linear-gradient(to right, #243b55, #ffffff);
+            background: #ecf0f1;
         }
 
         .container {
-            width: 70%;
+            width: 65%;
             margin: 50px auto;
             padding: 30px;
             margin-top: 100px;
             color: white;
             line-height: 1.5;
-            background: rgba(255, 255, 255, 0.1);
+            background: white;
             border-radius: 15px;
-            box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.2);
+            /* box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.2); */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
 
         h1,
@@ -43,8 +44,9 @@ session_start();
 
         .section {
             margin-bottom: 40px;
-            padding: 20px;
-            background: rgba(0, 0, 0, 0.5);
+            padding: 50px;
+            /* background: rgba(0, 0, 0, 0.5); */
+            background: #333;
             border-radius: 10px;
             text-align: justify;
         }
@@ -86,7 +88,8 @@ session_start();
         }
 
         p {
-            margin-left: 30px;
+            /* margin-left: 30px; */
+            font-size: 17px;
         }
     </style>
 </head>
@@ -145,9 +148,7 @@ session_start();
             </div>
         </div>
     </div>
-    <!-- Footer  -->
-    <?php include("../includes/footer.php"); ?>
-    <!-- End Footer -->
+
 </body>
 
 </html>

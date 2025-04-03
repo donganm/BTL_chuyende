@@ -204,7 +204,7 @@ session_start();
       </div>
       <div class="box4_phai">
         <div>
-          <h2>Phố cổ Hội An</h2>
+          <h2>Phố cổ Hội An - Di sản văn hóa thế giới</h2>
           <p>
             Phố cổ Hội An là một trong những di sản văn hóa thế giới được
             UNESCO công nhận, nổi bật với kiến trúc cổ kính, đèn lồng rực rỡ
@@ -213,7 +213,7 @@ session_start();
             thống của Việt Nam.
           </p>
         </div>
-        <button><a href="./pages/tintuc/tintuc.php">Tìm hiểu thêm</a></button>
+        <button><a href="./pages/blog-news/news/index.php">Tìm hiểu thêm</a></button>
       </div>
     </div>
 
@@ -232,7 +232,7 @@ session_start();
             hóa vùng vịnh Bắc Bộ.
           </p>
         </div>
-        <button><a href="./pages/tintuc/tintuc.php">Tìm hiểu thêm</a></button>
+        <button><a href="./pages/blog-news/news/index.php">Tìm hiểu thêm</a></button>
       </div>
     </div>
   </div>
