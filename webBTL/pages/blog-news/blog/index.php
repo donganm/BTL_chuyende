@@ -41,7 +41,7 @@ $result = $conn->query($sql);
 
     <div class="container">
         <?php if ($isAdmin): ?>
-            <a href="add-blog.php" class="btn btn-success">+ Đăng bài mới</a>
+            <a href="add.php" class="btn btn-success">+ Đăng bài mới</a>
         <?php endif; ?>
 
         <!-- Bộ lọc bài viết -->
@@ -61,7 +61,7 @@ $result = $conn->query($sql);
                 }
 
                 echo '<div class="article">';
-                echo '<img src="' . $imgPath . '" alt="Ảnh Blog" class="blog-thumbnail">';
+                // echo '<img src="' . $imgPath . '" alt="Ảnh Blog" class="blog-thumbnail">';
                 echo '<h2><a href="view-blog.php?id=' . $blog["id"] . '">' . htmlspecialchars($blog["title"]) . '</a></h2>';
                 echo '<p><small><b>' . htmlspecialchars($blog["tac_gia"]) . '</b> - ' . date("d/m/Y", strtotime($blog["ngay_dang"])) . '</small></p>';
                 echo '<p>' . mb_substr(strip_tags($blog["description"]), 0, 150, 'UTF-8') . '...</p>';

@@ -213,7 +213,7 @@ session_start();
             thống của Việt Nam.
           </p>
         </div>
-        <button><a href="./pages/tintuc/tintuc.php">Tìm hiểu thêm</a></button>
+        <button><a href="./pages/blog-news/news/index.php">Tìm hiểu thêm</a></button>
       </div>
     </div>
 
@@ -232,7 +232,7 @@ session_start();
             hóa vùng vịnh Bắc Bộ.
           </p>
         </div>
-        <button><a href="./pages/tintuc/tintuc.php">Tìm hiểu thêm</a></button>
+        <button><a href="./pages/blog-news/blog/index.php">Tìm hiểu thêm</a></button>
       </div>
     </div>
   </div>
