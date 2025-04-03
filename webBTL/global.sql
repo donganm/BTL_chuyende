@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 27, 2025 at 05:54 PM
+-- Generation Time: Apr 03, 2025 at 04:03 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -48,6 +48,27 @@ INSERT INTO `activity` (`id`, `title`, `description`, `image`, `created_at`) VAL
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `answers`
+--
+
+CREATE TABLE `answers` (
+  `id` int(11) NOT NULL,
+  `question_id` int(11) NOT NULL,
+  `answer` text NOT NULL,
+  `created_at` datetime DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `answers`
+--
+
+INSERT INTO `answers` (`id`, `question_id`, `answer`, `created_at`) VALUES
+(1, 1, 'sd', '2025-03-18 17:44:03'),
+(2, 1, '\r\n6', '2025-03-23 00:58:27');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `articles`
 --
 
@@ -77,7 +98,12 @@ INSERT INTO `articles` (`id`, `title`, `description`, `link`, `image`) VALUES
 CREATE TABLE `blog_articles` (
   `id` int(11) NOT NULL,
   `title` varchar(255) NOT NULL,
+  `tac_gia` varchar(255) NOT NULL,
   `description` text NOT NULL,
+  `ngay_dang` datetime DEFAULT current_timestamp(),
+  `hinhanh` varchar(255) DEFAULT 'default.jpg',
+  `luot_xem` int(11) DEFAULT 0,
+  `luot_thich` int(11) DEFAULT 0,
   `link` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -85,9 +111,8 @@ CREATE TABLE `blog_articles` (
 -- Dumping data for table `blog_articles`
 --
 
-INSERT INTO `blog_articles` (`id`, `title`, `description`, `link`) VALUES
-(23, 'Văn Miếu - Quốc Tử Giám', 'Văn Miếu - Quốc Tử Giám là biểu tượng của nền giáo dục Việt Nam, nơi tôn vinh các bậc hiền tài và lưu giữ những giá trị lịch sử quý báu.', 'view-blog.php?id=1740649717'),
-(24, 'Vịnh Hạ Long', 'Vịnh Hạ Long là một di sản thiên nhiên thế giới được UNESCO công nhận, nổi tiếng với hàng nghìn hòn đảo đá vôi hùng vĩ. Cảnh quan kỳ thú, hệ sinh thái đa dạng cùng các truyền thuyết ly kỳ đã biến nơi đây thành một điểm du lịch hấp dẫn', 'view-blog.php?id=1740658880');
+INSERT INTO `blog_articles` (`id`, `title`, `tac_gia`, `description`, `ngay_dang`, `hinhanh`, `luot_xem`, `luot_thich`, `link`) VALUES
+(24, 'Vịnh Hạ Long', '', 'Vịnh Hạ Long là một di sản thiên nhiên thế giới được UNESCO công nhận, nổi tiếng với hàng nghìn hòn đảo đá vôi hùng vĩ. Cảnh quan kỳ thú, hệ sinh thái đa dạng cùng các truyền thuyết ly kỳ đã biến nơi đây thành một điểm du lịch hấp dẫn', '2025-03-27 17:22:08', 'default.jpg', 0, 0, 'view-blog.php?id=1740658880');
 
 -- --------------------------------------------------------
 
@@ -111,11 +136,7 @@ CREATE TABLE `comments` (
 --
 
 INSERT INTO `comments` (`id`, `article_id`, `username`, `content`, `created_at`, `user_id`, `post_id`, `article_type`) VALUES
-(3, 23, 'Ẩn danh', 'ok', '2025-02-27 12:17:11', NULL, NULL, 'post'),
-(4, 23, 'Ẩn danh', 'nice', '2025-02-27 12:17:18', NULL, NULL, 'post'),
-(5, 23, 'Ẩn danh', 'ok nhé', '2025-02-27 12:28:47', NULL, NULL, 'post'),
 (6, 24, 'Ẩn danh', '10đ', '2025-02-27 12:29:00', NULL, NULL, 'post'),
-(14, NULL, '', 'heloo', '2025-03-25 09:10:07', NULL, 5, 'post'),
 (15, NULL, 'Ẩn danh', 'xin chao', '2025-03-25 14:42:25', NULL, 5, 'post'),
 (16, NULL, 'Ẩn danh', 'heloo', '2025-03-26 03:09:25', NULL, 5, 'post');
 
@@ -162,7 +183,39 @@ CREATE TABLE `feedback` (
 
 INSERT INTO `feedback` (`id`, `name`, `email`, `message`, `created_at`) VALUES
 (1, 'ptvh', 't@t.com', 'Nice', '2025-02-27 12:02:30'),
-(2, 'Dong Anh', 'dta@gmail.com', 'Good', '2025-03-05 16:39:36');
+(2, 'Dong Anh', 'dta@gmail.com', 'Good', '2025-03-05 16:39:36'),
+(3, 'Dong Anh', 'dta@gmail.com', 'aaa', '2025-03-29 05:29:45'),
+(4, 'anm', 'anm@gmail.com', 'không tải được ảnh xuống', '2025-04-02 19:29:53'),
+(5, 'ẩn danh', 'andanh@gmail.com', 'ảnh dính bản quyền :((', '2025-04-02 19:31:01');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `images`
+--
+
+CREATE TABLE `images` (
+  `id` int(11) NOT NULL,
+  `image_path` varchar(255) NOT NULL,
+  `description` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `images`
+--
+
+INSERT INTO `images` (`id`, `image_path`, `description`) VALUES
+(1, '../assets/img/trangimage/1.jpg', 'ảnh'),
+(2, '../assets/img/trangimage/2.jpg', 'Hình ảnh mới'),
+(3, '../assets/img/trangimage/3.jpg', 'Hình ảnh mới'),
+(4, '../assets/img/trangimage/5.jpg', 'Hình ảnh mới'),
+(5, '../assets/img/trangimage/6.jpg', 'Hình ảnh mới'),
+(6, '../assets/img/trangimage/7.jpg', 'Hình ảnh mới'),
+(7, '../assets/img/trangimage/8.jpg', 'Hình ảnh mới'),
+(8, '../assets/img/trangimage/11.jpg', 'Hình ảnh mới'),
+(9, '../assets/img/trangimage/12.jpg', 'Hình ảnh mới'),
+(10, '../assets/img/trangimage/13.jpg', 'Hình ảnh mới'),
+(11, '../assets/img/trangimage/14.jpg', 'Hình ảnh mới');
 
 -- --------------------------------------------------------
 
@@ -172,23 +225,42 @@ INSERT INTO `feedback` (`id`, `name`, `email`, `message`, `created_at`) VALUES
 
 CREATE TABLE `posts` (
   `id` int(11) NOT NULL,
-  `UserId` int(11) NOT NULL,
   `title` varchar(255) NOT NULL,
   `content` text NOT NULL,
-  `image` varchar(255) DEFAULT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `image` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `posts`
 --
 
-INSERT INTO `posts` (`id`, `UserId`, `title`, `content`, `image`, `created_at`) VALUES
-(1, 1, 'cầu monstar', 'Trong cuộc xung đột ở Nam Tư cũ, cầu Mostar đã bị phá hủy hoàn toàn. Việc tái sinh cây cầu là một bư...', '1.jpg', '2025-03-24 04:02:53'),
-(2, 1, 'cầu monstar', 'Trong cuộc xung đột ở Nam Tư cũ, cầu Mostar đã bị phá hủy hoàn toàn. Việc tái sinh cây cầu là một bư...', '1.jpg', '2025-03-24 04:11:19'),
-(3, 1, 'cầu monstar', 'Trong cuộc xung đột ở Nam Tư cũ, cầu Mostar đã bị phá hủy hoàn toàn. Việc tái sinh cây cầu là một bư...', '1.jpg', '2025-03-24 04:18:09'),
-(4, 1, 'cầu monstar', 'Trong cuộc xung đột ở Nam Tư cũ, cầu Mostar đã bị phá hủy hoàn toàn. Việc tái sinh cây cầu là một bư...', '1.jpg', '2025-03-24 07:12:16'),
-(5, 1, 'cầu monstar', 'Trong cuộc xung đột ở Nam Tư cũ, cầu Mostar đã bị phá hủy hoàn toàn. Việc tái sinh cây cầu là một bư...', '1.jpg', '2025-03-24 07:13:30');
+INSERT INTO `posts` (`id`, `title`, `content`, `created_at`, `image`) VALUES
+(25, 'Vì sao ẩm thực Huế có nhiều món ăn cung đình?', 'Ảnh hưởng từ văn hóa cung đình\r\nCác vua triều Nguyễn rất quan tâm đến ăn uống, yêu cầu các món ăn phải không chỉ ngon mà còn đẹp mắt, tinh tế và cầu kỳ trong cách chế biến.\r\nNhiều món ăn được chế biến theo công thức đặc biệt chỉ dành riêng cho hoàng gia.', '2025-03-09 22:39:14', 'uploads/67ce7b024304a_am_thuc_hue_1.jpg'),
+(26, 'Thời điểm nào là đẹp nhất để du lịch Hội An?', 'Vào ngày 14 âm lịch mỗi tháng, Hội An tổ chức Đêm phố cổ, nơi toàn bộ khu phố sẽ lung linh với hàng ngàn chiếc đèn lồng, không có ánh đèn điện.\r\nĐây là thời điểm tuyệt vời để tham gia lễ hội thả đèn hoa đăng trên sông Hoài và tận hưởng không gian truyền thống.', '2025-03-09 22:47:03', 'uploads/67ce7cd7a7e19_le-hoi-den-hoa-dang.jpg'),
+(28, 'Di sản văn hóa phi vật thể là gì?', 'Đó là những giá trị phi hữu hình như truyền thống, phong tục, lễ hội, nghệ thuật biểu diễn… được UNESCO công nhận và bảo tồn như một phần không thể tách rời của di sản văn hóa.', '2025-03-15 08:46:54', 'uploads/67d5a0eed2b28_disanvanhoa.jpg'),
+(29, 'Các nghiên cứu hiện đại đã khai quật được những bí ẩn nào về di sản Ai Cập?', 'Công nghệ hiện đại như laser và ảnh vệ tinh đã giúp phát hiện các cấu trúc ẩn bên trong kim tự tháp và cung cấp cái nhìn sâu sắc hơn về phương pháp xây dựng cổ đại.', '2025-03-15 08:49:33', 'uploads/67d5a18d91134_giamabian.webp'),
+(30, 'Tại sao Kim tự tháp Giza lại được xây dựng với độ chính xác đến mức khiến các kiến trúc sư hiện đại ngỡ ngàng?', 'Kim tự tháp Giza đạt được độ chính xác tuyệt vời nhờ kết hợp kiến thức thiên văn, các công cụ đo đạc đơn giản nhưng hiệu quả và sự tổ chức lao động chặt chẽ của người Ai Cập cổ đại.', '2025-03-15 08:54:40', 'uploads/67d5a2c097cfb_hq720.jpg');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `postss`
+--
+
+CREATE TABLE `postss` (
+  `id` int(11) NOT NULL,
+  `title` varchar(255) NOT NULL,
+  `content` text NOT NULL,
+  `created_at` datetime DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `postss`
+--
+
+INSERT INTO `postss` (`id`, `title`, `content`, `created_at`) VALUES
+(1, 'Tại sao Quần thể di tích Cố đô Huế lại được UNESCO công nhận là Di sản Thế giới?', 'Quần thể Di tích Cố đô Huế được UNESCO công nhận là Di sản Thế giới vào năm 1993 nhờ vào những giá trị nổi bật về lịch sử, văn hóa, kiến trúc và cảnh quan.Nơi đây từng là kinh đô của triều đại Nguyễn với các công trình như kinh thành, lăng tẩm, đền đài và chùa chiền độc đáo. Di tích không chỉ phản ánh sự phát triển của nền văn hóa Việt Nam mà còn là nơi giao thoa của các giá trị nghệ thuật, truyền thống và phong tục tập quán, góp phần làm giàu thêm di sản nhân loại.\r\n\r\n', '2025-03-18 17:43:00');
 
 -- --------------------------------------------------------
 
@@ -271,17 +343,19 @@ CREATE TABLE `tintuc` (
   `id` int(11) NOT NULL,
   `tieude` varchar(255) NOT NULL,
   `noidung` text NOT NULL,
-  `hinhanh` varchar(255) NOT NULL
+  `hinhanh` varchar(255) NOT NULL,
+  `ngay_dang` datetime DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `tintuc`
 --
 
-INSERT INTO `tintuc` (`id`, `tieude`, `noidung`, `hinhanh`) VALUES
-(1, 'Chùa Một Cột - Biểu tượng ngàn năm', '### Giới thiệu về Chùa Một Cột\n\nChùa Một Cột là một trong những biểu tượng văn hóa lâu đời và độc đáo nhất của Việt Nam. Được xây dựng từ thời vua Lý Thái Tông vào năm 1049, chùa mang đậm giá trị lịch sử, kiến trúc và tâm linh. \n\nTên gọi \"Chùa Một Cột\" xuất phát từ hình dáng đặc biệt của ngôi chùa: một gian nhỏ đặt trên một trụ đá duy nhất, tựa như một đóa sen vươn lên từ mặt nước. Đây là một trong những công trình mang đậm dấu ấn Phật giáo, thể hiện lòng thành kính của vua Lý đối với Đức Phật.\n\n---\n\n### Kiến trúc độc đáo\n\nChùa Một Cột có kiến trúc hoàn toàn khác biệt so với các ngôi chùa truyền thống ở Việt Nam. Chùa có các đặc điểm nổi bật sau:\n\n- **Thiết kế hình vuông**, mỗi cạnh khoảng 3m, đặt trên một trụ đá hình trụ có đường kính 1.25m, cao 4m.  \n- **Mái ngói cong**, uốn lượn theo phong cách kiến trúc cung đình thời Lý.  \n- **Cột đá nguyên khối** được chạm khắc tinh xảo, thể hiện kỹ thuật xây dựng vượt trội của thời kỳ phong kiến.  \n- **Bên trong chùa** đặt tượng Phật Quan Âm ngồi trên tòa sen, tượng trưng cho sự thanh tịnh và lòng từ bi.  \n\n---\n\n### Lịch sử và ý nghĩa\n\nTheo sử sách, vua Lý Thái Tông mơ thấy Phật Quan Âm ngồi trên tòa sen, đưa tay dắt nhà vua lên. Khi tỉnh dậy, nhà vua đã cho xây dựng ngôi chùa với hình dáng giống như trong giấc mơ để thể hiện lòng thành kính với Phật. \n\nChùa Một Cột không chỉ là di sản kiến trúc quan trọng mà còn là nơi linh thiêng, thu hút đông đảo Phật tử và du khách trong và ngoài nước. Chùa cũng là biểu tượng của Hà Nội và từng được in trên tiền kim loại Việt Nam.\n\n---\n\n### Bảo tồn và phục dựng\n\nTrải qua hàng trăm năm, Chùa Một Cột đã nhiều lần được trùng tu và sửa chữa:\n\n- **Năm 1105**, vua Lý Nhân Tông cho mở rộng quy mô chùa.  \n- **Thời nhà Trần**, chùa tiếp tục được bảo tồn và duy trì.  \n- **Năm 1954**, thực dân Pháp đã phá hủy chùa trước khi rút khỏi Hà Nội.  \n- **Năm 1955**, Chính phủ Việt Nam cho xây dựng lại chùa dựa trên kiến trúc cũ.  \n\nNgày nay, Chùa Một Cột vẫn là một địa điểm tham quan nổi tiếng, thu hút hàng triệu lượt khách du lịch mỗi năm.  \n\n---\n\nChùa Một Cột không chỉ là biểu tượng kiến trúc mà còn là một phần của lịch sử, văn hóa và tinh thần của dân tộc Việt Nam.', 'chua-mot-cot.jpg'),
-(3, 'Phố cổ Hội An - Di sản văn hóa thế giới', '### Giới thiệu về Hội An\r\n\r\nPhố cổ Hội An là một trong những điểm đến du lịch nổi tiếng nhất của Việt Nam, được UNESCO công nhận là di sản văn hóa thế giới vào năm 1999. Nơi đây từng là một thương cảng sầm uất vào thế kỷ 15-19, với sự giao thoa của nhiều nền văn hóa.\r\n\r\n---\r\n\r\n### Kiến trúc độc đáo\r\n\r\nHội An nổi bật với những ngôi nhà cổ có tuổi đời hàng trăm năm, mái ngói rêu phong, tường vàng đặc trưng và hệ thống đèn lồng lung linh vào ban đêm. Một số địa điểm nổi bật gồm:\r\n\r\n- **Chùa Cầu** - biểu tượng của Hội An, được xây dựng vào cuối thế kỷ 16.\r\n- **Nhà cổ Tấn Ký** - ngôi nhà hơn 200 năm tuổi mang phong cách kiến trúc Trung - Nhật - Việt.\r\n- **Hội quán Quảng Đông** - nơi sinh hoạt tín ngưỡng của người Hoa tại Hội An.\r\n\r\n---\r\n\r\n### Ẩm thực và văn hóa\r\n\r\nHội An còn nổi tiếng với nền ẩm thực phong phú như **cao lầu, mì Quảng, bánh mì Phượng**. Du khách có thể trải nghiệm **thả đèn hoa đăng trên sông Hoài**, thưởng thức nhã nhạc cung đình và khám phá các làng nghề truyền thống.\r\n\r\n---\r\n\r\nHội An không chỉ là một điểm đến du lịch, mà còn là nơi lưu giữ những giá trị văn hóa, lịch sử và tâm hồn của người Việt.', 'hoi-an.jpg'),
-(4, 'Cố đô Huế - Di sản văn hóa thế giới', '### Giới thiệu về Cố đô Huế\r\n\r\nHuế là kinh đô của triều đại nhà Nguyễn từ năm 1802 đến 1945. Nơi đây nổi tiếng với hệ thống di tích lịch sử phong phú và là trung tâm văn hóa quan trọng của Việt Nam.\r\n\r\n---\r\n\r\n### Di tích lịch sử quan trọng\r\n\r\n- **Đại Nội Huế**: Quần thể cung điện hoàng gia, nơi sinh sống và làm việc của vua chúa Nguyễn.\r\n- **Lăng tẩm các vua Nguyễn**: Như lăng Minh Mạng, lăng Tự Đức, lăng Khải Định, mang nét kiến trúc độc đáo.\r\n- **Chùa Thiên Mụ**: Ngôi chùa cổ bên dòng sông Hương, biểu tượng tâm linh của xứ Huế.\r\n\r\n---\r\n\r\n### Ẩm thực xứ Huế\r\n\r\nHuế còn được biết đến với nền ẩm thực cung đình tinh tế như **bún bò Huế, bánh bèo, bánh nậm, cơm hến**. Đặc biệt, nơi đây là quê hương của **nhã nhạc cung đình Huế**, một di sản phi vật thể của UNESCO.\r\n\r\n---\r\n\r\nVới vẻ đẹp cổ kính, trầm mặc và mang đậm dấu ấn lịch sử, Huế luôn là điểm đến lý tưởng cho du khách trong và ngoài nước.', 'hue.jpg');
+INSERT INTO `tintuc` (`id`, `tieude`, `noidung`, `hinhanh`, `ngay_dang`) VALUES
+(1, 'Chùa Một Cột - Biểu tượng ngàn năm', 'Giới thiệu về Chùa Một Cột\r\n\r\nChùa Một Cột là một trong những biểu tượng văn hóa lâu đời và độc đáo nhất của Việt Nam. Được xây dựng từ thời vua Lý Thái Tông vào năm 1049, chùa mang đậm giá trị lịch sử, kiến trúc và tâm linh. \r\n\r\nTên gọi \"Chùa Một Cột\" xuất phát từ hình dáng đặc biệt của ngôi chùa: một gian nhỏ đặt trên một trụ đá duy nhất, tựa như một đóa sen vươn lên từ mặt nước. Đây là một trong những công trình mang đậm dấu ấn Phật giáo, thể hiện lòng thành kính của vua Lý đối với Đức Phật.\r\n\r\n---\r\n\r\n### Kiến trúc độc đáo\r\n\r\nChùa Một Cột có kiến trúc hoàn toàn khác biệt so với các ngôi chùa truyền thống ở Việt Nam. Chùa có các đặc điểm nổi bật sau:\r\n\r\n- **Thiết kế hình vuông**, mỗi cạnh khoảng 3m, đặt trên một trụ đá hình trụ có đường kính 1.25m, cao 4m.  \r\n- **Mái ngói cong**, uốn lượn theo phong cách kiến trúc cung đình thời Lý.  \r\n- **Cột đá nguyên khối** được chạm khắc tinh xảo, thể hiện kỹ thuật xây dựng vượt trội của thời kỳ phong kiến.  \r\n- **Bên trong chùa** đặt tượng Phật Quan Âm ngồi trên tòa sen, tượng trưng cho sự thanh tịnh và lòng từ bi.  \r\n\r\n---\r\n\r\n### Lịch sử và ý nghĩa\r\n\r\nTheo sử sách, vua Lý Thái Tông mơ thấy Phật Quan Âm ngồi trên tòa sen, đưa tay dắt nhà vua lên. Khi tỉnh dậy, nhà vua đã cho xây dựng ngôi chùa với hình dáng giống như trong giấc mơ để thể hiện lòng thành kính với Phật. \r\n\r\nChùa Một Cột không chỉ là di sản kiến trúc quan trọng mà còn là nơi linh thiêng, thu hút đông đảo Phật tử và du khách trong và ngoài nước. Chùa cũng là biểu tượng của Hà Nội và từng được in trên tiền kim loại Việt Nam.\r\n\r\n---\r\n\r\n### Bảo tồn và phục dựng\r\n\r\nTrải qua hàng trăm năm, Chùa Một Cột đã nhiều lần được trùng tu và sửa chữa:\r\n\r\n- **Năm 1105**, vua Lý Nhân Tông cho mở rộng quy mô chùa.  \r\n- **Thời nhà Trần**, chùa tiếp tục được bảo tồn và duy trì.  \r\n- **Năm 1954**, thực dân Pháp đã phá hủy chùa trước khi rút khỏi Hà Nội.  \r\n- **Năm 1955**, Chính phủ Việt Nam cho xây dựng lại chùa dựa trên kiến trúc cũ.  \r\n\r\nNgày nay, Chùa Một Cột vẫn là một địa điểm tham quan nổi tiếng, thu hút hàng triệu lượt khách du lịch mỗi năm.  \r\n\r\n---\r\n\r\nChùa Một Cột không chỉ là biểu tượng kiến trúc mà còn là một phần của lịch sử, văn hóa và tinh thần của dân tộc Việt Nam.', 'chua-mot-cot.jpg', '2025-03-27 17:19:11'),
+(3, 'Phố cổ Hội An - Di sản văn hóa thế giới', 'Giới thiệu về Hội An\r\n\r\nPhố cổ Hội An là một trong những điểm đến du lịch nổi tiếng nhất của Việt Nam, được UNESCO công nhận là di sản văn hóa thế giới vào năm 1999. Nơi đây từng là một thương cảng sầm uất vào thế kỷ 15-19, với sự giao thoa của nhiều nền văn hóa.\r\n\r\n---\r\n\r\n### Kiến trúc độc đáo\r\n\r\nHội An nổi bật với những ngôi nhà cổ có tuổi đời hàng trăm năm, mái ngói rêu phong, tường vàng đặc trưng và hệ thống đèn lồng lung linh vào ban đêm. Một số địa điểm nổi bật gồm:\r\n\r\n- **Chùa Cầu** - biểu tượng của Hội An, được xây dựng vào cuối thế kỷ 16.\r\n- **Nhà cổ Tấn Ký** - ngôi nhà hơn 200 năm tuổi mang phong cách kiến trúc Trung - Nhật - Việt.\r\n- **Hội quán Quảng Đông** - nơi sinh hoạt tín ngưỡng của người Hoa tại Hội An.\r\n\r\n---\r\n\r\n### Ẩm thực và văn hóa\r\n\r\nHội An còn nổi tiếng với nền ẩm thực phong phú như **cao lầu, mì Quảng, bánh mì Phượng**. Du khách có thể trải nghiệm **thả đèn hoa đăng trên sông Hoài**, thưởng thức nhã nhạc cung đình và khám phá các làng nghề truyền thống.\r\n\r\n---\r\n\r\nHội An không chỉ là một điểm đến du lịch, mà còn là nơi lưu giữ những giá trị văn hóa, lịch sử và tâm hồn của người Việt.', 'hoi-an.jpg', '2025-03-27 17:19:11'),
+(4, 'Cố đô Huế - Di sản văn hóa thế giới', 'Giới thiệu về Cố đô Huế\r\n\r\nHuế là kinh đô của triều đại nhà Nguyễn từ năm 1802 đến 1945. Nơi đây nổi tiếng với hệ thống di tích lịch sử phong phú và là trung tâm văn hóa quan trọng của Việt Nam.\r\n\r\n---\r\n\r\n### Di tích lịch sử quan trọng\r\n\r\n- **Đại Nội Huế**: Quần thể cung điện hoàng gia, nơi sinh sống và làm việc của vua chúa Nguyễn.\r\n- **Lăng tẩm các vua Nguyễn**: Như lăng Minh Mạng, lăng Tự Đức, lăng Khải Định, mang nét kiến trúc độc đáo.\r\n- **Chùa Thiên Mụ**: Ngôi chùa cổ bên dòng sông Hương, biểu tượng tâm linh của xứ Huế.\r\n\r\n---\r\n\r\n### Ẩm thực xứ Huế\r\n\r\nHuế còn được biết đến với nền ẩm thực cung đình tinh tế như **bún bò Huế, bánh bèo, bánh nậm, cơm hến**. Đặc biệt, nơi đây là quê hương của **nhã nhạc cung đình Huế**, một di sản phi vật thể của UNESCO.\r\n\r\n---\r\n\r\nVới vẻ đẹp cổ kính, trầm mặc và mang đậm dấu ấn lịch sử, Huế luôn là điểm đến lý tưởng cho du khách trong và ngoài nước.', 'hue.jpg', '2025-03-27 17:19:11'),
+(7, 'test', 'test', 'mu-ao-dau5.jpg', '2025-04-03 19:52:23');
 
 -- --------------------------------------------------------
 
@@ -321,6 +395,13 @@ ALTER TABLE `activity`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `answers`
+--
+ALTER TABLE `answers`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `question_id` (`question_id`);
+
+--
 -- Indexes for table `articles`
 --
 ALTER TABLE `articles`
@@ -353,11 +434,22 @@ ALTER TABLE `feedback`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `images`
+--
+ALTER TABLE `images`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `posts`
 --
 ALTER TABLE `posts`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `UserId` (`UserId`);
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `postss`
+--
+ALTER TABLE `postss`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `restoration_projects`
@@ -394,6 +486,12 @@ ALTER TABLE `users`
 --
 
 --
+-- AUTO_INCREMENT for table `answers`
+--
+ALTER TABLE `answers`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT for table `articles`
 --
 ALTER TABLE `articles`
@@ -409,13 +507,25 @@ ALTER TABLE `blog_articles`
 -- AUTO_INCREMENT for table `feedback`
 --
 ALTER TABLE `feedback`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `images`
+--
+ALTER TABLE `images`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `posts`
 --
 ALTER TABLE `posts`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+
+--
+-- AUTO_INCREMENT for table `postss`
+--
+ALTER TABLE `postss`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `restoration_projects`
@@ -439,7 +549,7 @@ ALTER TABLE `success_stories`
 -- AUTO_INCREMENT for table `tintuc`
 --
 ALTER TABLE `tintuc`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `users`
@@ -452,10 +562,16 @@ ALTER TABLE `users`
 --
 
 --
--- Constraints for table `posts`
+-- Constraints for table `answers`
 --
-ALTER TABLE `posts`
-  ADD CONSTRAINT `posts_ibfk_1` FOREIGN KEY (`UserId`) REFERENCES `users` (`UserId`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `answers`
+  ADD CONSTRAINT `answers_ibfk_1` FOREIGN KEY (`question_id`) REFERENCES `postss` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `comments`
+--
+ALTER TABLE `comments`
+  ADD CONSTRAINT `comments_ibfk_1` FOREIGN KEY (`article_id`) REFERENCES `blog_articles` (`id`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

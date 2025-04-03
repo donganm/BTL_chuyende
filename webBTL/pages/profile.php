@@ -313,6 +313,7 @@ $role = $_SESSION['role'];
                             <li>Danh Sách Di Sản</li>
                             <li>Danh Sách Các Bình Luận</li>
                             <li>Thư Viện Ảnh</li>
+                            <li>Phản Hồi Từ Người Dùng</li>
                         <?php endif; ?>
                         <li><a href="../index.php" style="text-decoration: none;color:yellow;">Trở lại</a></li>
                     </ul>
@@ -601,6 +602,42 @@ $role = $_SESSION['role'];
                         </tbody>
                 </table>
             </div>
+
+            <!-- Feedback -->
+            <div id="manage_feedback" class="content-section" style="display: none;">
+                <p>Quản lý feedback</p>
+                <p>Xem phản hồi từ người dùng để cải thiện hệ thống..</p>
+                <table class="product-table">
+                    <thead>
+                        <tr>
+                            <th>Tên Người Dùng</th>
+                            <th>Email</th>
+                            <th>Phản Hồi</th>
+                            <th>Thời Gian</th>
+                            <th>Chức Năng</th>
+                        </tr>
+                    </thead>
+                    <?php
+                    $sql = "Select * from feedback";
+                    $result = mysqli_query($conn, $sql);
+                    while ($row = mysqli_fetch_array($result)) {
+                        $id = $row['id'];
+
+                    ?>
+                        <tbody>
+                            <tr>
+                                <td><?php echo $row['name']; ?></td>
+                                <td><?php echo $row['email']; ?></td>
+                                <td><?php echo $row['message']; ?></td>
+                                <td><?php echo $row['created_at']; ?></td>
+                                <td>
+                                    <a class="update" href="../logic/delete_feedback.php?id=<?php echo $id; ?>">Xóa</a>
+                                </td>
+                            </tr>
+                        <?php } ?>
+                        </tbody>
+                </table>
+            </div>
         </div>
     <?php } ?>
     </div>
@@ -644,6 +681,11 @@ $role = $_SESSION['role'];
             {
                 menu: ".menu li:nth-child(6)",
                 content: "manage_images", // thư viện ảnh
+                condition: "Admin" // Chỉ hiển thị nếu vai trò là Admin
+            },
+            {
+                menu: ".menu li:nth-child(7)",
+                content: "manage_feedback", // thư viện ảnh
                 condition: "Admin" // Chỉ hiển thị nếu vai trò là Admin
             }
         ];

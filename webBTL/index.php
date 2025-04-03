@@ -204,7 +204,7 @@ session_start();
       </div>
       <div class="box4_phai">
         <div>
-          <h2>Phố cổ Hội An</h2>
+          <h2>Phố cổ Hội An - Di sản văn hóa thế giới</h2>
           <p>
             Phố cổ Hội An là một trong những di sản văn hóa thế giới được
             UNESCO công nhận, nổi bật với kiến trúc cổ kính, đèn lồng rực rỡ
