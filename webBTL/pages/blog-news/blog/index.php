@@ -27,12 +27,25 @@ if (!empty($search)) {
 $sort = isset($_GET['sort']) ? $_GET['sort'] : 'latest';
 $orderBy = $sort === 'popular' ? 'luot_xem DESC' : 'ngay_dang DESC';
 
+// Phân trang: xác định số lượng bài viết trên mỗi trang
+$limit = 3; // Giới hạn 3 bài viết mỗi trang
+$page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+$offset = ($page - 1) * $limit;
+
+// Cập nhật câu truy vấn với phân trang
 $sql = "SELECT id, title, tac_gia, description, hinhanh, ngay_dang, luot_xem, luot_thich 
         FROM blog_articles 
         $searchSql 
-        ORDER BY $orderBy";
+        ORDER BY $orderBy
+        LIMIT $limit OFFSET $offset";
 
 $result = $conn->query($sql);
+
+// Tính số lượng trang
+$totalSql = "SELECT COUNT(*) AS total FROM blog_articles $searchSql";
+$totalResult = $conn->query($totalSql);
+$totalRows = $totalResult->fetch_assoc()['total'];
+$totalPages = ceil($totalRows / $limit);
 
 ?>
 
@@ -45,6 +58,18 @@ $result = $conn->query($sql);
     <link rel="stylesheet" href="../styles/blog.css">
     <link rel="stylesheet" href="../includes/nav.css">
     <style>
+        .btn-primary {
+            padding: 7px 15px;
+            background:rgb(41, 185, 118);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            cursor: pointer;
+            transition: background 0.3s;
+            margin-left: 10px;
+        }
+
         .blog-container {
             max-width: 800px;
             margin: auto;
@@ -118,6 +143,29 @@ $result = $conn->query($sql);
             border-radius: 6px;
             text-decoration: none;
         }
+
+        .pagination {
+            text-align: center;
+            margin-top: 2rem;
+        }
+
+        .pagination a {
+            padding: 5px 10px;
+            margin: 0 5px;
+            background: #f1f1f1;
+            color: #333;
+            border-radius: 4px;
+            text-decoration: none;
+        }
+
+        .pagination a.active {
+            background: #007BFF;
+            color: white;
+        }
+
+        .pagination a:hover {
+            background: #ddd;
+        }
     </style>
 </head>
 
@@ -167,8 +215,7 @@ $result = $conn->query($sql);
                             Viết bởi <strong><?= htmlspecialchars($blog["tac_gia"]) ?></strong> • <?= date("d/m/Y", strtotime($blog["ngay_dang"])) ?>
                         </p>
                         <blockquote class="blog-post-quote">
-                            “<?= mb_substr(strip_tags($blog["description"]), 0, 100, 'UTF-8') ?>...”
-                        </blockquote>
+                            “<?= mb_substr(strip_tags($blog["description"]), 0, 100, 'UTF-8') ?>...”</blockquote>
                         <p class="blog-post-summary"><?= $summary ?></p>
                         <p class="blog-post-stats">
                             👁️ <?= $randomView ?> lượt xem • ❤️ <?= $randomLike ?> thích • 💬 <?= $randomComment ?> bình luận
@@ -190,6 +237,21 @@ $result = $conn->query($sql);
                 <p>Bạn có thể bắt đầu bằng một bài viết chia sẻ hành trình của mình.</p>
             </div>
         <?php endif; ?>
+
+        <!-- Phân trang -->
+        <div class="pagination">
+            <?php if ($page > 1): ?>
+                <a href="?page=<?= $page - 1 ?>&search=<?= urlencode($search) ?>" class="prev">← Trang trước</a>
+            <?php endif; ?>
+
+            <?php for ($i = 1; $i <= $totalPages; $i++): ?>
+                <a href="?page=<?= $i ?>&search=<?= urlencode($search) ?>" class="<?= $i == $page ? 'active' : '' ?>"><?= $i ?></a>
+            <?php endfor; ?>
+
+            <?php if ($page < $totalPages): ?>
+                <a href="?page=<?= $page + 1 ?>&search=<?= urlencode($search) ?>" class="next">Trang sau →</a>
+            <?php endif; ?>
+        </div>
     </div>
 
 

@@ -2,7 +2,7 @@
     <div class="header">
         <!-- Tiêu đề và mô tả -->
         <?php 
-            include("header-content.php");
+            include("header-content-blog.php");
         ?>
         <!-- Thanh điều hướng -->
         <nav>
