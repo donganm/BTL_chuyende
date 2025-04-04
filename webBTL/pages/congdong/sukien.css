@@ -5,18 +5,7 @@ body {
     background: #f4f4f4;
 }
 /* navbar */
-.navbar {
-    display: flex;
-    justify-content: space-between; /* Căn đều các phần tử */
-    align-items: center;
-    background: #007bff; /* Màu xanh */
-    color: white;
-    padding: 15px 30px;
-    width: 100%; /* Đảm bảo chiếm toàn bộ chiều rộng */
-    position: sticky; /* Dính khi cuộn */
-    top: 0; /* Dính vào đầu trang khi cuộn đến */
-    z-index: 1000; /* Đảm bảo navbar nằm trên các phần tử khác */
-}
+
 .nav-links a {
     color: white;
     font-size: 18px;

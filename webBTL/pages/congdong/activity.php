@@ -39,6 +39,9 @@ $conn->close();
 
 </head>
 <style>
+    body{
+      font-family: Arial, sans-serif;
+    }
     .navbar {
     background: #007bff; /* Màu xanh UNESCO */
     padding: 10px 0;
@@ -165,7 +168,7 @@ footer {
                     <div class="activity-content">
                         <h3><?= htmlspecialchars($activity['title']) ?></h3>
                         <p><?= substr(htmlspecialchars($activity['description']), 0, 100) ?>...</p>
-                        <a href="activity_detail.php?id=<?= $activity['id'] ?>" class="btn">Xem thêm</a>
+                        <a href="activity-detail.php?id=<?= $activity['id'] ?>" class="btn">Xem thêm</a>
                     </div>
                 </div>
             <?php endforeach; ?>

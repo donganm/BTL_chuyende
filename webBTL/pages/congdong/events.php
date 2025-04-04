@@ -38,19 +38,19 @@ $conn->close();
     <link rel="stylesheet" href="sukien.css">
 </head>
 <style>
-* navbar */
 .navbar {
     display: flex;
-    justify-content: space-between; /* Căn đều các phần tử */
+    justify-content: center; /* Căn đều các phần tử */
     align-items: center;
     background: #007bff; /* Màu xanh */
     color: white;
-    padding: 15px 30px;
+    padding: 15px 20px;
     width: 100%; /* Đảm bảo chiếm toàn bộ chiều rộng */
     position: sticky; /* Dính khi cuộn */
     top: 0; /* Dính vào đầu trang khi cuộn đến */
     z-index: 1000; /* Đảm bảo navbar nằm trên các phần tử khác */
-}
+    max-width: 100vw;
+  }
 
     .event-header {
     width: 100%;
@@ -200,7 +200,7 @@ footer {
 
     <!-- Thanh tìm kiếm -->
     <div class="search-container">
-        <form action="activity.php" method="GET">
+        <form action="events.php" method="GET">
             <input type="text" name="search" id="search" placeholder="Tìm kiếm sự kiện..." value="<?= htmlspecialchars($search) ?>">
             <button type="submit">Tìm kiếm</button>
         </form>
