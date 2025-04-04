@@ -219,6 +219,107 @@ $result = $conn->query($sql);
             /* không ăn css body */
             width: 100%;
         }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 10;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.7);
+
+        }
+
+        .modal-content {
+            display: flex;
+            flex-direction: column;
+            background: white;
+            margin: 3% auto;
+            padding: 0;
+            border-radius: 20px;
+            width: 60%;
+            max-width: 900px;
+            overflow: hidden;
+            margin-top: 100px;
+        }
+
+        .modal-body {
+            display: flex;
+        }
+
+        .modal-image {
+            flex: 1;
+            padding: 20px;
+        }
+
+        .modal-image img {
+            width: 100%;
+            border-radius: 16px;
+        }
+
+        .modal-details {
+            flex: 1;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .btn.save {
+            background-color: #e60023;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+        }
+
+        .actions span {
+            margin-left: 15px;
+            cursor: pointer;
+        }
+
+        .description {
+            margin-top: 20px;
+            padding: 10px;
+            border-top: 1px solid #ddd;
+            font-size: 14px;
+        }
+
+        .comments {
+            margin-top: 20px;
+        }
+
+        .comment-input input {
+            width: 90%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 20px;
+            margin-top: 10px;
+        }
+
+        .close {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            color: #aaa;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .close:hover {
+            color: #ff6b81;
+        }
     </style>
 </head>
 
@@ -264,7 +365,7 @@ $result = $conn->query($sql);
             <?php
             if ($result->num_rows > 0) {
                 while ($row = $result->fetch_assoc()) {
-                    echo '<div class="gallery-item">';
+                    echo '<div class="gallery-item" data-image="' . $row['image_path'] . '" data-description="' . htmlspecialchars($row['description']) . '">';
                     echo '<img src="' . $row['image_path'] . '" alt="' . htmlspecialchars($row['description']) . '">';
                     echo '</div>';
                 }
@@ -273,6 +374,39 @@ $result = $conn->query($sql);
             }
             ?>
         </div>
+
+        <!-- Modal -->
+        <div id="myModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <div class="modal-body">
+                    <!-- Bên trái: Hình ảnh -->
+                    <div class="modal-image">
+                        <img id="modalImage" src="" alt="Selected Image">
+                    </div>
+
+                    <!-- Bên phải: Mô tả và bình luận -->
+                    <div class="modal-details">
+                        <div class="modal-header">
+                            <button class="btn save">Lưu</button>
+                            <div class="actions">
+                                <span><i class="fas fa-heart"></i></span>
+                                <span><i class="fas fa-download"></i></span>
+                                <!-- <span><i class="fas fa-ellipsis-h"></i></span> -->
+                                <span><i class="fa-solid fa-share"></i></span>
+                            </div>
+                        </div>
+                        <div class="description" id="modalDescription"></div>
+                        <div class="comments">
+                            <h3>12 Nhận xét</h3>
+                            <div class="comment-input">
+                                <input type="text" placeholder="Thêm nhận xét">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </main>
     <!-- Footer  -->
     <footer>
@@ -280,6 +414,73 @@ $result = $conn->query($sql);
     </footer>
 
     <!-- End Footer -->
+    <script>
+        const modal = document.getElementById("myModal");
+        const modalImage = document.getElementById("modalImage");
+        const modalDescription = document.getElementById("modalDescription");
+        const closeBtn = document.getElementsByClassName("close")[0];
+
+        // Hiển thị modal khi bấm vào ảnh
+        document.querySelectorAll('.gallery-item').forEach(item => {
+            item.addEventListener('click', function() {
+                const imagePath = this.getAttribute('data-image');
+                const imageDescription = this.getAttribute('data-description');
+
+                modalImage.src = imagePath;
+                modalDescription.innerText = imageDescription;
+                modal.style.display = "block";
+            });
+        });
+
+        // Đóng modal khi nhấn vào nút X
+        closeBtn.onclick = function() {
+            modal.style.display = "none";
+        }
+
+        // Đóng modal khi nhấn ra ngoài vùng modal
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+
+        // Tải xuống
+        const downloadIcon = document.querySelector('.actions span:nth-child(2)'); // Chọn icon thứ 2 (biểu tượng download)
+
+        downloadIcon.onclick = function() {
+            const imagePath = modalImage.src;
+
+            // Tạo một thẻ <a> ẩn để tải xuống
+            const link = document.createElement('a');
+            link.href = imagePath;
+            link.download = imagePath.substring(imagePath.lastIndexOf('/') + 1); // Lấy tên file từ đường dẫn
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+
+        //Chia sẻ
+        const shareIcon = document.querySelector('.actions span:nth-child(3)'); // Chọn icon thứ 3 (biểu tượng chia sẻ)
+
+        shareIcon.onclick = function() {
+            const imagePath = modalImage.src;
+
+            if (navigator.share) { // Kiểm tra nếu trình duyệt hỗ trợ API chia sẻ web
+                navigator.share({
+                    title: 'Chia sẻ hình ảnh',
+                    text: 'Xem hình ảnh này!',
+                    url: imagePath
+                }).then(() => {
+                    alert('Chia sẻ thành công!');
+                }).catch((error) => {
+                    alert('Chia sẻ thất bại: ' + error);
+                });
+            } else {
+                // Nếu trình duyệt không hỗ trợ Web Share API, thông báo lỗi
+                alert('Trình duyệt của bạn không hỗ trợ chức năng chia sẻ.');
+            }
+        }
+    </script>
 
 </body>
 
