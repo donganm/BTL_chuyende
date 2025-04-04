@@ -22,6 +22,14 @@ ul {
 }
 
 /* Header */
+.header_container{
+  width: 100%;
+  position: fixed; /*Cho menu cố định 1 vị trí với top và left*/
+  top: 0; /*Nằm trên cùng*/
+  left: 0; /*Nằm sát bên trái*/
+  z-index: 100000; /*Hiển thị lớp trên cùng*/
+}
+
 .header {
   background-color: #ebebeb;
   /* color: white; */
@@ -30,17 +38,21 @@ ul {
   font-size: 10px;
   letter-spacing: 2px;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
+
 }
 
 /* Navigation Menu */
 .menu {
+  
   background-color: #f8f6f6;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 15px 50px;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  
 }
+
 
 .menu .box1 {
   font-size: 22px;
@@ -79,7 +91,7 @@ ul {
   height: 700px;
   position: relative;
   overflow: hidden;
-  
+  margin-top: 100px;
 }
 
 .slider figure{
@@ -118,7 +130,7 @@ ul {
 }
 
 .slider figure:nth-child(5){
-  background-image: url('./assets/img/trangchu/2.webp');
+  background-image: url('./assets/img/trangimage/background.png');
   animation-delay: -16s;
 }
 
@@ -208,7 +220,7 @@ ul {
 }
 
 .trangchu .box3 button:hover {
-  background: #0056b3;
+  background: #8f6f5a;
 } 
 
 .trangchu .box4 {

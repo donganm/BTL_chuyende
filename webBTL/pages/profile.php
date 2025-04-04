@@ -12,6 +12,7 @@ if (!isset($_SESSION['user'])) {
 $role = $_SESSION['role'];
 ?>
 
+
 <!DOCTYPE html>
 <html lang="vi">
 
@@ -264,7 +265,11 @@ $role = $_SESSION['role'];
         .product-table tr:hover {
             background-color: #f1f1f1;
         }
-        
+
+        /* Thư viện ảnh */
+        .add_image {
+            margin-bottom: 50px;
+        }
     </style>
 </head>
 
@@ -281,7 +286,8 @@ $role = $_SESSION['role'];
 
             ?>
                 <div class="profile-section">
-                    <img class="avatar" src="<?php echo $row['Avatar'] ?>" alt="Avatar" />
+                    <img class="avatar" src="<?php echo !empty($row['Avatar']) ? $row['Avatar'] : '../uploads/default-avatar.png'; ?>" alt="Avatar" />
+
                     <div class="details">
                         <div class="name"><?php echo $row['FullName']; ?></div>
 
@@ -297,7 +303,7 @@ $role = $_SESSION['role'];
                         <li>Đổi Mật Khẩu</li>
                         <?php if ($role == 'User'): ?>
                             <li>Quản Lý Bài Đăng</li>
-                            <li>Danh Sách Yêu Thích</li>
+                            <!-- <li>Danh Sách Yêu Thích</li> -->
 
                         <?php endif; ?>
 
@@ -305,7 +311,9 @@ $role = $_SESSION['role'];
                         <?php if ($role == 'Admin'): ?>
                             <li>Quản Lý Người Dùng</li>
                             <li>Danh Sách Di Sản</li>
-                            <li>Thống Kê</li>
+                            <li>Danh Sách Các Bình Luận</li>
+                            <li>Thư Viện Ảnh</li>
+                            <li>Phản Hồi Từ Người Dùng</li>
                         <?php endif; ?>
                         <li><a href="../index.php" style="text-decoration: none;color:yellow;">Trở lại</a></li>
                     </ul>
@@ -318,7 +326,7 @@ $role = $_SESSION['role'];
                 <p>Hồ Sơ Của Tôi</p>
                 <p>Quản lý thông tin hồ sơ để bảo mật tài khoản</p>
                 <hr />
-                <form action="../logic/process_user_update.php" method="POST">
+                <form action="../logic/process_user_update.php" method="POST" enctype="multipart/form-data">
                     <input type="hidden" name="UserId" value="<?php echo $row['UserId']; ?>" />
                     <div class="form-group">
                         <label for="username">Tên đăng nhập</label>
@@ -356,7 +364,7 @@ $role = $_SESSION['role'];
                         <label>Avatar</label>
                         <input type="file" name="fileToUpload" id="fileToUpload">
                     </div>
-                    
+
                     <button type="submit" class="save-btn">Lưu</button>
                 </form>
 
@@ -418,7 +426,7 @@ $role = $_SESSION['role'];
                         </tr>
                     </thead>
                     <?php
-                    $sql = "Select * from hue_heritage";
+                    $sql = "Select * from articles";
                     $result = mysqli_query($conn, $sql);
                     while ($row = mysqli_fetch_array($result)) {
                         $id = $row['id'];
@@ -430,7 +438,7 @@ $role = $_SESSION['role'];
                                 <td><?php echo $row['title']; ?></td>
                                 <td><?php echo $row['description']; ?></td>
                                 <td>
-                                    <a class="update" href="../logic/delete_user.php?id=<?php echo $id; ?>">Xóa</a>
+                                    <a class="update" href="../logic/delete_disan.php?id=<?php echo $id; ?>">Xóa</a>
                                 </td>
                             </tr>
                         <?php } ?>
@@ -448,11 +456,12 @@ $role = $_SESSION['role'];
                             <th>STT</th>
                             <th>Bài Viết</th>
                             <th>Mô Tả</th>
+                            <th>Thời Gian Tạo</th>
                             <th>Chức Năng</th>
                         </tr>
                     </thead>
                     <?php
-                    $sql = "Select * from articles";
+                    $sql = "Select * from posts";
                     $result = mysqli_query($conn, $sql);
                     while ($row = mysqli_fetch_array($result)) {
                         $id = $row['id'];
@@ -462,9 +471,11 @@ $role = $_SESSION['role'];
                             <tr>
                                 <td><?php echo $row['id']; ?></td>
                                 <td><?php echo $row['title']; ?></td>
-                                <td><?php echo $row['description']; ?></td>
+                                <td><?php echo $row['content']; ?></td>
+                                <td><?php echo $row['created_at']; ?></td>
+
                                 <td>
-                                    <a class="update" href="../logic/delete_user.php?id=<?php echo $id; ?>">Xóa</a>
+                                    <a class="update" href="../logic/delete_baidang.php?id=<?php echo $id; ?>">Xóa</a>
                                 </td>
                             </tr>
                         <?php } ?>
@@ -507,15 +518,125 @@ $role = $_SESSION['role'];
             </div>
 
             <!-- Danh sách yêu thích -->
-            <div id="favorites-content" class="content-section" style="display: none;">
+            <!-- <div id="favorites-content" class="content-section" style="display: none;">
                 <p>Danh sách yêu thích</p>
-                <p>Danh sách di sản bạn yêu thích</p>
+                <p>Danh sách các di tích yêu thích</p>
+                
+            </div> -->
+
+            <!-- Quản lý bình luận -->
+            <div id="statistics-content" class="content-section" style="display: none;">
+                <p>Comments</p>
+                <p>Quản lý, xóa bình luận tiêu cực..</p>
+                <table class="product-table">
+                    <thead>
+                        <tr>
+                            <th>Tên Người Dùng</th>
+                            <th>Bình Luận</th>
+                            <th>Ngày Tạo</th>
+                            <th>Chức Năng</th>
+                        </tr>
+                    </thead>
+                    <?php
+                    $sql = "Select * from comments";
+                    $result = mysqli_query($conn, $sql);
+                    while ($row = mysqli_fetch_array($result)) {
+                        $id = $row['id'];
+
+                    ?>
+                        <tbody>
+                            <tr>
+                                <td><?php echo $row['username']; ?></td>
+                                <td><?php echo $row['content']; ?></td>
+                                <td><?php echo $row['created_at']; ?></td>
+                                <td>
+                                    <a class="update" href="../logic/delete_binhluan.php?id=<?php echo $id; ?>">Xóa</a>
+                                </td>
+                            </tr>
+                        <?php } ?>
+                        </tbody>
+                </table>
             </div>
 
-            <!-- Thống kê -->
-            <div id="statistics-content" class="content-section" style="display: none;">
-                <p>Thống Kê</p>
-                <p>Thống kê số lượng người dùng, bài đăng...</p>
+            <!-- Quản lý thư viện ảnh -->
+            <div id="manage_images" class="content-section" style="display: none;">
+                <div class="add_image">
+                    <p>Thư viện ảnh</p>
+                    <p>Thêm ảnh</p>
+                    <form action="../logic/uploads_image.php" method="POST" enctype="multipart/form-data">
+                        <input type="file" name="fileToUpload" id="fileToUpload">
+                        <button type="submit" style="padding: 5px;">Lưu</button>
+                    </form>
+
+                </div>
+
+
+                <p>Quản lý ảnh, cập nhật, xóa ảnh..</p>
+                <table class="product-table">
+                    <thead>
+                        <tr>
+                            <th>Ảnh</th>
+                            <th>Mô Tả</th>
+
+                            <th>Chức Năng</th>
+                        </tr>
+                    </thead>
+                    <?php
+                    $sql = "Select * from images";
+                    $result = mysqli_query($conn, $sql);
+                    while ($row = mysqli_fetch_array($result)) {
+                        $id = $row['id'];
+
+                    ?>
+                        <tbody>
+                            <tr>
+                                <td><?php echo $row['image_path']; ?></td>
+                                <td><?php echo $row['description']; ?></td>
+
+                                <td>
+                                    <a class="update" href="../logic/update_image.php?id=<?php echo $id; ?>">Cập nhật</a>
+                                    <a class="update" href="../logic/delete_image.php?id=<?php echo $id; ?>">Xóa</a>
+                                </td>
+                            </tr>
+                        <?php } ?>
+                        </tbody>
+                </table>
+            </div>
+
+            <!-- Feedback -->
+            <div id="manage_feedback" class="content-section" style="display: none;">
+                <p>Quản lý feedback</p>
+                <p>Xem phản hồi từ người dùng để cải thiện hệ thống..</p>
+                <table class="product-table">
+                    <thead>
+                        <tr>
+                            <th>Tên Người Dùng</th>
+                            <th>Email</th>
+                            <th>Phản Hồi</th>
+                            <th>Thời Gian</th>
+                            <th>Chức Năng</th>
+                        </tr>
+                    </thead>
+                    <?php
+                    $sql = "Select * from feedback";
+                    $result = mysqli_query($conn, $sql);
+                    while ($row = mysqli_fetch_array($result)) {
+                        $id = $row['id'];
+
+                    ?>
+                        <tbody>
+                            <tr>
+                                <td><?php echo $row['name']; ?></td>
+                                <td><?php echo $row['email']; ?></td>
+                                <td><?php echo $row['message']; ?></td>
+                                <td><?php echo $row['created_at']; ?></td>
+                                <td>
+                                    <a class="update" href="../logic/delete_feedback.php?id=<?php echo $id; ?>">Xóa</a>
+                                </td>
+                            </tr>
+                        <?php } ?>
+                        </tbody>
+                </table>
             </div>
         </div>
     <?php } ?>
@@ -554,7 +675,17 @@ $role = $_SESSION['role'];
             },
             {
                 menu: ".menu li:nth-child(5)",
-                content: "statistics-content", // Thống kê
+                content: "statistics-content", // Bình luận
+                condition: "Admin" // Chỉ hiển thị nếu vai trò là Admin
+            },
+            {
+                menu: ".menu li:nth-child(6)",
+                content: "manage_images", // thư viện ảnh
+                condition: "Admin" // Chỉ hiển thị nếu vai trò là Admin
+            },
+            {
+                menu: ".menu li:nth-child(7)",
+                content: "manage_feedback", // thư viện ảnh
                 condition: "Admin" // Chỉ hiển thị nếu vai trò là Admin
             }
         ];

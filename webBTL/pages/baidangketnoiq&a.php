@@ -29,6 +29,7 @@
                 background-color: white;
                 padding: 0px 200px;
                 box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+                
             }
             .logo {
                 font-size: 30px;
@@ -46,7 +47,7 @@
                 border-radius: 5px;
                 width: 300px;
             }
-            .taobaidang {
+            .timkiem {
                 background-color: #b92b27;
                 color: white;
                 border: none;
@@ -196,22 +197,25 @@
             <div class="logo">Q&A</div>
             <div class="menu">
                 <ul class="menungang">
-                    <li><a href="baidangketnoiq&a.php">Trang chủ</a></li>
-                    <li><a href="">Theo dõi</a></li>
-                    <li><a href="traloi.php">Trả lời</a></li>
-                    <li><a href="">Thông báo</a></li>
                     <li><a href="baidangketnoiq&a.php">Về Q&A</a></li>
+                    <li><a href="theodoi.php">Theo dõi</a></li>
+                    <li><a href="traloi.php">Trả lời</a></li>
+                    <li><a href="thongbao.php">Thông báo</a></li>
+                    <li><a href="../index.php">Home</a></li>
                 </ul>
             </div>
             <div class="header-icons">
-                <input type="text" class="search-bar" placeholder="Tìm kiếm...">
-                <button class="taobaidang" id="openModalBtn">Tạo bài đăng</button>
+            <form action="search.php" method="GET" style="display: flex; align-items: center; gap: 15px;">
+            <input type="text" name="q" class="search-bar" placeholder="Tìm kiếm...">
+                <button type = "submit" class="timkiem">Tìm kiếm</button>
             </div>
+            </form>
         </div>
         
         <!-- Thanh công cụ để kích hoạt đăng bài -->
         <div class="thanhcongcu">
             <img src="../assets/img/avata1.jpg" alt="Avatar" class="avatar">
+            <!-- Khi click vào ô này, form đăng bài sẽ hiển thị -->
             <input type="text" placeholder="Bạn muốn hỏi hoặc chia sẻ điều gì?" id="triggerInput" readonly>
         </div>
         
@@ -259,7 +263,7 @@
             $conn->close();
             ?>
 
-            <!-- Bài viết cố đô Huế (bài cố định, hiển thị sau các bài từ DB) -->
+            <!-- Bài viết cố định hiển thị sau các bài từ DB -->
             <div class="post">
                 <div class="user-info">
                     <img src="../assets/img/avata1.jpg" alt="Avatar" class="avatar">
@@ -273,18 +277,8 @@
                 <p>Quần thể Di tích Cố đô Huế được UNESCO công nhận là Di sản Thế giới vào năm 1993 nhờ vào những giá trị nổi bật về lịch sử, văn hóa, kiến trúc và cảnh quan.</p>
                 <img class="anhto" src="../assets/img/codohue.jpg" alt="">
                 <p>
-                    1. Giá trị lịch sử và văn hóa<br>
-                    Kinh đô triều Nguyễn (1802-1945): Huế từng là trung tâm chính trị, văn hóa và tôn giáo của Việt Nam dưới triều Nguyễn.<br>
-                    Bảo tồn văn hóa cung đình: Cố đô Huế lưu giữ nhiều giá trị văn hóa từ tổ chức triều chính đến nghi lễ và nghệ thuật cung đình.<br>
-                    Di sản văn hóa phi vật thể: Nhã nhạc cung đình Huế được UNESCO công nhận vào năm 2003.<br>
-                    2. Giá trị kiến trúc độc đáo<br>
-                    Hệ thống cung điện, lăng tẩm và đền đài với sự hài hòa giữa kiến trúc và thiên nhiên.<br>
-                    3. Giá trị nghệ thuật và kỹ thuật xây dựng<br>
-                    Trang trí tinh xảo và kỹ thuật xây dựng bền vững.<br>
-                    4. Giá trị cảnh quan và môi trường<br>
-                    Vị trí bên dòng sông Hương và bảo tồn hệ sinh thái tự nhiên.
+                Nơi đây từng là kinh đô của triều đại Nguyễn với các công trình như kinh thành, lăng tẩm, đền đài và chùa chiền độc đáo. Di tích không chỉ phản ánh sự phát triển của nền văn hóa Việt Nam mà còn là nơi giao thoa của các giá trị nghệ thuật, truyền thống và phong tục tập quán, góp phần làm giàu thêm di sản nhân loại.
                 </p>
-                <img class="anhto" src="../assets/img/giatrivanhoalichsu.jpg" alt="">
             </div>
         </div>
         
@@ -304,7 +298,6 @@
         
         <script>
             const triggerInput = document.getElementById("triggerInput");
-            const openModalBtn = document.getElementById("openModalBtn");
             const modal = document.getElementById("postModal");
             const overlay = document.getElementById("overlay");
             const closeModalBtn = document.getElementById("closeModal");
@@ -318,7 +311,6 @@
                 overlay.style.display = "none";
             }
             triggerInput.addEventListener("click", openModal);
-            openModalBtn.addEventListener("click", openModal);
             closeModalBtn.addEventListener("click", closeModal);
             overlay.addEventListener("click", closeModal);
         </script>

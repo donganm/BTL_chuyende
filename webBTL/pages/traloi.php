@@ -134,16 +134,16 @@
             <div class="logo">Q&A</div>
             <div class="menu">
                 <ul class="menungang">
-                    <li><a href="../index.php">Trang chủ</a></li>
-                    <li><a href="">Theo dõi</a></li>
-                    <li><a href="">Trả lời</a></li>
-                    <li><a href="">Thông báo</a></li>
                     <li><a href="baidangketnoiq&a.php">Về Q&A</a></li>
+                    <li><a href="theodoi.php">Theo dõi</a></li>
+                    <li><a href="traloi.php">Trả lời</a></li>
+                    <li><a href="thongbao.php">Thông báo</a></li>
+                    <li><a href="../index.php">Home</a></li>
                 </ul>
             </div>
             <div class="header-icons">
                 <input type="text" class="search-bar" placeholder="Tìm kiếm...">
-                <button class="add-question">Tạo bài đăng</button>
+                <button class="add-question">Tìm kiếm</button>
             </div>
         </div>
         <div class="hop">
@@ -152,7 +152,7 @@
                 <hr>
                 <ul>
                     <li><button onclick="showQuestions()">Câu hỏi dành cho bạn</button></li>
-                    <li><button onclick="showDrafts()">Bản nháp</button></li>
+                    <li><button onclick="showDrafts()">Câu trả lời của bạn</button></li>
                 </ul>
             </div>
             <div class="container" id="questions-container">
@@ -197,9 +197,9 @@
             </div>
         
             <div class="container hidden" id="drafts-container">
-                <h2>Bản nháp</h2>
+                <h2>Câu trả lời của bạn</h2>
                 <hr>
-                <p>Chưa có bản nháp nào.</p>
+                <p>Chưa có câu trả lời nào.</p>
             </div>
         </div>
         <script>

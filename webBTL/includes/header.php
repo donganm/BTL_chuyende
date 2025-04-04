@@ -8,13 +8,13 @@
     <link
         rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
     <style>
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f4f4f4;
+            /* background-color: #f4f4f4; */
         }
 
         a {
@@ -30,6 +30,15 @@
         }
 
         /* Header */
+
+        .header_container {
+            width: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 100000;
+        }
+
         .header {
             background-color: #ebebeb;
             /* color: white; */
@@ -80,7 +89,46 @@
         }
 
         /* END HEADER */
+        /* Hiệu ứng làm mờ */
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 9;
+        }
 
+        /* Cửa sổ đăng nhập */
+        .login-modal {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 500px;
+            height: 400px;
+            background: white;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            z-index: 10;
+        }
+
+        .login-modal iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 20px;
+            cursor: pointer;
+        }
 
         /* Footer  */
         .footer_1 {
@@ -126,39 +174,47 @@
 
 <body>
     <!-- Header -->
-    <div class="header">Welcome to Global Heritage...</div>
+    <div class="header_container">
+        <div class="header">Welcome to Global Heritage...</div>
 
-    <!-- Navigation Menu -->
-    <div class="menu">
-        <div class="box1"><a href="../index.php">G.H</a></div>
-        <div class="box2">
-            <ul>
-                <li><a href="gh.php">Global Heritage</a></li>
-                <li><a href="image.php">Photo Gallery</a></li>
-                <li><a href="about.php">About Us</a></li>
-                <li><a href="contact.php">Contact Us</a></li>
-                <li style="color: red; font-weight: bold"><a href="feedback.php">Feedback</a></li>
-            </ul>
-        </div>
-        <div class="box3">
-            <?php if (isset($_SESSION['user'])): ?>
-                <div class="header__search-signin-des" id="user" onclick="">
-                    <a
-                        href="profile.php"
-                        style="text-decoration: none; color: #444"><?php echo $_SESSION['user']; // Hiển thị tên người dùng 
-                                                                    ?></a>
-                </div>
-                <div>
-                    <a
-                        href="logout.php"
-                        style="text-decoration: none; color: #444"
-                        class="header__search-signout">Đăng xuất</a>
-                </div>
-            <?php else: ?>
-                <div class="header__search-signin-des" id="signin">
-                    <a href="login.php" style="text-decoration: none; color: #444">Đăng nhập</a>
-                </div>
-            <?php endif; ?>
+        <!-- Navigation Menu -->
+        <div class="menu">
+            <div class="box1"><a href="../index.php">G.H</a></div>
+            <div class="box2">
+                <ul>
+                    <li><a href="gh.php">Global Heritage</a></li>
+                    <li><a href="image.php">Photo Gallery</a></li>
+                    <li><a href="about.php">About Us</a></li>
+                    <!-- <li><a href="contact.php">Contact Us</a></li> -->
+                    <li style="color: red; font-weight: bold"><a href="feedback.php">Feedback</a></li>
+                </ul>
+            </div>
+            <div class="box3">
+                <?php if (isset($_SESSION['user'])): ?>
+                    <div class="header__search-signin-des" id="user" onclick="">
+                        <a
+                            href="profile.php"
+                            style="text-decoration: none; color: #444"><?php echo $_SESSION['user']; // Hiển thị tên người dùng 
+                                                                        ?></a>
+                    </div>
+                    <div>
+                        <a
+                            href="logout.php"
+                            style="text-decoration: none; color: #444"
+                            class="header__search-signout">Đăng xuất</a>
+                    </div>
+                <?php else: ?>
+                    <div class="header__search-signin-des" id="signin">
+                        <a href="#" class="login-btn" onclick="openLoginForm()" style="text-decoration: none; color: #444">Đăng nhập</a>
+                    </div>
+                <?php endif; ?>
+            </div>
         </div>
     </div>
+
     <!-- End header -->
+    <div class="overlay" id="overlay" onclick="closeLoginForm()"></div>
+    <div class="login-modal" id="loginModal">
+        <span class="close-btn" onclick="closeLoginForm()">&times;</span>
+        <iframe src="login.php" frameborder="0"></iframe>
+    </div>

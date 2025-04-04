@@ -5,7 +5,7 @@ body {
     flex-direction: column;
     align-items: center;
     margin: 0;
-    padding: 20px;
+    padding: 0;
 }
 a { text-decoration: none; }
 
@@ -140,4 +140,8 @@ h1, p { text-align: center; max-width: 900px; }
 
 html {
     scroll-behavior: smooth;
+}
+.back-button {
+    margin: 20px;
+    text-align: center;
 }

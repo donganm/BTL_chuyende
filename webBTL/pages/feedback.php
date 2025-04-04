@@ -37,55 +37,104 @@ $feedbacks = $conn->query("SELECT * FROM feedback ORDER BY created_at DESC");
     <title>Phản hồi của bạn</title>
     <link rel="stylesheet" href="../assets/style.css">
     <style>
+        body {
+            background-color: #ecf0f1;
+            font-family: Arial, sans-serif;
+            color: #333;
+            /* line-height: 1.6; */
+        }
+
         .container {
             max-width: 800px;
             margin: auto;
-            padding: 20px;
-            background: white;
-            text-align: center;
-            margin-top: 20px;
+            padding: 30px;
+            background: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-top: 100px;
+        }
+
+        h1,
+        h2 {
+            color: #2c3e50;
         }
 
         .feedback-form,
         .feedback-list {
-            margin-top: 20px;
-            padding: 15px;
+            margin-top: 30px;
+            padding: 20px;
             background: #f9f9f9;
-            border-radius: 5px;
-            text-align: left;
-        }
-
-        textarea {
-            width: 100%;
-            height: 100px;
-            padding: 10px;
-            margin: 10px 0;
+            border-radius: 10px;
+            border: 1px solid #ddd;
         }
 
         input,
-        button {
+        textarea {
             width: 100%;
-            padding: 10px;
-            margin: 5px 0;
+            padding: 12px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-sizing: border-box;
+            transition: border-color 0.3s;
+        }
+
+        input:focus,
+        textarea:focus {
+            border-color: #3498db;
+            outline: none;
         }
 
         button {
-            background: #27ae60;
+            width: 100%;
+            padding: 12px;
+            margin-top: 10px;
+            background: #c2977b;
             color: white;
             border: none;
+            border-radius: 8px;
             cursor: pointer;
+            transition: background 0.3s;
+            font-weight: bold;
+            font-size: 16px;
         }
 
         button:hover {
-            background: #219150;
+            background: #8f6f5a;
         }
 
         .success {
-            color: green;
+            color: #27ae60;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-left: 5px solid #27ae60;
+            background: #eafaf1;
+            border-radius: 5px;
         }
 
         .error {
-            color: red;
+            color: #e74c3c;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-left: 5px solid #e74c3c;
+            background: #fce4e4;
+            border-radius: 5px;
+        }
+
+        .feedback-item {
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            background: white;
+            border: 1px solid #ddd;
+        }
+
+        .feedback-item p {
+            margin: 5px 0;
+        }
+
+        .feedback-item strong {
+            color: #2c3e50;
         }
 
         .home-button {
@@ -96,6 +145,7 @@ $feedbacks = $conn->query("SELECT * FROM feedback ORDER BY created_at DESC");
             color: white;
             text-decoration: none;
             border-radius: 5px;
+            transition: background 0.3s;
         }
 
         .home-button:hover {
