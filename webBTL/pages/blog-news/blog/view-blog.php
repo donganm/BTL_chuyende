@@ -2,6 +2,10 @@
 session_start();
 include '../../../includes/db.php'; // Kết nối database
 
+// Kiểm tra nếu người dùng đã đăng nhập
+$userLoggedIn = isset($_SESSION['user']);
+$isAdmin = $userLoggedIn && isset($_SESSION['role']) && $_SESSION['role'] === "Admin";
+
 $id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
 if ($id <= 0) {
     die("ID không hợp lệ!");
@@ -27,6 +31,8 @@ if (!$blog) {
     <meta charset="UTF-8">
     <title><?php echo htmlspecialchars($blog['title']); ?></title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../styles/blog.css">
+    <link rel="stylesheet" href="../includes/header.css">
     <style>
         .container { max-width: 800px; margin: auto; padding: 20px; background: white; }
         .meta { color: gray; font-size: 14px; margin-bottom: 10px; }
@@ -38,40 +44,34 @@ if (!$blog) {
         button:hover { background: #219150; }
         .edit-btn { background: #f39c12; padding: 8px 15px; color: white; text-decoration: none; margin-right: 10px; }
         .edit-btn:hover { background: #e67e22; }
+        .blog-image { width: 100%; max-height: 400px; object-fit: cover; margin-bottom: 15px; }
     </style>
 </head>
 <body>
-    <header>
-        <h1>Blog về Văn hóa Việt Nam</h1>
-        <p>Chia sẻ trải nghiệm và góc nhìn</p>
-    </header>
 
-    <nav>
-        <a href="../../index.php">Trang chủ</a>
-        <a href="../news/index.php">Tin tức</a>
-        <a href="./index.php" class="active">Blog</a>
-    </nav>
+    <?php include '../includes/header-blog.php'; ?>
 
     <div class="container">
         <h1><?php echo htmlspecialchars($blog['title']); ?></h1>
         <p class="meta">Ngày đăng: 
-            <?php echo !empty($blog['created_at']) ? date('d/m/Y', strtotime($blog['created_at'])) : 'Không xác định'; ?>
+            <?php echo !empty($blog['ngay_dang']) ? date('d/m/Y', strtotime($blog['ngay_dang'])) : 'Không xác định'; ?>
         </p>
 
-        <?php if (!empty($blog['image'])): ?>
-            <img src="../../images/<?php echo htmlspecialchars($blog['image']); ?>" alt="<?php echo htmlspecialchars($blog['title']); ?>">
+        <?php 
+        $imgPath = "./images/" . htmlspecialchars($blog['hinhanh']);
+        if (!empty($blog['hinhanh']) && file_exists($imgPath)): ?>
+            <img class="blog-image" src="<?php echo $imgPath; ?>" alt="<?php echo htmlspecialchars($blog['title']); ?>">
+        <?php else: ?>
+            <p style="color: red;">Không có ảnh hoặc ảnh bị lỗi.</p>
         <?php endif; ?>
 
-        <!-- Hiển thị nội dung chính của bài viết -->
         <p><?php echo nl2br(htmlspecialchars($blog['description'] ?? 'Không có nội dung')); ?></p>
 
         <!-- Kiểm tra nếu người dùng là chủ bài viết hoặc admin -->
-        <?php
-        if (isset($_SESSION['user_id']) && ($_SESSION['user_id'] == $blog['author_id'] || $_SESSION['role'] == 'admin')) {
-            echo '<a href="edit-blog.php?id=' . $blog['id'] . '" class="edit-btn">Sửa bài viết</a>';
-            echo '<a href="delete-blog.php?id=' . $blog['id'] . '" onclick="return confirm(\'Bạn có chắc chắn muốn xóa bài viết này?\')" class="edit-btn" style="background: red;">Xóa bài viết</a>';
-        }
-        ?>
+        <?php if (isset($_SESSION['user_id']) && ($_SESSION['user_id'] == $blog['author_id'] || $_SESSION['role'] == 'admin')): ?>
+            <a href="edit-blog.php?id=<?php echo $blog['id']; ?>" class="edit-btn">Sửa bài viết</a>
+            <a href="delete-blog.php?id=<?php echo $blog['id']; ?>" onclick="return confirm('Bạn có chắc chắn muốn xóa bài viết này?')" class="edit-btn" style="background: red;">Xóa bài viết</a>
+        <?php endif; ?>
 
         <a href="blog.php">← Quay lại Blog</a>
 
