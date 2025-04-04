@@ -6,6 +6,7 @@
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $title = trim($_POST['title']);
     $content = trim($_POST['content']);
+    $image = trim($_POST['image']);
     
     if (empty($title) || empty($content)) {
         echo "<script>alert('Tiêu đề và nội dung không được để trống.'); history.back();</script>";
@@ -50,8 +51,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <!-- <label>Nội dung:</label>
             <textarea name="content" rows="5" required></textarea> -->
 
-            <!-- <label>Hình ảnh:</label>
-            <input type="file" name="image"> -->
+            <label>Hình ảnh:</label>
+            <input type="file" name="image">
 
             <button type="submit">Đăng bài</button>
         </form>
