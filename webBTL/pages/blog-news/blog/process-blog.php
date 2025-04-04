@@ -1,36 +1,56 @@
 <?php
-// include '../tintuc/db_connect.php';
-    include '../../includes/db.php';
+include '../../../includes/db.php';
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $title = mysqli_real_escape_string($conn, $_POST["title"]);
-    $description = mysqli_real_escape_string($conn, $_POST["description"]);
-    $content = mysqli_real_escape_string($conn, $_POST["content"]);
-    $image = "";
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $title = trim($_POST['title']);
+    $description = trim($_POST['description']);
 
-    // Xử lý upload ảnh
-    if ($_FILES["image"]["name"] != "") {
-        $target_dir = "../../images/";
-        $image = basename($_FILES["image"]["name"]);
-        $target_file = $target_dir . $image;
-        move_uploaded_file($_FILES["image"]["tmp_name"], $target_file);
+    // Kiểm tra tiêu đề và mô tả
+    if (empty($title) || empty($description)) {
+        echo "<script>alert('Tiêu đề và mô tả không được để trống.'); history.back();</script>";
+        exit;
     }
 
-    // Tạo link bài viết
-    $link = "view-blog.php?id=" . time(); 
+    // Xử lý hình ảnh
+    $imageName = ''; // Tên file ảnh sẽ lưu trong CSDL
 
-    // Lưu vào database
-    $sql = "INSERT INTO blog_articles (title, description, link) VALUES ('$title', '$description', '$link')";
+    if (isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
+        $uploadDir = './images/'; // Thư mục lưu ảnh
+        $imageTmp = $_FILES['image']['tmp_name'];
+        $imageOriginalName = basename($_FILES['image']['name']);
+        $imageExt = strtolower(pathinfo($imageOriginalName, PATHINFO_EXTENSION));
 
+        // Kiểm tra định dạng hợp lệ
+        $allowedExts = ['jpg', 'jpeg', 'png', 'gif'];
+        if (in_array($imageExt, $allowedExts)) {
+            $newImageName = uniqid('img_') . '.' . $imageExt;
+            $uploadPath = $uploadDir . $newImageName;
+
+            // Di chuyển file vào thư mục lưu trữ
+            if (move_uploaded_file($imageTmp, $uploadPath)) {
+                $imageName = $newImageName;
+            } else {
+                echo "<script>alert('Lỗi khi tải ảnh lên máy chủ.'); history.back();</script>";
+                exit;
+            }
+        } else {
+            echo "<script>alert('Chỉ chấp nhận định dạng ảnh JPG, PNG, GIF.'); history.back();</script>";
+            exit;
+        }
+    }
+
+    // Lưu vào CSDL (Bỏ `tac_gia`)
+    $sql = "INSERT INTO blog_articles (title, description, ngay_dang, hinhanh, luot_xem, luot_thich, link) 
+            VALUES (?, ?, NOW(), ?, 0, 0, '')";
     
-    if ($conn->query($sql) === TRUE) {
-        echo "Bài viết đã được đăng!";
-        header("Location: blog.php"); // Quay lại trang blog
-        exit();
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("sss", $title, $description, $imageName);
+
+    if ($stmt->execute()) {
+        header("Location: index.php");
+        exit;
     } else {
-        echo "Lỗi: " . $conn->error;
+        echo "<script>alert('Lỗi khi thêm bài viết.'); history.back();</script>";
     }
 }
-
-$conn->close();
 ?>
