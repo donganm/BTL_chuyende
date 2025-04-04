@@ -11,9 +11,6 @@ if (!$conn) {
     die("Lỗi kết nối database: " . mysqli_connect_error());
 }
 
-
-
-// Xử lý tìm kiếm bài viết
 $search = isset($_GET['search']) ? trim($_GET['search']) : "";
 $searchTerm = "%$search%";
 

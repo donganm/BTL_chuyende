@@ -64,95 +64,101 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Đăng Bài</title>
-    <link rel="stylesheet" href="../includes/nav.css">
+    <link rel="stylesheet" href="../includes/header.css">
     <!-- <link rel="stylesheet" href="../styles/dangbai.css"> -->
+    <!-- <link rel="stylesheet" href="../styles/index.css"> -->
     <style>
-      body {
-        font-family: Arial, sans-serif;
-        background-color: #f4f4f4;
-        margin: 0;
-        padding: 0;
-      }
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
 
-      .container {
-        max-width: 600px;
-        background: #fff;
-        margin: 50px auto;
-        padding: 20px;
-        border-radius: 10px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-      }
+        .container {
+            max-width: 600px;
+            background: #fff;
+            margin: 50px auto;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
 
-      h1 {
-        text-align: center;
-        color: #333;
-        margin-bottom: 20px;
-      }
+        h1 {
+            text-align: center;
+            color: white;
+            margin-bottom: 20px;
+        }
 
-      form {
-        display: flex;
-        flex-direction: column;
-      }
+        form {
+            display: flex;
+            flex-direction: column;
+        }
 
-      label {
-        font-weight: bold;
-        margin: 10px 0 5px;
-      }
+        label {
+            font-weight: bold;
+            margin: 10px 0 5px;
+            font-size: 18px;
+            margin-left: 10px;
+        }
 
-      input[type="text"],
-      textarea {
-        width: 100%;
-        padding: 10px;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-        font-size: 16px;
-      }
+        input[type="text"],
+        textarea {
+            width: 95%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
 
-      textarea {
-        resize: vertical;
-        min-height: 100px;
-      }
+        textarea {
+            resize: vertical;
+            min-height: 100px;
+            height: 250px;
+        }
 
-      input[type="file"] {
-        border: none;
-        background: #fff;
-      }
+        input[type="file"] {
+            border: none;
+            background: #fff;
+        }
 
-      button {
-        margin-top: 20px;
-        padding: 10px;
-        font-size: 18px;
-        color: white;
-        background: #007BFF;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-        transition: background 0.3s ease;
-      }
+        button {
+            margin-top: 20px;
+            padding: 10px;
+            font-size: 18px;
+            color: white;
+            background: #007BFF;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 98%;
+            transition: background 0.3s ease;
+        }
 
-      button:hover {
-        background: #0056b3;
-      }
+        button:hover {
+            background: #0056b3;
+        }
 
-      .back-link {
-        display: block;
-        text-align: center;
-        margin-top: 15px;
-        color: #007BFF;
-        text-decoration: none;
-        font-size: 16px;
-      }
+        .back-link {
+            display: block;
+            text-align: center;
+            margin-top: 15px;
+            color: #007BFF;
+            text-decoration: none;
+            font-size: 16px;
+        }
 
-      .back-link:hover {
-        text-decoration: underline;
-      }
-
+        .back-link:hover {
+            text-decoration: underline;
+        }
     </style>
 </head>
+
 <body>
 
     <!-- <nav>
@@ -187,23 +193,24 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         </script>
     </nav> -->
 
-    <?php include '../includes/nav.php'; ?>
+    <?php include '../includes/header.php'; ?>
 
     <div class="container">
-        <h1>Đăng Bài Viết Mới</h1>
+        <h1 style="color: black">Đăng Bài Viết Mới</h1>
         <form method="POST" enctype="multipart/form-data">
             <label>Tiêu đề:</label>
             <input type="text" name="tieude" required>
-            
+
             <label>Nội dung:</label>
             <textarea name="noidung" required rows="5"></textarea>
-            
+
             <label>Ảnh minh họa:</label>
-            <input type="file" name="hinhanh" accept="image/*">
-            
+            <input style="font-size: 16px;" type="file" name="hinhanh" accept="image/*">
+
             <button type="submit">Đăng bài</button>
         </form>
         <a href="./index.php" class="back-link">🔙 Quay lại Tin Tức</a>
     </div>
 </body>
+
 </html>
