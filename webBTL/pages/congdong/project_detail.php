@@ -79,7 +79,6 @@ $image_path = file_exists("image_path/" . $project['image_path'])
             border-radius: 5px;
         }
         .back-button {
-            background-color: white;
             color: #007bff;
             padding: 10px 15px;
             border-radius: 5px;
