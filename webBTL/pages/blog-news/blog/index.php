@@ -14,16 +14,6 @@ if (!$conn) {
 $userLoggedIn = isset($_SESSION['user']);
 $isAdmin = $userLoggedIn && isset($_SESSION['role']) && $_SESSION['role'] === 'Admin';
 
-// Tìm kiếm
-$search = isset($_GET['search']) ? trim($_GET['search']) : '';
-$searchSql = "";
-
-if (!empty($search)) {
-    $searchSafe = mysqli_real_escape_string($conn, $search);
-    $searchSql = "WHERE title LIKE '%$searchSafe%' OR tac_gia LIKE '%$searchSafe%' OR description LIKE '%$searchSafe%'";
-}
-
-// Bộ lọc sắp xếp
 $sort = isset($_GET['sort']) ? $_GET['sort'] : 'latest';
 $orderBy = $sort === 'popular' ? 'luot_xem DESC' : 'ngay_dang DESC';
 
@@ -32,7 +22,25 @@ $limit = 3; // Giới hạn 3 bài viết mỗi trang
 $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
 $offset = ($page - 1) * $limit;
 
-// Cập nhật câu truy vấn với phân trang
+// Tìm kiếm theo tiêu đề
+$search = isset($_GET['search']) ? trim($_GET['search']) : '';
+$searchSql = "";
+if (!empty($search)) {
+    $searchSafe = mysqli_real_escape_string($conn, $search);
+    $searchSql = "WHERE title LIKE '%$searchSafe%'";
+} else {
+    $searchSql = ""; // Nếu không có tìm kiếm, không cần WHERE clause
+}
+
+// SQL truy vấn lấy dữ liệu
+$sql = "SELECT id, title, tac_gia, description, hinhanh, ngay_dang, luot_xem, luot_thich 
+        FROM blog_articles 
+        $searchSql 
+        ORDER BY $orderBy
+        LIMIT $limit OFFSET $offset";
+
+
+// SQL truy vấn lấy dữ liệu
 $sql = "SELECT id, title, tac_gia, description, hinhanh, ngay_dang, luot_xem, luot_thich 
         FROM blog_articles 
         $searchSql 
@@ -60,7 +68,7 @@ $totalPages = ceil($totalRows / $limit);
     <style>
         .btn-primary {
             padding: 7px 15px;
-            background:rgb(41, 185, 118);
+            background: rgb(41, 185, 118);
             color: white;
             border: none;
             border-radius: 5px;
@@ -71,7 +79,7 @@ $totalPages = ceil($totalRows / $limit);
         }
 
         .blog-container {
-            max-width: 800px;
+            max-width: 65%;
             margin: auto;
             padding: 2rem;
         }
@@ -88,8 +96,9 @@ $totalPages = ceil($totalRows / $limit);
 
         .blog-post-img {
             width: 100%;
-            height: auto;
+            height: 300px;
             object-fit: cover;
+            object-position: top;
         }
 
         .blog-post-body {
@@ -180,8 +189,8 @@ $totalPages = ceil($totalRows / $limit);
     <div class="blog-container">
 
         <!-- Thanh tìm kiếm -->
-        <form method="GET" class="search-form">
-            <input type="text" name="search" placeholder="Tìm kiếm nhanh về tin tức..."
+        <form method="GET" class="search-form" action="">
+            <input type="text" name="search" placeholder="Tìm kiếm nhanh về Blog..."
                 value="<?php echo htmlspecialchars($search); ?>">
             <button type="submit">Tìm Kiếm</button>
             <!-- Nút đăng bài (Chỉ hiển thị nếu là Admin) -->
@@ -190,7 +199,7 @@ $totalPages = ceil($totalRows / $limit);
             <?php endif; ?>
         </form>
 
-        <?php if ($result->num_rows > 0): ?>
+        <?php if ($result && $result->num_rows > 0): ?>
             <?php while ($blog = $result->fetch_assoc()): ?>
                 <?php
                 $imgPath = "./images/" . htmlspecialchars($blog["hinhanh"]);
@@ -253,7 +262,6 @@ $totalPages = ceil($totalRows / $limit);
             <?php endif; ?>
         </div>
     </div>
-
 
 </body>
 

@@ -44,7 +44,7 @@ if (!$blog) {
         button:hover { background: #219150; }
         .edit-btn { background: #f39c12; padding: 8px 15px; color: white; text-decoration: none; margin-right: 10px; }
         .edit-btn:hover { background: #e67e22; }
-        .blog-image { width: 100%; max-height: 400px; object-fit: cover; margin-bottom: 15px; }
+        .blog-image { width: 100%; max-height: 100%; object-fit: cover; margin-bottom: 15px; }
     </style>
 </head>
 <body>
@@ -68,7 +68,7 @@ if (!$blog) {
         <p><?php echo nl2br(htmlspecialchars($blog['description'] ?? 'Không có nội dung')); ?></p>
 
         <!-- Kiểm tra nếu người dùng là chủ bài viết hoặc admin -->
-        <?php if (isset($_SESSION['user_id']) && ($_SESSION['user_id'] == $blog['author_id'] || $_SESSION['role'] == 'admin')): ?>
+        <?php if (isset($_SESSION['user_id']) && ($_SESSION['user_id'] == $blog['tac_gia'] || $_SESSION['role'] == 'admin')): ?>
             <a href="edit-blog.php?id=<?php echo $blog['id']; ?>" class="edit-btn">Sửa bài viết</a>
             <a href="delete-blog.php?id=<?php echo $blog['id']; ?>" onclick="return confirm('Bạn có chắc chắn muốn xóa bài viết này?')" class="edit-btn" style="background: red;">Xóa bài viết</a>
         <?php endif; ?>
@@ -96,15 +96,15 @@ if (!$blog) {
 
             while ($comment = $comments->fetch_assoc()) {
                 echo '<div class="comment">';
-                echo '<strong>' . htmlspecialchars($comment['username']) . ':</strong> ';
+                echo '<strong>' . (isset($comment['username']) && !empty($comment['username']) ? htmlspecialchars($comment['username']) : 'Ẩn danh') . ':</strong> ';
                 echo nl2br(htmlspecialchars($comment['content'] ?? 'Không có nội dung'));
                 echo '<br><span style="color:gray; font-size:12px;">' . (!empty($comment['created_at']) ? date('d/m/Y H:i', strtotime($comment['created_at'])) : 'Không rõ thời gian') . '</span>';
 
                 // Nếu là admin hoặc chủ bình luận thì có thể sửa/xóa
-                if (isset($_SESSION['user_id']) && ($_SESSION['username'] == $comment['username'] || $_SESSION['role'] == 'admin')) {
-                    echo '<br><a href="edit-comment.php?id=' . $comment['id'] . '" style="color: blue; font-size: 12px;">Sửa</a> | ';
-                    echo '<a href="delete-comment.php?id=' . $comment['id'] . '" onclick="return confirm(\'Bạn có chắc chắn muốn xóa bình luận này?\')" style="color: red; font-size: 12px;">Xóa</a>';
-                }
+                // if (isset($_SESSION['user_id']) && ($_SESSION['username'] == $comment['username'] || $_SESSION['role'] == 'admin')) {
+                //     echo '<br><a href="edit-comment.php?id=' . $comment['id'] . '" style="color: blue; font-size: 12px;">Sửa</a> | ';
+                //     echo '<a href="delete-comment.php?id=' . $comment['id'] . '" onclick="return confirm(\'Bạn có chắc chắn muốn xóa bình luận này?\')" style="color: red; font-size: 12px;">Xóa</a>';
+                // }
 
                 echo '</div>';
             }
