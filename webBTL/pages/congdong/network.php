@@ -431,6 +431,13 @@ if (isset($_GET['delete_comment'])) {
             color: #333;
             margin-bottom: 5px;
         }
+        .post-header h3 a {
+            color: #007bff;
+            text-decoration: none;
+        }
+        .post-header h3 a:hover {
+            text-decoration: underline;
+        }
         .post-header span {
             font-size: 14px;
             color: #777;
@@ -457,67 +464,6 @@ if (isset($_GET['delete_comment'])) {
             height: auto;
             border-radius: 8px;
             margin-top: 10px;
-        }
-        .comments {
-            margin-top: 20px;
-        }
-        .comments h4 {
-            font-size: 18px;
-            color: #333;
-            margin-bottom: 10px;
-        }
-        .comment {
-            background: #f9f9f9;
-            padding: 10px;
-            border-radius: 5px;
-            margin-bottom: 10px;
-        }
-        .comment-header {
-            display: flex;
-            justify-content: space-between;
-            font-size: 14px;
-            color: #777;
-            margin-bottom: 5px;
-        }
-        .comment-actions a {
-            margin-left: 10px;
-            text-decoration: none;
-            font-size: 14px;
-        }
-        .comment-actions .edit {
-            color: #007bff;
-        }
-        .comment-actions .delete {
-            color: #dc3545;
-        }
-        .comment-content p {
-            font-size: 16px;
-            color: #555;
-        }
-        .comment-form {
-            margin-top: 10px;
-        }
-        .comment-form textarea {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            font-size: 16px;
-            height: 60px;
-            resize: vertical;
-        }
-        .comment-form button {
-            background: #007bff;
-            color: white;
-            padding: 8px 15px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 14px;
-            margin-top: 5px;
-        }
-        .comment-form button:hover {
-            background: #0056b3;
         }
         footer {
             background-color: #f8f8f8;
@@ -670,7 +616,8 @@ if (isset($_GET['delete_comment'])) {
                     echo '<div class="post">';
                     echo '<div class="post-header">';
                     echo '<div>';
-                    echo '<h3>' . htmlspecialchars($post['title']) . '</h3>';
+                    // Thêm liên kết vào tiêu đề
+                    echo '<h3><a href="post_detail.php?post_id=' . $post['id'] . '">' . htmlspecialchars($post['title']) . '</a></h3>';
                     echo '<span>Đăng bởi ' . htmlspecialchars($display_username) . ' vào ' . $post['created_at'] . '</span>';
                     echo '</div>';
                     // Hiển thị nút Sửa/Xóa cho admin
@@ -687,68 +634,6 @@ if (isset($_GET['delete_comment'])) {
                         echo '<img src="' . htmlspecialchars($post['image']) . '" alt="Post Image">';
                     }
                     echo '</div>';
-
-                    // Hiển thị bình luận
-                    echo '<div class="comments">';
-                    echo '<h4>Bình luận</h4>';
-                    $post_id = $post['id'];
-                    $comment_sql = "SELECT comments.* FROM comments WHERE comments.article_type = 'post' AND comments.post_id = ? ORDER BY comments.created_at ASC";
-                    $stmt = $conn->prepare($comment_sql);
-                    $stmt->bind_param("i", $post_id);
-                    $stmt->execute();
-                    $comment_result = $stmt->get_result();
-
-                    if ($comment_result->num_rows > 0) {
-                        while ($comment = $comment_result->fetch_assoc()) {
-                            $comment_username = $comment['username'] ?: 'Ẩn danh';
-                            echo '<div class="comment">';
-                            echo '<div class="comment-header">';
-                            echo '<span>' . htmlspecialchars($comment_username) . '</span>';
-                            echo '<span>' . $comment['created_at'] . '</span>';
-                            echo '</div>';
-                            echo '<div class="comment-content">';
-                            echo '<p>' . htmlspecialchars($comment['content']) . '</p>';
-                            // Hiển thị nút Sửa/Xóa cho admin hoặc người dùng đã đăng bình luận
-                            $is_admin = isset($_SESSION['role']) && strtolower($_SESSION['role']) === 'admin';
-                            $is_owner = $comment['user_id'] && $comment['user_id'] == $_SESSION['user_id'];
-                            if ($is_admin || $is_owner) {
-                                echo '<div class="comment-actions">';
-                                echo '<a href="?edit_comment=' . $comment['id'] . '" class="edit">Sửa</a>';
-                                echo '<a href="?delete_comment=' . $comment['id'] . '" class="delete" onclick="return confirm(\'Bạn có chắc chắn muốn xóa bình luận này?\')">Xóa</a>';
-                                echo '</div>';
-                            }
-                            echo '</div>';
-                            echo '</div>';
-
-                            // Form chỉnh sửa bình luận (hiển thị khi bấm "Sửa")
-                            if (isset($_GET['edit_comment']) && (int)$_GET['edit_comment'] == $comment['id'] && ($is_admin || $is_owner)) {
-                                ?>
-                                <div class="comment-form">
-                                    <h4>Chỉnh sửa bình luận</h4>
-                                    <form action="/btl/BTL_chuyende/webBTL/pages/congdong/network.php" method="POST">
-                                        <textarea name="comment_content" required><?php echo htmlspecialchars($comment['content']); ?></textarea>
-                                        <input type="hidden" name="comment_id" value="<?php echo $comment['id']; ?>">
-                                        <button type="submit" name="edit_comment">Cập nhật</button>
-                                    </form>
-                                </div>
-                                <?php
-                            }
-                        }
-                    } else {
-                        echo '<p>Chưa có bình luận nào.</p>';
-                    }
-                    $stmt->close();
-
-                    // Form thêm bình luận
-                    echo '<div class="comment-form">';
-                    echo '<form action="/btl/BTL_chuyende/webBTL/pages/congdong/network.php" method="POST">';
-                    echo '<textarea name="comment_content" placeholder="Viết bình luận..." required></textarea>';
-                    echo '<input type="hidden" name="post_id" value="' . $post_id . '">';
-                    echo '<button type="submit" name="submit_comment">Gửi</button>';
-                    echo '</form>';
-                    echo '</div>';
-
-                    echo '</div>'; // Kết thúc comments
                     echo '</div>'; // Kết thúc post
                 }
             } else {
