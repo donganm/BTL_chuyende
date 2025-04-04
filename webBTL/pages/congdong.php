@@ -207,7 +207,7 @@
 
     <script>
         const images = [
-            "./congdong/image_url/vlitt.jpg",
+            "./congdong/image_url/vanlitt.jpg",
             "./congdong/image_url/mosta.jpg",
             "./congdong/image_url/colosseo.jpg",
             "./congdong/image_url/machupichu.jpg"
