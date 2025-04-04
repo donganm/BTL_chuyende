@@ -93,45 +93,77 @@
             font-weight: bold;
         }
         /* Footer  */
-.footer_1 {
-  width: 100%;
-  max-width: 1350px;
-  margin-left: auto;
-}
+        footer {
+      background-color: #f8f8f8;
+      padding: 20px 0;
+      font-family: Arial, sans-serif;
+      border-top: 1px solid #ddd;
+      width: 100%;
+    }
 
-.footer_1 p a {
-  color: gray;
-  text-decoration: none;
-}
+    .footer-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 20px;
+      
+      margin: 0 auto;
+      padding: 0 20px;
+      flex-wrap: wrap;
+    }
 
-.footer_2 {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: black;
-  color: white;
-  padding: 10px;
-}
+    .footer-section {
+      flex: 1;
+      min-width: 200px;
+      margin: 10px 0;
+    }
 
-.footer_2 .VN {
-  display: flex;
-  align-items: center;
-}
+    .footer-section h5 {
+      margin-bottom: 10px;
+      font-size: 16px;
+      color: #333;
+    }
 
-.footer_2 .VN img {
-  height: 15px;
-  width: auto;
-  margin-right: 10px;
-}
+    .footer-section p {
+      margin: 5px 0;
+    }
 
-.footer_3 {
-  color: gray;
-  padding: 6px;
-  font-size: 12px;
-  text-align: center;
-}
+    .footer-section a {
+      text-decoration: none;
+      color: #555;
+      font-size: 14px;
+    }
 
-/* End Footer */
+    .footer-section a:hover {
+      color: #007bff;
+    }
+
+    .footer-center {
+      text-align: center;
+    }
+
+    .footer-center img {
+      width: 24px;
+      vertical-align: middle;
+      margin-right: 5px;
+    }
+
+    .footer-right {
+      text-align: right;
+      font-size: 14px;
+      color: #555;
+    }
+
+    @media (max-width: 768px) {
+      .footer-container {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .footer-right {
+        text-align: center;
+      }}
+        /* End Footer */
 
     </style>
 </head>
@@ -147,29 +179,30 @@
 
     <!-- Footer  -->
   <hr/>
-  <div class="footer_1">
-    <h5>Get Help</h5>
-    <p><a href="./feedback.php">Feedback</a></p>
-    <p><a href="./contact.php">Contact Us</a></p>
-  </div>
+  <footer>
+    <div class="footer-container">
+      <!-- Phần 1: Get Help -->
+      <div class="footer-section">
+        <h5>Get Help</h5>
+        <p><a href="./feedback.php">Feedback</a></p>
+        <p><a href="./contact.php">Contact Us</a></p>
+      </div>
 
-  <div class="footer_2">
-    <div class="VN">
-      <img src="./congdong/image_path/VN_Flag.webp" alt="logo" />
-      <span>VN</span>
-    </div>
-    <div class="Conver">
-      <span><i class="fa-brands fa-dribbble"></i></span>
-      <span>2025 G.H</span>
-    </div>
-  </div>
+      <!-- Phần 2: VIE VN -->
+      <div class="footer-section footer-center">
+        <div>
+          <img src="../pages/congdong/image_path/VN_Flag.webp" alt="Vietnam Flag" />
+          <span>VIE VN</span>
+        </div>
+        <p>© 2025 G.H</p>
+      </div>
 
-  <div class="footer_3">
-    <p>
-      COPYRIGHT <i class="fa-brands fa-dribbble"></i> 2025 G.H. ALL RIGHTS
-      RESERVED
-    </p>
-  </div>
+      <!-- Phần 3: Copyright -->
+      <div class="footer-section footer-right">
+        <p>© 2025 G.H. ALL RIGHTS RESERVED</p>
+      </div>
+    </div>
+  </footer>
   <!-- End footer  -->
 
     <script>

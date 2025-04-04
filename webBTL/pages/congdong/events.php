@@ -38,6 +38,20 @@ $conn->close();
     <link rel="stylesheet" href="sukien.css">
 </head>
 <style>
+.navbar {
+    display: flex;
+    justify-content: center; /* Căn đều các phần tử */
+    align-items: center;
+    background: #007bff; /* Màu xanh */
+    color: white;
+    padding: 15px 20px;
+    width: 100%; /* Đảm bảo chiếm toàn bộ chiều rộng */
+    position: sticky; /* Dính khi cuộn */
+    top: 0; /* Dính vào đầu trang khi cuộn đến */
+    z-index: 1000; /* Đảm bảo navbar nằm trên các phần tử khác */
+    max-width: 100vw;
+  }
+
     .event-header {
     width: 100%;
     background:rgb(47, 148, 255); /* Màu xanh giống navbar */
@@ -58,6 +72,114 @@ $conn->close();
     font-size: 18px;
     font-weight: normal;
 }
+/*thanh tìm kiếm*/
+.search-container {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.search-container form {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.search-container input {
+    width: 50%;
+    padding: 10px;
+    font-size: 16px;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+}
+
+.search-container button {
+    background: #0078d4;
+    color: white;
+    padding: 10px 12px;
+    border: none;
+    font-size: 14px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.search-container button:hover {
+    background: #005bb5;
+}
+
+/* Footer  */
+footer {
+      background-color: #f8f8f8;
+      padding: 20px 0;
+      font-family: Arial, sans-serif;
+      border-top: 1px solid #ddd;
+      width: 100%;
+    }
+
+    .footer-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 20px;
+      
+      margin: 0 auto;
+      padding: 0 20px;
+      flex-wrap: wrap;
+    }
+
+    .footer-section {
+      flex: 1;
+      min-width: 200px;
+      margin: 10px 0;
+    }
+
+    .footer-section h5 {
+      margin-bottom: 10px;
+      font-size: 16px;
+      color: #333;
+    }
+
+    .footer-section p {
+      margin: 5px 0;
+    }
+
+    .footer-section a {
+      text-decoration: none;
+      color: #555;
+      font-size: 14px;
+    }
+
+    .footer-section a:hover {
+      color: #007bff;
+    }
+
+    .footer-center {
+      text-align: center;
+    }
+
+    .footer-center img {
+      width: 24px;
+      vertical-align: middle;
+      margin-right: 5px;
+    }
+
+    .footer-right {
+      text-align: right;
+      font-size: 14px;
+      color: #555;
+    }
+
+    @media (max-width: 768px) {
+      .footer-container {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .footer-right {
+        text-align: center;
+      }}
+/* End Footer */
+
 
 </style>
 <body>
@@ -79,8 +201,8 @@ $conn->close();
     <!-- Thanh tìm kiếm -->
     <div class="search-container">
         <form action="events.php" method="GET">
-            <input type="text" name="search" id="search" placeholder="Search Events" value="<?= htmlspecialchars($search) ?>">
-            <button type="submit">Search</button>
+            <input type="text" name="search" id="search" placeholder="Tìm kiếm sự kiện..." value="<?= htmlspecialchars($search) ?>">
+            <button type="submit">Tìm kiếm</button>
         </form>
     </div>
 
@@ -108,6 +230,31 @@ $conn->close();
             </ul>
         </main>
     </div>
+    <footer>
+    <div class="footer-container">
+      <!-- Phần 1: Get Help -->
+      <div class="footer-section">
+        <h5>Get Help</h5>
+        <p><a href="../feedback.php">Feedback</a></p>
+        <p><a href="../contact.php">Contact Us</a></p>
+      </div>
+
+      <!-- Phần 2: VIE VN -->
+      <div class="footer-section footer-center">
+        <div>
+          <img src="./image_path/VN_Flag.webp" alt="Vietnam Flag" />
+          <span>VIE VN</span>
+        </div>
+        <p>© 2025 G.H</p>
+      </div>
+
+      <!-- Phần 3: Copyright -->
+      <div class="footer-section footer-right">
+        <p>© 2025 G.H. ALL RIGHTS RESERVED</p>
+      </div>
+    </div>
+  </footer>
+
 </body>
 </html>
 

@@ -4,15 +4,7 @@ body {
     padding: 0;
     background: #f4f4f4;
 }
-
-.navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: #007bff;
-    color: white;
-    padding: 15px 30px;
-}
+/* navbar */
 
 .nav-links a {
     color: white;
@@ -27,35 +19,8 @@ body {
     border-radius: 15px;
 }
 
-.search-container {
-    margin-top: 10px;
-    text-align: center;
-}
 
-.search-container input {
-    padding: 8px;
-    font-size: 16px;
-    border: none;
-    border-radius: 15px; 
-    width: 250px;
-    margin: 5px;
-}
-
-.search-container button {
-    background: white;
-    color: #007bff;
-    font-size: 14px;
-    padding: 8px 15px;
-    border: none;
-    border-radius: 15px;
-    cursor: pointer;
-}
-
-.search-container button:hover {
-    background: #0056b3;
-    color: white;
-}
-
+/* danh sách sự kiện */
 .container {
     width: 80%;
     margin: auto;

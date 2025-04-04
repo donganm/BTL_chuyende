@@ -1,6 +1,11 @@
 <?php
 // Kết nối MySQL
-$conn = new mysqli("localhost", "root", "", "global");
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "global";
+
+$conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) {
     die("Kết nối thất bại: " . $conn->connect_error);
 }
@@ -8,27 +13,33 @@ if ($conn->connect_error) {
 // Lấy ID từ URL
 $id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
 if ($id === 0) {
-    header("Location: stories.php");
-    exit();
+    die("ID sự kiện không hợp lệ. ID nhận được: " . htmlspecialchars($_GET['id'] ?? 'Không có ID'));
 }
 
-// Truy vấn dữ liệu dự án phục hồi
-$stmt = $conn->prepare("SELECT * FROM restoration_projects WHERE id = ?");
+// Truy vấn dữ liệu sự kiện
+$stmt = $conn->prepare("SELECT id, title, date, description, image FROM events WHERE id = ?");
+if (!$stmt) {
+    die("Lỗi chuẩn bị truy vấn: " . $conn->error);
+}
 $stmt->bind_param("i", $id);
-$stmt->execute();
+if (!$stmt->execute()) {
+    die("Lỗi thực thi truy vấn: " . $stmt->error);
+}
 $result = $stmt->get_result();
-$project = $result->fetch_assoc();
+$event = $result->fetch_assoc();
 
-if (!$project) {
-    die("Không tìm thấy dự án phục hồi.");
+if (!$event) {
+    die("Không tìm thấy sự kiện với ID: " . $id);
 }
 
-$conn->close();
+// Xử lý đường dẫn ảnh
+$image_path = !empty($event['image']) && file_exists("image_events/" . $event['image']) 
+    ? "image_events/" . $event['image'] 
+    : "image_events/default.jpg";
 
-// Kiểm tra đường dẫn ảnh
-$image_path = file_exists("image_path/" . $project['image_path']) 
-    ? "image_path/" . $project['image_path'] 
-    : "image_path/default.jpg";
+// Đóng kết nối
+$stmt->close();
+$conn->close();
 ?>
 
 <!DOCTYPE html>
@@ -36,10 +47,9 @@ $image_path = file_exists("image_path/" . $project['image_path'])
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?php echo htmlspecialchars($project['project_name']); ?></title>
-    <link rel="stylesheet" href="stories.css">
+    <title><?php echo htmlspecialchars($event['title'] ?? 'Sự kiện không tên'); ?></title>
+    <link rel="stylesheet" href="sukien.css">
     <style>
-        /* CSS được điều chỉnh để giống event-detail.php */
         body {
             font-family: Arial, sans-serif;
             background-color: #f4f4f4;
@@ -79,7 +89,7 @@ $image_path = file_exists("image_path/" . $project['image_path'])
             border-radius: 5px;
         }
         .back-button {
-            background-color: white;
+            
             color: #007bff;
             padding: 10px 15px;
             border-radius: 5px;
@@ -110,6 +120,11 @@ $image_path = file_exists("image_path/" . $project['image_path'])
             font-size: 16px;
             line-height: 1.6;
             color: #555;
+        }
+        .event-date {
+            font-weight: bold;
+            color: #007bff;
+            margin-bottom: 15px;
         }
         footer {
             background-color: #f8f8f8;
@@ -176,17 +191,17 @@ $image_path = file_exists("image_path/" . $project['image_path'])
     <nav class="navbar">
         <ul class="nav-links">
             <li><a href="../congdong.php" class="back-button">← Cộng đồng</a></li>
-            <li><a href="stories.php" class="<?= basename($_SERVER['PHP_SELF']) == 'stories.php' ? 'active' : '' ?>">Câu chuyện & Dự án</a></li>
-            <li><a href="events.php" class="<?= basename($_SERVER['PHP_SELF']) == 'events.php' ? 'active' : '' ?>">Sự kiện & Hoạt động</a></li>
-            <li><a href="network.php" class="<?= basename($_SERVER['PHP_SELF']) == 'network.php' ? 'active' : '' ?>">Mạng lưới kết nối</a></li>
+            <li><a href="events.php" class="<?= basename($_SERVER['PHP_SELF']) == 'events.php' ? 'active' : '' ?>">Sự Kiện</a></li>
+            <li><a href="activity.php" class="<?= basename($_SERVER['PHP_SELF']) == 'activity.php' ? 'active' : '' ?>">Hoạt Động</a></li>
         </ul>
     </nav>
 
-    <!-- Nội dung chi tiết dự án -->
+    <!-- Nội dung chi tiết sự kiện -->
     <section class="detail-container">
-        <h1><?php echo htmlspecialchars($project['project_name']); ?></h1>
-        <img src="<?php echo htmlspecialchars($image_path); ?>" alt="<?php echo htmlspecialchars($project['project_name']); ?>">
-        <p><?php echo nl2br(htmlspecialchars($project['details'])); ?></p>
+        <h1><?php echo htmlspecialchars($event['title'] ?? 'Sự kiện không tên'); ?></h1>
+        <p class="event-date"><?php echo date("d/m/Y", strtotime($event['date'])); ?></p>
+        <img src="<?php echo htmlspecialchars($image_path); ?>" alt="<?php echo htmlspecialchars($event['title'] ?? 'Sự kiện'); ?>">
+        <p><?php echo nl2br(htmlspecialchars($event['description'] ?? 'Không có mô tả.')); ?></p>
     </section>
 
     <!-- Footer -->

@@ -1,4 +1,5 @@
 <?php
+session_start();
 include('../includes/db.php');
 
 if (isset($_POST['username']) && isset($_POST['password'])) {
@@ -17,7 +18,8 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
         // Kiểm tra mật khẩu
         if ($passWord == $row['Password']) {
             // Mở session và lưu thông tin người dùng
-            session_start();
+            
+            $_SESSION['user_id'] = $row['UserId'];
             $_SESSION['role'] = $row['Role'];
             $_SESSION['user'] = $userName;
             // header('Location: ../index.php');
