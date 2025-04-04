@@ -221,7 +221,7 @@ footer {
                                 <h3><?= htmlspecialchars($event['title']) ?></h3>
                                 <p><strong><?= date("d/m/Y", strtotime($event['date'])) ?></strong> - 
                                    <?= htmlspecialchars(mb_substr($event['description'], 0, 100, 'UTF-8')) ?>...</p>
-                                <a href="event-detail.php?id=<?= $event['id'] ?>" class="read-more">Read</a>
+                                <a href="event-detail.php?id=<?= $event['id'] ?>" class="read-more">Đọc thêm</a>
                             </div>
                         </li>
                         <hr>
