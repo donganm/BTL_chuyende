@@ -342,7 +342,7 @@ $result = $conn->query($sql);
     </div>
 
     <!-- End slideshow -->
-
+    <!-- 
     <div class="carousel-content">
         <h1>TRANH VẼ SƯU TẦM</h1>
     </div>
@@ -357,7 +357,7 @@ $result = $conn->query($sql);
             <img src="../assets/img/trangimage/hue.jpg" alt="" />
             <img src="../assets/img/trangimage/dautruongcolosseum.jpg" alt="" />
         </div>
-    </div>
+    </div> -->
 
     <main>
         <h2>THƯ VIỆN ẢNH</h2>
@@ -388,7 +388,7 @@ $result = $conn->query($sql);
                     <!-- Bên phải: Mô tả và bình luận -->
                     <div class="modal-details">
                         <div class="modal-header">
-                            <button class="btn save">Lưu</button>
+                            <!-- <button class="btn save">Lưu</button> -->
                             <div class="actions">
                                 <span><i class="fas fa-heart"></i></span>
                                 <span><i class="fas fa-download"></i></span>
@@ -397,12 +397,12 @@ $result = $conn->query($sql);
                             </div>
                         </div>
                         <div class="description" id="modalDescription"></div>
-                        <div class="comments">
+                        <!-- <div class="comments">
                             <h3>12 Nhận xét</h3>
                             <div class="comment-input">
                                 <input type="text" placeholder="Thêm nhận xét">
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
             </div>
