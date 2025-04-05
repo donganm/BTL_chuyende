@@ -277,7 +277,7 @@ Khu vực này thực chất là một cụm gồm ba núi nằm liền kề nha
     width="600" 
      height="400"
       alt="">
-    <p>
+      <p style="width: 600px; word-wrap: break-word; text-align: center; line-height: 1.6; margin: 0 auto;">
        theo giờ địa phương tại Brasil, tức 6 giờ 30 ngày 1/8/2010 theo giờ Việt Nam, Ủy ban di sản thế giới (WHC) thuộc Tổ chức Giáo dục, Khoa học và Văn hóa Liên Hợp Quốc (UNESCO) đã thông qua nghị quyết công nhận khu Trung tâm Hoàng thành Thăng Long - Hà Nội là di sản Văn hóa thế giới.[1] Những giá trị nổi bật toàn cầu của khu di sản này được ghi nhận bởi 3 đặc điểm nổi bật: chiều dài lịch sử văn hóa suốt 13 thế kỷ; tính liên tục của di sản với tư cách là một trung tâm quyền lực, và các tầng di tích di vật đa dạng, phong phú, sinh động.[
     </p>
     <h3>
@@ -287,7 +287,7 @@ Khu vực này thực chất là một cụm gồm ba núi nằm liền kề nha
     width="600" 
      height="400"
       alt="">
-    <p>
+      <p style="width: 600px; word-wrap: break-word; text-align: center; line-height: 1.6; margin: 0 auto;">
       Cố đô Hoa Lư (chữ Hán: 華閭) là kinh đô của Việt Nam trong giai đoạn 968-1010. Đây là kinh đô đầu tiên của nhà nước phong kiến Trung ương tập quyền ở Việt Nam và là quê hương của vị Anh hùng dân tộc Đinh Bộ Lĩnh.[1] Kinh đô Hoa Lư tồn tại 42 năm, gắn với sự nghiệp của ba triều đại liên tiếp là nhà Đinh, nhà Tiền Lê và nhà Lý với các dấu ấn lịch sử: thống nhất đất nước, đánh Tống - dẹp Chiêm và phát tích quá trình định đô Hà Nội. Năm 1010 vua Lý Thái Tổ dời kinh đô từ Hoa Lư (Ninh Bình) về Thăng Long (Hà Nội), Hoa Lư trở thành Cố đô. Các triều vua Lý, Trần, Lê, Nguyễn sau đó dù không đóng đô ở Hoa Lư nữa nhưng vẫn cho tu bổ và xây dựng thêm ở đây nhiều công trình kiến trúc như đền, lăng, đình, chùa, phủ,...[2] Hiện nay, Cố đô Hoa Lư vẫn còn nhiều di tích nằm trong Quần thể di sản thế giới Tràng An thuộc địa bàn tỉnh Ninh Bình.
     </p>
     <h3>
