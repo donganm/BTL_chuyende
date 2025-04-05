@@ -176,6 +176,7 @@ if (isset($_GET['delete_post'])) {
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -189,6 +190,7 @@ if (isset($_GET['delete_post'])) {
             margin: 0;
             padding: 0;
         }
+
         .navbar {
             display: flex;
             justify-content: space-between;
@@ -201,6 +203,7 @@ if (isset($_GET['delete_post'])) {
             top: 0;
             z-index: 1000;
         }
+
         .nav-links {
             list-style: none;
             margin: 0;
@@ -209,6 +212,7 @@ if (isset($_GET['delete_post'])) {
             flex-grow: 1;
             justify-content: center;
         }
+
         .nav-links li a {
             color: white;
             font-size: 18px;
@@ -217,12 +221,14 @@ if (isset($_GET['delete_post'])) {
             padding: 10px 15px;
             text-decoration: none;
         }
+
         .nav-links a:hover,
         .nav-links a.active {
             background: white;
             color: #007bff;
             border-radius: 5px;
         }
+
         .back-button {
             color: #007bff;
             padding: 10px 15px;
@@ -230,48 +236,58 @@ if (isset($_GET['delete_post'])) {
             text-decoration: none;
             font-weight: bold;
         }
+
         .container {
             max-width: 800px;
             margin: 40px auto;
             padding: 20px;
         }
+
         .header {
             text-align: center;
             margin-bottom: 20px;
         }
+
         .header h1 {
             font-size: 28px;
             color: #333;
         }
+
         .header p {
             font-size: 16px;
             color: #555;
         }
+
         .message {
             padding: 10px;
             margin-bottom: 20px;
             border-radius: 5px;
         }
+
         .message.success {
             background-color: #d4edda;
             color: #155724;
         }
+
         .message.error {
             background-color: #f8d7da;
             color: #721c24;
         }
+
         .post-form {
             background: white;
             padding: 20px;
             border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
             margin-bottom: 20px;
         }
+
         .post-form h3 {
             margin-bottom: 15px;
             font-size: 20px;
             color: #333;
         }
+
         .post-form input[type="text"],
         .post-form textarea,
         .post-form input[type="file"] {
@@ -282,10 +298,12 @@ if (isset($_GET['delete_post'])) {
             border-radius: 5px;
             font-size: 16px;
         }
+
         .post-form textarea {
             height: 100px;
             resize: vertical;
         }
+
         .post-form button {
             background: #007bff;
             color: white;
@@ -295,48 +313,59 @@ if (isset($_GET['delete_post'])) {
             cursor: pointer;
             font-size: 16px;
         }
+
         .post-form button:hover {
             background: #0056b3;
         }
+
         .post-list .post {
             background: white;
             padding: 20px;
             border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
             margin-bottom: 20px;
         }
+
         .post-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
+
         .post-header h3 {
             font-size: 20px;
             color: #333;
             margin-bottom: 5px;
         }
+
         .post-header h3 a {
             color: #007bff;
             text-decoration: none;
         }
+
         .post-header h3 a:hover {
             text-decoration: underline;
         }
+
         .post-header span {
             font-size: 14px;
             color: #777;
         }
+
         .post-actions a {
             margin-left: 10px;
             text-decoration: none;
             font-size: 14px;
         }
+
         .post-actions .edit {
             color: #007bff;
         }
+
         .post-actions .delete {
             color: #dc3545;
         }
+
         .post-content p {
             font-size: 16px;
             line-height: 1.6;
@@ -348,12 +377,14 @@ if (isset($_GET['delete_post'])) {
             overflow: hidden;
             text-overflow: ellipsis;
         }
+
         .post-content img {
             max-width: 100%;
             height: auto;
             border-radius: 8px;
             margin-top: 10px;
         }
+
         footer {
             background-color: #f8f8f8;
             padding: 20px 0;
@@ -361,6 +392,7 @@ if (isset($_GET['delete_post'])) {
             border-top: 1px solid #ddd;
             width: 100%;
         }
+
         .footer-container {
             display: flex;
             justify-content: space-between;
@@ -369,58 +401,71 @@ if (isset($_GET['delete_post'])) {
             margin: 0 auto;
             flex-wrap: wrap;
         }
+
         .footer-section {
             flex: 1;
             min-width: 200px;
             margin: 10px 0;
         }
+
         .footer-section h5 {
             margin-bottom: 10px;
             font-size: 16px;
             color: #333;
         }
+
         .footer-section p {
             margin: 5px 0;
         }
+
         .footer-section a {
             text-decoration: none;
             color: #555;
             font-size: 14px;
         }
+
         .footer-section a:hover {
             color: #007bff;
         }
+
         .footer-center {
             text-align: center;
         }
+
         .footer-center img {
             width: 24px;
             vertical-align: middle;
             margin-right: 5px;
         }
+
         .footer-right {
             text-align: right;
             font-size: 14px;
             color: #555;
         }
+
         @media (max-width: 768px) {
             .footer-container {
                 flex-direction: column;
                 text-align: center;
             }
+
             .footer-right {
                 text-align: center;
             }
+
             .nav-links {
                 flex-direction: column;
                 align-items: center;
             }
+
             .nav-links li a {
                 margin: 10px 0;
             }
         }
     </style>
 </head>
+
 <body>
     <!-- Navbar -->
     <nav class="navbar">
@@ -443,7 +488,8 @@ if (isset($_GET['delete_post'])) {
         <?php if (isset($_SESSION['message'])): ?>
             <div class="message <?php echo $_SESSION['message_type']; ?>">
                 <?php echo $_SESSION['message']; ?>
-                <?php unset($_SESSION['message']); unset($_SESSION['message_type']); ?>
+                <?php unset($_SESSION['message']);
+                unset($_SESSION['message_type']); ?>
             </div>
         <?php endif; ?>
 
@@ -472,7 +518,7 @@ if (isset($_GET['delete_post'])) {
             $stmt->execute();
             $result = $stmt->get_result();
             if ($post = $result->fetch_assoc()) {
-                ?>
+        ?>
                 <div class="post-form">
                     <h3>Chỉnh sửa bài đăng</h3>
                     <form action="/btl/BTL_chuyende/webBTL/pages/congdong/network.php" method="POST" enctype="multipart/form-data">
@@ -487,7 +533,7 @@ if (isset($_GET['delete_post'])) {
                         <button type="submit" name="edit_post">Cập nhật</button>
                     </form>
                 </div>
-                <?php
+        <?php
             }
             $stmt->close();
         }
@@ -555,4 +601,5 @@ if (isset($_GET['delete_post'])) {
         </div>
     </footer>
 </body>
+
 </html>
