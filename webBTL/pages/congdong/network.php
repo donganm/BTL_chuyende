@@ -459,7 +459,6 @@ if (isset($_GET['delete_post'])) {
                 </form>
             </div>
         <?php else: ?>
-            <p>Chỉ admin đã đăng nhập mới có thể đăng bài. Bạn có thể xem các bài đăng bên dưới.</p>
         <?php endif; ?>
 
         <!-- Form chỉnh sửa bài đăng (hiển thị khi admin bấm "Sửa") -->
