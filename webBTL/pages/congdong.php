@@ -209,25 +209,27 @@
   </footer>
   <!-- End footer  -->
 
-  <script>
-    const images = [
-      "./congdong/image_url/vltt.jpg",
-      "./congdong/image_url/caumosta.jpg",
-      "./congdong/image_url/colosseo.jpg",
-      "./congdong/image_url/machupichu.jpg"
-    ];
 
-    let currentIndex = 0;
-    const banner = document.getElementById("banner");
+    <script>
+        const images = [
+            "./congdong/image_url/vanlitt.jpg",
+            "./congdong/image_url/mosta.jpg",
+            "./congdong/image_url/colosseo.jpg",
+            "./congdong/image_url/machupichu.jpg"
+        ];
+        
+        let currentIndex = 0;
+        const banner = document.getElementById("banner");
 
-    function changeBackground() {
-      banner.style.backgroundImage = `url('${images[currentIndex]}')`;
-      currentIndex = (currentIndex + 1) % images.length;
-    }
+        function changeBackground() {
+            banner.style.backgroundImage = `url('${images[currentIndex]}')`;
+            currentIndex = (currentIndex + 1) % images.length;
+        }
 
-    changeBackground();
-    setInterval(changeBackground, 5000);
-  </script>
+        changeBackground();
+        setInterval(changeBackground, 5000);
+    </script>
+
 </body>
 
 </html>

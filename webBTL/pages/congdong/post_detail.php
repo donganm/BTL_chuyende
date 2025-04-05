@@ -4,12 +4,6 @@ session_start();
 // Kết nối cơ sở dữ liệu
 include '../../includes/db.php';
 
-// Kiểm tra session để đảm bảo người dùng đã đăng nhập
-if (!isset($_SESSION['user_id'])) {
-    header("Location: /btl/BTL_chuyende/webBTL/login.php");
-    exit();
-}
-
 // Kiểm tra xem post_id có được truyền qua URL không
 if (!isset($_GET['post_id'])) {
     $_SESSION['message'] = "Không tìm thấy bài đăng!";
@@ -81,6 +75,13 @@ if (isset($_POST['submit_comment'])) {
 
 // Xử lý chỉnh sửa bình luận
 if (isset($_POST['edit_comment'])) {
+    if (!isset($_SESSION['user_id'])) {
+        $_SESSION['message'] = "Bạn cần đăng nhập để chỉnh sửa bình luận!";
+        $_SESSION['message_type'] = "error";
+        header("Location: /btl/BTL_chuyende/webBTL/pages/congdong/post_detail.php?post_id=$post_id");
+        exit();
+    }
+
     $comment_id = (int)$_POST['comment_id'];
     $content = trim($_POST['comment_content'] ?? '');
 
@@ -128,6 +129,13 @@ if (isset($_POST['edit_comment'])) {
 
 // Xử lý xóa bình luận
 if (isset($_GET['delete_comment'])) {
+    if (!isset($_SESSION['user_id'])) {
+        $_SESSION['message'] = "Bạn cần đăng nhập để xóa bình luận!";
+        $_SESSION['message_type'] = "error";
+        header("Location: /btl/BTL_chuyende/webBTL/pages/congdong/post_detail.php?post_id=$post_id");
+        exit();
+    }
+
     $comment_id = (int)$_GET['delete_comment'];
 
     // Kiểm tra quyền xóa
@@ -216,7 +224,6 @@ if (isset($_GET['delete_comment'])) {
             border-radius: 5px;
         }
         .back-button {
-            
             color: #007bff;
             padding: 10px 15px;
             border-radius: 5px;
@@ -454,7 +461,7 @@ if (isset($_GET['delete_comment'])) {
                     echo '<p>' . htmlspecialchars($comment['content']) . '</p>';
                     // Hiển thị nút Sửa/Xóa cho admin hoặc người dùng đã đăng bình luận
                     $is_admin = isset($_SESSION['role']) && strtolower($_SESSION['role']) === 'admin';
-                    $is_owner = $comment['user_id'] && $comment['user_id'] == $_SESSION['user_id'];
+                    $is_owner = $comment['user_id'] && isset($_SESSION['user_id']) && $comment['user_id'] == $_SESSION['user_id'];
                     if ($is_admin || $is_owner) {
                         echo '<div class="comment-actions">';
                         echo '<a href="?post_id=' . $post_id . '&edit_comment=' . $comment['id'] . '" class="edit">Sửa</a>';
@@ -484,7 +491,7 @@ if (isset($_GET['delete_comment'])) {
             $stmt->close();
             ?>
 
-            <!-- Form thêm bình luận -->
+            <!-- Form thêm bình luận (hiển thị cho tất cả người dùng) -->
             <div class="comment-form">
                 <form action="/btl/BTL_chuyende/webBTL/pages/congdong/post_detail.php?post_id=<?php echo $post_id; ?>" method="POST">
                     <textarea name="comment_content" placeholder="Viết bình luận..." required></textarea>
@@ -500,12 +507,12 @@ if (isset($_GET['delete_comment'])) {
         <div class="footer-container">
             <div class="footer-section">
                 <h5>Get Help</h5>
-                <p><a href="/webBTL/pages/feedback.php">Feedback</a></p>
-                <p><a href="/webBTL/pages/contact.php">Contact Us</a></p>
+                <p><a href="../feedback.php">Feedback</a></p>
+                <p><a href="../contact.php">Contact Us</a></p>
             </div>
             <div class="footer-section footer-center">
                 <div>
-                    <img src="./assets/img/VN_Flag.webp" alt="Vietnam Flag" />
+                    <img src="../../assets/img/VN_Flag.webp" alt="Vietnam Flag" />
                     <span>VIE VN</span>
                 </div>
                 <p>© 2025 G.H</p>

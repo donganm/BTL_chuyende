@@ -4,14 +4,15 @@ session_start();
 // Kết nối cơ sở dữ liệu
 include '../../includes/db.php';
 
-// Kiểm tra session để đảm bảo người dùng đã đăng nhập
-if (!isset($_SESSION['user_id'])) {
-    header("Location: /btl/BTL_chuyende/webBTL/login.php");
-    exit();
-}
-
-// Xử lý đăng bài (chỉ dành cho admin)
+// Xử lý đăng bài (chỉ dành cho admin đã đăng nhập)
 if (isset($_POST['submit_post'])) {
+    if (!isset($_SESSION['user_id'])) {
+        $_SESSION['message'] = "Bạn cần đăng nhập để đăng bài!";
+        $_SESSION['message_type'] = "error";
+        header("Location: /btl/BTL_chuyende/webBTL/pages/congdong/network.php");
+        exit();
+    }
+
     if (!isset($_SESSION['role']) || strtolower($_SESSION['role']) !== 'admin') {
         $_SESSION['message'] = "Chỉ admin mới có thể đăng bài!";
         $_SESSION['message_type'] = "error";
@@ -60,6 +61,13 @@ if (isset($_POST['submit_post'])) {
 
 // Xử lý chỉnh sửa bài đăng
 if (isset($_POST['edit_post'])) {
+    if (!isset($_SESSION['user_id'])) {
+        $_SESSION['message'] = "Bạn cần đăng nhập để chỉnh sửa bài đăng!";
+        $_SESSION['message_type'] = "error";
+        header("Location: /btl/BTL_chuyende/webBTL/pages/congdong/network.php");
+        exit();
+    }
+
     if (!isset($_SESSION['role']) || strtolower($_SESSION['role']) !== 'admin') {
         $_SESSION['message'] = "Chỉ admin mới có thể chỉnh sửa bài đăng!";
         $_SESSION['message_type'] = "error";
@@ -113,6 +121,13 @@ if (isset($_POST['edit_post'])) {
 
 // Xử lý xóa bài đăng
 if (isset($_GET['delete_post'])) {
+    if (!isset($_SESSION['user_id'])) {
+        $_SESSION['message'] = "Bạn cần đăng nhập để xóa bài đăng!";
+        $_SESSION['message_type'] = "error";
+        header("Location: /btl/BTL_chuyende/webBTL/pages/congdong/network.php");
+        exit();
+    }
+
     if (!isset($_SESSION['role']) || strtolower($_SESSION['role']) !== 'admin') {
         $_SESSION['message'] = "Chỉ admin mới có thể xóa bài đăng!";
         $_SESSION['message_type'] = "error";
@@ -151,137 +166,6 @@ if (isset($_GET['delete_post'])) {
         $_SESSION['message_type'] = "success";
     } else {
         $_SESSION['message'] = "Lỗi khi xóa bài đăng: " . $conn->error;
-        $_SESSION['message_type'] = "error";
-    }
-    $stmt->close();
-    header("Location: /btl/BTL_chuyende/webBTL/pages/congdong/network.php");
-    exit();
-}
-
-// Xử lý đăng bình luận
-if (isset($_POST['submit_comment'])) {
-    $post_id = (int)$_POST['post_id'];
-    $article_type = 'post';
-    $user_id = isset($_SESSION['user_id']) ? (int)$_SESSION['user_id'] : NULL;
-    $username = isset($_SESSION['user']) ? $_SESSION['user'] : 'Ẩn danh';
-    $content = trim($_POST['comment_content'] ?? '');
-
-    if (empty($content)) {
-        $_SESSION['message'] = "Nội dung bình luận không được để trống!";
-        $_SESSION['message_type'] = "error";
-        header("Location: /btl/BTL_chuyende/webBTL/pages/congdong/network.php");
-        exit();
-    }
-
-    $check_sql = "SELECT id FROM posts WHERE id = ?";
-    $check_stmt = $conn->prepare($check_sql);
-    $check_stmt->bind_param("i", $post_id);
-    $check_stmt->execute();
-    $check_result = $check_stmt->get_result();
-
-    if ($check_result->num_rows === 0) {
-        $_SESSION['message'] = "Bài đăng không tồn tại!";
-        $_SESSION['message_type'] = "error";
-        $check_stmt->close();
-        header("Location: /btl/BTL_chuyende/webBTL/pages/congdong/network.php");
-        exit();
-    }
-    $check_stmt->close();
-
-    $sql = "INSERT INTO comments (post_id, article_type, user_id, username, content, created_at) VALUES (?, ?, ?, ?, ?, NOW())";
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("isiss", $post_id, $article_type, $user_id, $username, $content);
-    if ($stmt->execute()) {
-        $_SESSION['message'] = "Bình luận thành công!";
-        $_SESSION['message_type'] = "success";
-    } else {
-        $_SESSION['message'] = "Lỗi khi đăng bình luận: " . $conn->error;
-        $_SESSION['message_type'] = "error";
-    }
-    $stmt->close();
-    header("Location: /btl/BTL_chuyende/webBTL/pages/congdong/network.php");
-    exit();
-}
-
-// Xử lý chỉnh sửa bình luận
-if (isset($_POST['edit_comment'])) {
-    $comment_id = (int)$_POST['comment_id'];
-    $content = trim($_POST['comment_content'] ?? '');
-
-    if (empty($content)) {
-        $_SESSION['message'] = "Nội dung bình luận không được để trống!";
-        $_SESSION['message_type'] = "error";
-        header("Location: /btl/BTL_chuyende/webBTL/pages/congdong/network.php");
-        exit();
-    }
-
-    // Kiểm tra quyền chỉnh sửa
-    $sql = "SELECT user_id FROM comments WHERE id = ?";
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("i", $comment_id);
-    $stmt->execute();
-    $result = $stmt->get_result();
-    $comment = $result->fetch_assoc();
-    $stmt->close();
-
-    $is_admin = isset($_SESSION['role']) && strtolower($_SESSION['role']) === 'admin';
-    $is_owner = $comment['user_id'] && $comment['user_id'] == $_SESSION['user_id'];
-
-    if (!$is_admin && !$is_owner) {
-        $_SESSION['message'] = "Bạn không có quyền chỉnh sửa bình luận này!";
-        $_SESSION['message_type'] = "error";
-        header("Location: /btl/BTL_chuyende/webBTL/pages/congdong/network.php");
-        exit();
-    }
-
-    // Cập nhật bình luận
-    $sql = "UPDATE comments SET content = ? WHERE id = ?";
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("si", $content, $comment_id);
-    if ($stmt->execute()) {
-        $_SESSION['message'] = "Chỉnh sửa bình luận thành công!";
-        $_SESSION['message_type'] = "success";
-    } else {
-        $_SESSION['message'] = "Lỗi khi chỉnh sửa bình luận: " . $conn->error;
-        $_SESSION['message_type'] = "error";
-    }
-    $stmt->close();
-    header("Location: /btl/BTL_chuyende/webBTL/pages/congdong/network.php");
-    exit();
-}
-
-// Xử lý xóa bình luận
-if (isset($_GET['delete_comment'])) {
-    $comment_id = (int)$_GET['delete_comment'];
-
-    // Kiểm tra quyền xóa
-    $sql = "SELECT user_id FROM comments WHERE id = ?";
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("i", $comment_id);
-    $stmt->execute();
-    $result = $stmt->get_result();
-    $comment = $result->fetch_assoc();
-    $stmt->close();
-
-    $is_admin = isset($_SESSION['role']) && strtolower($_SESSION['role']) === 'admin';
-    $is_owner = $comment['user_id'] && $comment['user_id'] == $_SESSION['user_id'];
-
-    if (!$is_admin && !$is_owner) {
-        $_SESSION['message'] = "Bạn không có quyền xóa bình luận này!";
-        $_SESSION['message_type'] = "error";
-        header("Location: /btl/BTL_chuyende/webBTL/pages/congdong/network.php");
-        exit();
-    }
-
-    // Xóa bình luận
-    $sql = "DELETE FROM comments WHERE id = ?";
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("i", $comment_id);
-    if ($stmt->execute()) {
-        $_SESSION['message'] = "Xóa bình luận thành công!";
-        $_SESSION['message_type'] = "success";
-    } else {
-        $_SESSION['message'] = "Lỗi khi xóa bình luận: " . $conn->error;
         $_SESSION['message_type'] = "error";
     }
     $stmt->close();
@@ -487,6 +371,11 @@ if (isset($_GET['delete_comment'])) {
             line-height: 1.6;
             color: #555;
             margin: 10px 0;
+            display: -webkit-box;
+            -webkit-line-clamp: 3; /* Giới hạn hiển thị 3 dòng */
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
 
         .post-content img {
@@ -604,8 +493,8 @@ if (isset($_GET['delete_comment'])) {
             </div>
         <?php endif; ?>
 
-        <!-- Form đăng bài (chỉ hiển thị cho admin) -->
-        <?php if (isset($_SESSION['role']) && strtolower($_SESSION['role']) == 'admin'): ?>
+        <!-- Form đăng bài (chỉ hiển thị cho admin đã đăng nhập) -->
+        <?php if (isset($_SESSION['user_id']) && isset($_SESSION['role']) && strtolower($_SESSION['role']) == 'admin'): ?>
             <div class="post-form">
                 <h3>Đăng bài mới</h3>
                 <form action="/btl/BTL_chuyende/webBTL/pages/congdong/network.php" method="POST" enctype="multipart/form-data">
@@ -616,12 +505,12 @@ if (isset($_GET['delete_comment'])) {
                 </form>
             </div>
         <?php else: ?>
-            <p>Chỉ admin mới có thể đăng bài. Bạn có thể bình luận bên dưới các bài đăng.</p>
+            <p>Chỉ admin đã đăng nhập mới có thể đăng bài. Bạn có thể xem các bài đăng bên dưới.</p>
         <?php endif; ?>
 
         <!-- Form chỉnh sửa bài đăng (hiển thị khi admin bấm "Sửa") -->
         <?php
-        if (isset($_GET['edit_post']) && isset($_SESSION['role']) && strtolower($_SESSION['role']) == 'admin') {
+        if (isset($_GET['edit_post']) && isset($_SESSION['user_id']) && isset($_SESSION['role']) && strtolower($_SESSION['role']) == 'admin') {
             $post_id = (int)$_GET['edit_post'];
             $sql = "SELECT * FROM posts WHERE id = ?";
             $stmt = $conn->prepare($sql);
@@ -666,8 +555,8 @@ if (isset($_GET['delete_comment'])) {
                     echo '<h3><a href="post_detail.php?post_id=' . $post['id'] . '">' . htmlspecialchars($post['title']) . '</a></h3>';
                     echo '<span>Đăng bởi ' . htmlspecialchars($display_username) . ' vào ' . $post['created_at'] . '</span>';
                     echo '</div>';
-                    // Hiển thị nút Sửa/Xóa cho admin
-                    if (isset($_SESSION['role']) && strtolower($_SESSION['role']) == 'admin') {
+                    // Hiển thị nút Sửa/Xóa cho admin đã đăng nhập
+                    if (isset($_SESSION['user_id']) && isset($_SESSION['role']) && strtolower($_SESSION['role']) == 'admin') {
                         echo '<div class="post-actions">';
                         echo '<a href="?edit_post=' . $post['id'] . '" class="edit">Sửa</a>';
                         echo '<a href="?delete_post=' . $post['id'] . '" class="delete" onclick="return confirm(\'Bạn có chắc chắn muốn xóa bài đăng này?\')">Xóa</a>';
@@ -696,12 +585,12 @@ if (isset($_GET['delete_comment'])) {
         <div class="footer-container">
             <div class="footer-section">
                 <h5>Get Help</h5>
-                <p><a href="/webBTL/pages/feedback.php">Feedback</a></p>
-                <p><a href="/webBTL/pages/contact.php">Contact Us</a></p>
+                <p><a href="../feedback.php">Feedback</a></p>
+                <p><a href="../contact.php">Contact Us</a></p>
             </div>
             <div class="footer-section footer-center">
                 <div>
-                    <img src="./assets/img/VN_Flag.webp" alt="Vietnam Flag" />
+                    <img src="../../assets/img/VN_Flag.webp" alt="Vietnam Flag" />
                     <span>VIE VN</span>
                 </div>
                 <p>© 2025 G.H</p>
