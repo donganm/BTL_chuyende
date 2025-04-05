@@ -52,6 +52,7 @@ if (
             display: flex;
             justify-content: center;
             align-items: center;
+            background-color: #a5b1c2;
         }
 
         .container {

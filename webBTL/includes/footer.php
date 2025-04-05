@@ -26,6 +26,25 @@
 </div>
 
 <!-- End Footer -->
+
+<script>
+    function openLoginForm() {
+        document.getElementById("overlay").style.display = "block";
+        document.getElementById("loginModal").style.display = "block";
+    }
+
+    function closeLoginForm() {
+        document.getElementById("overlay").style.display = "none";
+        document.getElementById("loginModal").style.display = "none";
+    }
+
+    // Tự động đóng modal sau khi đăng nhập thành công
+    window.addEventListener("message", function(event) {
+        if (event.data === "closeModal") {
+            closeLoginForm();
+        }
+    });
+</script>
 </body>
 
 </html>
