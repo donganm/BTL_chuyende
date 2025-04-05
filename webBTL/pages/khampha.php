@@ -277,6 +277,7 @@
 
   Theo Gia Định thành thông chí, tên gốc của núi Bà Đen là Bà Dinh. Những bậc kỳ lão địa phương thì cho rằng tên gốc là núi Một. Đến khoảng nửa thế kỷ XVIII mới xuất hiện tên gọi núi Bà Đênh, sau gọi trại dần thành núi Bà Đen. Cũng có người gọi là núi Điện Bà.[4] Trong Chiến tranh Việt Nam, khu vực xung quanh núi là một điểm nóng khi là nơi đường mòn Hồ Chí Minh kết thúc và cách biên giới Campuchia vài km về phía Tây.[5]
 
+<<<<<<< HEAD
   Khu vực này thực chất là một cụm gồm ba núi nằm liền kề nhau là Núi Bà Đen (còn được gọi tắt là Núi Bà), Núi Heo và Núi Phụng trên tổng diện tích 24 km².[6] Quần thể Núi Bà Đen được Bộ Văn hóa (nay là Bộ Văn hóa, Thể thao và Du lịch) công nhận là di tích lịch sử và danh thắng cấp quốc gia vào ngày 21 tháng 1 năm 1989
 </p>
 <h2>
@@ -331,6 +332,62 @@
   alt="">
 <p style="width: 600px; word-wrap: break-word; text-align: center; line-height: 1.6; margin: 0 auto;">
   Thành nhà Hồ (hay còn gọi là thành Tây Đô, thành An Tôn, thành Tây Kinh hay thành Tây Giai) là kinh đô nước Đại Ngu (quốc hiệu của Việt Nam dưới thời nhà Hồ), nằm trên địa phận tỉnh Thanh Hóa. Đây là tòa thành kiên cố với kiến trúc độc đáo bằng đá có quy mô lớn hiếm hoi ở Việt Nam, có giá trị và độc đáo nhất, duy nhất còn lại ở tại Đông Nam Á và là một trong rất ít những thành lũy bằng đá còn lại trên thế giới[1]. Thành được xây dựng trong thời gian ngắn, chỉ khoảng 3 tháng (từ tháng Giêng đến tháng 3 năm 1397) và cho đến nay, dù đã tồn tại hơn 6 thế kỷ nhưng một số đoạn của tòa thành này còn lại tương đối nguyên vẹn.
+=======
+Khu vực này thực chất là một cụm gồm ba núi nằm liền kề nhau là Núi Bà Đen (còn được gọi tắt là Núi Bà), Núi Heo và Núi Phụng trên tổng diện tích 24 km².[6] Quần thể Núi Bà Đen được Bộ Văn hóa (nay là Bộ Văn hóa, Thể thao và Du lịch) công nhận là di tích lịch sử và danh thắng cấp quốc gia vào ngày 21 tháng 1 năm 1989
+    </p>
+    <h2>
+      II.Di tích lịch sử
+    </h2>
+    <h3>
+    1.Chùa Một Cột
+    </h3>
+    <img src="https://statics.vinpearl.com/chua-mot-cot-0_1685367087.jpg"
+    width="600" 
+     height="400"
+      alt="">
+    <p style="width: 600px; word-wrap: break-word; text-align: center; line-height: 1.6; margin: 0 auto;">
+      Chùa Một Cột có tên ban đầu là Liên Hoa Đài (蓮花臺)[1][2][3] tức là Đài Hoa Sen với lối kiến trúc độc đáo: một điện thờ đặt trên một cột trụ duy nhất. Liên Hoa Đài là công trình nổi tiếng nhất nằm trong quần thể kiến trúc Chùa Diên Hựu (延祐寺)[1][4], có nghĩa là ngôi chùa "Phúc lành dài lâu". Công trình Chùa Diên Hựu nguyên bản được xây vào thời vua Lý Thái Tông mùa đông năm 1049[5] và hoàn thiện vào năm 1105 thời vua Lý Nhân Tông[6] nay đã không còn. Công trình Liên Hoa Đài hiện tại nằm ở Hà Nội là một phiên bản được chỉnh sửa nhiều lần qua các thời kỳ, bị Pháp phá huỷ khi rút khỏi Hà Nội ngày 11/9/1954[7][8][9][10] và được dựng lại năm 1955 bởi kiến trúc sư Nguyễn Bá Lăng theo kiến trúc để lại từ thời Nguyễn. Đây là ngôi chùa có kiến trúc độc đáo ở Việt Nam.
+    </p>
+    <h3>
+      2.Hoàng Thành Thăng Long
+    </h3>
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/Main_Gate_-_Citadel_of_Hanoi.jpg/390px-Main_Gate_-_Citadel_of_Hanoi.jpg"
+    width="600" 
+     height="400"
+      alt="">
+      <p style="width: 600px; word-wrap: break-word; text-align: center; line-height: 1.6; margin: 0 auto;">
+       theo giờ địa phương tại Brasil, tức 6 giờ 30 ngày 1/8/2010 theo giờ Việt Nam, Ủy ban di sản thế giới (WHC) thuộc Tổ chức Giáo dục, Khoa học và Văn hóa Liên Hợp Quốc (UNESCO) đã thông qua nghị quyết công nhận khu Trung tâm Hoàng thành Thăng Long - Hà Nội là di sản Văn hóa thế giới.[1] Những giá trị nổi bật toàn cầu của khu di sản này được ghi nhận bởi 3 đặc điểm nổi bật: chiều dài lịch sử văn hóa suốt 13 thế kỷ; tính liên tục của di sản với tư cách là một trung tâm quyền lực, và các tầng di tích di vật đa dạng, phong phú, sinh động.[
+    </p>
+    <h3>
+      3.Kinh đô Hoa Lư
+    </h3>
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f7/Co_do_Hoa_Lu_113.JPG/420px-Co_do_Hoa_Lu_113.JPG"
+    width="600" 
+     height="400"
+      alt="">
+      <p style="width: 600px; word-wrap: break-word; text-align: center; line-height: 1.6; margin: 0 auto;">
+      Cố đô Hoa Lư (chữ Hán: 華閭) là kinh đô của Việt Nam trong giai đoạn 968-1010. Đây là kinh đô đầu tiên của nhà nước phong kiến Trung ương tập quyền ở Việt Nam và là quê hương của vị Anh hùng dân tộc Đinh Bộ Lĩnh.[1] Kinh đô Hoa Lư tồn tại 42 năm, gắn với sự nghiệp của ba triều đại liên tiếp là nhà Đinh, nhà Tiền Lê và nhà Lý với các dấu ấn lịch sử: thống nhất đất nước, đánh Tống - dẹp Chiêm và phát tích quá trình định đô Hà Nội. Năm 1010 vua Lý Thái Tổ dời kinh đô từ Hoa Lư (Ninh Bình) về Thăng Long (Hà Nội), Hoa Lư trở thành Cố đô. Các triều vua Lý, Trần, Lê, Nguyễn sau đó dù không đóng đô ở Hoa Lư nữa nhưng vẫn cho tu bổ và xây dựng thêm ở đây nhiều công trình kiến trúc như đền, lăng, đình, chùa, phủ,...[2] Hiện nay, Cố đô Hoa Lư vẫn còn nhiều di tích nằm trong Quần thể di sản thế giới Tràng An thuộc địa bàn tỉnh Ninh Bình.
+    </p>
+    <h3>
+      4.Quốc Tử Giám
+    </h3>
+    <img src="https://statics.vinpearl.com/van-mieu-quoc-tu-giam-01_1682005307.jpg"
+    width="600" 
+     height="400"
+      alt="">
+    <p style="width: 600px; word-wrap: break-word; text-align: center; line-height: 1.6; margin: 0 auto;">
+      Văn Miếu – Quốc Tử Giám là quần thể di tích đa dạng, phong phú hàng đầu của thành phố Hà Nội, nằm ở phía Nam kinh thành Thăng Long. Quần thể kiến trúc Văn Miếu – Quốc Tử Giám bao gồm: hồ Văn, khu Văn Miếu – Quốc Tử Giám và vườn Giám, mà kiến trúc chủ thể là Văn miếu (chữ Hán: 文廟) - nơi thờ Khổng Tử, và Quốc tử giám (chữ Hán: 國子監) - trường đại học đầu tiên của Việt Nam. Khu Văn Miếu – Quốc Tử Giám có tường gạch vồ bao quanh, phía trong chia thành 5 lớp không gian với các kiến trúc khác nhau. Mỗi lớp không gian đó được giới hạn bởi các tường gạch có 3 cửa để thông với nhau (gồm cửa chính giữa và hai cửa phụ hai bên). Từ ngoài vào trong có các cổng lần lượt là: cổng Văn Miếu, Đại Trung, Khuê Văn các, Đại Thành và cổng Thái Học.[1] Với hơn 700 năm hoạt động đã đào tạo hàng nghìn nhân tài cho đất nước. Ngày nay, Văn Miếu – Quốc Tử Giám là nơi tham quan của du khách trong và ngoài nước đồng thời cũng là nơi khen tặng cho học sinh xuất sắc và còn là nơi tổ chức hội thơ hàng năm vào ngày rằm tháng giêng. Đặc biệt, đây còn là nơi các sĩ tử ngày nay đến "cầu may" trước mỗi kỳ thi quan trọng.
+    </p>
+    <h3>
+      5.Thành nhà Hồ
+    </h3>
+    <img src="https://statics.vinpearl.com/thanh-nha-ho--2_1629195660.jpg"
+    width="600" 
+     height="400"
+      alt="">
+    <p style="width: 600px; word-wrap: break-word; text-align: center; line-height: 1.6; margin: 0 auto;">
+      Thành nhà Hồ (hay còn gọi là thành Tây Đô, thành An Tôn, thành Tây Kinh hay thành Tây Giai) là kinh đô nước Đại Ngu (quốc hiệu của Việt Nam dưới thời nhà Hồ), nằm trên địa phận tỉnh Thanh Hóa. Đây là tòa thành kiên cố với kiến trúc độc đáo bằng đá có quy mô lớn hiếm hoi ở Việt Nam, có giá trị và độc đáo nhất, duy nhất còn lại ở tại Đông Nam Á và là một trong rất ít những thành lũy bằng đá còn lại trên thế giới[1]. Thành được xây dựng trong thời gian ngắn, chỉ khoảng 3 tháng (từ tháng Giêng đến tháng 3 năm 1397) và cho đến nay, dù đã tồn tại hơn 6 thế kỷ nhưng một số đoạn của tòa thành này còn lại tương đối nguyên vẹn.
+>>>>>>> 36dfb393ce948708602047fcf089cffd562a7f99
 
   Ngày 27 tháng 6 năm 2011, sau 6 năm đệ trình hồ sơ, Thành nhà Hồ đã được UNESCO công nhận là di sản văn hóa thế giới, thành cũng được CNN đánh giá là một trong 21 di sản nổi bật và vĩ đại nhất thế giới[2]. Hiện nay, nơi đây đã được thủ tướng chính phủ Việt Nam đưa vào danh sách xếp hạng 62 di tích quốc gia đặc biệt. Từ tháng 12 năm 2018 đến tháng 6 năm 2020, Quỹ Bảo tồn Văn hóa của Đại sứ Hoa Kỳ (AFCP) đã tài trợ 92,500 USD vào dự án bảo tồn Cổng Nam, Thành nhà Hồ.[3]
 </p>
