@@ -8,14 +8,14 @@ include '../../includes/db.php';
 if (!isset($_GET['post_id'])) {
     $_SESSION['message'] = "Không tìm thấy bài đăng!";
     $_SESSION['message_type'] = "error";
-    header("Location: /btl/BTL_chuyende/webBTL/pages/congdong/network.php");
+    header("Location: ../congdong/network.php");
     exit();
 }
 
 $post_id = (int)$_GET['post_id'];
 
 // Lấy thông tin bài đăng
-$sql = "SELECT posts.*, users.Username FROM posts LEFT JOIN users ON posts.user_id = users.UserId WHERE posts.id = ?";
+$sql = "SELECT post.*, users.Username FROM post LEFT JOIN users ON post.user_id = users.UserId WHERE post.id = ?";
 $stmt = $conn->prepare($sql);
 $stmt->bind_param("i", $post_id);
 $stmt->execute();
@@ -23,7 +23,7 @@ $result = $stmt->get_result();
 if ($result->num_rows === 0) {
     $_SESSION['message'] = "Bài đăng không tồn tại!";
     $_SESSION['message_type'] = "error";
-    header("Location: /btl/BTL_chuyende/webBTL/pages/congdong/network.php");
+    header("Location: ../congdong/network.php");
     exit();
 }
 $post = $result->fetch_assoc();
@@ -39,11 +39,11 @@ if (isset($_POST['submit_comment'])) {
     if (empty($content)) {
         $_SESSION['message'] = "Nội dung bình luận không được để trống!";
         $_SESSION['message_type'] = "error";
-        header("Location: /btl/BTL_chuyende/webBTL/pages/congdong/post_detail.php?post_id=$post_id");
+        header("Location: ../congdong/post_detail.php?post_id=$post_id");
         exit();
     }
 
-    $check_sql = "SELECT id FROM posts WHERE id = ?";
+    $check_sql = "SELECT id FROM post WHERE id = ?";
     $check_stmt = $conn->prepare($check_sql);
     $check_stmt->bind_param("i", $post_id);
     $check_stmt->execute();
@@ -53,7 +53,7 @@ if (isset($_POST['submit_comment'])) {
         $_SESSION['message'] = "Bài đăng không tồn tại!";
         $_SESSION['message_type'] = "error";
         $check_stmt->close();
-        header("Location: /btl/BTL_chuyende/webBTL/pages/congdong/network.php");
+        header("Location: ../congdong/network.php");
         exit();
     }
     $check_stmt->close();
@@ -69,7 +69,7 @@ if (isset($_POST['submit_comment'])) {
         $_SESSION['message_type'] = "error";
     }
     $stmt->close();
-    header("Location: /btl/BTL_chuyende/webBTL/pages/congdong/post_detail.php?post_id=$post_id");
+    header("Location: ../congdong/post_detail.php?post_id=$post_id");
     exit();
 }
 
@@ -78,7 +78,7 @@ if (isset($_POST['edit_comment'])) {
     if (!isset($_SESSION['user_id'])) {
         $_SESSION['message'] = "Bạn cần đăng nhập để chỉnh sửa bình luận!";
         $_SESSION['message_type'] = "error";
-        header("Location: /btl/BTL_chuyende/webBTL/pages/congdong/post_detail.php?post_id=$post_id");
+        header("Location: ../congdong/post_detail.php?post_id=$post_id");
         exit();
     }
 
@@ -88,7 +88,7 @@ if (isset($_POST['edit_comment'])) {
     if (empty($content)) {
         $_SESSION['message'] = "Nội dung bình luận không được để trống!";
         $_SESSION['message_type'] = "error";
-        header("Location: /btl/BTL_chuyende/webBTL/pages/congdong/post_detail.php?post_id=$post_id");
+        header("Location: ../congdong/post_detail.php?post_id=$post_id");
         exit();
     }
 
@@ -107,7 +107,7 @@ if (isset($_POST['edit_comment'])) {
     if (!$is_admin && !$is_owner) {
         $_SESSION['message'] = "Bạn không có quyền chỉnh sửa bình luận này!";
         $_SESSION['message_type'] = "error";
-        header("Location: /btl/BTL_chuyende/webBTL/pages/congdong/post_detail.php?post_id=$post_id");
+        header("Location: ../congdong/post_detail.php?post_id=$post_id");
         exit();
     }
 
@@ -123,7 +123,7 @@ if (isset($_POST['edit_comment'])) {
         $_SESSION['message_type'] = "error";
     }
     $stmt->close();
-    header("Location: /btl/BTL_chuyende/webBTL/pages/congdong/post_detail.php?post_id=$post_id");
+    header("Location: ../congdong/post_detail.php?post_id=$post_id");
     exit();
 }
 
@@ -132,7 +132,7 @@ if (isset($_GET['delete_comment'])) {
     if (!isset($_SESSION['user_id'])) {
         $_SESSION['message'] = "Bạn cần đăng nhập để xóa bình luận!";
         $_SESSION['message_type'] = "error";
-        header("Location: /btl/BTL_chuyende/webBTL/pages/congdong/post_detail.php?post_id=$post_id");
+        header("Location: ../congdong/post_detail.php?post_id=$post_id");
         exit();
     }
 
@@ -153,7 +153,7 @@ if (isset($_GET['delete_comment'])) {
     if (!$is_admin && !$is_owner) {
         $_SESSION['message'] = "Bạn không có quyền xóa bình luận này!";
         $_SESSION['message_type'] = "error";
-        header("Location: /btl/BTL_chuyende/webBTL/pages/congdong/post_detail.php?post_id=$post_id");
+        header("Location: ../congdong/post_detail.php?post_id=$post_id");
         exit();
     }
 
@@ -169,13 +169,14 @@ if (isset($_GET['delete_comment'])) {
         $_SESSION['message_type'] = "error";
     }
     $stmt->close();
-    header("Location: /btl/BTL_chuyende/webBTL/pages/congdong/post_detail.php?post_id=$post_id");
+    header("Location: ../congdong/post_detail.php?post_id=$post_id");
     exit();
 }
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -189,6 +190,7 @@ if (isset($_GET['delete_comment'])) {
             margin: 0;
             padding: 0;
         }
+
         .navbar {
             display: flex;
             justify-content: space-between;
@@ -201,6 +203,7 @@ if (isset($_GET['delete_comment'])) {
             top: 0;
             z-index: 1000;
         }
+
         .nav-links {
             list-style: none;
             margin: 0;
@@ -209,6 +212,7 @@ if (isset($_GET['delete_comment'])) {
             flex-grow: 1;
             justify-content: center;
         }
+
         .nav-links li a {
             color: white;
             font-size: 18px;
@@ -217,12 +221,14 @@ if (isset($_GET['delete_comment'])) {
             padding: 10px 15px;
             text-decoration: none;
         }
+
         .nav-links a:hover,
         .nav-links a.active {
             background: white;
             color: #007bff;
             border-radius: 5px;
         }
+
         .back-button {
             color: #007bff;
             padding: 10px 15px;
@@ -230,66 +236,79 @@ if (isset($_GET['delete_comment'])) {
             text-decoration: none;
             font-weight: bold;
         }
+
         .container {
             max-width: 800px;
             margin: 40px auto;
             padding: 20px;
         }
+
         .message {
             padding: 10px;
             margin-bottom: 20px;
             border-radius: 5px;
         }
+
         .message.success {
             background-color: #d4edda;
             color: #155724;
         }
+
         .message.error {
             background-color: #f8d7da;
             color: #721c24;
         }
+
         .post-detail {
             background: white;
             padding: 20px;
             border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
             margin-bottom: 20px;
         }
+
         .post-header h1 {
             font-size: 28px;
             color: #333;
             margin-bottom: 10px;
         }
+
         .post-header span {
             font-size: 14px;
             color: #777;
         }
+
         .post-content p {
             font-size: 16px;
             line-height: 1.6;
             color: #555;
             margin: 10px 0;
         }
+
         .post-content img {
             max-width: 100%;
             height: auto;
             border-radius: 8px;
             margin-top: 10px;
         }
+
         .comments {
             margin-top: 20px;
         }
+
         .comments h4 {
             font-size: 18px;
             color: #333;
             margin-bottom: 10px;
         }
+
         .comment {
             background: #f9f9f9;
             padding: 10px;
             border-radius: 5px;
             margin-bottom: 10px;
         }
+
         .comment-header {
             display: flex;
             justify-content: space-between;
@@ -297,24 +316,30 @@ if (isset($_GET['delete_comment'])) {
             color: #777;
             margin-bottom: 5px;
         }
+
         .comment-actions a {
             margin-left: 10px;
             text-decoration: none;
             font-size: 14px;
         }
+
         .comment-actions .edit {
             color: #007bff;
         }
+
         .comment-actions .delete {
             color: #dc3545;
         }
+
         .comment-content p {
             font-size: 16px;
             color: #555;
         }
+
         .comment-form {
             margin-top: 10px;
         }
+
         .comment-form textarea {
             width: 100%;
             padding: 10px;
@@ -324,6 +349,7 @@ if (isset($_GET['delete_comment'])) {
             height: 60px;
             resize: vertical;
         }
+
         .comment-form button {
             background: #007bff;
             color: white;
@@ -334,9 +360,11 @@ if (isset($_GET['delete_comment'])) {
             font-size: 14px;
             margin-top: 5px;
         }
+
         .comment-form button:hover {
             background: #0056b3;
         }
+
         footer {
             background-color: #f8f8f8;
             padding: 20px 0;
@@ -344,6 +372,7 @@ if (isset($_GET['delete_comment'])) {
             border-top: 1px solid #ddd;
             width: 100%;
         }
+
         .footer-container {
             display: flex;
             justify-content: space-between;
@@ -352,58 +381,71 @@ if (isset($_GET['delete_comment'])) {
             margin: 0 auto;
             flex-wrap: wrap;
         }
+
         .footer-section {
             flex: 1;
             min-width: 200px;
             margin: 10px 0;
         }
+
         .footer-section h5 {
             margin-bottom: 10px;
             font-size: 16px;
             color: #333;
         }
+
         .footer-section p {
             margin: 5px 0;
         }
+
         .footer-section a {
             text-decoration: none;
             color: #555;
             font-size: 14px;
         }
+
         .footer-section a:hover {
             color: #007bff;
         }
+
         .footer-center {
             text-align: center;
         }
+
         .footer-center img {
             width: 24px;
             vertical-align: middle;
             margin-right: 5px;
         }
+
         .footer-right {
             text-align: right;
             font-size: 14px;
             color: #555;
         }
+
         @media (max-width: 768px) {
             .footer-container {
                 flex-direction: column;
                 text-align: center;
             }
+
             .footer-right {
                 text-align: center;
             }
+
             .nav-links {
                 flex-direction: column;
                 align-items: center;
             }
+
             .nav-links li a {
                 margin: 10px 0;
             }
         }
     </style>
 </head>
+
 <body>
     <!-- Navbar -->
     <nav class="navbar">
@@ -421,7 +463,8 @@ if (isset($_GET['delete_comment'])) {
         <?php if (isset($_SESSION['message'])): ?>
             <div class="message <?php echo $_SESSION['message_type']; ?>">
                 <?php echo $_SESSION['message']; ?>
-                <?php unset($_SESSION['message']); unset($_SESSION['message_type']); ?>
+                <?php unset($_SESSION['message']);
+                unset($_SESSION['message_type']); ?>
             </div>
         <?php endif; ?>
 
@@ -473,16 +516,16 @@ if (isset($_GET['delete_comment'])) {
 
                     // Form chỉnh sửa bình luận (hiển thị khi bấm "Sửa")
                     if (isset($_GET['edit_comment']) && (int)$_GET['edit_comment'] == $comment['id'] && ($is_admin || $is_owner)) {
-                        ?>
+            ?>
                         <div class="comment-form">
                             <h4>Chỉnh sửa bình luận</h4>
-                            <form action="/btl/BTL_chuyende/webBTL/pages/congdong/post_detail.php?post_id=<?php echo $post_id; ?>" method="POST">
+                            <form action="../congdong/post_detail.php?post_id=<?php echo $post_id; ?>" method="POST">
                                 <textarea name="comment_content" required><?php echo htmlspecialchars($comment['content']); ?></textarea>
                                 <input type="hidden" name="comment_id" value="<?php echo $comment['id']; ?>">
                                 <button type="submit" name="edit_comment">Cập nhật</button>
                             </form>
                         </div>
-                        <?php
+            <?php
                     }
                 }
             } else {
@@ -493,7 +536,7 @@ if (isset($_GET['delete_comment'])) {
 
             <!-- Form thêm bình luận (hiển thị cho tất cả người dùng) -->
             <div class="comment-form">
-                <form action="/btl/BTL_chuyende/webBTL/pages/congdong/post_detail.php?post_id=<?php echo $post_id; ?>" method="POST">
+                <form action="../congdong/post_detail.php?post_id=<?php echo $post_id; ?>" method="POST">
                     <textarea name="comment_content" placeholder="Viết bình luận..." required></textarea>
                     <input type="hidden" name="post_id" value="<?php echo $post_id; ?>">
                     <button type="submit" name="submit_comment">Gửi</button>
@@ -523,4 +566,5 @@ if (isset($_GET['delete_comment'])) {
         </div>
     </footer>
 </body>
+
 </html>
