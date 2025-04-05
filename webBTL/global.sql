@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 03, 2025 at 04:03 PM
+-- Generation Time: Apr 05, 2025 at 12:27 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -58,14 +58,6 @@ CREATE TABLE `answers` (
   `created_at` datetime DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `answers`
---
-
-INSERT INTO `answers` (`id`, `question_id`, `answer`, `created_at`) VALUES
-(1, 1, 'sd', '2025-03-18 17:44:03'),
-(2, 1, '\r\n6', '2025-03-23 00:58:27');
-
 -- --------------------------------------------------------
 
 --
@@ -112,7 +104,10 @@ CREATE TABLE `blog_articles` (
 --
 
 INSERT INTO `blog_articles` (`id`, `title`, `tac_gia`, `description`, `ngay_dang`, `hinhanh`, `luot_xem`, `luot_thich`, `link`) VALUES
-(24, 'Vịnh Hạ Long', '', 'Vịnh Hạ Long là một di sản thiên nhiên thế giới được UNESCO công nhận, nổi tiếng với hàng nghìn hòn đảo đá vôi hùng vĩ. Cảnh quan kỳ thú, hệ sinh thái đa dạng cùng các truyền thuyết ly kỳ đã biến nơi đây thành một điểm du lịch hấp dẫn', '2025-03-27 17:22:08', 'default.jpg', 0, 0, 'view-blog.php?id=1740658880');
+(25, '“Nghe nhã nhạc, tôi thấy như đang ngồi giữa cung đình xưa”', '', 'Một trong những trải nghiệm tôi nhớ mãi trong chuyến đi là khi tôi nghe Nhã nhạc Cung đình Huế lần đầu tiên. Những âm thanh nhẹ nhàng, trầm bổng của đàn tranh, đàn bầu, cùng với những giọng hát thanh thoát đã làm tôi như lạc vào một thế giới khác, một thế giới của những hoàng đế, của những buổi tiệc cung đình xa xưa.\r\n\r\nNgồi trên bờ sông Hương, tôi cảm nhận được sự tĩnh lặng và thiêng liêng của âm nhạc, như thể từng nốt nhạc là tiếng thì thầm của những vua chúa, những cung phi trong suốt hàng trăm năm qua. Huế không chỉ là một địa danh, mà là một di sản sống, nơi mà âm nhạc vẫn còn vang vọng, như một phần không thể thiếu trong tâm hồn của mỗi người dân Huế. Từng giai điệu của Nhã nhạc như gợi lại những hình ảnh của một thời phong kiến rực rỡ, đồng thời cũng khơi dậy trong tôi một niềm tự hào về di sản văn hóa của dân tộc.\r\n\r\nĐược UNESCO công nhận là di sản văn hóa phi vật thể của nhân loại, Nhã nhạc không chỉ là âm nhạc, mà là một phần linh hồn của Huế, một di sản phải được bảo tồn và phát huy. Và trong khoảnh khắc đó, tôi đã nhận ra một điều rất rõ ràng: Di sản không phải là thứ gì đó xa vời, mà là thứ đang sống ngay trong hiện tại, trong mỗi nốt nhạc, trong từng câu hát.', '2025-04-05 09:30:17', '1743820242_9138-10-3.9.jpg', 0, 0, ''),
+(29, 'Làng Chài Cửa Cạn (Phú Quốc)', '', 'Làng Chài Cửa Cạn là một trong những địa điểm hiếm hoi ở Phú Quốc mà bạn có thể trải nghiệm cuộc sống ven biển bình dị và hoang sơ. Khác với các khu du lịch nổi tiếng như Bãi Sao hay Long Beach, Cửa Cạn vẫn giữ được nét đẹp yên bình, không bị ảnh hưởng bởi sự phát triển du lịch. Đây là một làng chài nằm ở phía Tây Bắc của đảo, với những bãi biển cát trắng và làn nước trong vắt, là nơi lý tưởng để bạn tận hưởng sự bình yên của biển cả. Làng Cửa Cạn không chỉ có những cảnh đẹp tự nhiên mà còn là nơi sinh sống của cộng đồng ngư dân với những hoạt động đánh bắt thủy sản truyền thống. Bạn có thể tham gia cùng ngư dân đi thuyền ra biển, hoặc thưởng thức các món hải sản tươi ngon, trong không gian mộc mạc và thân thiện. Những ngôi nhà sàn nhỏ, những chiếc thuyền đánh cá, tất cả tạo nên một bức tranh sống động về cuộc sống ven biển mà bạn khó có thể tìm thấy ở những khu du lịch đông đúc.', '2025-04-05 10:05:37', 'img_67f09e01b759b.jpg', 0, 0, ''),
+(30, 'Vườn Quốc Gia Phong Nha – Kẻ Bàng (Quảng Bình)', '', 'Phong Nha – Kẻ Bàng là một trong những khu bảo tồn thiên nhiên tuyệt vời nhất của Việt Nam, không chỉ nổi bật với các hang động kỳ vĩ như động Phong Nha, động Sơn Đoòng mà còn là một khu vực có giá trị sinh học và di sản văn hóa cực kỳ phong phú. Vườn quốc gia này có những con suối trong vắt, những hang động chưa được khai thác hết, và một hệ sinh thái động thực vật phong phú, tạo ra một không gian hoàn hảo cho những ai yêu thích khám phá thiên nhiên hoang dã.\r\n\r\nPhong Nha không chỉ nổi bật với những hang động, mà còn là nơi chứa đựng những giá trị văn hóa dân gian. Các bản làng của người dân tộc Vân Kiều và Rục quanh vườn quốc gia vẫn giữ được nhiều nét văn hóa truyền thống. Tôi vẫn nhớ những lần trò chuyện với người dân bản địa về những câu chuyện xưa, về các vị thần bảo vệ các hang động, hay những truyền thuyết kỳ bí về các con quái vật trong rừng sâu.', '2025-04-05 10:08:06', 'img_67f09e96ad538.jpg', 0, 0, ''),
+(31, 'Khu du lịch sinh thái Bà Nà Hills (Đà Nẵng)', '', 'Khu du lịch Bà Nà Hills không chỉ nổi tiếng với hệ thống cáp treo dài nhất thế giới, mà còn là một trong những địa điểm có vẻ đẹp hoang sơ và không khí trong lành, cách xa sự ồn ào của thành phố. Điều đặc biệt ở đây là bạn sẽ được trải nghiệm không gian núi rừng nguyên sinh, kết hợp với các công trình kiến trúc độc đáo như ngôi chùa Linh Ứng, cầu Vàng nổi tiếng – cây cầu được nâng đỡ bởi đôi bàn tay khổng lồ.\r\n\r\nMặc dù khu du lịch này đã được phát triển mạnh mẽ trong những năm gần đây, nhưng vẫn còn những góc khuất của Bà Nà Hills chưa bị du lịch hóa. Bạn có thể khám phá những làng quê cổ xưa quanh khu vực này, dạo bước trên những con đường mòn dẫn qua các khu rừng, cảm nhận sự bình yên giữa thiên nhiên hoang sơ.\r\n\r\nNgoài ra, Bà Nà cũng là nơi chứa đựng nhiều di sản văn hóa của các cộng đồng người Kinh, người Cơ Tu và các nhóm dân tộc khác, tạo ra một bức tranh đa dạng về văn hóa và lịch sử. Những con đường nhỏ trong khu du lịch, những ngôi nhà sàn của người Cơ Tu, những bức tượng Phật cổ, tất cả đều tạo nên một không gian yên bình, gần gũi với thiên nhiên.', '2025-04-05 10:09:05', 'img_67f09ed1b23de.jpg', 0, 0, '');
 
 -- --------------------------------------------------------
 
@@ -136,9 +131,10 @@ CREATE TABLE `comments` (
 --
 
 INSERT INTO `comments` (`id`, `article_id`, `username`, `content`, `created_at`, `user_id`, `post_id`, `article_type`) VALUES
-(6, 24, 'Ẩn danh', '10đ', '2025-02-27 12:29:00', NULL, NULL, 'post'),
 (15, NULL, 'Ẩn danh', 'xin chao', '2025-03-25 14:42:25', NULL, 5, 'post'),
-(16, NULL, 'Ẩn danh', 'heloo', '2025-03-26 03:09:25', NULL, 5, 'post');
+(16, NULL, 'Ẩn danh', 'heloo', '2025-03-26 03:09:25', NULL, 5, 'post'),
+(18, NULL, 'admin', 'aa', '2025-04-05 02:16:11', 4, 32, 'post'),
+(21, NULL, 'dta', '123', '2025-04-05 03:02:11', 1, 28, 'post');
 
 -- --------------------------------------------------------
 
@@ -186,7 +182,8 @@ INSERT INTO `feedback` (`id`, `name`, `email`, `message`, `created_at`) VALUES
 (2, 'Dong Anh', 'dta@gmail.com', 'Good', '2025-03-05 16:39:36'),
 (3, 'Dong Anh', 'dta@gmail.com', 'aaa', '2025-03-29 05:29:45'),
 (4, 'anm', 'anm@gmail.com', 'không tải được ảnh xuống', '2025-04-02 19:29:53'),
-(5, 'ẩn danh', 'andanh@gmail.com', 'ảnh dính bản quyền :((', '2025-04-02 19:31:01');
+(5, 'ẩn danh', 'andanh@gmail.com', 'ảnh dính bản quyền :((', '2025-04-02 19:31:01'),
+(6, 'Dong Anh', 'dta@gmail.com', '1234567890', '2025-04-05 02:47:27');
 
 -- --------------------------------------------------------
 
@@ -215,7 +212,34 @@ INSERT INTO `images` (`id`, `image_path`, `description`) VALUES
 (8, '../assets/img/trangimage/11.jpg', 'Hình ảnh mới'),
 (9, '../assets/img/trangimage/12.jpg', 'Hình ảnh mới'),
 (10, '../assets/img/trangimage/13.jpg', 'Hình ảnh mới'),
-(11, '../assets/img/trangimage/14.jpg', 'Hình ảnh mới');
+(11, '../assets/img/trangimage/14.jpg', 'Hình ảnh mới'),
+(12, '../assets/img/trangimage/1718331318364.png', 'Hình ảnh mới'),
+(13, '../assets/img/trangimage/bd.jpg', 'Hình ảnh mới');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `post`
+--
+
+CREATE TABLE `post` (
+  `id` int(11) NOT NULL,
+  `user_id` int(10) UNSIGNED NOT NULL,
+  `title` varchar(255) NOT NULL,
+  `content` text NOT NULL,
+  `image` varchar(255) DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `post`
+--
+
+INSERT INTO `post` (`id`, `user_id`, `title`, `content`, `image`, `created_at`) VALUES
+(25, 0, 'Vì sao ẩm thực Huế có nhiều món ăn cung đình?', 'Ảnh hưởng từ văn hóa cung đình\r\nCác vua triều Nguyễn rất quan tâm đến ăn uống, yêu cầu các món ăn phải không chỉ ngon mà còn đẹp mắt, tinh tế và cầu kỳ trong cách chế biến.\r\nNhiều món ăn được chế biến theo công thức đặc biệt chỉ dành riêng cho hoàng gia.', 'image_post/67f00cad81aa1_hue.jpg', '2025-03-09 22:39:14'),
+(26, 0, 'Thời điểm nào là đẹp nhất để du lịch Hội An?', 'Vào ngày 14 âm lịch mỗi tháng, Hội An tổ chức Đêm phố cổ, nơi toàn bộ khu phố sẽ lung linh với hàng ngàn chiếc đèn lồng, không có ánh đèn điện.\r\nĐây là thời điểm tuyệt vời để tham gia lễ hội thả đèn hoa đăng trên sông Hoài và tận hưởng không gian truyền thống.', 'image_post/67f00c881778f_hoi-an.jpg', '2025-03-09 22:47:03'),
+(28, 0, 'Di sản văn hóa phi vật thể là gì?', 'Đó là những giá trị phi hữu hình như truyền thống, phong tục, lễ hội, nghệ thuật biểu diễn… được UNESCO công nhận và bảo tồn như một phần không thể tách rời của di sản văn hóa.\r\n- Di sản văn hoá vật thể là sản phẩm vật chất có giá trị lịch sử, văn hoá, khoa học, bao gồm di tích lịch sử - văn hoá, danh lam thắng cảnh, di vật, cổ vật, bảo vật quốc gia.', 'image_post/67f00d0b3003c_di-san-van-hoa.jpg', '2025-03-15 08:46:54'),
+(32, 3, 'Chùa Một Cột - Biểu tượng văn hóa, kiến trúc độc đáo của Hà Nội', 'Khi nhắc đến những công trình kiến trúc ấn tượng, không thể bỏ qua chùa Một Cột. Năm 2012, tổ chức Kỷ lục Châu Á đã chính thức công nhận chùa Một Cột là \"Ngôi chùa có kiến trúc độc đáo nhất Châu Á\". Nó được xây dựng theo hình tượng của một đóa hoa sen nở trên mặt nước, tượng trưng cho sự tinh khiết và cao quý của Phật pháp.', 'image_post/67f00d724c3f9_chua-mot-cot.jpg', '2025-04-04 16:48:50');
 
 -- --------------------------------------------------------
 
@@ -225,6 +249,7 @@ INSERT INTO `images` (`id`, `image_path`, `description`) VALUES
 
 CREATE TABLE `posts` (
   `id` int(11) NOT NULL,
+  `user_id` int(10) UNSIGNED NOT NULL,
   `title` varchar(255) NOT NULL,
   `content` text NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
@@ -235,12 +260,10 @@ CREATE TABLE `posts` (
 -- Dumping data for table `posts`
 --
 
-INSERT INTO `posts` (`id`, `title`, `content`, `created_at`, `image`) VALUES
-(25, 'Vì sao ẩm thực Huế có nhiều món ăn cung đình?', 'Ảnh hưởng từ văn hóa cung đình\r\nCác vua triều Nguyễn rất quan tâm đến ăn uống, yêu cầu các món ăn phải không chỉ ngon mà còn đẹp mắt, tinh tế và cầu kỳ trong cách chế biến.\r\nNhiều món ăn được chế biến theo công thức đặc biệt chỉ dành riêng cho hoàng gia.', '2025-03-09 22:39:14', 'uploads/67ce7b024304a_am_thuc_hue_1.jpg'),
-(26, 'Thời điểm nào là đẹp nhất để du lịch Hội An?', 'Vào ngày 14 âm lịch mỗi tháng, Hội An tổ chức Đêm phố cổ, nơi toàn bộ khu phố sẽ lung linh với hàng ngàn chiếc đèn lồng, không có ánh đèn điện.\r\nĐây là thời điểm tuyệt vời để tham gia lễ hội thả đèn hoa đăng trên sông Hoài và tận hưởng không gian truyền thống.', '2025-03-09 22:47:03', 'uploads/67ce7cd7a7e19_le-hoi-den-hoa-dang.jpg'),
-(28, 'Di sản văn hóa phi vật thể là gì?', 'Đó là những giá trị phi hữu hình như truyền thống, phong tục, lễ hội, nghệ thuật biểu diễn… được UNESCO công nhận và bảo tồn như một phần không thể tách rời của di sản văn hóa.', '2025-03-15 08:46:54', 'uploads/67d5a0eed2b28_disanvanhoa.jpg'),
-(29, 'Các nghiên cứu hiện đại đã khai quật được những bí ẩn nào về di sản Ai Cập?', 'Công nghệ hiện đại như laser và ảnh vệ tinh đã giúp phát hiện các cấu trúc ẩn bên trong kim tự tháp và cung cấp cái nhìn sâu sắc hơn về phương pháp xây dựng cổ đại.', '2025-03-15 08:49:33', 'uploads/67d5a18d91134_giamabian.webp'),
-(30, 'Tại sao Kim tự tháp Giza lại được xây dựng với độ chính xác đến mức khiến các kiến trúc sư hiện đại ngỡ ngàng?', 'Kim tự tháp Giza đạt được độ chính xác tuyệt vời nhờ kết hợp kiến thức thiên văn, các công cụ đo đạc đơn giản nhưng hiệu quả và sự tổ chức lao động chặt chẽ của người Ai Cập cổ đại.', '2025-03-15 08:54:40', 'uploads/67d5a2c097cfb_hq720.jpg');
+INSERT INTO `posts` (`id`, `user_id`, `title`, `content`, `created_at`, `image`) VALUES
+(25, 0, 'Vì sao ẩm thực Huế có nhiều món ăn cung đình?', 'Ảnh hưởng từ văn hóa cung đình\r\nCác vua triều Nguyễn rất quan tâm đến ăn uống, yêu cầu các món ăn phải không chỉ ngon mà còn đẹp mắt, tinh tế và cầu kỳ trong cách chế biến.\r\nNhiều món ăn được chế biến theo công thức đặc biệt chỉ dành riêng cho hoàng gia.', '2025-03-10 05:39:14', 'uploads/67ce7b024304a_am_thuc_hue_1.jpg'),
+(26, 0, 'Thời điểm nào là đẹp nhất để du lịch Hội An?', 'Vào ngày 14 âm lịch mỗi tháng, Hội An tổ chức Đêm phố cổ, nơi toàn bộ khu phố sẽ lung linh với hàng ngàn chiếc đèn lồng, không có ánh đèn điện.\r\nĐây là thời điểm tuyệt vời để tham gia lễ hội thả đèn hoa đăng trên sông Hoài và tận hưởng không gian truyền thống.', '2025-03-10 05:47:03', 'uploads/67ce7cd7a7e19_le-hoi-den-hoa-dang.jpg'),
+(28, 0, 'Di sản văn hóa phi vật thể là gì?', 'Đó là những giá trị phi hữu hình như truyền thống, phong tục, lễ hội, nghệ thuật biểu diễn… được UNESCO công nhận và bảo tồn như một phần không thể tách rời của di sản văn hóa.', '2025-03-15 15:46:54', 'uploads/67d5a0eed2b28_disanvanhoa.jpg');
 
 -- --------------------------------------------------------
 
@@ -305,7 +328,7 @@ CREATE TABLE `stories` (
 --
 
 INSERT INTO `stories` (`id`, `title`, `description`, `image_url`, `link`) VALUES
-(1, 'Tạo sự hòa giải: Cầu Mostar', 'Trong cuộc xung đột ở Nam Tư cũ, cầu Mostar đã bị phá hủy hoàn toàn. Việc tái sinh cây cầu là một bước tiến quan trọng.', 'caumosta.jpg', 'https://example.com/mostar'),
+(1, 'Tạo sự hòa giải: Cầu Mostar', 'Trong cuộc xung đột ở Nam Tư cũ, cầu Mostar đã bị phá hủy hoàn toàn. Việc tái sinh cây cầu là một bước tiến quan trọng.', 'mosta.jpg', 'https://example.com/mostar'),
 (2, 'Cùng nhau phát triển: Tongariro', 'Công viên quốc gia Tongariro ở New Zealand đã đạt được đến cân bằng giữa bảo tồn thiên nhiên và văn hóa.', 'tonggariro.jpg', 'https://example.com/tongariro'),
 (3, 'Bảo tồn Machu Picchu', 'Các nhà nghiên cứu và cộng đồng địa phương đã nỗ lực bảo tồn Machu Picchu trước nguy cơ xuống cấp.', 'machupichu.jpg', 'https://example.com/machu-picchu'),
 (4, 'Bảo vệ Vạn Lý Trường Thành', 'Các sáng kiến bảo vệ và tái tạo Vạn Lý Trường Thành nhằm bảo tồn lịch sử và văn hóa Trung Hoa.', 'vltt.jpg', 'https://example.com/great-wall'),
@@ -352,10 +375,9 @@ CREATE TABLE `tintuc` (
 --
 
 INSERT INTO `tintuc` (`id`, `tieude`, `noidung`, `hinhanh`, `ngay_dang`) VALUES
-(1, 'Chùa Một Cột - Biểu tượng ngàn năm', 'Giới thiệu về Chùa Một Cột\r\n\r\nChùa Một Cột là một trong những biểu tượng văn hóa lâu đời và độc đáo nhất của Việt Nam. Được xây dựng từ thời vua Lý Thái Tông vào năm 1049, chùa mang đậm giá trị lịch sử, kiến trúc và tâm linh. \r\n\r\nTên gọi \"Chùa Một Cột\" xuất phát từ hình dáng đặc biệt của ngôi chùa: một gian nhỏ đặt trên một trụ đá duy nhất, tựa như một đóa sen vươn lên từ mặt nước. Đây là một trong những công trình mang đậm dấu ấn Phật giáo, thể hiện lòng thành kính của vua Lý đối với Đức Phật.\r\n\r\n---\r\n\r\n### Kiến trúc độc đáo\r\n\r\nChùa Một Cột có kiến trúc hoàn toàn khác biệt so với các ngôi chùa truyền thống ở Việt Nam. Chùa có các đặc điểm nổi bật sau:\r\n\r\n- **Thiết kế hình vuông**, mỗi cạnh khoảng 3m, đặt trên một trụ đá hình trụ có đường kính 1.25m, cao 4m.  \r\n- **Mái ngói cong**, uốn lượn theo phong cách kiến trúc cung đình thời Lý.  \r\n- **Cột đá nguyên khối** được chạm khắc tinh xảo, thể hiện kỹ thuật xây dựng vượt trội của thời kỳ phong kiến.  \r\n- **Bên trong chùa** đặt tượng Phật Quan Âm ngồi trên tòa sen, tượng trưng cho sự thanh tịnh và lòng từ bi.  \r\n\r\n---\r\n\r\n### Lịch sử và ý nghĩa\r\n\r\nTheo sử sách, vua Lý Thái Tông mơ thấy Phật Quan Âm ngồi trên tòa sen, đưa tay dắt nhà vua lên. Khi tỉnh dậy, nhà vua đã cho xây dựng ngôi chùa với hình dáng giống như trong giấc mơ để thể hiện lòng thành kính với Phật. \r\n\r\nChùa Một Cột không chỉ là di sản kiến trúc quan trọng mà còn là nơi linh thiêng, thu hút đông đảo Phật tử và du khách trong và ngoài nước. Chùa cũng là biểu tượng của Hà Nội và từng được in trên tiền kim loại Việt Nam.\r\n\r\n---\r\n\r\n### Bảo tồn và phục dựng\r\n\r\nTrải qua hàng trăm năm, Chùa Một Cột đã nhiều lần được trùng tu và sửa chữa:\r\n\r\n- **Năm 1105**, vua Lý Nhân Tông cho mở rộng quy mô chùa.  \r\n- **Thời nhà Trần**, chùa tiếp tục được bảo tồn và duy trì.  \r\n- **Năm 1954**, thực dân Pháp đã phá hủy chùa trước khi rút khỏi Hà Nội.  \r\n- **Năm 1955**, Chính phủ Việt Nam cho xây dựng lại chùa dựa trên kiến trúc cũ.  \r\n\r\nNgày nay, Chùa Một Cột vẫn là một địa điểm tham quan nổi tiếng, thu hút hàng triệu lượt khách du lịch mỗi năm.  \r\n\r\n---\r\n\r\nChùa Một Cột không chỉ là biểu tượng kiến trúc mà còn là một phần của lịch sử, văn hóa và tinh thần của dân tộc Việt Nam.', 'chua-mot-cot.jpg', '2025-03-27 17:19:11'),
-(3, 'Phố cổ Hội An - Di sản văn hóa thế giới', 'Giới thiệu về Hội An\r\n\r\nPhố cổ Hội An là một trong những điểm đến du lịch nổi tiếng nhất của Việt Nam, được UNESCO công nhận là di sản văn hóa thế giới vào năm 1999. Nơi đây từng là một thương cảng sầm uất vào thế kỷ 15-19, với sự giao thoa của nhiều nền văn hóa.\r\n\r\n---\r\n\r\n### Kiến trúc độc đáo\r\n\r\nHội An nổi bật với những ngôi nhà cổ có tuổi đời hàng trăm năm, mái ngói rêu phong, tường vàng đặc trưng và hệ thống đèn lồng lung linh vào ban đêm. Một số địa điểm nổi bật gồm:\r\n\r\n- **Chùa Cầu** - biểu tượng của Hội An, được xây dựng vào cuối thế kỷ 16.\r\n- **Nhà cổ Tấn Ký** - ngôi nhà hơn 200 năm tuổi mang phong cách kiến trúc Trung - Nhật - Việt.\r\n- **Hội quán Quảng Đông** - nơi sinh hoạt tín ngưỡng của người Hoa tại Hội An.\r\n\r\n---\r\n\r\n### Ẩm thực và văn hóa\r\n\r\nHội An còn nổi tiếng với nền ẩm thực phong phú như **cao lầu, mì Quảng, bánh mì Phượng**. Du khách có thể trải nghiệm **thả đèn hoa đăng trên sông Hoài**, thưởng thức nhã nhạc cung đình và khám phá các làng nghề truyền thống.\r\n\r\n---\r\n\r\nHội An không chỉ là một điểm đến du lịch, mà còn là nơi lưu giữ những giá trị văn hóa, lịch sử và tâm hồn của người Việt.', 'hoi-an.jpg', '2025-03-27 17:19:11'),
-(4, 'Cố đô Huế - Di sản văn hóa thế giới', 'Giới thiệu về Cố đô Huế\r\n\r\nHuế là kinh đô của triều đại nhà Nguyễn từ năm 1802 đến 1945. Nơi đây nổi tiếng với hệ thống di tích lịch sử phong phú và là trung tâm văn hóa quan trọng của Việt Nam.\r\n\r\n---\r\n\r\n### Di tích lịch sử quan trọng\r\n\r\n- **Đại Nội Huế**: Quần thể cung điện hoàng gia, nơi sinh sống và làm việc của vua chúa Nguyễn.\r\n- **Lăng tẩm các vua Nguyễn**: Như lăng Minh Mạng, lăng Tự Đức, lăng Khải Định, mang nét kiến trúc độc đáo.\r\n- **Chùa Thiên Mụ**: Ngôi chùa cổ bên dòng sông Hương, biểu tượng tâm linh của xứ Huế.\r\n\r\n---\r\n\r\n### Ẩm thực xứ Huế\r\n\r\nHuế còn được biết đến với nền ẩm thực cung đình tinh tế như **bún bò Huế, bánh bèo, bánh nậm, cơm hến**. Đặc biệt, nơi đây là quê hương của **nhã nhạc cung đình Huế**, một di sản phi vật thể của UNESCO.\r\n\r\n---\r\n\r\nVới vẻ đẹp cổ kính, trầm mặc và mang đậm dấu ấn lịch sử, Huế luôn là điểm đến lý tưởng cho du khách trong và ngoài nước.', 'hue.jpg', '2025-03-27 17:19:11'),
-(7, 'test', 'test', 'mu-ao-dau5.jpg', '2025-04-03 19:52:23');
+(11, 'Quần thể Tràng An – Kỳ quan non nước Ninh Bình', 'Tràng An – nơi hội tụ của thiên nhiên kỳ thú và lịch sử oai hùng – được UNESCO công nhận là Di sản Thế giới hỗn hợp đầu tiên của Việt Nam. Hệ sinh thái rừng núi đá vôi, sông ngòi, hang động tạo nên một bức tranh thủy mặc sống động.\r\n\r\nĐây cũng là nơi ghi dấu của Cố đô Hoa Lư – kinh đô đầu tiên của nước Đại Cồ Việt dưới thời Đinh – Tiền Lê. Bạn có thể tham quan các di tích như đền vua Đinh, đền vua Lê, chùa Bái Đính – một trong những quần thể chùa lớn nhất Đông Nam Á.\r\n\r\nTràng An nổi tiếng với hệ thống hang động dài và đẹp như hang Sáng, hang Tối, hang Nấu Rượu. Khi ngồi thuyền xuôi dòng, du khách như lạc vào chốn tiên cảnh với dòng nước trong xanh, rừng cây tĩnh lặng và các vách núi dựng đứng, tráng lệ.', 'trang_an.jpg', '2025-04-05 09:27:40'),
+(14, 'Phố cổ Hội An – Di sản văn hóa sống giữa lòng Quảng Nam', 'Phố cổ Hội An từng là thương cảng sầm uất vào thế kỷ 16–18, nơi giao thương giữa các thương nhân Việt, Trung, Nhật, Bồ Đào Nha… Những ngôi nhà cổ với kiến trúc pha trộn Á – Âu, các hội quán, chùa cầu Nhật Bản, những mái ngói phủ rêu là minh chứng cho một thời kỳ vàng son. Dù thời gian trôi qua, Hội An vẫn giữ được nhịp sống chậm rãi, thanh bình. Vào buổi tối, khi hàng ngàn chiếc đèn lồng thắp sáng khắp các con phố, không gian trở nên huyền ảo, lôi cuốn du khách trong không khí cổ tích hiếm nơi nào có được. Ngoài kiến trúc, Hội An còn nổi tiếng với các nghề thủ công truyền thống như may đo áo dài, làm đèn lồng, nghề mộc Kim Bồng, làng gốm Thanh Hà… Lễ hội \"Đêm phố cổ\", lễ Vu Lan, lễ hội đèn hoa đăng mang lại trải nghiệm đặc sắc cho khách du lịch.', 'unnamed.jpg', '2025-04-05 10:10:44'),
+(15, 'Cố đô Huế – Viên ngọc di sản miền Trung.', 'Cố đô Huế, tọa lạc bên dòng sông Hương thơ mộng, từng là thủ đô của Việt Nam dưới triều đại nhà Nguyễn trong suốt gần 150 năm. Với hệ thống kiến trúc đồ sộ gồm Kinh thành, Hoàng thành, Tử Cấm Thành, 7 lăng tẩm của các vị vua Nguyễn, và hơn 100 di tích lớn nhỏ, Huế là bảo tàng sống của văn hóa cung đình Việt Nam.\r\n\r\nKhông chỉ là di sản vật thể, Huế còn nổi bật với di sản phi vật thể như Nhã nhạc cung đình – loại hình âm nhạc bác học, được UNESCO công nhận là Di sản Văn hóa Phi vật thể Đại diện của Nhân loại. Các lễ hội truyền thống như Festival Huế, lễ hội áo dài, lễ tế Nam Giao… mang đến không gian sống động, đưa du khách trở về thời phong kiến xa xưa.\r\n\r\nẨm thực Huế cũng là một phần di sản tinh tế, với các món ăn cung đình như bánh bèo, bún bò, nem công chả phượng, thể hiện sự khéo léo và thẩm mỹ trong văn hóa ẩm thực miền Trung.', 'co-do-hue-9.jpg', '2025-04-05 10:11:47');
 
 -- --------------------------------------------------------
 
@@ -440,6 +462,12 @@ ALTER TABLE `images`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `post`
+--
+ALTER TABLE `post`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `posts`
 --
 ALTER TABLE `posts`
@@ -501,25 +529,37 @@ ALTER TABLE `articles`
 -- AUTO_INCREMENT for table `blog_articles`
 --
 ALTER TABLE `blog_articles`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+
+--
+-- AUTO_INCREMENT for table `comments`
+--
+ALTER TABLE `comments`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `feedback`
 --
 ALTER TABLE `feedback`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `images`
 --
 ALTER TABLE `images`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+
+--
+-- AUTO_INCREMENT for table `post`
+--
+ALTER TABLE `post`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- AUTO_INCREMENT for table `posts`
 --
 ALTER TABLE `posts`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
 
 --
 -- AUTO_INCREMENT for table `postss`
@@ -549,7 +589,7 @@ ALTER TABLE `success_stories`
 -- AUTO_INCREMENT for table `tintuc`
 --
 ALTER TABLE `tintuc`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `users`
