@@ -9,14 +9,14 @@ if (isset($_POST['submit_post'])) {
     if (!isset($_SESSION['user_id'])) {
         $_SESSION['message'] = "Bạn cần đăng nhập để đăng bài!";
         $_SESSION['message_type'] = "error";
-        header("Location: /btl/BTL_chuyende/webBTL/pages/congdong/network.php");
+        header("Location: ../congdong/network.php");
         exit();
     }
 
     if (!isset($_SESSION['role']) || strtolower($_SESSION['role']) !== 'admin') {
         $_SESSION['message'] = "Chỉ admin mới có thể đăng bài!";
         $_SESSION['message_type'] = "error";
-        header("Location: /btl/BTL_chuyende/webBTL/pages/congdong/network.php");
+        header("Location: ../congdong/network.php");
         exit();
     }
 
@@ -38,13 +38,13 @@ if (isset($_POST['submit_post'])) {
         if (!move_uploaded_file($_FILES['image']['tmp_name'], $image)) {
             $_SESSION['message'] = "Lỗi khi tải lên hình ảnh.";
             $_SESSION['message_type'] = "error";
-            header("Location: /btl/BTL_chuyende/webBTL/pages/congdong/network.php");
+            header("Location: ../congdong/network.php");
             exit();
         }
     }
 
     // Lưu bài đăng vào cơ sở dữ liệu
-    $sql = "INSERT INTO posts (user_id, title, content, image, created_at) VALUES (?, ?, ?, ?, NOW())";
+    $sql = "INSERT INTO post (user_id, title, content, image, created_at) VALUES (?, ?, ?, ?, NOW())";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("isss", $user_id, $title, $content, $image);
     if ($stmt->execute()) {
@@ -55,7 +55,7 @@ if (isset($_POST['submit_post'])) {
         $_SESSION['message_type'] = "error";
     }
     $stmt->close();
-    header("Location: /btl/BTL_chuyende/webBTL/pages/congdong/network.php");
+    header("Location: ../congdong/network.php");
     exit();
 }
 
@@ -64,14 +64,14 @@ if (isset($_POST['edit_post'])) {
     if (!isset($_SESSION['user_id'])) {
         $_SESSION['message'] = "Bạn cần đăng nhập để chỉnh sửa bài đăng!";
         $_SESSION['message_type'] = "error";
-        header("Location: /btl/BTL_chuyende/webBTL/pages/congdong/network.php");
+        header("Location: ../congdong/network.php");
         exit();
     }
 
     if (!isset($_SESSION['role']) || strtolower($_SESSION['role']) !== 'admin') {
         $_SESSION['message'] = "Chỉ admin mới có thể chỉnh sửa bài đăng!";
         $_SESSION['message_type'] = "error";
-        header("Location: /btl/BTL_chuyende/webBTL/pages/congdong/network.php");
+        header("Location: ../congdong/network.php");
         exit();
     }
 
@@ -98,13 +98,13 @@ if (isset($_POST['edit_post'])) {
         } else {
             $_SESSION['message'] = "Lỗi khi tải lên hình ảnh.";
             $_SESSION['message_type'] = "error";
-            header("Location: /btl/BTL_chuyende/webBTL/pages/congdong/network.php");
+            header("Location: ../congdong/network.php");
             exit();
         }
     }
 
     // Cập nhật bài đăng
-    $sql = "UPDATE posts SET title = ?, content = ?, image = ? WHERE id = ?";
+    $sql = "UPDATE post SET title = ?, content = ?, image = ? WHERE id = ?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("sssi", $title, $content, $image, $post_id);
     if ($stmt->execute()) {
@@ -115,7 +115,7 @@ if (isset($_POST['edit_post'])) {
         $_SESSION['message_type'] = "error";
     }
     $stmt->close();
-    header("Location: /btl/BTL_chuyende/webBTL/pages/congdong/network.php");
+    header("Location: ../congdong/network.php");
     exit();
 }
 
@@ -124,21 +124,21 @@ if (isset($_GET['delete_post'])) {
     if (!isset($_SESSION['user_id'])) {
         $_SESSION['message'] = "Bạn cần đăng nhập để xóa bài đăng!";
         $_SESSION['message_type'] = "error";
-        header("Location: /btl/BTL_chuyende/webBTL/pages/congdong/network.php");
+        header("Location: ../congdong/network.php");
         exit();
     }
 
     if (!isset($_SESSION['role']) || strtolower($_SESSION['role']) !== 'admin') {
         $_SESSION['message'] = "Chỉ admin mới có thể xóa bài đăng!";
         $_SESSION['message_type'] = "error";
-        header("Location: /btl/BTL_chuyende/webBTL/pages/congdong/network.php");
+        header("Location: ../congdong/network.php");
         exit();
     }
 
     $post_id = (int)$_GET['delete_post'];
 
     // Lấy thông tin bài đăng để xóa hình ảnh (nếu có)
-    $sql = "SELECT image FROM posts WHERE id = ?";
+    $sql = "SELECT image FROM post WHERE id = ?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("i", $post_id);
     $stmt->execute();
@@ -158,7 +158,7 @@ if (isset($_GET['delete_post'])) {
     $stmt->close();
 
     // Xóa bài đăng
-    $sql = "DELETE FROM posts WHERE id = ?";
+    $sql = "DELETE FROM post WHERE id = ?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("i", $post_id);
     if ($stmt->execute()) {
@@ -169,7 +169,7 @@ if (isset($_GET['delete_post'])) {
         $_SESSION['message_type'] = "error";
     }
     $stmt->close();
-    header("Location: /btl/BTL_chuyende/webBTL/pages/congdong/network.php");
+    header("Location: ../congdong/network.php");
     exit();
 }
 ?>
@@ -372,7 +372,8 @@ if (isset($_GET['delete_post'])) {
             color: #555;
             margin: 10px 0;
             display: -webkit-box;
-            -webkit-line-clamp: 3; /* Giới hạn hiển thị 3 dòng */
+            -webkit-line-clamp: 3;
+            /* Giới hạn hiển thị 3 dòng */
             -webkit-box-orient: vertical;
             overflow: hidden;
             text-overflow: ellipsis;
@@ -497,7 +498,7 @@ if (isset($_GET['delete_post'])) {
         <?php if (isset($_SESSION['user_id']) && isset($_SESSION['role']) && strtolower($_SESSION['role']) == 'admin'): ?>
             <div class="post-form">
                 <h3>Đăng bài mới</h3>
-                <form action="/btl/BTL_chuyende/webBTL/pages/congdong/network.php" method="POST" enctype="multipart/form-data">
+                <form action="../congdong/network.php" method="POST" enctype="multipart/form-data">
                     <input type="text" name="title" placeholder="Tiêu đề bài viết" required>
                     <textarea name="content" placeholder="Nội dung bài viết" required></textarea>
                     <input type="file" name="image" accept="image/*">
@@ -511,7 +512,7 @@ if (isset($_GET['delete_post'])) {
         <?php
         if (isset($_GET['edit_post']) && isset($_SESSION['user_id']) && isset($_SESSION['role']) && strtolower($_SESSION['role']) == 'admin') {
             $post_id = (int)$_GET['edit_post'];
-            $sql = "SELECT * FROM posts WHERE id = ?";
+            $sql = "SELECT * FROM post WHERE id = ?";
             $stmt = $conn->prepare($sql);
             $stmt->bind_param("i", $post_id);
             $stmt->execute();
@@ -520,7 +521,7 @@ if (isset($_GET['delete_post'])) {
         ?>
                 <div class="post-form">
                     <h3>Chỉnh sửa bài đăng</h3>
-                    <form action="/btl/BTL_chuyende/webBTL/pages/congdong/network.php" method="POST" enctype="multipart/form-data">
+                    <form action="../congdong/network.php" method="POST" enctype="multipart/form-data">
                         <input type="hidden" name="post_id" value="<?php echo $post['id']; ?>">
                         <input type="hidden" name="existing_image" value="<?php echo $post['image']; ?>">
                         <input type="text" name="title" value="<?php echo htmlspecialchars($post['title']); ?>" required>
@@ -541,7 +542,7 @@ if (isset($_GET['delete_post'])) {
         <!-- Danh sách bài đăng -->
         <div class="post-list">
             <?php
-            $sql = "SELECT posts.*, users.Username FROM posts LEFT JOIN users ON posts.user_id = users.UserId ORDER BY posts.created_at DESC";
+            $sql = "SELECT post.*, users.Username FROM post LEFT JOIN users ON post.user_id = users.UserId ORDER BY post.created_at DESC";
             $result = $conn->query($sql);
 
             if ($result->num_rows > 0) {
