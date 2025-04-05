@@ -225,11 +225,11 @@ $role = $_SESSION['role'];
         /* Quản lý người dùng */
         .content-section {
             font-family: Arial, sans-serif;
-            padding: 20px;
+            padding: 50px;
             background-color: #f9f9f9;
             border: 1px solid #ddd;
             border-radius: 8px;
-            max-width: 800px;
+            max-width: 1000px;
             margin: 20px auto;
         }
 
